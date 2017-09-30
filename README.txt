@@ -5,8 +5,13 @@
 1.0 bigRRGWAS/01_NameIsolates.R 
 	takes IsolateKey_Vivian.csv and BcBOT_result.lsm.csv
 	writes BOTphenotypes.csv
-2.0 bigRRGWAS/02_MatchGenos.R
+1.1 bigRRGWAS/02_PrepGenos.R
+	tab files from BcSolGWAS/data/GWAS_files/01_tabfiles/Suzi_033016/
+	copied to data/00_tabfiles/Suzi_033016/
+	output: 02_MatchGenos/
+2.0 bigRRGWAS/03_MatchGenos.R
 	on Linux:
-	takes 01_MatchGenos/BOTphenotypes.csv and 01_MatchGenos/hp_bin_trueMAF20_20NA.csv
-	hp_bin_trueMAF20_20NA.csv comes from BcSolGWAS/data/GWAS_files/02_csvPrep
-	writes 02_bigRR/BOT_phenos.csv and 02_bigRR/BOT_genos.csv
+	takes 02_MatchGenos/BOTphenotypes.csv and 02_MatchGenos/hp_bin_trueMAF20_20NA.csv
+	Key_SNPnames.csv comes from BcSolGWAS/data/GWAS_files/02_csvPrep/
+	writes 03_bigRR/BOT_phenos.csv and 03_bigRR/BOT_genos.csv
+
