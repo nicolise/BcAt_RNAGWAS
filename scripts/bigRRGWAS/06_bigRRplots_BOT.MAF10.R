@@ -4,7 +4,7 @@
 #---------------------------------------------------------------
 
 rm(list=ls())
-setwd("~/Projects/BcAt_RNAGWAS/data/")
+setwd("~/Projects/BcAt_RNAGWAS/")
 
 #just Manhattan plots for individual plant genotypes
 ############################################################################
@@ -18,14 +18,14 @@ library(grid)
 library(dplyr)
 
 #Import data (reorganized from script ReformatBigRRouts.R)
-HEM.plotdata.og <- read.csv("BcBOT_MAF10_HEM.PlotFormat.csv")
+HEM.plotdata.og <- read.csv("data/BcBOT_MAF10_HEM.PlotFormat.csv")
 
 HEM.plotdata <- HEM.plotdata.og
 
 HEM.plotdata <- HEM.plotdata[,-c(1)]
 
 #get threshhold values 
-HEM.thresh <- read.csv("BcBOT_MAF10_HEM.Thresh.csv")
+HEM.thresh <- read.csv("data/BcBOT_MAF10_HEM.Thresh.csv")
 HEM.thresh <- HEM.thresh[,-c(1)]
 
 
@@ -70,15 +70,15 @@ max(HEM.plotdata[which(HEM.plotdata$Chrom.Seg.F=='16.7'),]$Index) - min(HEM.plot
 
 #try: keep top SNPs only
 for (i in c(4:14)){
-  assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), subset(HEM.plotdata, HEM.plotdata[i] > get(paste("TH99pos_", names(HEM.plotdata[i]), sep="")), select=c(Chrom,Segment,Pos,Index,i)))
-  assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), subset(HEM.plotdata, HEM.plotdata[i] < get(paste("TH99neg_", names(HEM.plotdata[i]), sep="")), select=c(Chrom,Segment,Pos,Index,i)))
+  assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), subset(HEM.plotdata, HEM.plotdata[i] > get(paste("TH999pos_", names(HEM.plotdata[i]), sep="")), select=c(Chrom,Segment,Pos,Index,i)))
+  assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), subset(HEM.plotdata, HEM.plotdata[i] < get(paste("TH999neg_", names(HEM.plotdata[i]), sep="")), select=c(Chrom,Segment,Pos,Index,i)))
 }
 
-#for top 1000 only
-for (i in c(4:14)){
-  assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), head(arrange(get(paste("HEMpos.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMpos.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
-  assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), tail(arrange(get(paste("HEMneg.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMneg.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
-}
+# #for top 1000 only
+# for (i in c(4:14)){
+#   assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), head(arrange(get(paste("HEMpos.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMpos.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
+#   assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), tail(arrange(get(paste("HEMneg.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMneg.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
+# }
 
 #combine pos and neg by group
 for (i in c(4:14)){
@@ -99,11 +99,12 @@ HEM.topSNPs <- rbind(HEM.Bcin12g06370.1.coi.1.HEM,HEM.Bcin12g06380.1.coi.1.HEM,H
 
 #total sig SNPs per trait here
 table(HEM.topSNPs$Trait)
-
+jpeg(paste("plots/BOT_NA10_lowTR_MAF10.ManhattanPlot.jpg", sep=""), width=7.5, height=5, units='in', res=600)
 plot(ggplot(HEM.topSNPs, aes(x=Index, y=Effect))+
        theme_bw()+
-       geom_point(aes(color = factor(Trait))))
-
+       geom_point(aes(color = factor(Trait))))+
+  geom_hline()
+dev.off()
 
 #greyscale version
 #4 to 15

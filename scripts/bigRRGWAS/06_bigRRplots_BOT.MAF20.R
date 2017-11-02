@@ -4,7 +4,7 @@
 #---------------------------------------------------------------
 
 rm(list=ls())
-setwd("~/Projects/BcAt_RNAGWAS/data/")
+setwd("~/Projects/BcAt_RNAGWAS/")
 
 #just Manhattan plots for individual plant genotypes
 ############################################################################
@@ -18,14 +18,14 @@ library(grid)
 library(dplyr)
 
 #Import data (reorganized from script ReformatBigRRouts.R)
-HEM.plotdata.og <- read.csv("BcBOT_MAF20_HEM.PlotFormat.csv")
+HEM.plotdata.og <- read.csv("data/BcBOT_MAF20_HEM.PlotFormat.csv")
 
 HEM.plotdata <- HEM.plotdata.og
 
 HEM.plotdata <- HEM.plotdata[,-c(1)]
 
 #get threshhold values 
-HEM.thresh <- read.csv("BcBOT_MAF20_HEM.Thresh.csv")
+HEM.thresh <- read.csv("data/BcBOT_MAF20_HEM.Thresh.csv")
 HEM.thresh <- HEM.thresh[,-c(1)]
 
 
@@ -75,10 +75,10 @@ for (i in c(4:24)){
 }
 
 #for top 1000 only
-for (i in c(4:24)){
-  assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), head(arrange(get(paste("HEMpos.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMpos.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
-  assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), tail(arrange(get(paste("HEMneg.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMneg.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
-}
+# for (i in c(4:24)){
+#   assign(paste("HEMpos.", names(HEM.plotdata[i]), sep=""), head(arrange(get(paste("HEMpos.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMpos.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
+#   assign(paste("HEMneg.", names(HEM.plotdata[i]), sep=""), tail(arrange(get(paste("HEMneg.", names(HEM.plotdata[i]), sep="")), desc(get(paste("HEMneg.", names(HEM.plotdata[i]), sep=""))[,5])), n=500))
+# }
 
 #combine pos and neg by group
 for (i in c(4:15)){
@@ -99,10 +99,12 @@ HEM.topSNPs <- rbind(HEM.Bcin12g06370.1.coi.1,HEM.Bcin12g06380.1.coi.1,HEM.Bcin1
 
 #total sig SNPs per trait here
 table(HEM.topSNPs$Trait)
-
+jpeg(paste("plots/BOT_trueMAF20_NA10_lowTR_MAF20.ManhattanPlot.jpg", sep=""), width=7.5, height=5, units='in', res=600)
 plot(ggplot(HEM.topSNPs, aes(x=Index, y=Effect))+
        theme_bw()+
-       geom_point(aes(color = factor(Trait))))
+       geom_point(aes(color = factor(Trait))))+
+       geom_hline()
+dev.off()
 #greyscale version
 #4 to 15
 for (i in c(4:24)){
