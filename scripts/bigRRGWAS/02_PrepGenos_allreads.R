@@ -5,10 +5,11 @@
 #---------------------------------------------------
 rm(list=ls())
 #read in tab files from BcGenome
-setwd("~/Projects/BcGenome/data/Suzi_033016")
-tab20 = read.delim("Haploid_SNPS_97_dp6_maf20.tab")
+setwd("~/Projects/BcGenome/")
+setwd("~/Documents/GitRepos/BcGenome")
+tab20 = read.delim("data/Suzi_033016/Haploid_SNPS_97_dp6_maf20.tab")
 #on linux desktop
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/")
 setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/")
 library(tidyr)
 #convert all .tab SNP files to .csv

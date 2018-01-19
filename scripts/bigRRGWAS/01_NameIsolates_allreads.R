@@ -6,6 +6,7 @@
 #-----------------------------------------------------------------
 rm(list=ls())
 #load data
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data")
 setwd("~/Projects/BcAt_RNAGWAS/data")
 IsoNames <- read.csv("IsolateKey_Vivian.csv")
 MyReads <- read.csv("Vivian_Bc/result.lsm.csv")
