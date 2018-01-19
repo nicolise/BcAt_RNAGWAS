@@ -5,6 +5,7 @@
 rm(list=ls())
 
 setwd("~/Projects/BcGenome/data")
+setwd("~/Documents/GitRepos/BcGenome/data")
 SNPnames <- read.csv("Key_SNPnames.csv")
 SNPnames <- SNPnames[c(2,5)]
 names(SNPnames)[1]<- "Isolate"
