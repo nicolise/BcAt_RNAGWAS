@@ -51,3 +51,5 @@ print(Sys.time())
 
 #write out file
 write.csv(MyReads.col0, "allreadsGWAS/01_prepFiles/col0_allreads.csv")
+write.csv(full.lsm.outputs, "allreadsGWAS/01_prepFiles/ANOVA_lsmoutputs_allreads.csv")
+write.csv(lsm.for.GWAS, "allreadsGWAS/01_prepFiles/lsmeans_allreads.csv")
