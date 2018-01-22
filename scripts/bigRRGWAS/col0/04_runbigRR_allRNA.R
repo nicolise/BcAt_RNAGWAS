@@ -37,7 +37,7 @@ bigRR_update <- function (obj, Z, family = poisson(link = identity), tol.err = 1
 library(bigRR) #check if version is 1.3-9
 
 #Get genotype data
-SNPs <- read.csv("allreadsGWAS/02_bigRR/allreads_SNPS_MAF20.csv", row.names = 1)
+SNPs <- read.csv("allreadsGWAS/02_bigRR/col0_allreads_SNPS_MAF20.csv", row.names = 1)
 FullSNPs <- SNPs
 SNPs <- FullSNPs
 #add a column with position as chr.base
@@ -55,20 +55,24 @@ for(i in 1:dim(SNPs)[1]) {
 }
 
 #read in phenotype data
-Phenos <- read.csv("allreadsGWAS/02_bigRR/allreads_phenos_MAF20.csv", row.names = 1)
+Phenos <- read.csv("allreadsGWAS/02_bigRR/col0_allreads_phenos_MAF20.csv", row.names = 1)
 #for poisson all values must be positive
+#actual phenotypes 3:9269
 dat <- Phenos[,c(3:9269)]
 min(dat)
 dat <- dat + 49
-#actual phenotypes 3:9269
-##subset dat if needed here:
-#dat <- as.data.frame(dat[,c(1:10)])  #INSERT PHENOTYPE COLUMNS HERE
+
+#111818 ran to "Bcin11g01190.1"
+#which( colnames(dat)=="Bcin11g01190.1" )
+#111919
+#dat <- dat[,c(586:9267)]
 
 outpt.HEM <- colnames(SNPs)
 
-con <- file("allreadsGWAS/03_bigRRout/allphenos_MAF20_011818.log")
+con <- file("allreadsGWAS/03_bigRRout/col0_allphenos_MAF20_011918.log")
 sink(con, append=TRUE, type="message")
 
+print(Sys.time())
 #Calculate HEMs for all phenotypes
 for(i in 1:dim(dat)[2]) { #i will be each isolate
   print(colnames(dat)[i])
@@ -83,9 +87,10 @@ for(i in 1:dim(dat)[2]) { #i will be each isolate
   outpt.HEM <- cbind(outpt.HEM, Pheno.HEM.result$u)
   colnames(outpt.HEM)[i+1] <- paste(colnames(dat)[i],"HEM",sep=".")
   #write out to .csv after each phenotype! This saves our progress in case of memory error
-  write.csv(outpt.HEM, file="allreadsGWAS/03_bigRRout/bigRR_MAF20_011818.csv", append=T)
+  write.csv(outpt.HEM, file="allreadsGWAS/03_bigRRout/col0_bigRR_MAF20_011918.csv", append=T)
 }
 
 # Restore output to console
 #sink() 
 sink(type="message")
+print(Sys.time())
