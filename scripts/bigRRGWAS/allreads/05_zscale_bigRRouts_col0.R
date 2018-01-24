@@ -43,67 +43,109 @@ for (i in c(4:228)){
   names(mydat_z)[i] <- print(names(mydat)[i])
 }
 
+#now build new dataframe for synteny thing
+#add variable chrom.seg.pos
+#columns: Chromosome, Segment, Pos, chrom.seg.pos, Transcript
+mydat_z$chrom.seg.pos <- paste(mydat_z$Chrom, mydat_z$Segment, mydat_z$Pos, sep=".")
+mydat_z <- mydat_z[,c(1:3, 229, 4:228)]
+
+#keep only top SNP per transcript for cis/trans analysis
+mydat_cistrans <- as.data.frame(names(mydat_z)[5:10])
+names(mydat_cistrans)[1] <- "Transcript"
+
+#start the dataframe
+#first phenotype is 5
+df <- mydat_z[mydat_z[,5]==max(abs(mydat_z[,5])),]
+df$Transcript <- names(df)[5]
+df$maxFX <- df[,5]
+df <- df[,c(1:4,230, 231)]
+
+for (i in c(6:229)){
+#extract the row
+blah <- mydat_z[abs(mydat_z[,i])==max(abs(mydat_z[,i])),]
+blah$Transcript <- names(blah)[i]
+blah$maxFX <- blah[,i]
+blah <- blah[,c(1:4,230, 231)]
+df <- rbind(df, blah)
+}
+
 #now extract positional information per SNP
 myreadPos <- as.data.frame(names(mydat_z)[4:228])
 names(myreadPos)[1] <- "readname"
 
 #very bad lazy regex here
-myreadPos$Chr <- substring(myreadPos$readname, regexpr("Bcin", myreadPos$readname) +4)
-myreadPos$Chr <- as.numeric(sapply(strsplit(myreadPos$Chr, "g"), "[", 1))
+myreadPos <- df
+names(myreadPos)[1] <- "SNP.Chrom"
+names(myreadPos)[2] <- "SNP.Seg"
+names(myreadPos)[3] <- "SNP.Pos"
+names(myreadPos)[4] <- "SNP.c.s.p"
+myreadPos$read.Chrom <- substring(myreadPos$Transcript, regexpr("Bcin", myreadPos$Transcript) +4)
+myreadPos$read.Chrom <- as.numeric(sapply(strsplit(myreadPos$read.Chrom, "g"), "[", 1))
 
-myreadPos$Pos <- substring(myreadPos$readname, regexpr("g", myreadPos$readname) + 1)
-myreadPos$Pos <- sapply(strsplit(myreadPos$Pos, ".1.HEM"), "[", 1)
-myreadPos$Pos <- sapply(strsplit(myreadPos$Pos, ".2.HEM"), "[", 1)
-myreadPos$Pos <- as.numeric(myreadPos$Pos)
+myreadPos$read.Pos <- substring(myreadPos$Transcript, regexpr("g", myreadPos$Transcript) + 1)
+myreadPos$read.Pos <- sapply(strsplit(myreadPos$read.Pos, ".1.HEM"), "[", 1)
+myreadPos$read.Pos <- sapply(strsplit(myreadPos$read.Pos, ".2.HEM"), "[", 1)
+myreadPos$read.Pos <- as.numeric(myreadPos$read.Pos)
 
 #include read 1 or 2 for a given SNP
-myreadPos$Read <- 
+myreadPos$read.num <- substring(myreadPos$Transcript, regexpr("g", myreadPos$Transcript) + 1)
+myreadPos$read.num <- as.numeric(as.character(substring(myreadPos$read.num, regexpr("g", myreadPos$read.num), regexpr(".HEM", myreadPos$read.num) -1)))
 
-#-----------------------------------------------------
+#have no contig info for reads so... for now ignoring contig for SNP and just going Chrom/ Pos
+#may need to go back to old SlBcGWAS bigRRout script to grab Chr.Contig indexing
 
-#now make segments line up consecutively
-HEM.plotdata$Chrom.Seg <- paste(HEM.plotdata$Chrom, HEM.plotdata$Segment, sep=".")
-HEM.plotdata$Chrom.Seg <- as.numeric(HEM.plotdata$Chrom.Seg)
-
-#let's try making the chrom.seg integers so that R isn't confused
-unique(HEM.plotdata$Chrom.Seg)
-HEM.plotdata$Chrom.Seg.F <- as.factor(HEM.plotdata$Chrom.Seg)
-unique(HEM.plotdata$Chrom.Seg.F)
-recode.vars <- data.frame(OGvals = c(1,1.1,2,2.1,2.2,2.3,2.4,2.5, 3, 3.1, 3.2, 4,  4.1, 5,  5.1, 6,  6.1, 6.2, 6.3, 7,  7.1, 7.2, 8,  8.1, 8.2, 9,  9.1, 10, 10.1, 11, 11.1, 12, 12.1, 13, 13.1, 13.2, 14, 14.1, 14.2, 15, 15.1, 15.2, 15.3, 15.4, 16, 16.1, 16.2, 16.3, 16.4, 16.5, 16.6, 16.7, 16.8, 16.9, 16.11), newvals = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55))
-print(recode.vars)
-
-HEM.plotdata$Chrom.Seg.Int <- recode.vars$newvals[match(HEM.plotdata$Chrom.Seg.F, recode.vars$OGvals)]
-unique(HEM.plotdata$Chrom.Seg.Int)
-
+#must do this twice: once for SNP.Index and once for read.Index
+#first order data by SNP.Chrom
+myreadPos <- myreadPos[order(myreadPos$SNP.Chrom),]
 #Make plotting variables
-HEM.plotdata$Index = NA
-ticks = NULL
+myreadPos$SNP.Index = NA
 lastbase = 0
-
 #Redo the positions to make them sequential		-- accurate position indexing
-for (i in unique(HEM.plotdata$Chrom.Seg.Int)) {
+for (i in unique(myreadPos$SNP.Chrom)) {
   print(i)
   #for chromosome 1
   if (i==1) {
     #for the subset of HEM.plotdata rows with Chromosome 1, set Index variable for each row to equal Pos.
-    HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Index=HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Pos
+    myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Index=myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Pos
     #for all other chromosomes: 
   }	else {
     #lastbase for chromosome i is the greater of:
     #current lastbase counter plus the maxiumum position of chromosome i-1
     #OR 1
-    #changed lastbase+tail to lastbase+max
-    lastbase=lastbase+max(subset(HEM.plotdata,HEM.plotdata$Chrom.Seg.Int==i-1)$Pos, 1)
+    lastbase=lastbase+max(subset(myreadPos,myreadPos$SNP.Chrom==i-1)$SNP.Pos, 1)
     #and then for the subset of HEM.plotdata rows with Chromosome i, set Index variable for each row to equal Pos + lastbase
-    HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Index=HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Pos+lastbase
+    myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Index=myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Pos+lastbase
   }
-  #set ticks to be a list of existing ticks, plus the current Index
-  #floor rounds it down to the nearest whole number
-  # ticks=c(ticks, HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Index[floor(length(HEM.plotdata[HEM.plotdata$Chrom==i, ]$Index)/2)+1])
-  
-  ticks=c(ticks, HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Index[floor(length(HEM.plotdata[HEM.plotdata$Chrom.Seg.Int==i, ]$Index)/2)+1])
+  ticks=c(ticks, myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Index[floor(length(myreadPos[myreadPos$SNP.Chrom==i, ]$SNP.Index)/2)+1])
 }
-ticklim=c(min(HEM.plotdata$Index),max(HEM.plotdata$Index))
+
+#now order data by read.Chrom
+myreadPos <- myreadPos[order(myreadPos$read.Chrom),]
+#Make plotting variables
+myreadPos$read.Index = NA
+lastbase = 0
+#Redo the positions to make them sequential		-- accurate position indexing
+for (i in unique(myreadPos$read.Chrom)) {
+  print(i)
+  #for chromosome 1
+  if (i==11) {
+    #for the subset of HEM.plotdata rows with Chromosome 1, set Index variable for each row to equal Pos.
+    myreadPos[myreadPos$read.Chrom==i, ]$read.Index=myreadPos[myreadPos$read.Chrom==i, ]$read.Pos
+    #for all other chromosomes: 
+  }	else {
+    #lastbase for chromosome i is the greater of:
+    #current lastbase counter plus the maxiumum position of chromosome i-1
+    #OR 1
+    lastbase=lastbase+max(subset(myreadPos,myreadPos$read.Chrom==i-1)$read.Pos, 1)
+    #and then for the subset of HEM.plotdata rows with Chromosome i, set Index variable for each row to equal Pos + lastbase
+    myreadPos[myreadPos$read.Chrom==i, ]$read.Index=myreadPos[myreadPos$read.Chrom==i, ]$read.Pos+lastbase
+  }
+}
+
+#plot it
+library(ggplot2)
+ggplot(myreadPos, aes(x=SNP.Index, y=read.Index)) + geom_point(aes(color=read.Chrom, size=SNP.Chrom)) 
+  
 
 write.csv(HEM.plotdata, "BcBOT_MAF20_HEM.PlotFormat.csv") 
 write.csv(HEMthresh, "BcBOT_MAF20_HEM.Thresh.csv")
