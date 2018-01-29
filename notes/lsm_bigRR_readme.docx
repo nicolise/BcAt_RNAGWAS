@@ -1,0 +1,16 @@
+lsm_bigRR_MAF20_012218.csv ran expression profiles "Bcin01g00040.1" to "Bcin01g01770.1"
+	aka column 2 to 919 in Phenos
+lsm_bigRR_MAF20_012218_b.csv is Bcin01g01780.1 to Bcin01g09180.1
+	aka column 920 to 1420 in Phenos
+lsm_bigRR_MAF20.1.csv is Bcin04g03670.1 to Bcin05g05780.1
+	aka column 2840 to 3340 in Phenos
+lsm_bigRR_MAF20.2.csv is Bcin05g05780.1 to Bcin06g04900.1
+	aka column 3340 to 3720 in Phenos
+
+To Do: Column 1421 to 2839, 3721 to 9268 in Phenos
+	aka column 1420:2838, 3720:9267 in dat
+And: ran Bcin05g05780.1 (column 3340) twice
+
+Running with separate output file for each phenotype:
+Started  "2018-01-26 15:25:19 PST"
+

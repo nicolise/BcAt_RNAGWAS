@@ -4,6 +4,7 @@
 #to run bigRR on Linux GPU for GWAS
 #---------------------------------------------------------------
 rm(list=ls())
+sink(type=c("output","message"), split=TRUE)
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
 
 #########################
@@ -62,35 +63,84 @@ dat <- Phenos[,c(2:9268)]
 min(dat)
 dat <- dat + 29
 
-#111818 ran to "Bcin11g01190.1"
-#which( colnames(dat)=="Bcin11g01190.1" )
-#111919
-#dat <- dat[,c(586:9267)]
+#check which phenos are done
+# con <- file("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.2.csv","r")
+# first_line <- readLines(con,n=1)
+# close(con)
+#see document notes/lsm_bigRR_readme.docx to see which files have which phenotypes
+which (colnames(Phenos)=="Bcin06g04900.1") 
+which (colnames(dat)=="Bcin06g04900.1")
 
-outpt.HEM <- colnames(SNPs)
 
-#con <- file("allreadsGWAS/03_bigRRout/lsm_allphenos_MAF20_012218.log")
-#sink(con, append=TRUE, type="message")
+#--------------------------------------------------------------
+#try clearing out memory
+#memory.size(max=F)
+#gc()
+#can also restart R or the machine after a crash
 
-print(Sys.time())
-#Calculate HEMs for all phenotypes
-for(i in 1:dim(dat)[2]) { #i will be each isolate
-  print(colnames(dat)[i])
-  MyX <- matrix(1, dim(dat)[1], 1) #good to here
+#find current pheno to start from
+dat <- dat[,c(1420:2838,3720:9267)]
+#make dat column number a multiple of 500
+dat[,c(6968:7000)] <- NA
+
+mysplit.dat <- lapply(seq(1,ncol(dat)-500,500), function(u) dat[,u:(u+500)])
+
+# loop from here to run batches of phenotypes in bigRR
+for (y in 1:13){
+  dat <- mysplit.dat[[y]]
+  con <- file(paste("allreadsGWAS/03_bigRRout/lsm_allphenos_MAF20_012918",y,"log",sep="."))
+  #type = "message"
+  sink(con, append=TRUE, split=TRUE)
+  time1 <- print(Sys.time())
+  #Calculate HEMs for all phenotypes
+  for(i in 1:dim(dat)[2]) { #i will be each isolate
+    print(colnames(dat)[i])
+    outpt.HEM <- NULL
+    outpt.HEM <- colnames(SNPs)
+    MyX <- matrix(1, dim(dat)[1], 1) #good to here
   
-  #added try here
-  #testing with impute=T
-  Pheno.BLUP.result <- try(bigRR(y = dat[,i], X = MyX, Z = SNPs, GPU = TRUE, impute=TRUE))
-  #can add try here as well
-  Pheno.HEM.result <- try(bigRR_update(Pheno.BLUP.result, SNPs))
+    #added try here
+    #testing with impute=T
+    Pheno.BLUP.result <- try(bigRR(y = dat[,i], X = MyX, Z = SNPs, GPU = TRUE, impute = TRUE))
+    #can add try here as well
+    Pheno.HEM.result <- try(bigRR_update(Pheno.BLUP.result, SNPs))
   
-  outpt.HEM <- cbind(outpt.HEM, Pheno.HEM.result$u)
-  colnames(outpt.HEM)[i+1] <- paste(colnames(dat)[i],"HEM",sep=".")
-  #write out to .csv after each phenotype! This saves our progress in case of memory error
-  write.csv(outpt.HEM, file="allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.csv", append=T)
+   outpt.HEM <- cbind(outpt.HEM, Pheno.HEM.result$u)
+    colnames(outpt.HEM)[2] <- paste(colnames(dat)[i],"HEM",sep=".")
+    #write out to .csv after each phenotype! This saves our progress in case of memory error
+    #but is probably slow. going to try a new file for each phenotype
+    #write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218",y,"csv",sep="."), append=T)
+    write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012918",y,i,"csv",sep="."))
+    print(Sys.time())
+    #run garbage collection just in case to free up space
+    gc()
+  }
+
+  # Restore output to console
+  print(time1)
+  print(Sys.time())
+  sink(type="message")
+  sink(file=NULL) 
 }
 
-# Restore output to console
-#sink() 
-sink(type="message")
-print(Sys.time())
+#-------------------------------------------------------------
+
+#read output back in
+partial.out <- read.csv("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.csv")
+
+library(bigmemory)
+system.time(mypartial.out <- read.big.matrix("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.csv", header = TRUE))
+
+#user  system elapsed 
+#208.340   2.464 211.073 
+#Warning messages:
+#  1: In na.omit(as.integer(firstLineVals)) : NAs introduced by coercion
+#2: In na.omit(as.double(firstLineVals)) : NAs introduced by coercion
+#3: In read.big.matrix("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.csv",  : Because type was not specified, we chose double based on the first line of data.
+
+library(data.table)
+# system.time(mypartial.out.b <- fread("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218.csv", header = T, sep = ',')) 
+#Read 287826 rows and 920 (of 920) columns from 5.753 GB file in 00:07:20
+#user  system elapsed 
+#437.240   4.280 441.469 
+
