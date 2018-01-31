@@ -47,12 +47,28 @@ started 2018-01-30 12:36:33 PST
 Now: started at 7 seconds per phenotype. By ~2000 (set 4 / 11), about 9 seconds per phenotype. Not bad.
 Let’s say 10 seconds per phenotype, 6k phenotypes left = 60k seconds = 1000 mins = 16.7 hours GREAT!
 Estimated completion time = 01/31, 04:36 AM
+Took 8 seconds per phenotype by set 6 / 11
+BUT quit at 2018-01-30 19:19:30 PST due to failed genotype below:
+
+[1] "Bcin12g05670.1"
+Imputing missing values...Done.
+Imputing missing values...Done.
+Error in solve.default(C) : 
+  system is computationally singular: reciprocal condition number = 1.76893e-21
+Error in Pheno.HEM.result$u : $ operator is invalid for atomic vectors
+
+restarting:
+lsm_bigRR_MAF20_013018...csv
+started 2018-01-31 10:03:45 PST
+last 3500 phenotypes. Expected end = 583 minutes = 10 hours = 8pm
+
 
 
 SKIPPED PHENOTYPES:
-Bcin03g06050.1 with ERROR1.
+Bcin03g06050.1 with ERROR1, condition number = 3.31769e-31
+Bcin12g05670.1 with ERROR1, condition number = 1.76893e-21
 
 
 ERROR1: Error in solve.default(C) : 
-  system is computationally singular: reciprocal condition number = 3.31769e-31
+  system is computationally singular: reciprocal condition number = X
 Error in Pheno.HEM.result$u : $ operator is invalid for atomic vectors
