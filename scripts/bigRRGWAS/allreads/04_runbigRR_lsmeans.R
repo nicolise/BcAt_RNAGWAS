@@ -68,8 +68,8 @@ dat <- dat + 29
 # first_line <- readLines(con,n=1)
 # close(con)
 #see document notes/lsm_bigRR_readme.docx to see which files have which phenotypes
-which (colnames(Phenos)=="Bcin06g04900.1") 
-which (colnames(dat)=="Bcin06g04900.1")
+which (colnames(Phenos)=="Bcin03g06050.1") #2446
+which (colnames(dat)=="Bcin03g06050.1") #2445
 
 
 #--------------------------------------------------------------
@@ -79,16 +79,16 @@ which (colnames(dat)=="Bcin06g04900.1")
 #can also restart R or the machine after a crash
 
 #find current pheno to start from
-dat <- dat[,c(1420:2838,3720:9267)]
+dat <- dat[,c(2446:2838,3720:9267)]
 #make dat column number a multiple of 500
-dat[,c(6968:7000)] <- NA
+dat[,c(5942:6000)] <- NA
 
 mysplit.dat <- lapply(seq(1,ncol(dat)-500,500), function(u) dat[,u:(u+500)])
 
 # loop from here to run batches of phenotypes in bigRR
-for (y in 1:13){
+for (y in 1:11){
   dat <- mysplit.dat[[y]]
-  con <- file(paste("allreadsGWAS/03_bigRRout/lsm_allphenos_MAF20_012918",y,"log",sep="."))
+  con <- file(paste("allreadsGWAS/03_bigRRout/lsm_allphenos_MAF20_013018",y,"log",sep="."))
   #type = "message"
   sink(con, append=TRUE, split=TRUE)
   time1 <- print(Sys.time())
@@ -110,7 +110,7 @@ for (y in 1:13){
     #write out to .csv after each phenotype! This saves our progress in case of memory error
     #but is probably slow. going to try a new file for each phenotype
     #write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218",y,"csv",sep="."), append=T)
-    write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012918",y,i,"csv",sep="."))
+    write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_013018",y,i,"csv",sep="."))
     print(Sys.time())
     #run garbage collection just in case to free up space
     gc()
@@ -121,6 +121,7 @@ for (y in 1:13){
   print(Sys.time())
   sink(type="message")
   sink(file=NULL) 
+  sink()
 }
 
 #-------------------------------------------------------------
