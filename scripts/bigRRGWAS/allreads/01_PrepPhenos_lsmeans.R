@@ -53,3 +53,52 @@ print(Sys.time())
 write.csv(MyReads.col0, "allreadsGWAS/01_prepFiles/col0_allreads.csv")
 write.csv(full.lsm.outputs, "allreadsGWAS/01_prepFiles/ANOVA_lsmoutputs_allreads.csv")
 write.csv(lsm.for.GWAS, "allreadsGWAS/01_prepFiles/lsmeans_allreads.csv")
+
+#-----------------------------------------------------------------------
+#test for low lsmeans values
+my.lsm <- read.csv("allreadsGWAS/01_prepFiles/lsmeans_allreads.csv")
+names(my.lsm)[1:10]
+min(my.lsm)
+all.my.reads <- my.lsm[,3:9269]
+my.mins <- apply(all.my.reads, 2, min)
+hist(my.mins)
+min(my.mins) #down to -28
+my.maxs <- apply(all.my.reads, 2, max)
+hist(my.maxs)
+max(my.maxs) #up to 12
+sum( my.mins < 0)
+sum( my.mins < -1)
+sum( my.mins < -2)
+sum( my.mins < -5)
+my.mins <- as.data.frame(my.mins)
+my.maxs <- as.data.frame(my.maxs)
+library(ggplot2)
+ggplot(data=my.mins, aes(my.mins)) + geom_histogram(bins=40)
+ggplot(data=my.maxs, aes(my.maxs)) + geom_histogram(bins=40)
+
+my.2.min <- all.my.reads[1,]
+for (i in (1:9267)){
+  my.2.min[,i] <- sort(all.my.reads[,i],partial=2)[2]
+}
+my.2nd.min <- (as.numeric(my.2.min[1,]))
+my.2nd.min <- as.data.frame(my.2nd.min)
+ggplot(data=my.2nd.min, aes(my.2nd.min)) + geom_histogram(bins=40)
+
+my.6.min <- all.my.reads[1,]
+for (i in (1:9267)){
+  my.6.min[,i] <- sort(all.my.reads[,i],partial=6)[6]
+}
+my.6th.min <- (as.numeric(my.6.min[1,]))
+my.6th.min <- as.data.frame(my.6th.min)
+ggplot(data=my.6th.min, aes(my.6th.min)) + geom_histogram(bins=40)
+
+#try z-scaling 
+my.lsm.z <- my.lsm[,-c(1)]
+for (i in c(2:9268)){
+  my.lsm.z[,i] <- scale(my.lsm.z[,i], center = TRUE, scale = TRUE)
+  #names(my.lsm.z)[i] <- print(names(my.lsm)[i])
+}
+my.mins.z <- apply(my.lsm.z, 2, min)
+my.mins.z <- as.numeric(my.mins.z[2:9268])
+hist(my.mins.z)
+min(my.mins.z) 
