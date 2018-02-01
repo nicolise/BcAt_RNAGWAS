@@ -68,8 +68,8 @@ dat <- dat + 29
 # first_line <- readLines(con,n=1)
 # close(con)
 #see document notes/lsm_bigRR_readme.docx to see which files have which phenotypes
-which (colnames(Phenos)=="Bcin03g06050.1") #2446
-which (colnames(dat)=="Bcin14g00260.1") #2445
+which (colnames(Phenos)=="Bcin03g06050.1") 
+which (colnames(dat)=="Bcin14g00260.1")
 
 
 #--------------------------------------------------------------
