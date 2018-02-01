@@ -61,7 +61,10 @@ restarting:
 lsm_bigRR_MAF20_013018...csv
 started 2018-01-31 10:03:45 PST
 last 3500 phenotypes. Expected end = 583 minutes = 10 hours = 8pm
-
+PAUSED to ran testMethods 
+need to restart from:"Bcin14g00260.1"
+restarted 2018-01-31 13:49:42 PST
+last 3000 phenotypes. Expected end = 500 minutes = 8.5 hours = 10pm
 
 
 SKIPPED PHENOTYPES:
