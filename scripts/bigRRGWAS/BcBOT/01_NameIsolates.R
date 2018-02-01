@@ -7,7 +7,7 @@
 #load data
 setwd("~/Projects/BcAt_RNAGWAS/data")
 IsoNames <- read.csv("IsolateKey_Vivian.csv")
-BotReads <- read.csv("BcBOT_result.lsm.csv")
+BotReads <- read.csv("BotryGenes/BcBOT_result.lsm.csv")
 
 #each plant x transcript is a unique phenotype
 BotReads.w <- reshape(BotReads, idvar = "Isolate", timevar = "HostGenotype", direction = "wide")

@@ -50,7 +50,7 @@ my.low.reads.all <- merge(my.low.reads, my.low.reads.cutoff, by="Isolate")
 my.low.reads.all <- merge(my.low.reads.all, my.low.reads.z, by="Isolate")
 
 write.csv(my.low.reads.all, "allreadsGWAS/01_prepFiles/lsmeans_testlowreads.csv")
-
+my.low.reads.all <- read.csv("allreadsGWAS/01_prepFiles/lsmeans_testlowreads.csv")
 #---------------------------------------------------------------------
 #now prep files for bigRR
 setwd("~/Projects/BcGenome/data")
