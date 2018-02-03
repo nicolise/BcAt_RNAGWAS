@@ -5,6 +5,7 @@
 
 #-----------------------------------------------------------------
 rm(list=ls())
+library(lsmeans)
 #load data
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data")
 setwd("~/Projects/BcAt_RNAGWAS/data")
@@ -36,7 +37,8 @@ library(data.table)
 #run for 3:9269
 mytime1 <- (Sys.time())
 #takes 5 mins for 1000 -> predict 45 mins for 9k
-for (i in c(3:9269)) {
+#3:9269
+for (i in c(3)) {
   MyReads.lm <- lm(MyReads[,i] ~ Isolate + HostGenotype, data=MyReads)
   MyReads.lsm <- as.data.frame(print(lsmeans(MyReads.lm, "Isolate")))
   df <- as.data.frame(print(MyReads.lsm))
