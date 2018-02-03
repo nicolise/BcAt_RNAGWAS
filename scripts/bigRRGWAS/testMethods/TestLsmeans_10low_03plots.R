@@ -5,7 +5,13 @@
 #--------------------------------------------------------
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/")
+<<<<<<< HEAD
 library(tidyr); library(ggplot2); library(grid); library(lsmeans)
+=======
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
+
+library(tidyr); library(ggplot2); library(grid)
+>>>>>>> 09b165ae8c76edcc526386201e989372d8949dcc
 
 my.output <- read.csv("data/allreadsGWAS/03_bigRRout/testlowreads/lowreads_MAF20_013118.csv")
 my.output <- my.output[,-c(1)]
@@ -80,12 +86,12 @@ vplayout <- function(x, y) viewport(layout.pos.row = x, layout.pos.col = y)
 for (i in 6:17){
   #my.plot.dat <- splitlist[[i]]
   my.transcript <- names(my.data)[i]
-  plot1 <- ggplot(data=my.data, aes(x=my.data[,i], y=my.data[,(i+12)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i], y=names(my.data)[i+12])
-  plot2 <- ggplot(data=my.data, aes(x=my.data[,i], y=my.data[,(i+24)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i], y=names(my.data)[i+24])
-  plot3 <- ggplot(data=my.data, aes(x=my.data[,(i+12)], y=my.data[,(i+24)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i+12], y=names(my.data)[i+24])
+  plot1 <- ggplot(data=my.data, aes(x=my.data[,i], y=my.data[,(i+12)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i], y=names(my.data)[i+12]) + theme_bw()
+  plot2 <- ggplot(data=my.data, aes(x=my.data[,i], y=my.data[,(i+24)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i], y=names(my.data)[i+24]) + theme_bw()
+  plot3 <- ggplot(data=my.data, aes(x=my.data[,(i+12)], y=my.data[,(i+24)]))+ geom_point(alpha=1/10) + labs(x=names(my.data)[i+12], y=names(my.data)[i+24]) + theme_bw()
 
 # 2 figures arranged in 2 rows and 1 columns
-file.name <- paste("plots/scatter",my.transcript,".jpg", sep="")
+file.name <- paste("plots/testMethods/scatter",my.transcript,".jpg", sep="")
 jpeg(file.name, width=7.5, height=5, units='in', res=600)
 grid.newpage()
 pushViewport(viewport(layout = grid.layout(2, 2)))
@@ -97,22 +103,33 @@ dev.off()
 
 #-----------------------------------------------------------------------
 #then, manhattan plots
+# for finding the chromosome starts and finish for Chromosome Label Location:
+my.chroms <- as.data.frame(my.data[!duplicated(my.data$Chrom, fromLast=FALSE), "Index"]) #Lower Bounds
+names(my.chroms)[1] <- "Chr.Start"
+my.chroms$Chr.End <- my.data[!duplicated(my.data$Chrom, fromLast=TRUE), "Index"] # Upper Bounds
+my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
 names(my.data)
+#6:77
 for (i in c(6:77)){
   jpeg(paste("plots/testMethods/Manhattans/MAF20_", names(my.data)[i], ".ManhattanPlot.jpg", sep=""), width=7.5, height=5, units='in', res=600)
   plot(ggplot(my.data, aes(x=Index, y=my.data[,i]))+
-         #theme_bw()+
+         theme_bw()+
          #colScale+
-         geom_point(aes(color = factor(Chrom)))+
+         geom_point(aes(color = factor(Chrom)), alpha=1/2)+
          labs(list(y=expression(paste("Estimated Effect Size")), title=paste("Expression of ", names(my.data)[i])))+
          theme(text = element_text(size=14), axis.text.x = element_text(size=14), axis.text.y = element_text(size=14))+
          guides(col = guide_legend(nrow = 8, title="Chromosome"))+
          theme(legend.position="none")+
-         theme(panel.border = element_blank(), panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
-  )
+         theme(panel.border = element_blank(), 
+          #panel.grid.major = element_blank(),
+          #panel.grid.minor = element_blank(), 
+          axis.line = element_line(colour = "black"))+
+         scale_x_continuous(name="Chromosome", breaks = c(1677874,  5250045,  9006852, 11066684, 13584732, 17193234, 20022484, 22388798, 24412408, 26786090, 28588796, 30134140, 31893641, 34010154, 35809318, 38946222), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16"))+
+         expand_limits(y=0))
   dev.off()
 }
+
+
 
 #-----------------------------------------------------------------------
 #broken data reshaping here
