@@ -7,23 +7,35 @@ rm(list=ls())
 #read in tab files from BcGenome
 setwd("~/Projects/BcGenome/")
 setwd("~/Documents/GitRepos/BcGenome")
-tab20 = read.delim("data/Suzi_033016/Haploid_SNPS_97_dp6_maf20.tab")
+#minor allele count (MAC) > 20%
+#need to haploidize!
+tab20 = read.delim("data/BO5_97_iso_small/snps_mac20_BO5_97.tab")
+#could also read in haploidized vcf
+#data/BO5_97_iso_small/mac20_hap_97_BO5.vcf
 #on linux desktop
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/")
-setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
+setwd("~/Projects/BcAt_RNAGWAS/")
 library(tidyr)
 #convert all .tab SNP files to .csv
-write.table(tab20, file="01_prepFiles/snps_maf20.csv",sep=",",col.names=T,row.names=FALSE)
-
+write.table(tab20, file="data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv",sep=",",col.names=T,row.names=FALSE)
 
 #convert each file to binary
-#can do for MAF5 and MAF10 too if I want
-SNPsMAF20 <- read.csv("01_prepFiles/snps_maf20.csv")
+SNPsMAF20 <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv")
 mySNPs <- SNPsMAF20
 #code "." as NAs
+#17 possible states: A/A G/G T/T C/C G/A T/C A/T C/T T/A A/G G/T C/A A/C ./. G/C T/G C/G
+#how to deal with heterozygosity?
+#convert N/N format to N if diploid calls
+# str(mySNPs)
+#make these characters instead of factors
 mySNPs[] <- lapply(mySNPs, as.character)
-mySNPs[mySNPs=="."]<-NA #this is a true NA
+mySNPs[mySNPs=="./"] <- NA #this is a true NA
+mySNPs[mySNPs=="G/"] <- "G"
+mySNPs[mySNPs=="C/"] <- "C"
+mySNPs[mySNPs=="A/"] <- "A"
+mySNPs[mySNPs=="T/"] <- "T"
 allSNPs<- mySNPs
+
 #replace base with 1 if match REF
 #loop through it
 #automatically skips NAs
@@ -44,6 +56,7 @@ min(mySNPs$MAF, na.rm=T)
 max(mySNPs$MAF, na.rm=T)
 #mySNPs <- mySNPs[mySNPs$MAF <= 0.8,]
 
+#and check for missing SNP calls
 mySNPs$Freq.1 <- rowSums(mySNPs[,4:100] =="1", na.rm=T)
 mySNPs$Freq.0 <- rowSums(mySNPs[,4:100] =="0", na.rm=T)
 mySNPs$NAcount <- 97 - (mySNPs$Freq.1 + mySNPs$Freq.0)
@@ -61,41 +74,21 @@ hist(mySNPs$NAcount)
 97*.2 #<20 isolates
 #data in 50% of isolates:
 97*.5 #<49 isolates
+
+#ok, remove all SNPs with NA in > 20 isolates
 mySNPs <- mySNPs[mySNPs$NAcount <= 20,]
 unique(mySNPs$NAcount)
 
-#recode chrom.contig.pos
+#no contigs for BO5.10, cool!
 names(mySNPs)[1] <- "Chrom"
-mySNPs$Chrom <- gsub(pattern = "Chromosome1$", replacement = "Chromosome1.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome2$", replacement = "Chromosome2.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome3$", replacement = "Chromosome3.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome4$", replacement = "Chromosome4.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome5$", replacement = "Chromosome5.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome6$", replacement = "Chromosome6.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome7$", replacement = "Chromosome7.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome8$", replacement = "Chromosome8.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome9$", replacement = "Chromosome9.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome10$", replacement = "Chromosome10.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome11$", replacement = "Chromosome11.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome12$", replacement = "Chromosome12.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome13$", replacement = "Chromosome13.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome14$", replacement = "Chromosome14.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome15$", replacement = "Chromosome15.0", mySNPs$Chrom)
-mySNPs$Chrom <- gsub(pattern = "Chromosome16$", replacement = "Chromosome16.0", mySNPs$Chrom)
-unique(mySNPs$Chrom)
-mySNPs <- separate(mySNPs, Chrom, into = c("Chromosome", "Contig") )
-#double check
-unique(mySNPs$Chromosome)
-unique(mySNPs$Contig)
 
 #new to edit
 #Reformat Chromosomes and Positions
-mySNPs$Chromosome <- gsub("Chromosome", "", mySNPs$Chromosome)
-mySNPs$Chromosome <- as.numeric(as.character(mySNPs$Chromosome))
-mySNPs$Contig <- as.numeric(as.character(mySNPs$Contig))
-names(mySNPs)[3] <- "Pos"
+mySNPs$Chrom <- gsub("chr", "", mySNPs$Chrom)
+mySNPs$Chrom <- as.numeric(as.character(mySNPs$Chrom))
+names(mySNPs)[2] <- "Pos"
 mySNPs$Pos <- as.numeric(as.character(mySNPs$Pos))
 #remove REF and calculation variables
-mySNPs <- mySNPs[,c(1:3,5:101)]
+mySNPs <- mySNPs[,c(1:2,4:100)]
 
-write.csv(mySNPs, "01_prepFiles/hp_binMAF20_20NA.csv")
+write.csv(mySNPs, "data/allreadsGWAS/BO5.10/01_prepFiles/hp_binMAF20_20NA.csv")
