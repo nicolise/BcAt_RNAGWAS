@@ -5,9 +5,13 @@
 #--------------------------------------------------------
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/")
+<<<<<<< HEAD
+library(tidyr); library(ggplot2); library(grid); library(lsmeans)
+=======
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
 
 library(tidyr); library(ggplot2); library(grid)
+>>>>>>> 09b165ae8c76edcc526386201e989372d8949dcc
 
 my.output <- read.csv("data/allreadsGWAS/03_bigRRout/testlowreads/lowreads_MAF20_013118.csv")
 my.output <- my.output[,-c(1)]
