@@ -8,9 +8,7 @@ setwd("~/Projects/BcAt_RNAGWAS/")
 library(tidyr); library(ggplot2); library(grid); library(lsmeans)
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
 
-library(tidyr); library(ggplot2); library(grid)
-
-my.output <- read.csv("data/allreadsGWAS/03_bigRRout/testlowreads/lowreads_MAF20_013118.csv")
+my.output <- read.csv("data/allreadsGWAS/T4/03_bigRRout/testlowreads/lowreads_MAF20_013118.csv")
 my.output <- my.output[,-c(1)]
 my.output <- separate (my.output, outpt.HEM, into = c("Chrom", "Contig", "Pos") ) #Too many values at 3 locations: 5314, 79662, 217455
 my.output$Chr.Con.Pos <- paste(my.output$Chrom, my.output$Contig, my.output$Pos, sep=".")
