@@ -3,11 +3,12 @@
 #---------------------------------------------------------
 library(tidyr);library(ggplot2)
 rm(list=ls())
-setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/")
+setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/subset/")
 #read in individual bigRR output files (1 per geno)
 #read in all files in folder by pattern matching
 
-#first select just all files on Chr1
+#testing: just files on Chr1
+
 my.files <- list.files(pattern = ".csv")
 pList <- list()
 for(i in 1:length(my.files)) {
