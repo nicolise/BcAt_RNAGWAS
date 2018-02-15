@@ -20,6 +20,9 @@ IPhenos <- read.csv("02_csvPrep/phenos/NewModel0711/BcSl_lsmeans_forbigRR.csv")
 DPhenos <- read.csv("02_csvPrep/phenos/Domestication/BcSl_lsmeans_domest_forbigRR.csv")
 Phenos <- merge(DPhenos,IPhenos, by="Igeno")
 
+for (i in c(2:16)){
+  Phenos[,i] <- scale(Phenos[,i], center = TRUE, scale = TRUE)
+}
 #change names from genotype file to match phenotype file
 #File SNPs_renamed has columns of isolate genotypes that I want to rename
 #first, remove the .variant2 from names(SNPs_renamed)
@@ -64,5 +67,5 @@ intersect((matchedPhenos2[,c(1)]), names(matchedSNPs2[,c(3:95)])) #all 93, good
 #save them files!
 setwd("~/Projects/BcAt_RNAGWAS/")
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
-write.csv(matchedSNPs2, "data/testMethods/BO5tomato/02_bigRR/tomato_SNPS_MAF20.csv")
-write.csv(matchedPhenos2, "data/testMethods/BO5tomato/02_bigRR/tomato_phenos_MAF20.csv")
+write.csv(matchedSNPs2, "data/testMethods/BO5tomato/02_bigRR/tomato_zscale_SNPS_MAF20.csv")
+write.csv(matchedPhenos2, "data/testMethods/BO5tomato/02_bigRR/tomato_zscale_phenos_MAF20.csv")
