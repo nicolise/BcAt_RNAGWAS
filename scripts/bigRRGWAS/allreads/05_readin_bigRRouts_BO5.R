@@ -81,6 +81,10 @@ write.csv(Chr1.all.top.1, "Chr1_top1SNPperGene.csv")
 #so: do top SNP locations correlate with gene location? (Cis fx)
 #need: key for gene locations from Vivian
 #first step: plot top 100 SNPs per transcript
+setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout")
+top.100.SNP <- read.csv("Chr1_top100SNPperGene.csv")
+top.10.SNP <- read.csv("Chr1_top10SNPperGene.csv")
+top.1.SNP <- read.csv("Chr1_top1SNPperGene.csv")
 
 #get gff3 file info -- did this on PC
 library("ape")
@@ -88,7 +92,7 @@ setwd("~/Projects/BcGenome/data/ensembl/BO5.10")
 #can extract the files from .gz using 7-zip
 #then read using R!
 my.gff <- read.gff("extracted/Botrytis_cinerea.ASM83294v1.38.chromosome.1.gff3/Botrytis_cinerea.ASM83294v1.38.chromosome.1.gff3", na.strings = c(".", "?"))
-my.gene.list <- as.data.frame(names(my.full.data)[2:31])
+my.gene.list <- as.data.frame(unique(top.1.SNP$gene))
 names(my.gene.list)[1] <- "mygenes"
 my.gene.list$mygenes <- as.character(my.gene.list$mygenes)
 #some lazy regex
@@ -112,15 +116,60 @@ my.transcript.locs <- my.gff.genes[my.gff.genes$type=="gene", ]
 #now: plot for each transcript
 #my.full.data includes effect sizes for each transcript across whole genome
 #first plot: manhattan of each transcript individually, with a bar for gene location
-my.full.data <- separate(my.full.data, outpt.HEM, into = c("Chrom","Pos") ) 
-my.full.data$Chr.Pos <- paste(my.full.data$Chrom, my.full.data$Pos, sep=".")
+top.100.SNP <- separate(top.100.SNP, outpt.HEM, into = c("Chrom","Pos") ) 
+top.100.SNP$Chr.Pos <- paste(top.100.SNP$Chrom, top.100.SNP$Pos, sep=".")
+
+top.10.SNP <- separate(top.10.SNP, outpt.HEM, into = c("Chrom","Pos") ) 
+top.10.SNP$Chr.Pos <- paste(top.10.SNP$Chrom, top.10.SNP$Pos, sep=".")
+
+top.1.SNP <- separate(top.1.SNP, outpt.HEM, into = c("Chrom","Pos") ) 
+top.1.SNP$Chr.Pos <- paste(top.1.SNP$Chrom, top.1.SNP$Pos, sep=".")
 
 #sort dataframe rows in order of Chrom, then Pos
-my.plotdat <- my.full.data
+my.plotdat <- top.100.SNP
 my.plotdat$Chrom <- as.numeric(my.plotdat$Chrom)
+#only keep chromosome 1 SNPs
+my.plotdat <- my.plotdat[my.plotdat$Chrom==1,]
 my.plotdat$Pos <- as.numeric(my.plotdat$Pos)
 my.plotdat<- my.plotdat[with(my.plotdat, order(Chrom, Pos)), ]
 
+#now for scatter plot, gene vs. SNPs
+my.plotdat <- my.plotdat[,-c(1)]
+names(my.plotdat)[1] <- "SNP.Chrom"
+names(my.plotdat)[2] <- "SNP.Pos"
+names(my.plotdat)[5] <- "mygenes"
+names(my.plotdat)[6] <- "SNP.C.P"
+
+my.plotdat <- merge(my.plotdat, my.gene.list, by = "mygenes")
+my.transcript.locs$MidGene <- (my.transcript.locs$end + my.transcript.locs$start)/2
+my.transcript <- my.transcript.locs[,c("transcript","MidGene")]
+names(my.plotdat)[7] <- "transcript"
+
+my.plotdat <- merge(my.plotdat, my.transcript, by="transcript")
+my.plotdat$SNP.Pos <- as.numeric(my.plotdat$SNP.Pos)
+my.plotdat$MidGene <- as.numeric(my.plotdat$MidGene)
+
+#if then to add a column for cis color coding
+my.plotdat$Cis <- ifelse(my.plotdat$SNP.Pos<(my.plotdat$MidGene-50000), "trans", ifelse(my.plotdat$SNP.Pos>(my.plotdat$MidGene+50000), "trans", "cis"))
+       
+setwd("~/Projects/BcAt_RNAGWAS/plots/BO5")
+
+jpeg("SingleChrCis/Top100SNPs_Chr1_cis_scatter_ctwide.jpg", width=7.5, height=5, units='in', res=600)
+ggplot(my.plotdat, aes(x=SNP.Pos, y=MidGene))+
+       theme_bw()+
+       geom_point(aes(colour=Cis), alpha=1/2)+
+       labs(list(y="Center of Gene on Chromosome 1", x="Position of Top SNPs on Chromosome 1" ))+
+       theme(text = element_text(size=14), axis.text.x = element_text(size=14), axis.text.y = element_text(size=14))+
+       theme(panel.border = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+my.plotdat$Dist <- abs(my.plotdat$SNP.Pos - my.plotdat$MidGene)
+jpeg("SingleChrCis/Top100SNPs_Chr1_cis_hist.jpg", width=7.5, height=5, units='in', res=600)
+hist(my.plotdat$Dist,50, col="slateblue3",xlab="Distance on Chromosome 1")
+dev.off()
+
+#----------------------------------------------------------------------------
+#for Manhattan plots, if needed: still need to modify below
 #Add indexing
 #Make plotting variables -- a continuous count from Chromosome 1, Contig 1, Position 1 to the end of the last Contig of Chromosome 16.
 my.plotdat$Index = NA
