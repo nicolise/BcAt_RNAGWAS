@@ -8,7 +8,6 @@ rm(list=ls())
 setwd("~/Projects/BcGenome/")
 setwd("~/Documents/GitRepos/BcGenome")
 #minor allele count (MAC) > 20%
-#need to haploidize!
 tab20 = read.delim("data/BO5_97_iso_small/snps_mac20_BO5_97.tab")
 #could also read in haploidized vcf
 #data/BO5_97_iso_small/mac20_hap_97_BO5.vcf
@@ -23,9 +22,6 @@ write.table(tab20, file="data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv",s
 SNPsMAF20 <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv")
 mySNPs <- SNPsMAF20
 #code "." as NAs
-#17 possible states: A/A G/G T/T C/C G/A T/C A/T C/T T/A A/G G/T C/A A/C ./. G/C T/G C/G
-#how to deal with heterozygosity?
-#convert N/N format to N if diploid calls
 # str(mySNPs)
 #make these characters instead of factors
 mySNPs[] <- lapply(mySNPs, as.character)
@@ -45,7 +41,8 @@ for (i in names(mySNPs[4:100])) {
   mySNPs[i][mySNPs[i]==mySNPs$REF] <- 0
 }
 
-#remove low MAFs -- MAF20 cutoff for all
+#check for low MAFs -- MAF20 cutoff for all
+#kept all
 names(mySNPs)
 mySNPs$Freq <- rowSums(mySNPs[,4:100] =="1")
 mySNPs$Freq.0 <- rowSums(mySNPs[,4:100] =="0")

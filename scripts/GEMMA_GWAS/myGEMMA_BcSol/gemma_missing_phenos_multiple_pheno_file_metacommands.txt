@@ -1,0 +1,23 @@
+#transfer phenotypes file, phenotypes names file, and code
+scp -P 2022 /Users/mrktaylor531/Desktop/Projects/FIBR/gemma_files/allecosallphenos_plink_working.txt farm:/home/maktaylo/fibr_gwas/multi_phenotype/phenotypes
+scp -P 2022 /Users/mrktaylor531/Desktop/Projects/FIBR/gemma_files/phenotypes_list.txt farm:/home/maktaylo/fibr_gwas/multi_phenotype/phenotypes
+scp -P 2022 /Users/mrktaylor531/Desktop/Code/fibr/gemma_missing_phenos_multiple_pheno_file.sh farm:/home/maktaylo/fibr_gwas/scripts
+
+scancel 13274562 #current job
+
+sbatch -p high --mem=48000 --array=2-197%10 --time=15-00:00 /home/maktaylo/fibr_gwas/scripts/gemma_missing_phenos_multiple_pheno_file.sh
+
+
+
+#############################################################################
+#############################################################################
+#############################################################################
+#interactive session
+#where the fuck are my goddam phenotype directories??? why is the whole snpchip being copied into the master directory?
+#test to see if double period in the middle of a variable value could fuck it up
+
+srun -p high --mem=48000 --time=10-00:00 --pty bash
+
+
+testvar="DTB..valencia"
+echo $testvar
