@@ -52,15 +52,13 @@ names(SNPs_renamed)[3] <- "REF"
 #fix column order
 mySNPs2 <- SNPs_renamed[,-c(1:3,101)]
 
+#for PED, NA must be replaced with 0 for genotypes, else NA will be read as an allele
+mySNPs2[is.na(mySNPs2)] <- 0
+
 #turn all SNPs to "diploid"
 #haha, it takes 4 days to do this as a "for" loop (for each row, rbind twice)
 #this is super fast:
 mySNPs3 <- mySNPs2[rep(1:nrow(mySNPs2),each=2),] 
-
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
-setwd("~/Projects/BcAt_RNAGWAS/")
-write.csv(mySNPs3, "data/B05_GEMMA/01_PLINK/dp_charMAF20_10NA.csv")
-mySNPs3 <- read.csv("data/B05_GEMMA/01_PLINK/dp_charMAF20_10NA.csv")
 
 #transpose and format for PED
 mySNPs3 <- mySNPs3[,-c(1)]
@@ -80,6 +78,10 @@ colnames(mySNPs4)[1] <- 'Isolate'
 mySNPs4 <- cbind("FAM" = "FAM1", mySNPs4)
 myPED <- mySNPs4
 
+#add a phenotype for PED? 
+#NA is fine for missing phenotypes
+#since many phenotypes, just add as consecutive columns to *.fam, and run GEMMA in a loop over phenotypes
+
 #make a MAP file for plink (need it to make the bed (binary ped) file from ped)
 myMAP <- SNPs_renamed[,c("Chrom","Pos")]
 #remove "Chromosome" from X.CHROM
@@ -92,7 +94,10 @@ myMAP2 <- myMAP2[,c(1,3,4,2)]
 write.table(myMAP2, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10.map", row.names=FALSE, col.names=FALSE)
 #add a column of "SNP identifiers" in excel and remove headers
 
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
+setwd("~/Projects/BcAt_RNAGWAS/")
 write.csv(mySNPs3, "data/B05_GEMMA/01_PLINK/dp_charMAF20_10NA.csv")
 write.csv(mySNPs, "data/B05_GEMMA/01_PLINK/hp_charMAF20_10NA.csv")
+Sys.time()
 write.table(myPED, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10.ped", row.names=FALSE, col.names=FALSE)
 Sys.time()
