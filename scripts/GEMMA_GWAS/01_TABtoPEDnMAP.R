@@ -106,13 +106,29 @@ write.table(myPED, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10.ped", row.names=FALS
 Sys.time()
 
 #try removing problematic SNP
+#the list: 39118, 39131
 myPED[,"39118"]
-which( colnames(myPED)=="39118" ) #73399
-which( colnames(myPED)=="39118.1" ) #73400
-which(myMAP2 == "SNP39118", arr.ind=TRUE)
+which( colnames(myPED)=="39131" ) 
+which( colnames(myPED)=="39131.1" ) 
+which(myMAP2 == "SNP39131", arr.ind=TRUE)
+myPED.ed <- myPED[,-c(73399:73400,73425:73426)]
+myMAP.ed <- myMAP2[-c(63,4),]
 
-myPED.ed <- myPED[,-c(73399:73400)]
-myMAP.ed <- myMAP2[-c(63),]
+#maybe problem SNP is before the error?
+#keep all SNPs with at least 1 zero
+
+for (y in c(70000:73400)){
+  if 
+  
+  blah <- grepl(0, levels(myPED[,7]), fixed=TRUE)
+  grepl("TRUE", blah)
+  # my.table <- as.data.frame(table(myPED[,y]))
+  # my.table$SNPname <- colnames(myPED)[y]
+  # if (my.table[1,3] == 0) {rbind(my.zero.SNPs, my.table)
+  
+  }
+}
+
 write.table(myMAP.ed, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_test.map", row.names=FALSE, col.names=FALSE)
 Sys.time()
 write.table(myPED.ed, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_test.ped", row.names=FALSE, col.names=FALSE)

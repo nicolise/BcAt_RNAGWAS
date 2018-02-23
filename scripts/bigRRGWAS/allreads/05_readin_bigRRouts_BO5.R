@@ -84,7 +84,7 @@ write.csv(Chr1.all.top.1, "Chr1_top1SNPperGene.csv")
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/outfiles/")
 my.files <- list.files(pattern = "Bcin")
 
-#now, keep only top 100 SNPs/gene
+#now, keep only top 1 SNPs/gene
 pList.1 <- list()
 #dummy start, fix this
 Sys.time()
@@ -103,4 +103,29 @@ for(i in 2:length(my.files)) {
 Sys.time()
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout")
 write.csv(Chr.all.top.1, "ChrAll_top1SNPperGene.csv")
+Sys.time()
+
+#do this again for top 10! fun!
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/outfiles/")
+my.files <- list.files(pattern = "Bcin")
+
+#now, keep only top 1 SNPs/gene
+pList.10 <- list()
+#dummy start, fix this
+Sys.time()
+for(i in 2:length(my.files)) {
+  #for (i in 1:1){
+  my.file <- read.csv(my.files[i])
+  my.file <- my.file[,-c(1)]
+  my.file$AbsEst <- abs(my.file[,2])
+  my.file$gene <- names(my.file)[2]
+  names(my.file)[2] <- "Estimate"
+  my.file <- top_n(my.file, 10, AbsEst)
+  pList.1[[i]] <- my.file
+  #Chr.all.top.1 <- my.file
+  Chr.all.top.10 <- rbind(Chr.all.top.10, my.file)
+}
+Sys.time()
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout")
+write.csv(Chr.all.top.10, "ChrAll_top10SNPperGene.csv")
 Sys.time()
