@@ -121,8 +121,8 @@ for(i in 2:length(my.files)) {
   my.file$gene <- names(my.file)[2]
   names(my.file)[2] <- "Estimate"
   my.file <- top_n(my.file, 10, AbsEst)
-  pList.1[[i]] <- my.file
-  #Chr.all.top.1 <- my.file
+  pList.10[[i]] <- my.file
+  #Chr.all.top.10 <- my.file
   Chr.all.top.10 <- rbind(Chr.all.top.10, my.file)
 }
 Sys.time()
