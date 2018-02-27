@@ -51,12 +51,15 @@ names(SNPs_renamed)[3] <- "REF"
 #sixth  column: binary  phenotype (all = 1)
 #fix column order
 mySNPs2 <- SNPs_renamed[,-c(1:3,101)]
+#remove duplicate for 1.01.06.1
+mySNPs2 <- mySNPs2[,-c(36)]
 
 #for PED, NA must be replaced with 0 for genotypes, else NA will be read as an allele
 mySNPs2[is.na(mySNPs2)] <- 0
 
 #turn all SNPs to "diploid"
 #haha, it takes 4 days to do this as a "for" loop (for each row, rbind twice)
+#because is.na <-0 before this step, there should be NO heterozygous SNP calls
 #this is super fast:
 mySNPs3 <- mySNPs2[rep(1:nrow(mySNPs2),each=2),] 
 
@@ -100,4 +103,33 @@ write.csv(mySNPs3, "data/B05_GEMMA/01_PLINK/dp_charMAF20_10NA.csv")
 write.csv(mySNPs, "data/B05_GEMMA/01_PLINK/hp_charMAF20_10NA.csv")
 Sys.time()
 write.table(myPED, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10.ped", row.names=FALSE, col.names=FALSE)
+Sys.time()
+
+#try removing problematic SNP
+#the list: 39118, 39131
+myPED[,"39118"]
+which( colnames(myPED)=="39131" ) 
+which( colnames(myPED)=="39131.1" ) 
+which(myMAP2 == "SNP39131", arr.ind=TRUE)
+myPED.ed <- myPED[,-c(73399:73400,73425:73426)]
+myMAP.ed <- myMAP2[-c(63,4),]
+
+#maybe problem SNP is before the error?
+#keep all SNPs with at least 1 zero
+
+for (y in c(70000:73400)){
+  if 
+  
+  blah <- grepl(0, levels(myPED[,7]), fixed=TRUE)
+  grepl("TRUE", blah)
+  # my.table <- as.data.frame(table(myPED[,y]))
+  # my.table$SNPname <- colnames(myPED)[y]
+  # if (my.table[1,3] == 0) {rbind(my.zero.SNPs, my.table)
+  
+  }
+}
+
+write.table(myMAP.ed, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_test.map", row.names=FALSE, col.names=FALSE)
+Sys.time()
+write.table(myPED.ed, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_test.ped", row.names=FALSE, col.names=FALSE)
 Sys.time()
