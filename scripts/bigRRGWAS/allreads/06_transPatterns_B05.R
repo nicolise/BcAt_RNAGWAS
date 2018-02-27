@@ -40,7 +40,7 @@ my.gff.genes$transcript <- NA
 my.gff.genes <- my.gff.genes[-c(1),]
 #batches 1:1778, 1780:7735, 7737:8196, 8198:end
 #broke at y=1779, 7736, 8197
-for (y in (8198:length(my.gene.list$justgenes))){
+for (y in c(1:1778, 1780:7735, 7737:8196, 8198:length(my.gene.list$justgenes))){
   my.current.gene <- my.gff[grep(my.gene.list[y,2], my.gff$attributes), ]
   my.current.gene$transcript <- my.gene.list[y,2]
   my.gff.genes <- rbind(my.gff.genes, my.current.gene)
@@ -49,7 +49,8 @@ Sys.time()
 #for a first go, just keep the "gene" rows
 my.transcript.locs <- my.gff.genes[my.gff.genes$type=="gene", ]
 Sys.time()
-
+setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout")
+write.csv(my.gff.genes, "ChrAll_fullgenesList.csv")
 #get average gene length
 my.transcript.locs$length <- abs(my.transcript.locs$end - my.transcript.locs$start) 
 mean(my.transcript.locs$length) #2489 ... call it 2500
