@@ -3,6 +3,7 @@
 #in order to call haplotypes in cis with genes
 #----------------------------------------------------------
 rm(list=ls())
+library("ape"); 
 #on linux desktop
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
 #use same SNP set from B05.10 bigRR
@@ -35,6 +36,16 @@ mySNPs <- mySNPs[,-c(38)] # remove 1.01.06.1
 mySNPs[is.na(mySNPs)] <- "?"
 
 #only keep SNPs in region of interest
+#select a random gene from the gff list
+setwd("~/Documents/GitRepos/BcGenome/data/ensembl/BO5.10")
+my.gff <- read.gff("extracted/Botrytis_cinerea.ASM83294v1.38.gff3", na.strings = c(".", "?"))
+
+#keep rows with Name=Bcbot in attributes
+#or rows matching BcBOT Phenos
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
+Phenos <- read.csv("BcBotGWAS/02_MatchGenos/BOTphenotypes.csv")
+
+#now get just genes of interest!
 
 #transpose data frame for region of interest
 myTSNPs <- as.data.frame(t(mySNPs))

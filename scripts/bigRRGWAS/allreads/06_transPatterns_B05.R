@@ -15,6 +15,7 @@ allSNP <- allSNP[,-c(1)]
 
 #get gff3 file info -- did this on PC
 setwd("~/Projects/BcGenome/data/ensembl/BO5.10")
+setwd("~/Documents/GitRepos/BcGenome/data/ensembl/BO5.10")
 #can extract the files from .gz using 7-zip
 #then read using R!
 
@@ -30,7 +31,7 @@ my.gene.list$justgenes <- sapply(strsplit(my.gene.list$justgenes, ".5.HEM"), "["
 my.gene.list$justgenes <- sapply(strsplit(my.gene.list$justgenes, ".6.HEM"), "[", 1)
 
 #could do this individually within chromosomes if it's reaaaal slow
-my.gff <- read.gff("extracted/Botrytis_cinerea.ASM83294v1.38.gff3/Botrytis_cinerea.ASM83294v1.38.gff3", na.strings = c(".", "?"))
+my.gff <- read.gff("extracted/Botrytis_cinerea.ASM83294v1.38.gff3", na.strings = c(".", "?"))
 #now loop over to keep things
 #1:length(my.gene.list$justgenes)
 
