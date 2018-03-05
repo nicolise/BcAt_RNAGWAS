@@ -11,4 +11,8 @@ CODE 4
 ./plink --noweb --file 01_PLINK/dpcharMAF20NA10_v2 --maf 0.2 --make-bed --out binMAF20NA10
 
 CODE G1
- ./gemma -bfile 01_PLINK/binMAF20NA10 -lm 4 -o 02_GEMMA/binMAF20NA10_v1
+ ~/gemma/bin/gemma -bfile 01_PLINK/binMAF20NA10 -miss 0.1 -maf 0.2 -lm 4 -o binMAF20NA10_PLINKv1
+
+CODE G2
+~/gemma/bin/gemma -bfile 02_GEMMA/binMAF20NA10 -n 1 -miss 0.1 -maf 0.2 -lm 4 -o binMAF20NA10_PLINKv2
+
