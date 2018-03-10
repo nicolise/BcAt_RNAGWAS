@@ -2,7 +2,7 @@
 #convert .tab SNP data to binary .csv
 
 #------------------------------------------------------
-#going to try this again, but this time using the genotype input I used for bigRR
+#using same genotype input from B05.10 BcAtGWAS bigRR and GEMMA
 rm(list=ls())
 #on linux desktop
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
@@ -76,13 +76,12 @@ myMAP2 <- myMAP
 myMAP2$SNPID <- paste("SNP",myMAP2$Pos, sep="")
 myMAP2$SNPcM <- 0
 myMAP2 <- myMAP2[,c(1,3,4,2)]
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
-setwd("~/Projects/BcAt_RNAGWAS/")
-write.table(myMAP2, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_v2.map", row.names=FALSE, col.names=FALSE)
+setwd("~/Documents/GitRepos/BcSolGWAS/")
+write.table(myMAP2, "data/GEMMA_files/B_01_PLINK/dpcharMAF20NA10.map", row.names=FALSE, col.names=FALSE)
 #add a column of "SNP identifiers" in excel?
 
-write.csv(mySNPs3, "data/B05_GEMMA/01_PLINK/dp_charMAF20_10NA_v2.csv")
-write.csv(mySNPs, "data/B05_GEMMA/01_PLINK/hp_charMAF20_10NA_v2.csv")
+write.csv(mySNPs3, "data/GEMMA_files/B_01_PLINK/dp_charMAF20_10NA.csv")
+write.csv(mySNPs, "data/GEMMA_files/B_01_PLINK/hp_charMAF20_10NA.csv")
 Sys.time()
-write.table(myPED, "data/B05_GEMMA/01_PLINK/dpcharMAF20NA10_v2.ped", row.names=FALSE, col.names=FALSE)
+write.table(myPED, "data/GEMMA_files/B_01_PLINK/dpcharMAF20NA10.ped", row.names=FALSE, col.names=FALSE)
 Sys.time()
