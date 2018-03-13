@@ -10,6 +10,7 @@ setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout")
 allSNP1 <- read.csv("ChrAll_top1SNPperGene.csv")
 allSNP10 <- read.csv("ChrAll_top10SNPperGene.csv")
 allSNP <- allSNP10
+#allSNP <- allSNP1
 
 allSNP <- allSNP[,-c(1)]
 
