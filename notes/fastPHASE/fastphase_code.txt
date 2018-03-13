@@ -1,0 +1,9 @@
+cd Documents/
+./fastPHASE 
+#but have no .inp file! wasn't with download for unknown reasons
+
+./fastPHASE -T10 -ulabels.txt -oMyresults test.inp
+only 10 starts/runs of the EM algorithm (default = -T20)
+Myresults as a prefix for the main output files
+labels.txt contains subpopulation labels for the individuals 
+input file test.inp. The input filename may be supplied by the user after any options
