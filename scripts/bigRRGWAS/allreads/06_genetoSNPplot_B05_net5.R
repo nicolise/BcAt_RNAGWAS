@@ -4,7 +4,7 @@
 #runs from data produced in 05_readin_bigRRouts_B05.R
 #--------------------------------------------------------
 rm(list=ls())
-library(tidyr);library(ggplot2)
+library(tidyr);library(ggplot2); library(plyr)
 #so: do top SNP locations correlate with gene location? (Cis fx)
 #need: key for gene locations from Vivian
 #first step: plot top 100 SNPs per transcript
@@ -19,7 +19,7 @@ setwd("~/Projects/BcGenome/data/ensembl/BO5.10")
 #can extract the files from .gz using 7-zip
 #then read using R!
 my.gff <- read.gff("extracted/Botrytis_cinerea.ASM83294v1.38.chromosome.1.gff3/Botrytis_cinerea.ASM83294v1.38.chromosome.1.gff3", na.strings = c(".", "?"))
-my.gene.list <- as.data.frame(unique(top.1.SNP$gene))
+my.gene.list <- as.data.frame(unique(top.100.SNP$gene))
 names(my.gene.list)[1] <- "mygenes"
 my.gene.list$mygenes <- as.character(my.gene.list$mygenes)
 #some lazy regex
@@ -114,9 +114,66 @@ hist(my.plotdat$Dist,50, col="slateblue3",xlab="Distance on Chromosome 1")
 dev.off()
 
 #----------------------------------------------------------------------------
+#read in all SNPs for these genes individually
+rm(list=ls())
+setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/Net5/")
+myNetFiles <- list.files(pattern = ".csv")
+
+#initialize dummy dfs
+allRank.Net <- 0
+allNetHEM <- 0
+all.gff.genes <- 0
+
+#remove empty column
+for (y in (1:length(myNetFiles))){
+  myNetHEM <- read.csv(myNetFiles[y])
+  myNetHEM <- myNetHEM[,-c(1)]
+  #split column into chr, pos
+  myNetHEM <- separate(myNetHEM, outpt.HEM, into = c("Chrom","Pos") ) 
+  myNetHEM$Chr.Pos <- paste(myNetHEM$Chrom, myNetHEM$Pos, sep=".")
+  #add column for SNP in region of Net5 / Chr 1 / Other
+  #first need gene locations
+  my.gene <- names(myNetHEM)[3]
+  #some lazy regex
+  my.gene <- sapply(strsplit(my.gene, ".1.HEM"), "[", 1)
+  my.gene <- sapply(strsplit(my.gene, ".2.HEM"), "[", 1)
+  my.current.gene <- my.gff[grep(my.gene, my.gff$attributes),]
+  my.current.gene$transcript <- my.gene
+  ifelse(all.gff.genes == 0, all.gff.genes <- my.current.gene, all.gff.genes <- rbind(all.gff.genes, my.current.gene))
+  my.start <- min(my.current.gene$start)
+  my.end <- max(my.current.gene$end)
+  myNetHEM$local <- ifelse(myNetHEM$Chrom == 1 & myNetHEM$Pos > my.start - 1000 & myNetHEM$Pos < my.end + 1000, "Net5", ifelse (myNetHEM$Chrom == 1, "Chrom1", "Other"))
+  myNetHEM$local.B <- ifelse(myNetHEM$Chrom == 1 & myNetHEM$Pos > my.start - 1000 & myNetHEM$Pos < my.end + 1000, "Net5", "Other")
+  table(myNetHEM$local)
+
+  #add rank for all abs SNP effects
+  myNetHEM.r <- myNetHEM[order(abs(myNetHEM[,3])),]
+  #add rank
+  myNetHEM.r$FxRank <- 1:nrow(myNetHEM.r)
+  myNetHEM.r$Gene <- names(myNetHEM.r)[3]
+  names(myNetHEM.r)[3] <- "EffectEst"
+  ifelse(allNetHEM == 0, allNetHEM <- myNetHEM.r, allNetHEM <- rbind(allNetHEM, myNetHEM.r))
+  #add row to new data frame: mean rank of Net 5 / Chr 1 / Other
+  myRank.Net <- ddply(myNetHEM.r, c("local"), summarise, 
+                   meanRank = mean(FxRank))
+  myRank.Net$Gene <- myNetHEM.r[1,8] #first of gene
+  ifelse(allRank.Net == 0, allRank.Net <- myRank.Net, allRank.Net <- rbind(allRank.Net, myRank.Net))
+}
+
+#larger values mean larger effect sizes
+allRank.Net <- unique(allRank.Net)
+allRank.Net.w <- reshape(allRank.Net, idvar="Gene", timevar="local", direction="wide")
+
+net5mod <- lm(FxRank ~ Gene + Chrom + local.B, data=allNetHEM)
+net5mod.2 <- lm(FxRank ~ Gene + local.B, data=allNetHEM)
+net5mod.3 <- lm(EffectEst ~ Gene + local.B, data=allNetHEM)
+net5mod.4 <- lm(EffectEst ~ Gene + Chrom + local.B, data=allNetHEM)
+
+write.csv(allRank.Net.w, "Net5_SNPsRank.csv")
+#------------------------------------------------------------------------
 #for Manhattan plots, if needed: still need to modify below
 #Add indexing
-#Make plotting variables -- a continuous count from Chromosome 1, Contig 1, Position 1 to the end of the last Contig of Chromosome 16.
+#Make plotting variables -- a continuous count from Chromosome 1, Contig 1, Position 1 to the end of the last Contig of Chromosome 18.
 my.plotdat$Index = NA
 lastbase = 0
 #Redo the positions to make them sequential		-- accurate position indexing
