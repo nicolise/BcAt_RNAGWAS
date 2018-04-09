@@ -15,7 +15,6 @@ library(tidyr)
 #convert all .tab SNP files to .csv
 write.table(tab20, file="01_prepFiles/snps_maf20.csv",sep=",",col.names=T,row.names=FALSE)
 
-
 #convert each file to binary
 #can do for MAF5 and MAF10 too if I want
 SNPsMAF20 <- read.csv("01_prepFiles/snps_maf20.csv")
