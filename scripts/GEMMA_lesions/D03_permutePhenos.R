@@ -16,23 +16,23 @@ Phenos_match <- read.csv("B05_GEMMA_les/D_02_randGEMMA/binMAF20NA10_fam.csv")
 #to do this, open Rstudio using sudo in command line!
 #need to save these on /media/ because there is not enough space on C://
 #test on a small run 
-#make directories on /media/ : BcSolGWAS/data/GEMMA_files/D_05_bigrand/
-#and GEMMA_files/D_02_randGEMMA
+#make directories on /media/ : BcAt_RNAGWAS/B05_GEMMA_les/D_05_bigrand/
+#and BcAt_RNAGWAS/B05_GEMMA_les/D_02_randGEMMA
 #paste .bed and .bim into D_02_randGEMMA
-setwd("/media/nesoltis/Data/Kliebenstein/Soltis/BcSolGWAS/data")
+setwd("/media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/")
 Sys.time()
 for (i in 1:1000){
-  Phenos_rand <- transform(Phenos_match, LA0410 = sample(LA0410), LA0480 = sample(LA0480), LA1547 = sample(LA1547), LA1589 = sample(LA1589), LA1684 = sample(LA1684), LA2093 = sample(LA2093), LA2176 = sample(LA2176), LA2706 = sample(LA2706), LA3008 = sample(LA3008), LA3475 = sample(LA3475), LA4345 = sample(LA4345), LA4355 = sample(LA4355),  Domesticated = sample(Domesticated), Wild = sample(Wild), DmWoD = sample(DmWoD))
+  Phenos_rand <- transform(Phenos_match, Col0.Les = sample(Col0.Les), coi1.Les = sample(coi1.Les), npr1.Les = sample(npr1.Les), pad3.Les = sample(pad3.Les))
   #select columns
   Phenos_rand <- Phenos_rand[,-c(1)]
-  newdir <- paste0("GEMMA_files/D_05_bigrand/rand1k_",i)
+  newdir <- paste0("B05_GEMMA_les/D_05_bigrand/rand1k_",i)
   dir.create(newdir)
   cwd <- getwd()
   setwd(newdir)
   write.table(Phenos_rand, "binMAF20NA10_rand.fam", row.names=FALSE, col.names=TRUE)
   setwd(cwd)
   #and now copy .bed and .bim over to new directory
-  plink.folder <- paste0(cwd,"/GEMMA_files/D_02_randGEMMA")
+  plink.folder <- paste0(cwd,"/B05_GEMMA_les/D_02_randGEMMA")
   new.folder <- paste0(cwd,"/",newdir)
   # find the files that you want
   my.bed <- list.files(plink.folder, ".bed$",full.names=T)
