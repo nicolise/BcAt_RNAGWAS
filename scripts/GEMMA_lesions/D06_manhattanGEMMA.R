@@ -5,45 +5,51 @@
 
 #--------------------------------------------------------------
 rm(list=ls())
-#first round: just one file at a time. Then convert to loops
-#13 is Domest, 14 is Wild, 15 is Sensitivity
-
-#on laptop:
-myGEMMA <- read.table("data/B05_GEMMA_les/D_04_ogphenos/binMAF20NA10_norand_kmat1_pheno1.assoc.txt", header=TRUE)
 
 #rename files
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/D_04_ogphenos/")
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/D_04_ogphenos/")
-#read in each of 12 phenotypes
-my.files <- list.files(pattern = c("assoc"))
-#2_LA1589 fails with both k-matrix options.
-my.names <- c("1_Col0.Les","2_coi1.Les","3_npr1.Les","4_pad3.Les","5_tga3.Les","6_anac055.Les")
-#  "LA1547","LA1589","LA1684","LA2093","LA2176","LA2706","LA3008","LA3475","LA410","LA4345","LA4355","LA480"
-#rename all files
+# #read in each of 12 phenotypes
+# my.files <- list.files(pattern = c("assoc"))
+# #2_LA1589 fails with both k-matrix options.
+# my.names <- c("1_Col0.Les","2_coi1.Les","3_npr1.Les","4_pad3.Les","5_tga3.Les","6_anac055.Les")
+
+# #rename all files
 # for(i in 1:length(my.files)) {
 #   my.file <- read.csv(my.files[i])
 #   file.rename(from=file.path(my.files[i]), to=file.path(paste(file.path(my.files[i]),my.names[i],".txt",sep="")))
 # }
 
-library(ggplot2); 
+# my.files <- list.files(pattern = c("assoc"))
+# for (i in 1:length(my.files)){
+#   my.file <- read.table(my.files[i], header=TRUE)
+#   my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
+#   ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
+#   ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
+#   ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
+#   ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
+# }
+# full.file <- full.file[,-c(12,13)]
 
-#virtually identical, just checking.
-plot(myGEMMA$p_wald, myGEMMA$p_score)
-plot(myGEMMA$p_wald, myGEMMA$p_lrt)
-#wald test, likelihood ratio test, or score test
+setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les")
+#write.csv(full.file, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
+full.file <- read.csv("D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
+library(ggplot2); 
 
 #let's try a manhattan plot. Choosing score test for now.
 
 #create a custom color scale
 myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
-names(myColors) <- levels(myGEMMA$chr)
+names(myColors) <- levels(full.file$chr)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 
 #sort dataframe rows in order of Chrom, then Pos
-str(myGEMMA)
-#myGEMMA$ps <- as.numeric(myGEMMA$ps)
-#myGEMMA$chr <- as.numeric(myGEMMA$chr)
-myGEMMA <- myGEMMA[with(myGEMMA, order(chr, ps)), ]
+str(full.file)
+
+##test: read pheno 1 directly as full.file, see if it fixes plot
+#full.file <- read.table("D_04_ogphenos/binMAF20NA10_norand_kmat1_pheno1.assoc.txt1_Col0.Les.txt", header=TRUE)
+
+myGEMMA <- full.file[with(full.file, order(chr, ps)), ]
 
 #Make plotting variables
 myGEMMA$Index = NA
@@ -76,19 +82,30 @@ hist(myGEMMA$Index)
 #positions look fine...
 
 #get thresholds here 
-mythrs <- read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
+mythrs <- #read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
 mythrs
 
-jpeg(paste("paper/plots/addGEMMA/SlBc_MAF20_10NA_GEMMArand_Sens.jpg", sep=""), width=8, height=5, units='in', res=600)
+#troubleshooting col0
+col0pval <- as.data.frame(table(myGEMMA$X1_Col0.Les_pscore))
+View(col0pval)
+topcol0pval <- col0pval[col0pval$Freq %in% c(408,917:6075),]
+lowcol0pval <- col0pval[!col0pval$Freq %in% c(408,917:6075),]
+editcol0 <- myGEMMA[!myGEMMA$X1_Col0.Les_pscore %in% topcol0pval$Var,]
+# basically looks like col0 failed. minimum "believable" p-val is 0.0396
+
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMArand_col0.jpg", sep=""), width=8, height=5, units='in', res=600)
 #print(ggplot(myGEMMA, aes(x=Index, y=beta))+
-print(ggplot(myGEMMA, aes(x=Index, y=(-log10(p_score))))+
+#columns with pscore to plot: 12, 15, 18, 21
+##print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,13]))))+
+ggplot(editcol0, aes(x=Index, y=(-log10(editcol0$X1_Col0.Les_pscore))))+
         theme_bw()+
         colScale+
         geom_point(aes(color = factor(chr),alpha=0.001))+
-        labs(list(y=expression('-log'[10]*'p'), title="Sensitivity"))+
+        labs(list(y=expression('-log'[10]*'p'), title="Col-0 Lesion Size"))+
         guides(col = guide_legend(nrow = 8, title="Chromosome"))+
-        geom_hline(yintercept=-log10(2.350535e-03), colour = "black", lty=2)+ #250
-        geom_hline(yintercept=-log10(1.419165e-02), colour = "black", lty=3)+ #2500
+        #geom_hline(yintercept=-log10(), colour = "black", lty=2)+ #250
+        #geom_hline(yintercept=-log10(), colour = "black", lty=3)+ #2500
         theme(legend.position="none")+
         theme(text = element_text(size=14), axis.text.x = element_text(size=14), axis.text.y = element_text(size=14))+
         theme(panel.border = element_blank(), panel.grid.major = element_blank(),
