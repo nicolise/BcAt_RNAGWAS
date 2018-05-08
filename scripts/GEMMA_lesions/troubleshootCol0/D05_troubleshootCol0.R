@@ -24,5 +24,12 @@ myFAM_col0 <- myFAM_match2[,c(1:8)]
 #z-scaled lesion
 myFAM_col0$Col0.Les.z <- scale(myFAM_col0$Col0.Les, center = TRUE, scale = TRUE)
 hist(myFAM_col0$Col0.Les.z)
-write.table(myFAM_col0, "B05_GEMMA_les/troubleshoot_Col0/D_02_GEMMA/binMAF20NA10_allphenos.fam", row.names=FALSE, col.names=TRUE)
+
+LA0410 = sample(LA0410)
+#randomized lesion
+myFAM_col0$Col0.rand <- sample(myFAM_col0$Col0.Les)
+#randomized z-scaled lesion
+myFAM_col0$Col0.rand.z <- sample(myFAM_col0$Col0.Les.z)
+
+write.table(myFAM_col0, "B05_GEMMA_les/troubleshoot_Col0/D_02_GEMMA/randtest/binMAF20NA10.fam", row.names=FALSE, col.names=TRUE)
 
