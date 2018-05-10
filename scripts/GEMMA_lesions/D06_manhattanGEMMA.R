@@ -31,6 +31,7 @@ setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/D_04_ogphenos/")
 # }
 # full.file <- full.file[,-c(12,13)]
 
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les")
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les")
 #write.csv(full.file, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
 full.file <- read.csv("D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
@@ -85,24 +86,19 @@ hist(myGEMMA$Index)
 mythrs <- #read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
 mythrs
 
-#troubleshooting col0
-col0pval <- as.data.frame(table(myGEMMA$X1_Col0.Les_pscore))
-View(col0pval)
-topcol0pval <- col0pval[col0pval$Freq %in% c(408,917:6075),]
-lowcol0pval <- col0pval[!col0pval$Freq %in% c(408,917:6075),]
-editcol0 <- myGEMMA[!myGEMMA$X1_Col0.Les_pscore %in% topcol0pval$Var,]
-# basically looks like col0 failed. minimum "believable" p-val is 0.0396
+#troubleshooting col0... is fine!
+hist(myGEMMA$X1_Col0.Les_pscore)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMArand_col0.jpg", sep=""), width=8, height=5, units='in', res=600)
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
+jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMA_pad3.jpg", sep=""), width=8, height=5, units='in', res=600)
 #print(ggplot(myGEMMA, aes(x=Index, y=beta))+
-#columns with pscore to plot: 12, 15, 18, 21
-##print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,13]))))+
-ggplot(editcol0, aes(x=Index, y=(-log10(editcol0$X1_Col0.Les_pscore))))+
+#columns with pscore to plot: 13 Col0, 16 coi1, 19 npr1, 22 pad3
+print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,22]))))+
         theme_bw()+
         colScale+
         geom_point(aes(color = factor(chr),alpha=0.001))+
-        labs(list(y=expression('-log'[10]*'p'), title="Col-0 Lesion Size"))+
+        labs(list(y=expression('-log'[10]*'p'), title="pad3 Lesion Size"))+
         guides(col = guide_legend(nrow = 8, title="Chromosome"))+
         #geom_hline(yintercept=-log10(), colour = "black", lty=2)+ #250
         #geom_hline(yintercept=-log10(), colour = "black", lty=3)+ #2500

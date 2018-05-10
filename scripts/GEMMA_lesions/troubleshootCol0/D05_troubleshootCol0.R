@@ -33,3 +33,8 @@ myFAM_col0$Col0.rand.z <- sample(myFAM_col0$Col0.Les.z)
 
 write.table(myFAM_col0, "B05_GEMMA_les/troubleshoot_Col0/D_02_GEMMA/randtest/binMAF20NA10.fam", row.names=FALSE, col.names=TRUE)
 
+#replace NAs in 01.01.12 just in case
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_02_GEMMA")
+mytempdf <- read.csv("fix010112/binMAF20NA10_fix010112.csv")
+mytempdf <- mytempdf[,-c(1)]
+write.table(mytempdf, "fix010112/binMAF20NA10.fam", row.names=FALSE, col.names=TRUE)

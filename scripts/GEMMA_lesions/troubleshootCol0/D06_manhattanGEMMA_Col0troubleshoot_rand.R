@@ -7,11 +7,12 @@
 rm(list=ls())
 
 #rename files
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_04_GEMMAout/randtest/")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/output/")
 #setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_04_GEMMAout/")
 #read in each of 12 phenotypes
 my.files <- list.files(pattern = c("assoc"))
 my.names <- c("Col0_Les", "Col0_Les_z", "Col0_rand", "Col0_rand_z")
+              #"Col0_les_dup")
 
 #rename all files
 for(i in 1:length(my.files)) {
@@ -32,8 +33,8 @@ full.file <- full.file[,-c(12,13)]
 
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/")
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0")
-#write.csv(full.file, "D_05_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
-full.file <- read.csv("D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
+#write.csv(full.file, "D_05_results/LesionPhenos_GEMMA_fix010112.csv")
+#full.file <- read.csv("D_05_results/LesionPhenos_GEMMA_fix010112.csv")
 library(ggplot2); 
 
 #let's try a manhattan plot. Choosing score test for now.
@@ -84,6 +85,8 @@ hist(myGEMMA$Index)
 #get thresholds here 
 mythrs <- #read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
 mythrs
+
+hist(myGEMMA$Col0_Les_z_beta)
 
 #troubleshooting col0
 col0pval <- as.data.frame(table(myGEMMA$X1_Col0.Les_pscore))
