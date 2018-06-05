@@ -3,6 +3,7 @@
 #02_FAMaddPhenos
 
 #----------------------------------------------------------------------------
+rm(list=ls())
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 setwd("~/Projects/BcAt_RNAGWAS/")
 Phenos <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/lsmeans_zscale_allreads.csv")
@@ -42,4 +43,5 @@ myFAM_match2 <- myFAM_match2[,c(1:5,9:length(myFAM_match2))]
 
 Sys.time()
 write.table(myFAM_match2, "data/B05_GEMMA/02_GEMMA/binMAF20NA10.fam", row.names=FALSE, col.names=TRUE)
+myFAM_check <- read.table("data/B05_GEMMA/02_GEMMA/binMAF20NA10.fam")
 Sys.time()
