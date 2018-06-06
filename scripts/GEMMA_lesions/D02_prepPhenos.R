@@ -71,6 +71,9 @@ myFAM_match2 <- myFAM_match2[order(myFAM_match2$delete),]
 #remove column "delete" and reorder column V1, V2
 myFAM_match2 <- myFAM_match2[,c(2,1,3:6,8:ncol(myFAM_match2))]
 
+#remove dummy phenotype column
+myFAM_match2 <- myFAM_match2[,-c(6)]
+
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data")
 write.csv(myFAM_match2, "B05_GEMMA_les/D_02_randGEMMA/binMAF20NA10_fam.csv")
 write.table(myFAM_match2, "B05_GEMMA_les/D_02_randGEMMA/binMAF20NA10_allphenos.fam", row.names=FALSE, col.names=TRUE)

@@ -7,45 +7,34 @@
 rm(list=ls())
 
 #rename files
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/D_04_ogphenos/")
-setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/D_04_ogphenos/")
-# #read in each of 12 phenotypes
-# my.files <- list.files(pattern = c("assoc"))
-# #2_LA1589 fails with both k-matrix options.
-# my.names <- c("1_Col0.Les","2_coi1.Les","3_npr1.Les","4_pad3.Les","5_tga3.Les","6_anac055.Les")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/output/")
+#setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_04_GEMMAout/")
+#read in each of 12 phenotypes
+my.files <- list.files(pattern = c("assoc"))
+my.names <- c("Col0_Les", "Col0_Les_z", "Col0_rand", "Col0_rand_z")
+              #"Col0_les_dup")
 
-# #rename all files
-# for(i in 1:length(my.files)) {
-#   my.file <- read.csv(my.files[i])
-#   file.rename(from=file.path(my.files[i]), to=file.path(paste(file.path(my.files[i]),my.names[i],".txt",sep="")))
-# }
+#rename all files
+for(i in 1:length(my.files)) {
+  my.file <- read.csv(my.files[i])
+  file.rename(from=file.path(my.files[i]), to=file.path(paste(file.path(my.files[i]),my.names[i],".txt",sep="")))
+}
 
-# my.files <- list.files(pattern = c("assoc"))
-# for (i in 1:length(my.files)){
-#   my.file <- read.table(my.files[i], header=TRUE)
-#   my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
-#   ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
-#   ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
-#   ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
-#   ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
-# }
-# full.file <- full.file[,-c(12,13)]
+my.files <- list.files(pattern = c("assoc"))
+for (i in 1:length(my.files)){
+  my.file <- read.table(my.files[i], header=TRUE)
+  my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
+  ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
+  ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
+  ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
+  ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
+}
+full.file <- full.file[,-c(12,13)]
 
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les")
-setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les")
-#write.csv(full.file, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
-full.file <- read.csv("D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
-
-my.thr <- read.csv("D_07_randSUMM/GEMMA_1krand_SNPsample.csv")
-my.thr <- my.thr[,c("beta","se","p_wald","p_lrt","p_score","SNPnum","pheno")]
-
-library(dplyr)
-my.thresh <- my.thr %>%
-  group_by(pheno,SNPnum)%>%
-  summarise(beta = mean(beta), se = mean(se), p_score = mean(p_score), p_wald = mean(p_wald), p_lrt = mean(p_lrt))
-
-write.csv(my.thresh, "D_07_randSUMM/GEMMA_1krand_Thresholds.csv")
-
+setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0")
+#write.csv(full.file, "D_05_results/LesionPhenos_GEMMA_fix010112.csv")
+#full.file <- read.csv("D_05_results/LesionPhenos_GEMMA_fix010112.csv")
 library(ggplot2); 
 
 #let's try a manhattan plot. Choosing score test for now.
@@ -84,8 +73,6 @@ for (i in unique(myGEMMA$chr)) {
   }
 }
 
-write.csv(myGEMMA, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1_Indexed.csv")
-
 #comparing positions to B05.10 outputs in 06_transPatterns_B05.R
 #pos should be about 0 to 14,000
 #ps goes 121 to 408,6062 ... is one of the chromosomes too long somehow?
@@ -96,31 +83,32 @@ hist(myGEMMA$Index)
 #positions look fine...
 
 #get thresholds here 
-mythr999 <- my.thresh[my.thresh$SNPnum == 236,]
-mythr99 <- my.thresh[my.thresh$SNPnum == 2357,]
-mythr9999 <- my.thresh[my.thresh$SNPnum == 24,]
+mythrs <- #read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
+mythrs
 
-#troubleshooting col0... is fine!
-hist(myGEMMA$X1_Col0.Les_pscore)
+hist(myGEMMA$Col0_Les_z_beta)
+
+#troubleshooting col0
+col0pval <- as.data.frame(table(myGEMMA$X1_Col0.Les_pscore))
+View(col0pval)
+topcol0pval <- col0pval[col0pval$Freq %in% c(408,917:6075),]
+lowcol0pval <- col0pval[!col0pval$Freq %in% c(408,917:6075),]
+editcol0 <- myGEMMA[!myGEMMA$X1_Col0.Les_pscore %in% topcol0pval$Var,]
+# basically looks like col0 failed. minimum "believable" p-val is 0.0396
 
 setwd("~/Projects/BcAt_RNAGWAS")
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
-jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMA_pad3.jpg", sep=""), width=8, height=5, units='in', res=600)
+jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMArand_col0.jpg", sep=""), width=8, height=5, units='in', res=600)
 #print(ggplot(myGEMMA, aes(x=Index, y=beta))+
-#columns with pscore to plot: 13 Col0, 16 coi1, 19 npr1, 22 pad3
-#rows is pheno 1:4
-th99 <- as.numeric(mythr99[4,5])
-th999 <- as.numeric(mythr999[4,5])
-th9999 <- as.numeric(mythr9999[4,5])
-
-print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,22]))))+
+#columns with pscore to plot: 12, 15, 18, 21
+##print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,13]))))+
+ggplot(editcol0, aes(x=Index, y=(-log10(editcol0$X1_Col0.Les_pscore))))+
         theme_bw()+
         colScale+
         geom_point(aes(color = factor(chr),alpha=0.001))+
-        labs(list(y=expression('-log'[10]*'p'), title="pad3 Lesion Size"))+
+        labs(list(y=expression('-log'[10]*'p'), title="Col-0 Lesion Size"))+
         guides(col = guide_legend(nrow = 8, title="Chromosome"))+
-        geom_hline(yintercept=-log10(th99), colour = "black", lty=3)+ 
-        geom_hline(yintercept=-log10(th999), colour = "black", lty=2)+
+        #geom_hline(yintercept=-log10(), colour = "black", lty=2)+ #250
+        #geom_hline(yintercept=-log10(), colour = "black", lty=3)+ #2500
         theme(legend.position="none")+
         theme(text = element_text(size=14), axis.text.x = element_text(size=14), axis.text.y = element_text(size=14))+
         theme(panel.border = element_blank(), panel.grid.major = element_blank(),

@@ -8,6 +8,10 @@ rm(list=ls())
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
 #use same SNP set from B05.10 bigRR
 mySNPs <- read.csv("allreadsGWAS/BO5.10/01_prepFiles/hp_binMAF20_20NA.csv")
+
+mySNPs.sub <- mySNPs[mySNPs$Chrom==18,]
+mySNPs.sub <- mySNPs.sub[mySNPs.sub$Pos > 343603,]
+
 SNPs_renamed <- mySNPs
 #change names from genotype file to match phenotype file
 colnames(SNPs_renamed) <- sub("\\.variant2", "", colnames(SNPs_renamed))
@@ -79,6 +83,8 @@ myMAP2 <- myMAP2[,c(1,3,4,2)]
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 #MAP2 still has chromosome 1:18
 write.table(myMAP2, "data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.map", row.names=FALSE, col.names=FALSE)
+
+myMAP2 <- read.table("data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.map", row.names=FALSE, col.names=FALSE)
 
 write.csv(mySNPs3, "data/B05_GEMMA_les/D_01_PLINK/dp_binMAF20_10NA.csv")
 write.csv(mySNPs, "data/B05_GEMMA_les/D_01_PLINK/hp_binMAF20_10NA.csv")
