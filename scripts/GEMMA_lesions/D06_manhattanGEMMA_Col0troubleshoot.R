@@ -9,10 +9,9 @@ rm(list=ls())
 #rename files
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_04_GEMMAout/")
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les/troubleshoot_Col0/D_04_GEMMAout/")
-#read in each of 12 phenotypes
+#read in each of lsm and z-scaled with kmat none, 1, or 2
 my.files <- list.files(pattern = c("assoc"))
-# #2_LA1589 fails with both k-matrix options.
-# my.names <- c("1_Col0.Les","2_coi1.Les","3_npr1.Les","4_pad3.Les","5_tga3.Les","6_anac055.Les")
+my.names <- c("lsm_nomat","z_nomat","lsm_kmat1","z_kmat1","lsm_kmat2","z_kmat2")
 
 # #rename all files
 # for(i in 1:length(my.files)) {
@@ -20,24 +19,23 @@ my.files <- list.files(pattern = c("assoc"))
 #   file.rename(from=file.path(my.files[i]), to=file.path(paste(file.path(my.files[i]),my.names[i],".txt",sep="")))
 # }
 
-# my.files <- list.files(pattern = c("assoc"))
-# for (i in 1:length(my.files)){
-#   my.file <- read.table(my.files[i], header=TRUE)
-#   my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
-#   ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
-#   ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
-#   ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
-#   ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
-# }
-# full.file <- full.file[,-c(12,13)]
+my.files <- list.files(pattern = c("assoc"))
+for (i in 1:length(my.files)){
+  my.file <- read.table(my.files[i], header=TRUE)
+  my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
+  ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
+  ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
+  ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
+  ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
+}
+full.file <- full.file[,-c(12,13)]
 
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_les")
-#write.csv(full.file, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
-full.file <- read.csv("D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1.csv")
+write.csv(full.file, "LesionPhenos_allSNPs_MAF20NA10_GEMMA_Col0troubleshoot.csv")
+full.file <- read.csv("LesionPhenos_allSNPs_MAF20NA10_GEMMA_Col0troubleshoot.csv")
 library(ggplot2); 
 
 #let's try a manhattan plot. Choosing score test for now.
-
 #create a custom color scale
 myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
 names(myColors) <- levels(full.file$chr)
@@ -47,7 +45,9 @@ colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 str(full.file)
 
 ##test: read pheno 1 directly as full.file, see if it fixes plot
+#this is for "col0 troubleshoot original" below
 #full.file <- read.table("D_04_ogphenos/binMAF20NA10_norand_kmat1_pheno1.assoc.txt1_Col0.Les.txt", header=TRUE)
+#it does not
 
 myGEMMA <- full.file[with(full.file, order(chr, ps)), ]
 
@@ -85,7 +85,7 @@ hist(myGEMMA$Index)
 mythrs <- #read.csv("data/GEMMA_files/D_07_randOUTS/GEMMA_1krand_thresholds.csv")
 mythrs
 
-#troubleshooting col0
+# col0 troubleshoot original
 col0pval <- as.data.frame(table(myGEMMA$X1_Col0.Les_pscore))
 View(col0pval)
 topcol0pval <- col0pval[col0pval$Freq %in% c(408,917:6075),]
@@ -93,12 +93,23 @@ lowcol0pval <- col0pval[!col0pval$Freq %in% c(408,917:6075),]
 editcol0 <- myGEMMA[!myGEMMA$X1_Col0.Les_pscore %in% topcol0pval$Var,]
 # basically looks like col0 failed. minimum "believable" p-val is 0.0396
 
-setwd("~/Projects/BcAt_RNAGWAS")
-jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMArand_col0.jpg", sep=""), width=8, height=5, units='in', res=600)
+#col0 troubleshoot redos
+#all failed in an identical way. no b-values near zero, no p-values between 0.6 and 1.0
+for ( i in c(11,14,17,20,23,26)){
+  hist(myGEMMA[,i])
+  hist(myGEMMA[,i+2])
+}
+
+#setwd("~/Projects/BcAt_RNAGWAS")
+#jpeg(paste("plots/AtBclesion_MAF20_10NA_GEMMArand_col0.jpg", sep=""), width=8, height=5, units='in', res=600)
 #print(ggplot(myGEMMA, aes(x=Index, y=beta))+
 #columns with pscore to plot: 12, 15, 18, 21
 ##print(ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA[,13]))))+
-ggplot(editcol0, aes(x=Index, y=(-log10(editcol0$X1_Col0.Les_pscore))))+
+
+#z kmat1 fails with stripes of single p-val
+#z nomat fails with stripes
+
+ggplot(myGEMMA, aes(x=Index, y=(-log10(myGEMMA$z_nomat_pscore))))+
         theme_bw()+
         colScale+
         geom_point(aes(color = factor(chr),alpha=0.001))+
