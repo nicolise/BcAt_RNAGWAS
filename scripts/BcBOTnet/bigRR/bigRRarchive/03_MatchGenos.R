@@ -13,7 +13,7 @@ SNPnames <- read.csv("02_MatchGenos/Key_SNPnames.csv")
 SNPnames <- SNPnames[c(2,4)]
 names(SNPnames)[1]<- "Isolate"
 
-Phenos <- read.csv("BcBotGWAS/02_MatchGenos/BOTphenotypes.csv")
+#Phenos <- read.csv("BcBotGWAS/02_MatchGenos/BOTphenotypes.csv")
 Phenos <- Phenos[,-c(1)]
 
 #change names from genotype file to match phenotype file
