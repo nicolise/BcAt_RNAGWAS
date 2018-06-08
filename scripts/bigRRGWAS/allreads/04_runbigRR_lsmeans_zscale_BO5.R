@@ -38,7 +38,7 @@ bigRR_update <- function (obj, Z, family = poisson(link = identity), tol.err = 1
 library(bigRR) #check if version is 1.3-9
 
 #Get genotype data
-SNPs <- read.csv("data/allreadsGWAS/BO5.10/02_bigRR/lsmeans_zscale_SNPS_MAF20.csv", row.names = 1)
+SNPs <- read.csv("data/allreads_bigRR/B05.10/02_bigRR/lsmeans_zscale_SNPS_MAF20.csv", row.names = 1)
 FullSNPs <- SNPs
 SNPs <- FullSNPs
 #add a column with position as chr.base
@@ -56,7 +56,7 @@ for(i in 1:dim(SNPs)[1]) {
 }
 
 #read in phenotype data
-Phenos <- read.csv("data/allreadsGWAS/BO5.10/02_bigRR/lsmeans_zscale_phenos_MAF20.csv", row.names = 1)
+Phenos <- read.csv("data/allreads_bigRR/B05.10/02_bigRR/lsmeans_zscale_phenos_MAF20.csv", row.names = 1)
 #for poisson all values must be positive: additive transformation
 #actual phenotypes 2:9268
 #check which phenos are done
@@ -84,7 +84,7 @@ mysplit.dat <- lapply(seq(1,ncol(dat)-500,500), function(u) dat[,u:(u+500)])
 # loop from here to run batches of phenotypes in bigRR
 for (y in 1:3){
   dat <- mysplit.dat[[y]]
-  con <- file(paste("data/allreadsGWAS/BO5.10/03_bigRRout/lsm_allphenos_MAF20_020618b",y,"log",sep="."))
+  con <- file(paste("data/allreads_bigRR/B05.10/03_bigRRout/lsm_allphenos_MAF20_020618b",y,"log",sep="."))
   #type = "message"
   sink(con, append=TRUE, split=TRUE)
   time1 <- print(Sys.time())
@@ -106,7 +106,7 @@ for (y in 1:3){
     #write out to .csv after each phenotype! This saves our progress in case of memory error
     #but is probably slow. going to try a new file for each phenotype
     #write.csv(outpt.HEM, file=paste("allreadsGWAS/03_bigRRout/lsm_bigRR_MAF20_012218",y,"csv",sep="."), append=T)
-    write.csv(outpt.HEM, file=paste("data/allreadsGWAS/BO5.10/03_bigRRout/lsm_allphenos_MAF20_020618b",y,i,"csv",sep="."))
+    write.csv(outpt.HEM, file=paste("data/allreads_bigRR/B05.10/03_bigRRout/lsm_allphenos_MAF20_020618b",y,i,"csv",sep="."))
     print(Sys.time())
     #run garbage collection just in case to free up space
     gc()

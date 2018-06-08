@@ -7,7 +7,7 @@ rm(list=ls())
 #on linux desktop
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
 #use same SNP set from B05.10 bigRR
-mySNPs <- read.csv("allreadsGWAS/BO5.10/01_prepFiles/hp_binMAF20_20NA.csv")
+mySNPs <- read.csv("allreads_bigRR/B05.10/01_prepFiles/hp_binMAF20_20NA.csv")
 
 mySNPs.sub <- mySNPs[mySNPs$Chrom==18,]
 mySNPs.sub <- mySNPs.sub[mySNPs.sub$Pos > 343603,]
@@ -90,4 +90,5 @@ write.csv(mySNPs3, "data/B05_GEMMA_les/D_01_PLINK/dp_binMAF20_10NA.csv")
 write.csv(mySNPs, "data/B05_GEMMA_les/D_01_PLINK/hp_binMAF20_10NA.csv")
 Sys.time()
 write.table(myPED, "data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.ped", row.names=FALSE, col.names=FALSE)
+write.csv(myPED, "data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10ped.csv")
 Sys.time()

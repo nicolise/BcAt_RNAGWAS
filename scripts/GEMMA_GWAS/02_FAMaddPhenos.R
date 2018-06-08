@@ -4,6 +4,9 @@
 
 #----------------------------------------------------------------------------
 rm(list=ls())
+
+#GEMMA run script is /home/nesoltis/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA/runGEMMA_allphenos.sh 
+
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 setwd("~/Projects/BcAt_RNAGWAS/")
 Phenos <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/lsmeans_zscale_allreads.csv")

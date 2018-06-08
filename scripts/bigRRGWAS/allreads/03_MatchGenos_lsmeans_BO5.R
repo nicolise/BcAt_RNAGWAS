@@ -12,10 +12,10 @@ names(SNPnames)[1]<- "Isolate"
 
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 setwd("~/Projects/BcAt_RNAGWAS/")
-SNPs <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/hp_binMAF20_20NA.csv", row.names=1)
+SNPs <- read.csv("data/allreads_bigRR/B05.10/01_prepFiles/hp_binMAF20_20NA.csv", row.names=1)
 SNPs_renamed <- SNPs
 
-Phenos <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/lsmeans_zscale_allreads.csv")
+Phenos <- read.csv("data/allreads_bigRR/B05.10/01_prepFiles/lsmeans_zscale_allreads.csv")
 Phenos <- Phenos[,-c(1)]
 
 #change names from genotype file to match phenotype file

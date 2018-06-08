@@ -9,7 +9,7 @@ library(lsmeans); library(data.table)
 #load data
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data")
 setwd("~/Projects/BcAt_RNAGWAS/data")
-IsoNames <- read.csv("IsolateKey_Vivian.csv")
+IsoNames <- read.csv("Vivian_Bc/IsolateKey_Vivian.csv")
 MyReads <- read.csv("Vivian_Bc/result.lsm.csv")
 MyReads <- MyReads[,-c(1)]
 
@@ -23,16 +23,21 @@ names(MyReads)[1] <- "Isolate"
 #other approach: new lsmeans including the effect of HostGenotype
 
 full.lsm.outputs=NULL
+
+#lsmeans::lsmeans is being deprecated, now trying emmeans
+library(emmeans)
+
 #first run once to get the right isolate names because I'm lazy
 #fix this later
 for (i in c(3)) {
   MyReads.lm <- lm(MyReads[,i] ~ Isolate + HostGenotype, data=MyReads)
-  MyReads.lsm <- as.data.frame(print(lsmeans::lsmeans(MyReads.lm, "Isolate")))
+  #MyReads.lsm <- as.data.frame(print(lsmeans::lsmeans(MyReads.lm, "Isolate")))
+  MyReads.lsm <- as.data.frame(print(emmeans::emmeans(MyReads.lm, "Isolate")))
   df <- as.data.frame(print(MyReads.lsm))
   #setDT(df, keep.rownames = T)[]
   df$transcript <- names(MyReads)[i]
   full.lsm.outputs = rbind(full.lsm.outputs, df)
-  lsm.for.GWAS = cbind(lsm.for.GWAS,df$lsmean)
+  lsm.for.GWAS = (df)
   names(lsm.for.GWAS)[i-1] <- names(MyReads)[i]
 }
 lsm.for.GWAS= as.data.frame(MyReads.lsm[,1])
@@ -42,7 +47,8 @@ mytime1 <- (Sys.time())
 #takes 5 mins for 1000 -> predict 45 mins for 9k
 for (i in c(3:9269)) {
   MyReads.lm <- lm(MyReads[,i] ~ Isolate + HostGenotype, data=MyReads)
-  MyReads.lsm <- as.data.frame(print(lsmeans::lsmeans(MyReads.lm, "Isolate")))
+  #MyReads.lsm <- as.data.frame(print(lsmeans::lsmeans(MyReads.lm, "Isolate")))
+  MyReads.lsm <- as.data.frame(print(emmeans::emmeans(MyReads.lm, "Isolate")))
   df <- as.data.frame(print(MyReads.lsm))
   #setDT(df, keep.rownames = T)[]
   df$transcript <- names(MyReads)[i]

@@ -21,6 +21,12 @@ MyBoaList <- c("Bcin01g00010.1", "Bcin01g00020.1", "Bcin01g00030.1", "Bcin01g000
 
 MyNetsList <- c(MyBotList, MyBoaList, MyNet5List)
 
+#make a dataframe of members of each network
+MyNets <- as.data.frame(MyNetsList)
+names(MyNets)[1] <- "Gene"
+MyNets$Cluster <- ifelse(MyNets$Gene %in% MyBoaList, "BOA", ifelse(MyNets$Gene %in% MyBotList, "BOT", "NET5"))
+write.csv(MyNets, "data/BcBotGWAS/02_MatchGenos/NetworkMembers.csv")
+
 PhenosNet <- Phenos[,names(Phenos) %in% c("Isolate",MyNetsList)]
 
 write.csv(PhenosNet, "data/BcBotGWAS/02_MatchGenos/BOTBOANet5phenos.csv")
