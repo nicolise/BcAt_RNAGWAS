@@ -24,10 +24,12 @@ SNPnames <- read.csv("BO5_97_iso_small/File_key_in_Bo5bamfolder_NES.csv", header
 SNPnames <- SNPnames[,c("Isolate","names")]
 names(SNPnames)[1]<- "Isolate"
 names(SNPs_renamed) <- SNPnames[match(names(SNPs_renamed),SNPnames[,"names"]),"Isolate"] 
-mySNPs <- SNPs_renamed[,-c(1)]
-names(mySNPs)[1] <- "Chrom"
-names(mySNPs)[2] <- "Pos"
-mySNPs <- mySNPs[,-c(38)] # remove 1.01.06.1
+SNPs_renamed <- SNPs_renamed[,-c(1)]
+names(SNPs_renamed)[1] <- "Chrom"
+names(SNPs_renamed)[2] <- "Pos"
+SNPs_renamed <- SNPs_renamed[,-c(38)] # remove 1.01.06.1
+write.csv(SNPs_renamed, "B05_GEMMA/01_PLINK/OriginalSNPdata.csv")
+mySNPs <- SNPs_renamed
 
 #and now for making PED format for PLINK!
   #do not need positional info: just SNP states for PED
@@ -84,7 +86,7 @@ setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 #MAP2 still has chromosome 1:18
 write.table(myMAP2, "data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.map", row.names=FALSE, col.names=FALSE)
 
-myMAP2 <- read.table("data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.map", row.names=FALSE, col.names=FALSE)
+myMAP2 <- read.table("data/B05_GEMMA_les/D_01_PLINK/dpbinMAF20NA10.map")
 
 write.csv(mySNPs3, "data/B05_GEMMA_les/D_01_PLINK/dp_binMAF20_10NA.csv")
 write.csv(mySNPs, "data/B05_GEMMA_les/D_01_PLINK/hp_binMAF20_10NA.csv")
