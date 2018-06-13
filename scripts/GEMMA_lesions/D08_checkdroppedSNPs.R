@@ -6,6 +6,7 @@
 #for Suzi, check MAF and missingness for SNPs that were dropped
 rm(list=ls())
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
+
 myGEMMArun <- read.table("B05_GEMMA_les/D_04_ogphenos/binMAF20NA10_norand_kmat1_pheno1_Col0.assoc.Les.txt")
 library("trio")
 #full SNP list
@@ -42,3 +43,32 @@ write.csv(dropSNPs, "B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
 
 #visualize LD
 #on laptop
+setwd("~/Projects/BcAt_RNAGWAS/data")
+dropSNPs <- read.csv("B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
+library("LDheatmap")
+library("genetics")
+
+SNPsLD <- dropSNPs[,4:99]
+#fake genotype coding for LD function
+SNPsLD[SNPsLD==1] <- 'T/T'
+SNPsLD[SNPsLD==0] <- 'C/C'
+#next 2 steps are slow for large SNP set
+SNPsLD <- makeGenotypes(SNPsLD)
+myLDcalc <- LD(SNPsLD)
+#2:30pm 
+mydistest <- as.data.frame(myLDcalc$D)
+mydistest <- abs(mydistest)
+mydistmat <- as.matrix(mydistest)
+
+#LD from ~0 to 0.25
+max(mydistest, na.rm=T)
+min(mydistest, na.rm=T)
+
+#library(RColorBrewer)
+#display.brewer.all()
+
+LDheatmap(mydistmat, color = grey.colors(30))
+#heatmap(mydistmat)
+
+#try: feed GEMMA 1 SNP copied 100x -- does it drop all identical SNPs?
+
