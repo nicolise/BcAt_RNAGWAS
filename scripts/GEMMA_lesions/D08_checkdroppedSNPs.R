@@ -39,6 +39,7 @@ dropSNPs$failed <- ifelse(dropSNPs$missingness > 9, "missingness",
                           ifelse(dropSNPs$Freq < 0.2, "lowMAF","unknown"))
                           
 write.csv(dropSNPs, "B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
+dropSNPs <- read.csv("data/B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
 
 #visualize LD
 #on laptop
