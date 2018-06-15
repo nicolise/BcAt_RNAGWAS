@@ -40,7 +40,14 @@ dropSNPs$failed <- ifelse(dropSNPs$missingness > 9, "missingness",
                           ifelse(dropSNPs$Freq < 0.2, "lowMAF","unknown"))
                           
 write.csv(dropSNPs, "B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
-dropSNPs <- read.csv("data/B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
+dropSNPs <- read.csv("B05_GEMMA_les/D_01_PLINK/DroppedSNPs_GEMMA.csv")
+
+justSNPs <- dropSNPs[,4:99]
+unique(justSNPs[2,])
+justSNPs$count <- apply(justSNPs, 1, function(x)length(unique(x)))
+justSNPs$na_count  <- apply(justSNPs, 1, function(x) sum(is.na(x)))
+justSNPs$allele_num <- ifelse(justSNPs$na_count > 0, justSNPs$count - 1, justSNPs$count) 
+table(justSNPs$allele_num) #cool, all SNPs do in fact have 2 alleles = polymorphic
 
 #visualize LD
 #on laptop
@@ -72,4 +79,4 @@ LDheatmap(mydistmat, color = grey.colors(30))
 #heatmap(mydistmat)
 
 #try: feed GEMMA 1 SNP copied 100x -- does it drop all identical SNPs?
-
+#see file D08_fake100xSNPs
