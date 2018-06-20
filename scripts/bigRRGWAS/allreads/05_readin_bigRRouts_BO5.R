@@ -3,6 +3,9 @@
 
 #file outputs go to 06_genetoSNPplot_B05.R
 #---------------------------------------------------------
+
+##note: check for duplicated SNPs out of bigRR prior to downstream analysis! Remove both of duplicated SNPs
+
 library(tidyr); library(dplyr)
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/data/allreadsGWAS/BO5.10/03_bigRRout/testnames/")

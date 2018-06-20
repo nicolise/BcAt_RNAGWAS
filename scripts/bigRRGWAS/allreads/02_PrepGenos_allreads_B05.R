@@ -5,7 +5,6 @@
 #---------------------------------------------------
 rm(list=ls())
 #read in tab files from BcGenome
-setwd("~/Projects/BcGenome/")
 setwd("~/Documents/GitRepos/BcGenome")
 #minor allele count (MAC) > 20%
 tab20 = read.delim("data/BO5_97_iso_small/snps_mac20_BO5_97.tab")
@@ -13,13 +12,12 @@ tab20 = read.delim("data/BO5_97_iso_small/snps_mac20_BO5_97.tab")
 #data/BO5_97_iso_small/mac20_hap_97_BO5.vcf
 #on linux desktop
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
-setwd("~/Projects/BcAt_RNAGWAS/")
 library(tidyr)
 #convert all .tab SNP files to .csv
-write.table(tab20, file="data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv",sep=",",col.names=T,row.names=FALSE)
+write.table(tab20, file="data/allreads_bigRR/BO5.10/01_prepFiles/snps_maf20.csv",sep=",",col.names=T,row.names=FALSE)
 
 #convert each file to binary
-SNPsMAF20 <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/snps_maf20.csv")
+SNPsMAF20 <- read.csv("data/allreads_bigRR/B05.10/01_prepFiles/snps_maf20.csv")
 mySNPs <- SNPsMAF20
 #code "." as NAs
 # str(mySNPs)
@@ -87,5 +85,11 @@ names(mySNPs)[2] <- "Pos"
 mySNPs$Pos <- as.numeric(as.character(mySNPs$Pos))
 #remove REF and calculation variables
 mySNPs <- mySNPs[,c(1:2,4:100)]
+
+#check for duplicated SNPs
+checkSNPs <- mySNPs
+checkSNPs$chr.pos <- paste(checkSNPs$Chrom, checkSNPs$Pos, sep=".")
+checkSNPs$dup <- duplicated(checkSNPs$chr.pos)
+#none duplicated
 
 write.csv(mySNPs, "data/allreadsGWAS/BO5.10/01_prepFiles/hp_binMAF20_20NA.csv")

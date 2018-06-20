@@ -31,18 +31,19 @@ getPhenos$NewFiles <- paste(getPhenos$gene, ".HEM.csv", sep="")
 #from data/allreads_bigRR/B05.10/04_NetSubset/
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/allreads_bigRR/B05.10/04_NetSubset")
 my.files <- list.files(pattern = c(".HEM.csv"))
-#for (i in 1:length(my.files)){
-i <- 1
+#somehow 217749 of the non-duplicated original SNPs have become 217749 SNPs with 205 duplicated. Estimates for duplicated SNPs are very different --> going to drop all of these
+
+full.file <- NULL
+for (i in 1:length(my.files)){
    my.file <- read.csv(my.files[i], header=TRUE)
-   my.file$chr.ps <- paste(my.file$chr, my.file$ps, sep=".")
-   ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c("beta","se","p_score","chr.ps")], by="chr.ps"))
-   ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
-   ifelse(i == 1, names(full.file)[10] <- paste(my.names[i], "_se", sep=""), names(full.file)[(ncol(full.file)-1)] <- paste(my.names[i], "_se", sep=""))
-   ifelse(i == 1, names(full.file)[13] <- paste(my.names[i], "_pscore", sep=""), names(full.file)[(ncol(full.file))] <- paste(my.names[i], "_pscore", sep=""))
- }
- full.file <- full.file[,-c(12,13)]
-
-#read and combine all files
-
+   names(my.file)[2] <- "chr.ps"
+   print(sum(duplicated(my.file[,2])))
+   my.file <- my.file[!duplicated(my.file$chr.ps),]
+   ifelse(i == 1, full.file <- my.file, full.file <- merge(full.file, my.file[,c(2,3)], by="chr.ps"))
+   #ifelse(i == 1, names(full.file)[9] <- paste(my.names[i], "_beta", sep=""), names(full.file)[(ncol(full.file)-2)] <- paste(my.names[i], "_beta", sep=""))
+}
+#10 mins to run
+Sys.time()
+write.csv(full.file, "BotBoaNet_allGenes_beta.csv")
 
 #next: check for haplotype structure?? haplotype-based model to locate cis effects
