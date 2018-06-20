@@ -9,7 +9,7 @@ rm(list=ls())
 
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/")
 setwd("~/Projects/BcAt_RNAGWAS/")
-Phenos <- read.csv("data/allreadsGWAS/BO5.10/01_prepFiles/lsmeans_zscale_allreads.csv")
+Phenos <- read.csv("data/allreads_bigRR/B05.10/01_prepFiles/lsmeans_zscale_allreads.csv")
 Phenos <- Phenos[,-c(1)]
 
 #myFAM is the PLINK output of converting *.ped and *.map (01_TABtoPEDnMAP.R) to *.bed and *.bim and *.fam
