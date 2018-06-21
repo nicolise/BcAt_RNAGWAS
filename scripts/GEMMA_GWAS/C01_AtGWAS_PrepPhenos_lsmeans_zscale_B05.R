@@ -67,7 +67,7 @@ for (i in c(1:(length(my.lsm.z)))){
 my.lsm.z$Isolate <- lsm.for.GWAS[,1]
 print(mytime1)
 print(Sys.time())
-my.lsm.z <- my.lsm.z[,c(9268,1:9267)]
+my.lsm.z <- my.lsm.z[,c(23957,1:23956)]
   
 #write out file
 write.csv(full.lsm.outputs, "B05_GEMMA/C01_AtPrepFiles/ANOVA_lsmoutputs_allreads_At.csv")
