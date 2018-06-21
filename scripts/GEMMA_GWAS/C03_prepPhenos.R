@@ -19,9 +19,10 @@ rm(list=ls())
 #8. copy edited .fam, original .bim, .bed to C03_runGEMMA/
 #9. copy bash script: cp scripts/GEMMA_lesions/norand_GEMMA_kmatrix.sh data/B05_GEMMA_les/
 #10. cd to data/B05_GEMMA_les/
-#11. calculate k-matrix with: bash norand_GEMMA_kmatrix.sh, mv files to D_03_kmat
-#12. run GEMMA: bash norand_GEMMA_kmatrix_run.sh
-#13. pheno order can be found in names(Phenos)
+#11. calculate k-matrix with: bash C04_runGEMMA_allAt_kmat.sh, mv files to C04_kmat
+#12. move the whole thing to Data/ drive
+#13. on Data/ run GEMMA: bash C05_runGEMMA_allAt_kmat_run.sh
+#14. pheno order can be found in names(Phenos)
 
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
 Phenos <- read.csv("data/B05_GEMMA/C01_AtPrepFiles/lsmeans_zscale_allreads_At.csv")
