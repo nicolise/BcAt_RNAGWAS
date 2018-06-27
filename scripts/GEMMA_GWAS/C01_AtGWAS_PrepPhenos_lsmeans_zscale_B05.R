@@ -43,7 +43,7 @@ lsm.for.GWAS= as.data.frame(MyReads.lsm[,1])
 names(lsm.for.GWAS)[1] <- "Isolate"
 #run for 4:23959
 mytime1 <- (Sys.time())
-#takes 5 mins for 1000 -> predict 2 hours for 24k
+#takes 5 mins for 1000 -> took 11 hours for 23957
 for (i in c(4:length(MyReads))) {
   MyReads.lm <- lm(MyReads[,i] ~ Infected/Isolate + HostGenotype, data=MyReads)
   #MyReads.lsm <- as.data.frame(print(lsmeans::lsmeans(MyReads.lm, "Isolate")))
@@ -53,18 +53,21 @@ for (i in c(4:length(MyReads))) {
   df$transcript <- names(MyReads)[i]
   full.lsm.outputs = rbind(full.lsm.outputs, df)
   lsm.for.GWAS = cbind(lsm.for.GWAS,df$emmean)
-  names(lsm.for.GWAS)[i-1] <- names(MyReads)[i]
+  names(lsm.for.GWAS)[i-2] <- names(MyReads)[i]
 }
 print(mytime1)
 print(Sys.time())
 
 #try z-scaling 
+mytime1 <- Sys.time()
 my.lsm.z <- lsm.for.GWAS[,-c(1)]
-for (i in c(1:(length(MyReads)-3))){
+for (i in c(1:(length(my.lsm.z)))){
   my.lsm.z[,i] <- scale(my.lsm.z[,i], center = TRUE, scale = TRUE)
 }
 my.lsm.z$Isolate <- lsm.for.GWAS[,1]
-my.lsm.z <- my.lsm.z[,c(9268,1:9267)]
+print(mytime1)
+print(Sys.time())
+my.lsm.z <- my.lsm.z[,c(23957,1:23956)]
   
 #write out file
 write.csv(full.lsm.outputs, "B05_GEMMA/C01_AtPrepFiles/ANOVA_lsmoutputs_allreads_At.csv")
