@@ -1,0 +1,7 @@
+run in windows terminal
+java -jar Haploview.jar  -nogui -help
+
+-pedfile (works for GUI only)
+-plink (works for GUI only)
+-map (can be binary. works for GUI only)
+-chromosome (specify chromosome)
