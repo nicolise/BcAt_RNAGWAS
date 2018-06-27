@@ -60,6 +60,7 @@ write.table(myInfoc1, "02b_Haploview/binMAF20NA10_chr1.info", col.names=FALSE, r
 #still runs out of space with -mem 1000, 1500
 #trying with only -blockoutput SPI (rather than -blockoutput ALL)
 
+#java -jar Haploview.jar -nogui -memory 1500 -pedfile NESfiles\binMAF20NA10_chr1.ped -info NESfiles\binMAF20NA10_chr1.info -blockoutput SPI
 #----------------------------------------------------------------------------
 #trying fastPHASE
 #from Gautier 2012
