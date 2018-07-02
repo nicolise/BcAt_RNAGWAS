@@ -171,6 +171,14 @@ dev.off()
 library("rehh")
 ??rehh
 
+#using same genotype input from B05.10 BcAtGWAS bigRR and GEMMA
+rm(list=ls())
+#on linux desktop
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/")
+#use same SNP set from B05.10 bigRR
+mySNPs <- read.csv("B05_GEMMA/01_PLINK/OriginalSNPdata.csv")
+#try one for Chr1 only
+
 # #file format for fastPHASE 
 # 3
 # 4
@@ -190,3 +198,21 @@ library("rehh")
 #line 4: all SNPs, individual 1
 #line 5: all SNPs, individual 2 (it's diploid)
 
+myFast <- mySNPs[,4:99]
+#transpose and format for PED
+myFast2 <- as.data.frame(t(myFast))
+
+#no. individuals = 96
+#no. SNP sites = 271749 for WG
+  
+#this is super fast:
+myFast3 <- myFast2[rep(1:nrow(myFast2),each=2),] 
+
+write.table(myFast3, "BcBotGWAS/05_haplotypes/WGS_B05.10_fastPhase.txt", col.names=FALSE)
+
+
+  
+#running fastPHASE
+#in Documents/
+#./fastPHASE -h (for help options)
+# ./fastPHASE -oChr1Try1
