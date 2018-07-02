@@ -30,3 +30,5 @@ write.csv(MyNets, "data/BcBotGWAS/02_MatchGenos/NetworkMembers.csv")
 PhenosNet <- Phenos[,names(Phenos) %in% c("Isolate",MyNetsList)]
 
 write.csv(PhenosNet, "data/BcBotGWAS/02_MatchGenos/BOTBOANet5phenos.csv")
+
+
