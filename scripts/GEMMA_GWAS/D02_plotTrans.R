@@ -5,8 +5,13 @@
 
 #-------------------------------------------------------
 rm(list=ls())
-setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
-mytop10 <- read.csv("05_GEMMAsumm/GEMMA_top10SNPsample_4genes.txt")
+#setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
+mytop10 <- read.table("05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep=",")
+mytop100 <- read.table("05_GEMMAsumm/GEMMA_top100SNPsample.txt", sep=",")
+mytop1 <- read.table("05_GEMMAsumm/GEMMA_top1SNPsample.txt", sep=",")
+## check which SNP set here
+mytop10 <- mytop1
 mytop10$binfx <- 1
 
 #read in full GEMMA output from 1 gene: set binary SNP fx to = 0. Assures plotting over whole genome, not just hotspot subsamples
@@ -18,6 +23,7 @@ allmySNP$binfx <- 0
 mydat <- rbind(allmySNP, mytop10)
 which(grepl("chr", mydat$chr))
 mydat <- mydat[-c(1),]
+myGEMMA <- mydat
 
 myGEMMA$chr <- as.numeric(myGEMMA$chr)
 myGEMMA$ps <- as.numeric(myGEMMA$ps)
@@ -50,7 +56,8 @@ for (i in unique(myGEMMA$chr)) {
   }
 }
 
-#write.csv(myGEMMA, "D_06_results/LesionPhenos_allSNPs_MAF20NA10_GEMMA_kmat1_Indexed.csv")
+##check which df
+#write.csv(myGEMMA, "05_GEMMAsumm/AllBcgenes_top100SNP_MAF20NA10_GEMMA_kmat1_Indexed.csv")
 
 hist(myGEMMA$ps)
 hist(myGEMMA$Index)
@@ -67,11 +74,14 @@ mydat <- myGEMMA %>%
   summarise(chr = mean(chr), ps = mean(ps), numsig = sum(binfx))
 
 #num sig plot - currently by Index but could do by window
+##check labeling for SNP number
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS")
+jpeg(paste("plots/AllBcgenes_MAF20_10NA_GEMMA_top1SNP_hotspots.jpg", sep=""), width=8, height=5, units='in', res=600)
 ggplot(mydat, aes(x=Index, y=numsig))+
   theme_bw()+
   colScale+
   geom_point(aes(color = factor(chr),alpha=0.001))+
-  labs(list(y="Top 10 SNP", title="meta-plot across all 9k Bc genes"))+
+  labs(list(y="Number of genes with a top 1 SNP", title="meta-plot across all 9k Bc genes"))+
   guides(col = guide_legend(nrow = 8, title="Chromosome"))+
   theme(legend.position="none")+
   theme(text = element_text(size=14), axis.text.x = element_text(size=14), axis.text.y = element_text(size=14))+
@@ -80,6 +90,7 @@ ggplot(mydat, aes(x=Index, y=numsig))+
   #same for all 3 phenos
   scale_x_continuous(name="Chromosome", breaks = c(114174,  342554,  570966,  799392, 1028058, 1256043, 1484483, 1712912, 1941358, 2169675, 2398096, 2626508, 2854952, 3083366, 3311802, 3540153), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16"))+
   expand_limits(y=0)
+dev.off()
 
 
 setwd("~/Projects/BcAt_RNAGWAS")

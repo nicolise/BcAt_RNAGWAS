@@ -48,6 +48,9 @@ setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
     Sys.time()
   }
 
+
+#------------------------------------------------------------------------------------
+#more stuff here - extra code
 my_gemma_top10b <- read.table("05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep=",")
 
 #now cp D_07_randSUMM to ~/Documents/GitRepos/BcSolGWAS/
