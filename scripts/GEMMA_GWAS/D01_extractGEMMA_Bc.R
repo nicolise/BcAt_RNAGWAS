@@ -48,7 +48,40 @@ setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
     Sys.time()
   }
 
+#check range of beta values
+mylgSNP <- mytop100[order(-abs(mytop100$beta)),] #0.70 at tops, p ~ 1e-07
+mylgSNP <- mytop1[order(-abs(mytop1$beta)),] #0.70 at tops, p ~ 1e-07
+head(mylgSNP)
 
+#save just largest effects SNPs - top 26k
+hist(abs(mytop100$beta))
+mylgsnp <- mytop100[abs(mytop100$beta) > 0.5,]
+write.csv(mylgsnp, "data/B05_GEMMA_Bc/05_GEMMAsumm/GEMMA_top100_beta05SNP.csv")
+
+##run this today
+rm(list=ls())
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
+#now try: z-scale each phenotype and take largest fx SNPs
+#each phenotype
+for (i in 1:3){
+  #actually: 1:9267
+  mystart.time <- Sys.time()
+  my_gemma <- read.table(paste("04_GEMMAoutput/binMAF20NA10_PLINK_",i,".assoc.txt", sep=""), header=TRUE)
+  Sys.time()
+  #takes 4 seconds to read 1 phenotype
+  #times 9300 = 10.3 hours
+  #try z-scaling 
+  my_gemma.z <- my_gemma
+  my_gemma.z$beta_z <- scale(my_gemma.z$beta, center = TRUE, scale = TRUE)
+  my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
+  #this gives an error but it's fine
+  try(ifelse( i == 1, write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = TRUE), write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = FALSE, append = TRUE)))
+  Sys.time()
+}
+mystart.time
+Sys.time()
+#expect approx. 30 SNPs per phenotype (gene)
+my_gemma.z.b <- read.table("05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt")
 #------------------------------------------------------------------------------------
 #more stuff here - extra code
 my_gemma_top10b <- read.table("05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep=",")
