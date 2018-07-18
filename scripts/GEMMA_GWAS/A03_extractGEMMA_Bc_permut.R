@@ -2,23 +2,16 @@
 #07/02/18
 
 #-------------------------------------------------------
-#location of all GEMMA runs for BcAtRNAseq
-#then extract relevant effects sizes etc. for trans hotspot analysis!
+#extract relevant effects sizes etc. for hotspot analysis!
 
-#Bc transcripts GEMMA
-#"~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/04_GEMMAoutput"
-#and 04_GEMMAoutput.tar.gz
-#kmat script: data/B05_GEMMA/GEMMA_allphenos_kmatrix.sh
-#script: data/B05_GEMMA/runGEMMA_allphenos_kmat.sh
-#media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/03_fullOutput_nok.tar.gz
-
-#At transcripts GEMMA
-#Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_At/C05_GEMMAout/all20kAtgene_GEMMA.tar.gz (116 Gb)
-#kmat script: Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_At/C04_runGEMMA_allAt_kmat.sh
-#script: Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_At/C04_runGEMMA_allAt_kmat_run.sh
+#Bc transcripts permuted GEMMA
+#"/media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_permut/04_GEMMAout"
+#and 04_GEMMAout.tar.gz
+#kmat script:  /media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_permut/GEMMA_allBcPermut_kmatrix.sh
+#script:  /media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_permut/runGEMMA_allBcPermut_kmat.sh
 
 rm(list=ls())
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
+setwd("/media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_permut/")
 
 
 #read in individual GEMMA output files (1 per geno)
@@ -29,10 +22,10 @@ setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
   for (i in 1:9267){
     #actually: 1:9267
     Sys.time()
-    my_gemma <- read.table(paste("04_GEMMAoutput/binMAF20NA10_PLINK_",i,".assoc.txt", sep=""), header=TRUE)
+    my_gemma <- read.table(paste("04_GEMMAout/GEMMApermutBc_",i,".assoc.txt", sep=""), header=TRUE)
     Sys.time()
     #takes 4 seconds to read 1 phenotype
-    #times 9300 = 10.3 hours
+    #times 24000 = 27 hours
     #take top 10 SNP/phenotype
     #also save top 1 SNP/ phenotype
     my_gemma_top100 <- my_gemma[order(my_gemma$p_score),]
@@ -41,47 +34,21 @@ setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
     row.names(my_gemma_top100) <- c(1:100) + (100*(i-1))
     my_gemma_top10 <- my_gemma_top100[1:10,]
     my_gemma_top1 <- my_gemma_top10[1,]
+    #and z scaling
+    my_gemma.z <- my_gemma
+    my_gemma.z$beta_z <- scale(my_gemma.z$beta, center = TRUE, scale = TRUE)
+    my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
+    mylgsnp <- my_gemma[abs(my_gemma$beta) > 0.5,]
     #this gives an error but it's fine
     try(ifelse( i == 1, write.table(my_gemma_top100, "05_GEMMAsumm/GEMMA_top100SNPsample.txt", sep = ",", col.names = TRUE), write.table(my_gemma_top100, "05_GEMMAsumm/GEMMA_top100SNPsample.txt", sep = ",", col.names = FALSE, append = TRUE)))
     try(ifelse( i == 1, write.table(my_gemma_top10, "05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep = ",", col.names = TRUE), write.table(my_gemma_top10, "05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep = ",", col.names = FALSE, append = TRUE)))
     try(ifelse( i == 1, write.table(my_gemma_top1, "05_GEMMAsumm/GEMMA_top1SNPsample.txt", sep = ",", col.names = TRUE), write.table(my_gemma_top1, "05_GEMMAsumm/GEMMA_top1SNPsample.txt", sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = TRUE), write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(mylgsnp, "05_GEMMAsumm/GEMMA_top100_beta05SNP.txt", sep = ",", col.names = TRUE), write.table(mylgsnp, "05_GEMMAsumm/GEMMA_top100_beta05SNP.txt", sep = ",", col.names = FALSE, append = TRUE)))
     Sys.time()
   }
 
-#check range of beta values
-mylgSNP <- mytop100[order(-abs(mytop100$beta)),] #0.70 at tops, p ~ 1e-07
-mylgSNP <- mytop1[order(-abs(mytop1$beta)),] #0.70 at tops, p ~ 1e-07
-head(mylgSNP)
-
-#save just largest effects SNPs - top 26k
-hist(abs(mytop100$beta))
-mylgsnp <- mytop100[abs(mytop100$beta) > 0.5,]
-write.csv(mylgsnp, "data/B05_GEMMA_Bc/05_GEMMAsumm/GEMMA_top100_beta05SNP.csv")
-
-##run this today
-rm(list=ls())
-setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc/")
-#now try: z-scale each phenotype and take largest fx SNPs
-#each phenotype
-for (i in 1:9267){
-  #actually: 1:9267
-  mystart.time <- Sys.time()
-  my_gemma <- read.table(paste("04_GEMMAoutput/binMAF20NA10_PLINK_",i,".assoc.txt", sep=""), header=TRUE)
-  Sys.time()
-  #takes 4 seconds to read 1 phenotype
-  #times 9300 = 10.3 hours
-  #try z-scaling 
-  my_gemma.z <- my_gemma
-  my_gemma.z$beta_z <- scale(my_gemma.z$beta, center = TRUE, scale = TRUE)
-  my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
-  #this gives an error but it's fine
-  try(ifelse( i == 1, write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = TRUE), write.table(my_gemma.z, "05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt", sep = ",", col.names = FALSE, append = TRUE)))
-  Sys.time()
-}
-mystart.time
-Sys.time()
-#expect approx. 30 SNPs per phenotype (gene)
-my_gemma.z.b <- read.table("05_GEMMAsumm/GEMMA_topSNPsample_zscale.txt")
+top1_SNP <- read.table("C06_GEMMAsumm/GEMMA_top1SNPsample.txt", sep = ",")
 #------------------------------------------------------------------------------------
 #more stuff here - extra code
 my_gemma_top10b <- read.table("05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep=",")
