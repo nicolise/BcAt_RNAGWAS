@@ -48,7 +48,7 @@ setwd("/media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_per
     Sys.time()
   }
 
-top1_SNP <- read.table("C06_GEMMAsumm/GEMMA_top1SNPsample.txt", sep = ",")
+top1_SNP <- read.table("05_GEMMAsumm/GEMMA_top1SNPsample.txt", sep = ",")
 #------------------------------------------------------------------------------------
 #more stuff here - extra code
 my_gemma_top10b <- read.table("05_GEMMAsumm/GEMMA_top10SNPsample.txt", sep=",")

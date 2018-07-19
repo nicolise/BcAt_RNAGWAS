@@ -72,5 +72,7 @@ myFAM_match2 <- myFAM_match2[,c(2,1,3:5,8:length(myFAM_match2))]
 ##be sure to move new *.fam into the correct directory!
 Sys.time()
 write.table(myFAM_match2, "data/GEMMA_eachAt_Bc/02_GEMMA/binMAF20NA10.fam", row.names=FALSE, col.names=TRUE)
-myFAM_check <- read.table("data/GEMMA_eachAt_Bc/02_GEMMA/binMAF20NA10.fam")
 Sys.time()
+
+myFAM_check <- read.table("data/GEMMA_eachAt_Bc/col0/02_GEMMA/binMAF20NA10.fam")
+myFAM_check2 <- read.table("data/GEMMA_eachBc_At/col0/02_GEMMA/binMAF20NA10.fam")
