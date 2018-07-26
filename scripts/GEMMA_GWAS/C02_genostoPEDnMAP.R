@@ -85,3 +85,8 @@ write.table(myMAP2, "data/B05_GEMMA/C02_PLINK/dpbinMAF20NA10.map", row.names=FAL
 Sys.time()
 write.table(myPED, "data/B05_GEMMA/C02_PLINK/dpbinMAF20NA10.ped", row.names=FALSE, col.names=FALSE)
 Sys.time()
+
+#check fam files
+setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data")
+famCSV <- read.csv("B05_GEMMA_At/C03_runGEMMA/binMAF20NA10_fam.csv")
+myfam <- read.table("B05_GEMMA_At/C03_runGEMMA/binMAF20NA10.fam")
