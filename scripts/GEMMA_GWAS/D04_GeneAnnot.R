@@ -14,6 +14,25 @@ rm(list=ls())
 #snp location:
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
 
+##from bot/ boa script
+#BOA gene annotation
+my.boa <- mySNP_boa_named 
+(my.boa[2,1]) #first SNP
+(my.boa[2,length(my.boa)]) #last SNP
+blah <- my.gtf.c1[my.gtf.c1$V4 < 5133,]
+max(blah$V4) #none, so start at first SNP:
+min(my.gtf.c1$V4)
+my.gtf.boa <- my.gtf.c1[my.gtf.c1$V4 > 5428,]
+blah <- my.gtf.c1[my.gtf.c1$V5 > 61757,]
+min(blah$V5) 
+my.gtf.boa <- my.gtf.boa[my.gtf.boa$V5 < 63780,]
+
+my.genes.boa <- my.gtf.boa[,c("V4","V5","V12")]
+#get gene start and stop for each
+library("plyr")
+gene.ends.boa <- ddply(my.genes.boa, c("V12"), summarise,
+                       geneMin = min(V4),
+                       geneMax = max(V5))
 
 #also need to annotate gene # (GEMMA) to gene names
 
