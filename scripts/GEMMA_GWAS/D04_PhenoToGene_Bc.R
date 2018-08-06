@@ -1,6 +1,7 @@
 #Nicole E Soltis
 #07/26/18
 #---------------------------------------------------------------------
+rm(list=ls())
 #B05_GEMMA_Bc done
 #match GEMMA phenotypes to Gene ID
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
@@ -36,3 +37,4 @@ mydat <- read.table("05_GEMMAsumm/RawOuts/GEMMA_topSNPsample_zscale.txt", sep=",
 names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 write.csv(nameddat, "05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
+#-----------------------------------------------------------------------
