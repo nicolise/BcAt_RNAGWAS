@@ -1,7 +1,7 @@
 #Nicole E Soltis
 #07/19/18
 
-#--------------------------------------------------------------------------
+#--------------------------------------------------------------------
 #this is for any ol Bc genes -- top SNPs genome-wide
 #we can also narrow this down for the Bot/ BoA/ Net5/ ABA gene associations, but need to get those gene IDs first.
 
