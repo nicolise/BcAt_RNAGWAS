@@ -11,11 +11,9 @@ rm(list=ls())
 ## choose a matching set of permut SNP samples and Bc-lsm SNP samples
 setwd("~/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
-#start with a small file
-mydat <- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
-nameddat <- read.csv("05_GEMMAsumm/GeneNames/AllBcgenes_top10SNP_MAF20NA10_GEMMA_kmat1_Indexed.csv")
-setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/B05_GEMMA_Bc/Bc_permut/")
-nameddat<- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
+#done: top1SNP
+##read in unique files here
+mydat <- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top10SNPsample.csv")
 
 #annotate gene center location to each gene
 setwd("~/Projects/BcGenome")
@@ -53,7 +51,6 @@ mydat_plot <- merge(mydat.genes, my.gtf_genesumm, by="transcript")
 #or, trying with 0 for now
 names(mydat_plot)[2] <- "chr.snp"
 mydat_plot$ts_dist <- ifelse(mydat_plot$chr.snp == mydat_plot$chr.t, abs(mydat_plot$tmid - mydat_plot$ps), 0)
-
 
 #Make plotting variables for transcript
 mydat_plot$chr.t <- as.numeric(mydat_plot$chr.t)
@@ -99,7 +96,8 @@ myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey2
 names(myColors) <- levels(mydat_plot$chr.t)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 setwd("~/Projects/BcAt_RNAGWAS")
-#jpeg("plots/Manhattans/BcLSM_top1SNP_tsdist_byTrans.jpg", width=8, height=5, units='in', res=600)
+##uniquely name plot here
+#jpeg("plots/Manhattans/BcLSM_top10SNP_tsdist_byTrans.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.t, y=(ts_dist)))+
         theme_bw()+
@@ -127,7 +125,8 @@ myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey2
 names(myColors) <- levels(mydat_plot$chr.snp)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 setwd("~/Projects/BcAt_RNAGWAS")
-#jpeg("plots/Manhattans/BcLSM_top1SNP_tsdist_bySNP.jpg", width=8, height=5, units='in', res=600)
+##uniquely name plot here
+#jpeg("plots/Manhattans/BcLSM_top10SNP_tsdist_bySNP.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.s, y=(ts_dist)))+
     theme_bw()+
@@ -148,5 +147,8 @@ names(my.chroms)[1] <- "Chr.Start"
 my.chroms$Chr.End <- mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=TRUE), "Index.s"] # Upper Bounds
 my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
 #-------------------------------------------------------------------------------------
-#manhattan plot: plot SNP location vs. effect estimate for each experiment
-#cis vs. trans manhattan plot: plot SNP location vs. distance to gene center for each experiment
+#scatterplots: transcript center to top SNP!
+ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
+  theme_bw()+
+  colScale+
+  geom_point(aes(color = factor(chr.snp),alpha=0.001))
