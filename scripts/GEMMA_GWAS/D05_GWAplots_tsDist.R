@@ -147,6 +147,92 @@ names(my.chroms)[1] <- "Chr.Start"
 my.chroms$Chr.End <- mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=TRUE), "Index.s"] # Upper Bounds
 my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
 #-------------------------------------------------------------------------------------
+#looking into: transcript density across chromosome, SNP density across chromosome
+head(my.gtf_genesumm)
+max(my.gtf_genesumm[my.gtf_genesumm$chr.t==1,]$tstop)
+max(mydat_plot$Index.t) #42372315
+head(mydat_plot)
+mydat_plot_gs <- mydat_plot %>%
+  group_by(transcript, Gene, GeneName, chr.t) %>%
+  summarize(tstart = min(tstart, na.rm=TRUE),
+            tstop = max(tstop, na.rm=TRUE),
+            tmid = mean(tmid, na.rm=TRUE),
+            Index.t = mean(Index.t, na.rm=TRUE),
+            ts_dist = mean(ts_dist, na.rm=TRUE))
+mydat_plot_gs <- as.data.frame(mydat_plot_gs)
+
+#try: scale each gene to relative distance from end of chromosome
+mydat_plot_gs$Chr.end <- 1
+mydat_plot_gs$Chr.start <- 1
+for (i in 1:18){
+  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.end <- max(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
+  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.start <- min(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
+}
+
+#are genes only annotated for beginning of chromosomes > 1??
+mydat_plot_gs$intraC.tdist <- mydat_plot_gs$tmid / (mydat_plot_gs$Chr.end - mydat_plot_gs$Chr.start) #on chr 18, gene centers go past SNP list
+#remove C17, 18: no SNPs
+  mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==17,]
+  mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==18,]
+ggplot(mydat_plot_gs, aes(x=intraC.tdist, y=(ts_dist)))+
+    theme_bw()+
+    geom_point(aes(color = factor(chr.t),alpha=0.001))
+
+#distance from top SNP to gene appears *slightly* elevated on average for transcripts at edges of chromosomes
+#---------------------------------------------------------------------------
+#what about for SNPs at edges of chromosomes?
+head(mydat_plot)
+#try: scale each SNP to relative distance from end of chromosome
+mydat_plot$Chr.end <- 1
+mydat_plot$Chr.start <- 1
+for (i in 1:16){
+  mydat_plot[mydat_plot$chr.snp==i,]$Chr.end <- max(mydat_plot[mydat_plot$chr.snp==i,]$Index.s)
+  mydat_plot[mydat_plot$chr.snp==i,]$Chr.start <- min(mydat_plot[mydat_plot$chr.snp==i,]$Index.s)
+}
+
+#are genes only annotated for beginning of chromosomes > 1??
+mydat_plot$intraC.sdist <- mydat_plot$ps / (mydat_plot$Chr.end - mydat_plot$Chr.start) #on chr 18, gene centers go past SNP list
+ggplot(mydat_plot, aes(x=intraC.sdist, y=(ts_dist)))+
+  theme_bw()+
+  geom_point(aes(color = factor(chr.t),alpha=0.001))
+#more pronounced for SNPs: distance from top SNP to gene appears elevated on average for SNPs at edges of chromosomes
+
+#plot: ts_dist_dc as fraction of max possible ts_dist based on SNP location on chromosome!
+#scale ts_dist as relative to chr length
+mydat_plot$Chr.end.t <- 1
+mydat_plot$Chr.start.t <- 1
+#using chromosome delineations from SNPs
+for (i in 1:16){
+  mydat_plot[mydat_plot$chr.t==i,]$Chr.end.t <- max(mydat_plot[mydat_plot$chr.t==i,]$Index.t)
+  mydat_plot[mydat_plot$chr.t==i,]$Chr.start.t <- min(mydat_plot[mydat_plot$chr.t==i,]$Index.t)
+}
+##does this make any sense?
+mydat_plot$intraC.tdist <- mydat_plot$tmid / (mydat_plot$Chr.end.t - mydat_plot$Chr.start.t)
+mydat_plot$intraC.tsdist <- abs(mydat_plot$intraC.sdist - mydat_plot$intraC.tdist)
+mydat_plot_scale <- mydat_plot[mydat_plot$intraC.sdist <= 1,]
+mydat_plot_scale <- mydat_plot_scale[mydat_plot_scale$intraC.tdist <= 1,]
+#furthest any location on the chromosome could be from the current SNP
+mydat_plot_scale$ts_dist_max <- pmax(abs(mydat_plot_scale$intraC.sdist-1),abs(1-mydat_plot_scale$intraC.sdist))
+mydat_plot_scale$ts_dist_dc <- mydat_plot_scale$intraC.tsdist/ mydat_plot_scale$ts_dist_max
+
+ggplot(mydat_plot_scale, aes(x=intraC.tdist, y=(ts_dist_dc)))+
+  theme_bw()+
+  geom_point(aes(color = factor(chr.t),alpha=0.001))
+#---------------------------------------------------------------------------
+#try as bar plot/ histogram
+ggplot(mydat_plot_gs, aes(Index.t)) + geom_histogram(binwidth = 200) #not informative as ish
+
+#try: 1kb windows along Index.t
+#if tmid for a line is in that 1kb window -> new column = 1
+my_win <- as.data.frame(seq(1,42373000, by=1000))
+names(my_win)[1] <- "winStart"
+my_win$winStop <- seq(1000, 42373000, by=1000)
+#for each row in my_win, if there is an mydat_plot_gs$Index.t between winStart and winStop, variable "Index" = 1. Else = 0.
+#for (i in 1:nrow(my_win)){
+for (i in 1:10){
+  ifelse(mydat_plot_gs$Index.t < my_win$winStop && mydat_plot_gs$Index.t > )  
+}
+#---------------------------------------------------------------------------------------
 #scatterplots: transcript center to top SNP!
 ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
   theme_bw()+
