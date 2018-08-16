@@ -169,7 +169,6 @@ for (i in 1:18){
   mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.start <- min(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
 }
 
-#are genes only annotated for beginning of chromosomes > 1??
 mydat_plot_gs$intraC.tdist <- mydat_plot_gs$tmid / (mydat_plot_gs$Chr.end - mydat_plot_gs$Chr.start) #on chr 18, gene centers go past SNP list
 #remove C17, 18: no SNPs
   mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==17,]

@@ -122,7 +122,7 @@ BotPhenos <- cbind(PhenosNet$Isolate, BotPhenos)
 names(BotPhenos)[1] <- "Isolate"
 BotPhenos$mean.Pheno <- rowMeans(BotPhenos[,c(2:length(BotPhenos))])
 #need a new file of cluster membership
-BotClusts <- myclusters[,c("Isolate","bot_pv_gene")]
+BotClusts <- myclusters[,c("Isolate","bot_pv_gene")] 
 BotPhenosPV <- merge(BotPhenos,BotClusts, by = "Isolate")
 
 #plot mean phenotype by cluster
@@ -142,6 +142,7 @@ dev.off()
 library(pvclust)
 #remove SNPs outside of genes
 library(dplyr)
+#clustering includes only genic regions!
 boaSNP_pvclust <- mySNP_boa_named %>% 
   select_if(~ !any(is.na(.)))
 boaSNP_pvclust <- as.data.frame(t(boaSNP_pvclust[4:nrow(boaSNP_pvclust),]))
@@ -184,16 +185,22 @@ BoaPhenos <- cbind(PhenosNet$Isolate, BoaPhenos)
 names(BoaPhenos)[1] <- "Isolate"
 BoaPhenos$mean.Pheno <- rowMeans(BoaPhenos[,c(2:length(BoaPhenos))])
 #need a new file of cluster membership
-BoaClusts <- myclusters[,c("Isolate","boa_pv_gene")]
+BoaClusts <- myclusters[,c("Isolate","boa_pv_gene_indel")] #can also do with boa_pv_gene
 BoaPhenosPV <- merge(BoaPhenos,BoaClusts, by = "Isolate")
 
 #plot mean phenotype by cluster
 library(ggplot2)
-p <- ggplot(BoaPhenosPV, aes(factor(boa_pv_gene), mean.Pheno))
+p <- ggplot(BoaPhenosPV, aes(factor(boa_pv_gene_indel), mean.Pheno))
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg(paste("plots/Cluster_Means/BotcynicAcid_PVclust_genic.jpg", sep=""), width=8, height=6, units='in', res=600)
+jpeg(paste("plots/Cluster_Means/BotcynicAcid_PVclust_genic_indel.jpg", sep=""), width=8, height=6, units='in', res=600)
 p + geom_violin(trim=FALSE, draw_quantiles = c(0.25, 0.5, 0.75)) + geom_jitter(height = 0, width = 0.1) + 
   geom_text(aes(label=Isolate), hjust=-1.5, vjust=0, size=2)+ 
   labs(x="Cluster Membership", y = "Mean Expression Across Network")+ 
   theme_bw()
 dev.off()
+
+
+#-------------------------------------------------------------------------------
+#get BOA deletion boundaries
+
+#check SNPs within 5 genes up/downstream of BOA network
