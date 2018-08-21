@@ -12,19 +12,20 @@ my.gtf <- my.gtf[,1:14]
 my.gtf$midgene <- (my.gtf$V4 + my.gtf$V5)/2
 
 #start: top 10 SNP
-## choose a matching set of permut SNP samples and Bc-lsm SNP samples
-setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm")
+## choose a matching set of permut SNP samples and Bc-Col0 SNP samples
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
 #done: top1SNP
 ##read in unique files here
-mydat10 <- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top10SNPsample.csv")
-mydat1 <- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
-mydat100 <- read.csv("05_GEMMAsumm/GeneNames/GEMMA_top100SNPsample.csv")
+mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
+mydat1 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
+
+##do this next!
+mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
 
 ##careful of which SNP set in use
-mydat <- mydat10
+mydat <- mydat100
 
 #correlation plot: plot SNP location vs. gene center for each experiment
-#then, can overlay 2 experiments
 #clean up variables for matching
 mydat.genes <- mydat[,c(3,5,2,10:ncol(mydat))]
 mydat.genes$GeneNoTranscript <- gsub("\\.[0-9]$", '', mydat.genes$Gene)
@@ -45,7 +46,6 @@ my.gtf_genesumm <- my.gtf.genes %>%
 my.gtf_genesumm <- as.data.frame(my.gtf_genesumm)
 my.gtf_genesumm$tmid <- (my.gtf_genesumm$tstop + my.gtf_genesumm$tstart)/2
 names(my.gtf_genesumm)[3] <- "chr.t"
-
 
 mydat_plot <- merge(mydat.genes, my.gtf_genesumm, by="transcript")
 
@@ -72,8 +72,10 @@ hist(mydat_plot_hist$ts_dist)
 
 #for half-page: width = 6.5
 #for quarter-page: width = 3.25
+library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg(paste("plots/paper/BotcynicAcid_top10SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+##check output name
+jpeg(paste("plots/paper/BotcynicAcid_col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 4e+06, by = 100000), aes(y =..density..))+
   labs(x="Distance (Mb)", y="Frequency")+
@@ -83,11 +85,12 @@ ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) +
   theme_bw()
 dev.off()
 
-
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg(paste("plots/paper/BotcynicAcid_top10SNP_geneDistHist_InChr_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+##check output name
+jpeg(paste("plots/paper/BotcynicAcid_col0top1SNP_geneDistHist_InChr_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$intraC.tsdist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 1, by = 0.05), aes(y=..density..))+
   labs(x="Distance (Fraction of Chromosome)", y="Frequency")+
-  geom_density()
+  geom_density()+
+  xlim(0,1)
 dev.off()
