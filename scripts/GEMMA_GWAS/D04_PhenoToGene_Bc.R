@@ -42,7 +42,6 @@ mydat <- read.table("05_GEMMAsumm/RawOuts/GEMMA_topSNPsample_zscale.txt", sep=",
 names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 write.csv(nameddat, "05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
-<<<<<<< HEAD
 #--------------------------------------------------------------------
 #Bc_col0 / coi1 / npr1 
 setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc")
@@ -64,7 +63,4 @@ names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 ##match name here
 write.csv(nameddat, "06_GEMMAsumm/GeneNames/npr1_GEMMA_top1SNPsample.csv")
-#---------------------------------------------------------------
-=======
 #-----------------------------------------------------------------------
->>>>>>> b2170d6601411e4c1faff82917fdfba7ab261988
