@@ -48,7 +48,7 @@ setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc")
 myPhenos <- NULL
 nameddat <- NA
 mydat <- NA
-myPhenos <- read.table("npr1/02_GEMMA/binMAF20NA10.fam")
+myPhenos <- read.table("coi1/02_GEMMA/binMAF20NA10.fam")
 nameslist <- myPhenos[1,6:length(myPhenos)]
 #check that V6 is a real phenotype
 nameslist[1,1:10] #yes
@@ -57,10 +57,11 @@ names(myGenes)[1] <- "Gene"
 myGenes$pheno <- 1:nrow(myGenes)
 #start with 1 file. Loop over all files in directory later
 ##change these out to annotate all SNP summaries per GEMMA run
-mydat <- read.table("06_GEMMAsumm/npr1_GEMMA_top1SNPsample.txt", sep=",", row.names=NULL)
+## zscaled and beta05 was extracted without the phenotype -- need to redo
+mydat <- read.table("06_GEMMAsumm/coi1_GEMMA_top100_beta05SNP.txt", sep=",", row.names=NULL)
 #, row.names=NULL
 names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 ##match name here
-write.csv(nameddat, "06_GEMMAsumm/GeneNames/npr1_GEMMA_top1SNPsample.csv")
+write.csv(nameddat, "06_GEMMAsumm/GeneNames/coi1_.csv")
 #-----------------------------------------------------------------------
