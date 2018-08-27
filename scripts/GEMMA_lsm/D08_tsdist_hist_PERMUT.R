@@ -2,6 +2,7 @@
 #08/16/18
 
 ##adapted from GEMMA_GWAS/D05_GWAplots_tsDist.R
+#-------------------------------------------------------------------------------
 rm(list=ls())
 
 #annotate gene center location to each gene
@@ -13,14 +14,14 @@ my.gtf$midgene <- (my.gtf$V4 + my.gtf$V5)/2
 
 #start: top 10 SNP
 ## choose a matching set of permut SNP samples and Bc-Col0 SNP samples
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
+setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm/")
 #done: top1SNP
 ##read in unique files here
-mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
-mydat1 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
+mydat10 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top10SNPsample.csv")
+mydat1 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
 
 ##do this next!
-mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
+mydat100 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top100SNPsample.csv")
 
 ##careful of which SNP set in use
 mydat <- mydat10
@@ -36,6 +37,7 @@ names(my.gtf.genes) <- c("chr", "exon","start","stop","transcript","Gene","GeneN
 my.gtf.genes$chr <- gsub("^Chromosome","", my.gtf.genes$chr)
 names(mydat.genes)[10] <- "transcript"
 names(mydat.genes)[11] <- "Gene"
+detach("package:dplyr")
 library("dplyr")
 
 #keep only 1 record per gene (ALL exons/ CDS) before merging to SNP effect sizes. 
@@ -70,30 +72,12 @@ mydat_plot_hist$intraC.tsdist <- mydat_plot_hist$ts_dist/ (mydat_plot_hist$Chr.e
 hist(mydat_plot_hist$intraC.tsdist)
 hist(mydat_plot_hist$ts_dist)
 
-#add a thresholding value to compare to permutation
-#max -log10(p) for permut = 6.923289
-mydat_plot_hist$threshold <- ifelse((-log10(mydat_plot_hist$p_score))>6.923289, "over","under")
-mydat_plot_thr <- mydat_plot_hist[mydat_plot_hist$threshold =="over",]
-library(ggplot2)
-setwd("~/Projects/BcAt_RNAGWAS")
-##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top10SNP_geneDistHist_thresh.jpg", sep=""), width=3.25, height=4, units='in', res=600)
-ggplot(data=mydat_plot_thr, aes(mydat_plot_thr$ts_dist)) + 
-  geom_histogram(fill="slateblue1", col="black", alpha=0.4)+
-  labs(x="Distance (Mb)", y="Frequency")+
-  geom_density()+
-  scale_x_continuous(breaks = c(0, 5e+5, 1e+6, 1.5e+6, 2e+6),
-                     labels = c(0, 0.5, 1, 1.5, 2))+
-  theme_bw()+
-  theme(legend.position="none")
-dev.off()
-
 #for half-page: width = 6.5
 #for quarter-page: width = 3.25
 library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
 ##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+jpeg(paste("plots/Histograms/Bclsm_PERMUT_top10SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 4e+06, by = 100000), aes(y =..density..))+
   labs(x="Distance (Mb)", y="Frequency")+
