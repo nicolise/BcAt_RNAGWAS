@@ -87,6 +87,47 @@ for (i in unique(mydat_plot$chr.snp)) {
   }
 }
 
+#---------------------------------------------------------------------------------------
+#correlation plot: plot SNP location vs. gene center for each experiment
+#scatterplots / cis diagonal: transcript center to top SNP!
+#options(device = "RStudioGD")
+#options(device = "windows") #if want to plot to external window
+library(ggplot2)
+#create a custom color scale
+myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
+names(myColors) <- levels(mydat_plot$chr.snp)
+colScale <- scale_colour_manual(name = "Chrom",values = myColors)
+
+#make max distance from gene to snp = 1, then increase from there 
+##get max ts_dist
+#top 10 = 3791215 
+#top 1 SNP = 3671739 
+mydat_plot$dist.alpha <- ifelse(mydat_plot$ts_dist == 0, 0, max(mydat_plot$ts_dist) - mydat_plot$ts_dist)
+
+mydat_test <- mydat_plot[1:100,]
+
+setwd("~/Projects/BcAt_RNAGWAS/plots")
+##check plot name
+jpeg("cisDiagonal/Bclsm_top1SNP_cisdiag.jpg", width=6.5, height=4, units='in', res=600)
+print(
+ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
+  theme_bw()+
+  #size = 0.1, stroke = 0 is too fine for 10 SNP and 1 SNP.
+  #for 10 SNP, size = 0.5
+  #for 1 SNP, size = 1
+  geom_point(aes(color = factor(chr.t),alpha=dist.alpha), size=1, stroke=0)+
+  #geom_point(aes(color = factor(chr.t),alpha=dist.alpha), size=0.1)+
+  guides(fill=FALSE, color=FALSE)+
+  labs(x = "SNP Genomic Position (Mb)", y = "Gene Center Genomic Position (Mb)", alpha="Distance SNP to Gene")+
+  scale_x_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 10, 20, 30, 40))+
+  scale_y_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 10, 20, 30, 40))+
+  ##check this scale labeling from alpha defaults and alpha = ts_dist
+  #for 100 SNP, alpha = 0.05 - 1
+  #for 10, 1 SNP = 0.05 - 0.5
+  scale_alpha_continuous(range=c(0.05,0.5), breaks=c(0,1e6, 2e6, 3e6), labels=c("Off Chromosome", "3 Mb", "2 Mb", "1 Mb"))
+)
+dev.off()
+
 #----------------------------------------------------------------------------------
 #plot by transcript center!
 library(ggplot2)
@@ -99,15 +140,15 @@ setwd("~/Projects/BcAt_RNAGWAS")
 #jpeg("plots/Manhattans/BcLSM_top10SNP_tsdist_byTrans.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.t, y=(ts_dist)))+
-        theme_bw()+
-        colScale+
-        geom_point(aes(color = factor(chr.t),alpha=0.001))+
-        labs(list(y="Distance (Mb) Transcript Center to Top SNP Hit", title=NULL))+
+    theme_bw()+
+    colScale+
+    geom_point(aes(color = factor(chr.t),alpha=0.001))+
+    labs(list(y="Distance (Mb) Transcript Center to Top SNP Hit", title=NULL))+
     scale_y_continuous(breaks= c(5e+05, 1e+06, 1.5e+06, 2e+06, 2.5e+06, 3e+06, 3.5e+06, 4e+06, 4.5e+06), labels=c("0.5", "1", "1.5", "2", "2.5","3","3.5","4","4.5"))+
-        theme(legend.position="none")+
-        scale_x_continuous(name="Chromosome", breaks = c(2055474, 5781596, 9056392, 11892395, 14584073, 17378738, 20048103, 22665684, 25239020, 27690934, 30056515, 32405141, 34709229, 36904810, 39001984, 40968320, 42053636, 42298445), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"))+
-        expand_limits(y=0)
-  )
+    theme(legend.position="none")+
+    scale_x_continuous(name="Chromosome", breaks = c(2055474, 5781596, 9056392, 11892395, 14584073, 17378738, 20048103, 22665684, 25239020, 27690934, 30056515, 32405141, 34709229, 36904810, 39001984, 40968320, 42053636, 42298445), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18"))+
+    expand_limits(y=0)
+)
 dev.off()
 
 #get chromosome midpoints
@@ -145,38 +186,6 @@ my.chroms <- as.data.frame(mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=F
 names(my.chroms)[1] <- "Chr.Start"
 my.chroms$Chr.End <- mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=TRUE), "Index.s"] # Upper Bounds
 my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
-#-------------------------------------------------------------------------------------
-#looking into: transcript density across chromosome, SNP density across chromosome
-head(my.gtf_genesumm)
-max(my.gtf_genesumm[my.gtf_genesumm$chr.t==1,]$tstop)
-max(mydat_plot$Index.t) #42372315
-head(mydat_plot)
-mydat_plot_gs <- mydat_plot %>%
-  group_by(transcript, Gene, GeneName, chr.t) %>%
-  summarize(tstart = min(tstart, na.rm=TRUE),
-            tstop = max(tstop, na.rm=TRUE),
-            tmid = mean(tmid, na.rm=TRUE),
-            Index.t = mean(Index.t, na.rm=TRUE),
-            ts_dist = mean(ts_dist, na.rm=TRUE))
-mydat_plot_gs <- as.data.frame(mydat_plot_gs)
-
-#try: scale each gene to relative distance from end of chromosome
-mydat_plot_gs$Chr.end <- 1
-mydat_plot_gs$Chr.start <- 1
-for (i in 1:18){
-  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.end <- max(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
-  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.start <- min(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
-}
-
-mydat_plot_gs$intraC.tdist <- mydat_plot_gs$tmid / (mydat_plot_gs$Chr.end - mydat_plot_gs$Chr.start) #on chr 18, gene centers go past SNP list
-#remove C17, 18: no SNPs
-  mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==17,]
-  mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==18,]
-ggplot(mydat_plot_gs, aes(x=intraC.tdist, y=(ts_dist)))+
-    theme_bw()+
-    geom_point(aes(color = factor(chr.t),alpha=0.001))
-
-#distance from top SNP to gene appears *slightly* elevated on average for transcripts at edges of chromosomes
 #---------------------------------------------------------------------------
 #what about for SNPs at edges of chromosomes?
 head(mydat_plot)
@@ -216,9 +225,42 @@ mydat_plot_scale$ts_dist_dc <- mydat_plot_scale$intraC.tsdist/ mydat_plot_scale$
 ggplot(mydat_plot_scale, aes(x=intraC.tdist, y=(ts_dist_dc)))+
   theme_bw()+
   geom_point(aes(color = factor(chr.t),alpha=0.001))
+
+#-------------------------------------------------------------------------------------
+#looking into: transcript density across chromosome, SNP density across chromosome
+head(my.gtf_genesumm)
+max(my.gtf_genesumm[my.gtf_genesumm$chr.t==1,]$tstop)
+max(mydat_plot$Index.t) #42372315
+head(mydat_plot)
+mydat_plot_gs <- mydat_plot %>%
+  group_by(transcript, Gene, GeneName, chr.t) %>%
+  summarize(tstart = min(tstart, na.rm=TRUE),
+            tstop = max(tstop, na.rm=TRUE),
+            tmid = mean(tmid, na.rm=TRUE),
+            Index.t = mean(Index.t, na.rm=TRUE),
+            ts_dist = mean(ts_dist, na.rm=TRUE))
+mydat_plot_gs <- as.data.frame(mydat_plot_gs)
+
+#try: scale each gene to relative distance from end of chromosome
+mydat_plot_gs$Chr.end <- 1
+mydat_plot_gs$Chr.start <- 1
+for (i in 1:18){
+  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.end <- max(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
+  mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Chr.start <- min(mydat_plot_gs[mydat_plot_gs$chr.t==i,]$Index.t)
+}
+
+mydat_plot_gs$intraC.tdist <- mydat_plot_gs$tmid / (mydat_plot_gs$Chr.end - mydat_plot_gs$Chr.start) #on chr 18, gene centers go past SNP list
+#remove C17, 18: no SNPs
+mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==17,]
+mydat_plot_gs <- mydat_plot_gs[!mydat_plot_gs$chr.t==18,]
+ggplot(mydat_plot_gs, aes(x=intraC.tdist, y=(ts_dist)))+
+  theme_bw()+
+  geom_point(aes(color = factor(chr.t),alpha=0.001))
+
+#distance from top SNP to gene appears *slightly* elevated on average for transcripts at edges of chromosomes
 #---------------------------------------------------------------------------
 #try as bar plot/ histogram
-ggplot(mydat_plot_gs, aes(Index.t)) + geom_histogram(binwidth = 200) #not informative as ish
+ggplot(mydat_plot_gs, aes(Index.t)) + geom_histogram(binwidth = 200) #not informative as is
 
 #try: 1kb windows along Index.t
 #if tmid for a line is in that 1kb window -> new column = 1
@@ -230,43 +272,3 @@ my_win$winStop <- seq(1000, 42373000, by=1000)
 for (i in 1:10){
   ifelse(mydat_plot_gs$Index.t < my_win$winStop && mydat_plot_gs$Index.t > )  
 }
-#---------------------------------------------------------------------------------------
-#correlation plot: plot SNP location vs. gene center for each experiment
-#scatterplots / cis diagonal: transcript center to top SNP!
-options(device = "RStudioGD")
-#options(device = "windows") #if want to plot to external window
-library(ggplot2)
-#create a custom color scale
-myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
-names(myColors) <- levels(mydat_plot$chr.snp)
-colScale <- scale_colour_manual(name = "Chrom",values = myColors)
-
-#make max distance from gene to snp = 1, then increase from there 
-##get max ts_dist
-#top 10 = 3791215 
-#top 1 SNP = 3671739 
-mydat_plot$dist.alpha <- ifelse(mydat_plot$ts_dist == 0, 0, max(mydat_plot$ts_dist) - mydat_plot$ts_dist)
-
-mydat_test <- mydat_plot[1:100,]
-
-setwd("~/Projects/BcAt_RNAGWAS/plots")
-##check plot name
-jpeg("cisDiagonal/Bclsm_top1SNP_cisdiag.jpg", width=6.5, height=4, units='in', res=600)
-print(
-ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
-  theme_bw()+
-  #size = 0.1, stroke = 0 is too fine for 10 SNP and 1 SNP.
-  #for 10 SNP, size = 0.5
-  #for 1 SNP, size = 1
-  geom_point(aes(color = factor(chr.t),alpha=dist.alpha), size=1, stroke=0)+
-  #geom_point(aes(color = factor(chr.t),alpha=dist.alpha), size=0.1)+
-  guides(fill=FALSE, color=FALSE)+
-  labs(x = "SNP Genomic Position (Mb)", y = "Gene Center Genomic Position (Mb)", alpha="Distance SNP to Gene")+
-  scale_x_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 1, 2, 3, 4))+
-  scale_y_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 1, 2, 3, 4))+
-  ##check this scale labeling from alpha defaults and alpha = ts_dist
-  #for 100 SNP, alpha = 0.05 - 1
-  #for 10, 1 SNP = 0.05 - 0.5
-  scale_alpha_continuous(range=c(0.05,0.5), breaks=c(0,1e6, 2e6, 3e6), labels=c("Off Chromosome", "3 Mb", "2 Mb", "1 Mb"))
-)
-dev.off()

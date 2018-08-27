@@ -15,19 +15,17 @@ setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
 #mydat100 <- read.csv("06_GEMMAsumm/GeneNames/SNPannot/col0_top100SNPsample.csv")
 mydat10 <- read.csv("06_GEMMAsumm/GeneNames/SNPannot/col0_GEMMA_top10SNPsample_genes.csv")
 mydat1 <- read.csv("06_GEMMAsumm/GeneNames/SNPannot/col0_GEMMA_top1SNPsample_genes.csv")
-blah <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
 mydat<- mydat1
 
 mydat <- mydat[,-c(1:2)]
 #Gene is Pheno ID #15, ps #4, 9-14 SNP fx
-mydat.genes <- mydat[,c(2,4,1,15,9:14,16:ncol(mydat))]
+mydat.genes <- mydat[,c(2,4,1,15,9:14,16,18:20,25,27,29:32)]
 names(mydat.genes)[1] <- "chr.snp"
-names(mydat.genes)[3] <- "transcript"
-mydat.genes$Phen.gene <- gsub("\\.[0-9]$", '', mydat.genes$transcript)
-mydat.genes <- mydat.genes[,-c(18,20,22)]
+names(mydat.genes)[4] <- "transcript"
+mydat.genes$Phen.gene <- gsub("\\.[0-9]$", '', mydat.genes$P.transcript)
+names(mydat.genes)[11:20] <- c("ant.chr","ant.exon","ant.start","ant.stop","ant.transc","ant.gene","ant.geneID","ant.midgene","ant.genedist","ant.closest.end")
 
 #annotate gene center location for each phenotype
-##this info is already attached to mydat_genes, so it's superfluous to add
 setwd("~/Projects/BcGenome")
 my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
 num.genes <- my.gtf[unique(my.gtf$V12),]
@@ -38,8 +36,7 @@ my.gtf.genes$V12 <- gsub("^gene:","", my.gtf.genes$V12)
 my.gtf.genes$V10 <- gsub("^transcript:","", my.gtf.genes$V10)
 names(my.gtf.genes) <- c("chr", "exon","start","stop","transcript","Gene","GeneName.t")
 my.gtf.genes$chr <- gsub("^Chromosome","", my.gtf.genes$chr)
-names(mydat.genes)[10] <- "transcript"
-names(mydat.genes)[11] <- "Gene"
+
 library("dplyr")
 my.gtf_genesumm <- my.gtf.genes %>%
   group_by(transcript, GeneName.t, chr) %>%
@@ -95,6 +92,9 @@ for (i in unique(mydat_plot$chr.snp)) {
 
 
 #---------------------------------------------------------------------------------------
+##possibly highlight only SNPs > max permut -log10(p) = 6.923289
+##to add stars marking focal cluster genes: p + geom_text(data = label.df, label = "***")
+
 #correlation plot: plot SNP location vs. gene center for each experiment
 #scatterplots / cis diagonal: transcript center to top SNP!
 #options(device = "RStudioGD")
@@ -111,28 +111,73 @@ library(ggplot2)
 #top 1 SNP = 3671739 
 mydat_plot$dist.alpha <- ifelse(mydat_plot$ts_dist == 0, 0, max(mydat_plot$ts_dist) - mydat_plot$ts_dist)
 
-mydat_test <- mydat_plot[1:100,]
+#draw chromosomes below plot
+annotation_custom2 <- 
+  function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data) 
+  {
+    layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+          geom = ggplot2:::GeomCustomAnn,
+          inherit.aes = TRUE, params = list(grob = grob, 
+                                            xmin = xmin, xmax = xmax, 
+                                            ymin = ymin, ymax = ymax))
+  }
+
+mydat_plot.mini <- mydat_plot[1:1000,]
+
+p1 <- ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
+  theme_bw()+
+  #for 100 SNP, size = 0.1 / for 10 SNP, size = 0.5 / for 1 SNP, size = 1
+  #alpha = dist.alpha
+  #aes(color = factor(chr.t), alpha = dis.alpha)
+  #for 1 SNP, alpha = 0.1 / for 10 SNP, alpha = 0.05 / for 100 SNP, alpha = 0.01
+  geom_point(alpha=0.1, color="slateblue1", size=1, stroke=0)+
+  guides(fill=FALSE, color=FALSE, alpha=FALSE)+
+  #alpha="Distance SNP to Gene"
+  labs(x = "SNP Genomic Position (Mb)", y = "Gene Center Genomic Position (Mb)")+
+  scale_x_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 10, 20, 30, 40))+
+  scale_y_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 10, 20, 30, 40))
+##check this scale labeling from alpha labeling defaults and alpha = ts_dist
+#for 100 SNP, alpha = 0.05 - 1
+#for 10, 1 SNP = 0.05 - 0.5
+#scale_alpha_continuous(range=c(0.05,0.5), breaks=c(0,1e6, 2e6, 3e6), labels=c("Off Chromosome", "3 Mb", "2 Mb", "1 Mb"))
+
+library(grid)
 
 setwd("~/Projects/BcAt_RNAGWAS/plots")
 ##check plot name
-jpeg("cisDiagonal/BcCol0_top10SNP_cisdiag.jpg", width=6.5, height=4, units='in', res=600)
+jpeg("cisDiagonal/BcCol0_top1SNP_cisdiag_flat.jpg", width=6.5, height=4, units='in', res=600)
 print(
-ggplot(mydat_plot, aes(x=Index.s, y=Index.t))+
-  theme_bw()+
-  #for 100 SNP, size = 0.1
-  #for 10 SNP, size = 0.5
-  #for 1 SNP, size = 1
-  geom_point(aes(color = factor(chr.t),alpha=dist.alpha), size=0.5, stroke=0)+
-  guides(fill=FALSE, color=FALSE)+
-  labs(x = "SNP Genomic Position (Mb)", y = "Gene Center Genomic Position (Mb)", alpha="Distance SNP to Gene")+
-  scale_x_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 1, 2, 3, 4))+
-  scale_y_continuous(breaks = c(0, 1e7, 2e7, 3e7, 4e7), labels=c(0, 1, 2, 3, 4))+
-  ##check this scale labeling from alpha labeling defaults and alpha = ts_dist
-  #for 100 SNP, alpha = 0.05 - 1
-  #for 10, 1 SNP = 0.05 - 0.5
-  scale_alpha_continuous(range=c(0.05,0.5), breaks=c(0,1e6, 2e6, 3e6), labels=c("Off Chromosome", "3 Mb", "2 Mb", "1 Mb"))
+  
+#add gaps: 1e5 on each side
+p1 + geom_rect(data=my.chroms.r, aes(xmin=6302, xmax=4104646-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE) + 
+  geom_rect(data=my.chroms.r, aes(xmin=4124284+1e5, xmax=7438908-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+ 
+  geom_rect(data=my.chroms.r, aes(xmin=7449667+1e5, xmax=10663118-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=10675770+1e5, xmax=13109021-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=13128759+1e5, xmax=16039387-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=16040316+1e5, xmax=18717161-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=18729089+1e5, xmax=21367117-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  #8
+  geom_rect(data=my.chroms.r, aes(xmin=21369973+1e5, xmax=23961395-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=23970706+1e5, xmax=26507334-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=26508461+1e5, xmax=28873406-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=28884056+1e5, xmax=31228974-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=31235067+1e5, xmax=33575214-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=33587536+1e5, xmax=35830923-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=35847401+1e5, xmax=37962220-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=38018676+1e5, xmax=39985293-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=39999666+1e5, xmax=41936975-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=41942546+1e5, xmax=42164725-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)+
+  geom_rect(data=my.chroms.r, aes(xmin=42224575+1e5, xmax=42372315-1e5, ymin=-1.2e6, ymax=-7e5), fill="red4", alpha=0.1, inherit.aes = FALSE)
 )
 dev.off()
+
+#get chromosome endpoints
+mydat_plot <- mydat_plot[order(mydat_plot$chr.t, mydat_plot$tmid),]
+my.chroms <- as.data.frame(mydat_plot[!duplicated(mydat_plot$chr.t, fromLast=FALSE), "Index.t"]) #Lower Bounds
+names(my.chroms)[1] <- "Chr.Start"
+my.chroms$Chr.End <- mydat_plot[!duplicated(mydat_plot$chr.t, fromLast=TRUE), "Index.t"] # Upper Bounds
+my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
+
 
 #-----------------------------------------------------------------------------------------
 #looking into: transcript density across chromosome, SNP density across chromosome
