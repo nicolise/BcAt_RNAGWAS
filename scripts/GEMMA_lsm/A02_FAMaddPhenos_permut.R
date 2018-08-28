@@ -2,7 +2,7 @@
 #02/21/18
 #02_FAMaddPhenos
 
-#----------------------------------------------------------------------------
+#---------------------------------------------------------------------
 rm(list=ls())
 
 #GEMMA run script is /home/nesoltis/Documents/GitRepos/BcAt_RNAGWAS/data/B05_GEMMA/runGEMMA_allphenos.sh 
