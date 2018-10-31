@@ -1,0 +1,15 @@
+
+
+Figure X2. Interspecific hotspot comparison of eQTL for expression variation in B. cinerea.
+a.
+b. Highest- probability SNP per each of 23,898 A. thaliana Col-0 gene profiles under B. cinerea infection. 
+
+Figure X4. Frequency distribution of distances between top SNP and gene center
+a.  for B. cinerea
+b. for randomized B. cinerea  
+
+Figure X5. Genes with top SNP on same chromosome
+
+Figure X1. Deletion boundaries botycinic acid biosynthesis network.
+
+Figure X3. Expression levels of isolates by botcynic acid cluster

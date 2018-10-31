@@ -1,0 +1,26 @@
+Using a
+negative binomial generalized linear model (nbGLM), we tested for significance of all factors on
+each Arabidopsis transcript and obtained the proportion of variation (h2) due to the pathogen
+genotypes and plant mutants, least square means (log2), and standard error for transcript
+abundance (Table 2, Supplemental Data Sets 5, 6, and 7).
+
+Supplemental Data Set 5. Model adjusted means for all transcripts measured in all genotypes of
+this study.
+Supplemental Data Set 6. Standard error for all transcripts measured in all genotypes of this
+study.
+Supplemental Data Set 7. Transcriptomic analysis of significance and heritability.
+
+The linear model was conducted on normalized
+gene counts using function glm.nb() from the “MASS” package (Venables and Ripley, 2002).
+Model-corrected means and standard errors for camalexin, lesion area, and each transcript within
+each isolate was determined using the “lsmeans” V2.19 package (Lenth, 2016). Raw p-values for
+the F- and ChiSq-test were determined by Type II sums of squares using function anova() from
+the “car” package (Fox and Weisberg, 2011). Transcript p-values were false discovery rate
+(FDR) (p-value < 0.05) corrected for multiple tests of significance (Benjamini et al., 2001;
+Strimmer, 2008). Broad-sense heritability of each phenotype and transcripts as the proportion of
+variance attributed to B. cinerea genotype, Arabidopsis genotype, or their interaction effect to the
+28
+total variance within the model were estimated. We then compared broad-sense heritability of
+transcripts involved in the camalexin, tryptophan, JA, and SA biosynthesis pathways in each
+Arabidopsis genotype. The violin plots were generated to depict the distribution of heritability
+using the “vioplot” package (Hintze, 1998).
