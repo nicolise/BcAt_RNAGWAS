@@ -11,7 +11,7 @@
 #script: /media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc/A04_runGEMMA_kmat_3genos.sh
 
 rm(list=ls())
-setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc/")
+setwd("/media/nesoltis/Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachAt_Bc")
 
 
 #read in individual GEMMA output files (1 per geno)
@@ -23,7 +23,7 @@ for (j in c("col0")){
   for (i in 1:9267){
     #actually: 1:9267 for Bc
     Sys.time()
-    my_gemma <- read.table(paste("04_GEMMAout/",j,"/",j,"_MAF20NA10_",i,".assoc.txt", sep=""), header=TRUE)
+    my_gemma <- read.table(paste("04_GEMMAout/",j,"/",j,"_MAF20NA10_RAND_",i,".assoc.txt", sep=""), header=TRUE)
     Sys.time()
     #takes 4 seconds to read 1 phenotype
     #times 24000 = 27 hours
