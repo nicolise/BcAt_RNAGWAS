@@ -1,0 +1,22 @@
+Troubleshooting Col-0 lesion GEMMA
+
+Issue: all p-values from ~ p=0.6 to p=0.99 are somehow missing/ in the lower p-value range
+
+- tested importing Col-0 file directly to plot: no fix
+- tested plotting all 3 p-value formats: no fix
+- tested plotting beta alone: also very weird, has beta = 0 and then missing beta between ~abs(0 to 0.005)
+
+- MANY SNPs with semi-small beta and consistent p-values. Removed those in R and found only ~10% SNPs remaining and minimum p-value > 0.03. Considering this a failed run
+
+- other phenos: 236154 analyzed SNPs/var. col0: 237095 analyzed SNPs/var. 
+- other phenos: 96 individuals analyzed. col0: 97 individuals analyzed.
+
+- to do: can I identify and drop those "problematic" ~1000 SNPs and individual?
+
+- to do: rerun in GEMMA without k-matrix and with kmat2
+- to do: z-scale lesion size Col-0 and rerun in GEMMA
+- to do: check for GEMMA error messages in run
+- to do: try forcing longer time on optimization?
+
+
+
