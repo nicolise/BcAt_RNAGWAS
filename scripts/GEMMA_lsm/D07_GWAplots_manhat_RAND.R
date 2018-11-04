@@ -3,20 +3,25 @@
 
 #--------------------------------------------------------------------------------------
 #manhattany plot of SNP location for top 1 SNPs of Bc reads across ALL GENES 
-
+#max -log10(p) for permut = 6.923289
 #from GEMMA_lsm/D_GWAplots
 
 rm(list=ls())
 #start with a small file
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
-mydat01 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
-mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
-mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
+# setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm/")
+# mydat01 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top1SNPsample.csv")
+# mydat10 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top10SNPsample.csv")
+# mydat100 <- read.csv("Bc_permut/05_GEMMAsumm/GeneNames/GEMMA_top100SNPsample.csv")
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
+#could redo this with named genes
+mydat1 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_top1SNPsample.csv")
+mydat10 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_top10SNPsample.csv")
+mydat100 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_top100SNPsample.csv")
 
 ##check which file I'm reading in!
 mydat <- mydat10
 
-#annotate gene center location to each gene
+#need GTF to annotate gene center location to each gene
 setwd("~/Projects/BcGenome")
 my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
 num.genes <- my.gtf[unique(my.gtf$V12),]
@@ -31,8 +36,8 @@ my.gtf.genes$V12 <- gsub("^gene:","", my.gtf.genes$V12)
 my.gtf.genes$V10 <- gsub("^transcript:","", my.gtf.genes$V10)
 names(my.gtf.genes) <- c("chr", "exon","start","stop","transcript","Gene","GeneName")
 my.gtf.genes$chr <- gsub("^Chromosome","", my.gtf.genes$chr)
-names(mydat.genes)[10] <- "transcript"
-names(mydat.genes)[11] <- "Gene"
+#dplyr may fail at group_by if plyr is attached
+detach(package:plyr)  
 library("dplyr")
 my.gtf_genesumm <- my.gtf.genes %>%
   group_by(transcript, GeneName, chr) %>%
@@ -44,7 +49,7 @@ names(my.gtf_genesumm)[3] <- "chr.t"
 
 ##run this for each SNP input
 mydat <- mydat[,-c(1)]
-mydat.genes <- mydat[,c(2,4,1,11:ncol(mydat))]
+mydat.genes <- mydat[,c(2,4,1,10:ncol(mydat))]
 mydat.genes$GeneNoTranscript <- gsub("\\.[0-9]$", '', mydat.genes$Gene)
 mydat.genes$transcript <- mydat.genes$Gene
 mydat_plot <- merge(mydat.genes, my.gtf_genesumm, by="transcript")
@@ -76,11 +81,14 @@ for (i in unique(mydat_plot$chr.t)) {
   }
 }
 
+##optional: if genes not annotated yet, and just want manhattan of SNP loc vs. effect estimate
+mydat_plot <- mydat
+names(mydat_plot)[1] <- "chr.snp"
+
 #Make plotting variables for snp
 mydat_plot <- mydat_plot[order(mydat_plot$chr.snp, mydat_plot$ps),]
 mydat_plot$Index.s = NA
 lastbase = 0
-#Redo the positions to make them sequential		-- accurate position indexing
 for (i in unique(mydat_plot$chr.snp)) {
   print(i)
   if (i==1) {
@@ -98,22 +106,25 @@ library(ggplot2)
 myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
 myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
 names(myColors) <- levels(mydat_plot$chr.snp)
-colScale <- scale_colour_manual(name = "Chrom",values = myColors)
+colScale <- scale_colour_manual(name = "Chromosome",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/Manhattans/BcCol0_top10SNP_bySNP.jpg", width=8, height=5, units='in', res=600)
+jpeg("plots/Manhattans/BcCol0RAND_top10SNP_bySNP.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.s, y=(-log10(mydat_plot$p_score))))+
     theme_bw()+
     colScale+
     #used stroke = 0 for top 10, not top 1
     geom_point(aes(color = factor(chr.snp),alpha=0.001), stroke=0)+
-    labs(list(y="-log10(p)", title=NULL))+
+    labs(list(title=NULL))+
     theme(legend.position="none")+
-    scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
-    expand_limits(y=0)
+    #y scale for 1 SNP
+    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))+
+    scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))
 )
 dev.off()
+
+-log10(min(mydat_plot$p_score))
 
 #get chromosome midpoints
 mydat_plot <- mydat_plot[order(mydat_plot$chr.snp, mydat_plot$ps),]

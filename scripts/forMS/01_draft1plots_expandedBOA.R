@@ -1,3 +1,7 @@
+#Nicole E Soltis
+#expanded BOA indel analysis and pvclustering
+
+#-----------------------------------------------------------------------
 ##color palette:
 #figure X1, slateblue1
 
@@ -31,3 +35,4 @@ p + geom_violin(trim=FALSE, draw_quantiles = c(0.25, 0.5, 0.75), fill="slateblue
   labs(x="Cluster Membership", y = "Mean Expression Across Network")+ 
   theme_bw()
 dev.off()
+

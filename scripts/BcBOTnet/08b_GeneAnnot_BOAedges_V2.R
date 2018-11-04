@@ -85,6 +85,8 @@ gene.ends.boa <- ddply(my.genes.boa, c("V12"), summarise,
 #last base of deletion = 82614
 #first base of deletion = first base of C1 = 4029
 #now: pvclust with these new endpoints and vioplot with the new pvclust tree.
+library(dplyr)
+
 setwd("~/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm")
 mySNP_boa_fulldel <- read.csv("02b_Haploview/BOA_deletion/binMAF20NA10_chr1_boa.csv")
 mySNP_boa_fulldel_gene <- read.csv("02b_Haploview/BOA_deletion/binMAF20NA10_chr1_boa_wgenes.csv")
@@ -97,13 +99,13 @@ boaSNP_pvclust_geneonly <- mySNP_boa_fulldel_gene %>%
 #boaSNP_pvclust <- mySNP_boa_fulldel
 boaSNP_pvclust <- boaSNP_pvclust_geneonly
 
-#This step does not make sense- should cluster including full genic region!!
-#crop to only include deletion
 boaSNP_pvclust <- as.data.frame(t(boaSNP_pvclust))
 colnames(boaSNP_pvclust) = as.character(unlist(boaSNP_pvclust[1,]))
 boaSNP_pvclust <- boaSNP_pvclust[-c(1),]
 boaSNP_pvclust$V2 <- as.integer(paste(boaSNP_pvclust$V2))
-boaSNP_pvclust <- boaSNP_pvclust[boaSNP_pvclust$V2<=82614,]
+# #This step does not make sense- should cluster including full genic region!!
+# #crop to only include deletion
+# boaSNP_pvclust <- boaSNP_pvclust[boaSNP_pvclust$V2<=82614,]
 #get rid of SNPnum and V2 for pvclust
 boaSNP_pvclust <- boaSNP_pvclust[,-c(1:2)]
 

@@ -3,7 +3,7 @@
 
 #--------------------------------------------------------------------------------
 rm(list=ls())
-setwd("C:/Users/nesol/Documents/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bc")
+setwd("C:/Users/nesol/Documents/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm")
 mySNP_bot_named <- read.csv("02b_Haploview/binMAF20NA10_chr12_bot_recrop_named.csv", na.strings=c("","NA"))
 mySNP_boa_named <- read.csv("02b_Haploview/binMAF20NA10_chr1_boa_fix_named.csv", na.strings=c("","NA"))
 mySNP_net5_named <- read.csv("02b_Haploview/binMAF20NA10_chr1_net5_fix_named.csv", na.strings=c("","NA"))
@@ -275,7 +275,8 @@ p + geom_violin(trim=FALSE, draw_quantiles = c(0.25, 0.5, 0.75), fill="slateblue
 dev.off()
 
 #need a new file of ANOVA cluster membership
-#includes only the 3 large clusters, excludes low tails of each cluster
+#includes only the 3 large clusters (4,5,1), excludes low tails of each cluster
+#boa_anova is group membership, only includes isolates for ANOVA
 AoVclusts <- myclusters[,c("Isolate","boa_anova")] #can also do with boa_pv_gene
 BoaPhenosAoV <- merge(BoaPhenos,AoVclusts, by = "Isolate")
 fit <- aov(mean.Pheno ~ boa_anova, data=BoaPhenosAoV)
