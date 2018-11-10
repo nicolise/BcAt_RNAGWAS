@@ -10,3 +10,6 @@ setwd("~/PhD/Literature/Collaborators/2018 - TBD - Botrytis transcriptional vari
 bcherit <- read.csv("SupplDS3_Pvalue.csv")
 #keep necessary columns
 bcherit <- bcherit[,c(1,21,26,31,37:39)]
+
+
+#check how transcripts with top SNP hits from A. thaliana, B. cinerea, and *both* 
