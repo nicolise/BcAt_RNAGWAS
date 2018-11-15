@@ -11,18 +11,10 @@ rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
 #for now, don't care about annotating which phenotype was which (gene names for transcripts)
 mydat01 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_RAND2_top1SNPsample.txt")
-mydat01 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_top1SNPsample.csv")
+#mydat01 <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_top1SNPsample.csv")
 
 mydat <- mydat01
 mydat$chr.snp <- paste(mydat$chr, mydat$ps, sep=".")
-
-#save min p value per permutation
-minrow <- mydat[mydat$p_score == min(mydat$p_score),]
-#minrowall <- minrow
-#do for all 5 permutations
-minrowall <- rbind(minrowall, minrow)
-minrowall$neg10p <- log10(minrowall$p_score)*-1
-#highest = 7.53
 
 #Make plotting variables for snp
 mydat_plot <- mydat[order(mydat$chr, mydat$ps),]
@@ -70,5 +62,23 @@ my.chroms <- as.data.frame(mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=F
 names(my.chroms)[1] <- "Chr.Start"
 my.chroms$Chr.End <- mydat_plot[!duplicated(mydat_plot$chr.snp, fromLast=TRUE), "Index.s"] # Upper Bounds
 my.chroms$Chr.Mid <- (my.chroms$Chr.Start + my.chroms$Chr.End)/2
-#--------------------------------------------------------------------------------
-
+#-------------------------------------------------------------------------------
+#mini manhattan: focus in on chr 1
+#plot permutation 1 on Chr 1 only. Label Mb X axis. 
+setwd("~/Projects/BcAt_RNAGWAS")
+mydat_c1 <- mydat_plot[mydat_plot$chr==1,]
+jpeg("plots/Manhattans/5xRand/BcCol0_chr1_top1SNP_rand1.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(mydat_c1, aes(x=Index, y=(-log10(mydat_c1$p_score))))+
+    theme_bw()+
+    colScale+
+    #used stroke = 0 for top 10, not top 1
+    #, stroke=0
+    geom_point(aes(color = factor(chr),alpha=0.001))+
+    labs(list( title=NULL))+
+    theme(legend.position="none")+
+    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))+
+    scale_x_continuous(name="Distance (Mb)", breaks=c(0,1e+06,2e+06,3e+06,4e+06),labels=c(0,1,2,3,4))+
+    expand_limits(y=0)
+)
+dev.off()
