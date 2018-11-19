@@ -82,6 +82,7 @@ print(
     labs(list(title=NULL))+
     theme(legend.position="none")+
     #y scale for 1 SNP
-    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))
+    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))+
+    scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
 )
 dev.off()

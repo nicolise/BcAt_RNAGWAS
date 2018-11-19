@@ -10,8 +10,8 @@ rm(list=ls())
 #start with a small file
 setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
 mydat01 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
-mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
-mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
+#mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
+#mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
 
 ##check which file I'm reading in!
 mydat <- mydat01
@@ -173,5 +173,37 @@ print(
     #y scale for 1 SNP
     scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))+
     scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
+)
+dev.off()
+
+#------------------------------------------------------------------------------------------
+#manhattish plot: for each SNP location, # Bc transcripts that have that SNP as the top hit
+#new summary df: for each unique value of Index.s, add a variable counting the number of occurrences (= multiple transcripts)
+mydat_summ <- mydat_plot[,c("chr.snp","ps","p_score","GeneNoTranscript","Index.s")]
+mydat_summ_ngene <- aggregate(GeneNoTranscript ~ Index.s, data = mydat_summ, FUN = function(x){NROW(x)})
+#now add SNP data back on, matching by Index.s
+mydat_summ_ngene <- merge(mydat_summ_ngene, mydat_summ[,c("chr.snp","ps","Index.s")], by="Index.s")
+#remove duplicate rows
+mydat_summ_ngene <- unique(mydat_summ_ngene)
+
+library(ggplot2)
+#create a custom color scale
+myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
+names(myColors) <- levels(mydat_summ_ngene$chr.snp)
+colScale <- scale_colour_manual(name = "Chrom",values = myColors)
+
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg("plots/Manhattans/BcCol0_numgenesPsnp_Bc.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(mydat_summ_ngene, aes(x=Index.s, y=(GeneNoTranscript)))+
+    theme_bw()+
+    colScale+
+    #used stroke = 0 for top 10, not top 1
+    #, stroke=0)+
+    geom_point(aes(color = factor(chr.snp),alpha=0.001))+
+    labs(list(y="Number of Genes", title=NULL))+
+    theme(legend.position="none")+
+    scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
+    expand_limits(y=0)
 )
 dev.off()

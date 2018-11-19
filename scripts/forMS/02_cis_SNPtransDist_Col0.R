@@ -23,9 +23,9 @@ mydat1 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
 mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
 
 ##careful of which SNP set in use
-mydat <- mydat10
+mydat <- mydat1
 
-#correlation plot: plot SNP location vs. gene center for each experiment
+#correlation plot: plot SNP location vs. gene center for each expression profile
 #clean up variables for matching
 mydat.genes <- mydat[,c(3,5,2,10:ncol(mydat))]
 mydat.genes$GeneNoTranscript <- gsub("\\.[0-9]$", '', mydat.genes$Gene)
@@ -71,13 +71,14 @@ hist(mydat_plot_hist$intraC.tsdist)
 hist(mydat_plot_hist$ts_dist)
 
 #add a thresholding value to compare to permutation
-#max -log10(p) for permut = 6.923289
+#max -log10(p) for 1x permut = 6.923289
+#max -log10(p) for 5x permut = 7.530222 (p = 2.949698e-08)
 mydat_plot_hist$threshold <- ifelse((-log10(mydat_plot_hist$p_score))>6.923289, "over","under")
 mydat_plot_thr <- mydat_plot_hist[mydat_plot_hist$threshold =="over",]
 library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
 ##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top10SNP_geneDistHist_thresh.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+jpeg(paste("plots/paper/Col0top10SNP_geneDistHist_thresh.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_thr, aes(mydat_plot_thr$ts_dist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4)+
   labs(x="Distance (Mb)", y="Frequency")+
@@ -93,7 +94,7 @@ dev.off()
 library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
 ##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+jpeg(paste("plots/paper/Col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 4e+06, by = 100000), aes(y =..density..))+
   labs(x="Distance (Mb)", y="Frequency")+
@@ -105,7 +106,7 @@ dev.off()
 
 setwd("~/Projects/BcAt_RNAGWAS")
 ##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top10SNP_geneDistHist_InChr_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+jpeg(paste("plots/paper/Col0top10SNP_geneDistHist_InChr_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 #fill = slateblue1
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$intraC.tsdist)) + 
   geom_histogram(fill="#00BFC4", col="black", alpha=0.3, breaks=seq(0, 1, by = 0.05), aes(y=..density..))+
@@ -115,11 +116,39 @@ ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$intraC.tsdist)) +
   theme_bw()
 dev.off()
 
+#------------------
+#plot normal lengths but only within chromosome
+#mydat_plot_hist is already subset in this way 
+
+# setwd("~/Projects/BcAt_RNAGWAS")
+# ##check output name
+# jpeg(paste("plots/paper/Col0top1SNP_geneDistHist_InChr_sm_absolute.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+# #fill="#00BFC4"
+# ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
+#   geom_histogram(fill = "slateblue1", col="black", alpha=0.3)+
+# #breaks=seq(0, 1, by = 0.05), aes(y=..density..)))+
+#   labs(x="Distance (bp)", y="Frequency")+
+#   geom_density()+
+#   xlim(0,1)+
+#   theme_bw()
+# dev.off()
+
+#histogram of chromosome lengths
+setwd("~/Projects/BcGenome/data/")
+mychrs <- read.csv("ChromInfo_NCBI.csv")
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg(paste("plots/paper/ChrLength.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+ggplot(data=mychrs, aes(mychrs$Size..Mb.))+
+  geom_histogram(fill="slateblue1", col="black", alpha=0.3)+
+  labs(x="Chromosome Length (Mb)", y="Count")+
+  theme_bw()
+dev.off()
+
 ##new plot: same again but this time plot only distances on chr 1 // others.
 library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
 ##check output name
-jpeg(paste("plots/paper/BotcynicAcid_col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+jpeg(paste("plots/paper/Col0top1SNP_geneDistHist_sm.jpg", sep=""), width=3.25, height=4, units='in', res=600)
 ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
   geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 4e+06, by = 100000), aes(y =..density..))+
   labs(x="Distance (Mb)", y="Frequency")+

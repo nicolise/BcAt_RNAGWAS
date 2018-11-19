@@ -91,3 +91,23 @@ colnames(mydat) <- tempDF[1, ]
 nameddat <- merge(mydat, myGenes, by = "pheno")
 write.csv(nameddat, "SNPannot/GeneNames/col0_GEMMA_top1SNPsample_genes.csv")
 #--------------------------------------------------------------------
+#Bc_Col0_5rand
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
+#this phenotype list is the same for all 5 randomizations- arbitrarily chose one
+myPhenos <- read.table("col0/02_GEMMA_RAND03/binMAF20NA10.fam")
+nameslist <- myPhenos[1,6:length(myPhenos)]
+#check that V6 is a real phenotype
+nameslist[1,1:10] #yes
+myGenes <- as.data.frame(t(nameslist))
+names(myGenes)[1] <- "Gene"
+myGenes$pheno <- 1:nrow(myGenes)
+#start with 1 file. Loop over all files in directory later
+nameddat <- NA
+mydat <- NA
+
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
+##change these out to annotate all SNP summaries per GEMMA run
+randdat <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_maxRAND_1SNP.csv")
+mydat <- randdat
+nameddat <- merge(mydat, myGenes, by = "pheno")
+write.csv(nameddat, "06_GEMMAsumm_RAND/TranscNames/col0_GEMMA_top1SNPsample_genes.csv")
