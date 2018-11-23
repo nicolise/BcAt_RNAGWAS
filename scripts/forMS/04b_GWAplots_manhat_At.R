@@ -8,86 +8,22 @@
 
 rm(list=ls())
 #start with a small file
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
-mydat01 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
-#mydat10 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
-#mydat100 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
-
-##check which file I'm reading in!
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachBc_At/")
+mydat01 <- read.csv("05_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
 mydat <- mydat01
 
-#annotate gene center location to each gene
-setwd("~/Projects/BcGenome")
-my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
-num.genes <- my.gtf[unique(my.gtf$V12),]
-my.gtf <- my.gtf[,1:14]
-
-#correlation plot: plot SNP location vs. gene center for each experiment
-#then, can overlay 2 experiments
-#clean up variables for matching
-my.gtf$midgene <- (my.gtf$V4 + my.gtf$V5)/2
-my.gtf.genes <- my.gtf[,c("V1","V3","V4","V5","V10","V12","V14")]
-my.gtf.genes$V12 <- gsub("^gene:","", my.gtf.genes$V12)
-my.gtf.genes$V10 <- gsub("^transcript:","", my.gtf.genes$V10)
-names(my.gtf.genes) <- c("chr", "exon","start","stop","transcript","Gene","GeneName")
-my.gtf.genes$chr <- gsub("^Chromosome","", my.gtf.genes$chr)
-#names(mydat.genes)[10] <- "transcript"
-#names(mydat.genes)[11] <- "Gene"
-library("dplyr")
-my.gtf_genesumm <- my.gtf.genes %>%
-  group_by(transcript, GeneName, chr) %>%
-  summarize(tstart = min(start, na.rm=TRUE),
-                         tstop = max(stop, na.rm=TRUE))
-my.gtf_genesumm <- as.data.frame(my.gtf_genesumm)
-my.gtf_genesumm$tmid <- (my.gtf_genesumm$tstop + my.gtf_genesumm$tstart)/2
-names(my.gtf_genesumm)[3] <- "chr.t"
-
-##run this for each SNP input
-mydat <- mydat[,-c(1)]
-mydat.genes <- mydat[,c(2,4,1,11:ncol(mydat))]
-mydat.genes$GeneNoTranscript <- gsub("\\.[0-9]$", '', mydat.genes$Gene)
-mydat.genes$transcript <- mydat.genes$Gene
-mydat_plot <- merge(mydat.genes, my.gtf_genesumm, by="transcript")
-
-#manhattan plot: location of actual transcript center (phenotype) on x axis, SNP -log10(p) on y axis
-#if SNP is on chromosome other than transcript, set distance to 5,000,000: max SNP pos on a chromosome is 4080738 and max gene center is 4104646
-#or, trying with 0 for now
-names(mydat_plot)[2] <- "chr.snp"
-
-#Make plotting variables for transcript
-mydat_plot$chr.t <- as.numeric(mydat_plot$chr.t)
-mydat_plot <- mydat_plot[order(mydat_plot$chr.t, mydat_plot$tmid),]
-mydat_plot$Index.t = NA
-lastbase = 0
-#Redo the positions to make them sequential		-- accurate position indexing
-for (i in unique(mydat_plot$chr.t)) {
-  print(i)
-  if (i==1) {
-    #for the subset of HEM.plotdata rows with Chromosome 1, set Index variable for each row to equal Pos.
-    mydat_plot[mydat_plot$chr.t==i, ]$Index.t=mydat_plot[mydat_plot$chr.t==i, ]$tmid
-    #for all other chromosomes: 
-  }	else {
-    #lastbase for chromosome i is the greater of:
-    #current lastbase counter plus the maxiumum position of chromosome i-1
-    #OR 1
-    lastbase=lastbase+max(subset(mydat_plot,mydat_plot$chr.t==i-1)$tmid, 1)
-    #and then for the subset of HEM.plotdata rows with Chromosome i, set Index variable for each row to equal Pos + lastbase
-    mydat_plot[mydat_plot$chr.t==i, ]$Index.t=mydat_plot[mydat_plot$chr.t==i, ]$tmid+lastbase
-  }
-}
-
 #Make plotting variables for snp
-mydat_plot <- mydat_plot[order(mydat_plot$chr.snp, mydat_plot$ps),]
+mydat_plot <- mydat[order(mydat$chr, mydat$ps),]
 mydat_plot$Index.s = NA
 lastbase = 0
 #Redo the positions to make them sequential		-- accurate position indexing
-for (i in unique(mydat_plot$chr.snp)) {
+for (i in unique(mydat_plot$chr)) {
   print(i)
   if (i==1) {
-    mydat_plot[mydat_plot$chr.snp==i, ]$Index.s=mydat_plot[mydat_plot$chr.snp==i, ]$ps
+    mydat_plot[mydat_plot$chr==i, ]$Index.s=mydat_plot[mydat_plot$chr==i, ]$ps
   }	else {
-    lastbase=lastbase+max(subset(mydat_plot,mydat_plot$chr.snp==i-1)$ps, 1)
-    mydat_plot[mydat_plot$chr.snp==i, ]$Index.s=mydat_plot[mydat_plot$chr.snp==i, ]$ps+lastbase
+    lastbase=lastbase+max(subset(mydat_plot,mydat_plot$chr==i-1)$ps, 1)
+    mydat_plot[mydat_plot$chr==i, ]$Index.s=mydat_plot[mydat_plot$chr==i, ]$ps+lastbase
   }
 }
 
@@ -95,24 +31,21 @@ for (i in unique(mydat_plot$chr.snp)) {
 #plot by SNP location! (disregard transcript location- just want hotspots)
 library(ggplot2)
 #create a custom color scale
-myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
-myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
-names(myColors) <- levels(mydat_plot$chr.snp)
+myColors <- rep(c("darkgreen","palegreen3"), 9)
+names(myColors) <- levels(mydat_plot$chr)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/Manhattans/BcCol0_top1SNP_bySNP_thr.jpg", width=8, height=5, units='in', res=600)
+jpeg("plots/Manhattans/AtCol0_top1SNP_bySNP.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.s, y=(-log10(mydat_plot$p_score))))+
     theme_bw()+
     colScale+
-    #used stroke = 0 for top 10, not top 1
-    #, stroke=0)+
-    geom_point(aes(color = factor(chr.snp),alpha=0.001))+
+    geom_point(aes(color = factor(chr),alpha=0.001))+
     labs(list(y="-log10(p)", title=NULL))+
     theme(legend.position="none")+
     scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
-    geom_hline(yintercept=-log10(2.949698e-08), linetype="dashed")+
+    #geom_hline(yintercept=-log10(x), linetype="dashed")+
     expand_limits(y=0)
 )
 dev.off()
