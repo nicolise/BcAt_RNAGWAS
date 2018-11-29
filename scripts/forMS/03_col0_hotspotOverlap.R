@@ -113,10 +113,9 @@ ggplot(plotSNP, aes(x=log10p.B, y=log10p.A))+
 dev.off()
 
 #log plot
-plotSNP[plotSNP$Gene.B==0,]$Gene.B <- 0.5
-plotSNP[plotSNP$Gene.A==0,]$Gene.A <- 0.5
-plotSNP$logGenB <- log(plotSNP$Gene.B)
-plotSNP$logGenA <- log(plotSNP$Gene.A)
+plotSNP$logGenB <- log(plotSNP$Gene.B+1)
+plotSNP$logGenA <- log(plotSNP$Gene.A+1)
+
 
 #plot with gene counts
 library(ggplot2)

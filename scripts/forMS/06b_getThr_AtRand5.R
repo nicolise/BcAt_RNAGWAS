@@ -53,6 +53,24 @@ print(
     expand_limits(y=0)
 )
 dev.off()
+
+#here, with dashed line for simulation threshold at 5 genes overlap
+setwd("~/Projects/BcAt_RNAGWAS")
+## check name depending on df
+jpeg("plots/Manhattans/AtCol0_top1SNP_GeneCounts_5thr.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(mydat_plot, aes(x=Index, y=Gene))+
+    theme_bw()+
+    colScale+
+    geom_point(aes(color = factor(mydat_plot$chr),alpha=0.001))+
+    labs(list( title=NULL))+
+    theme(legend.position="none")+
+    scale_y_continuous(name="Number of Genes")+
+    scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
+    geom_hline(aes(yintercept=5), linetype=2)+
+    expand_limits(y=0)
+)
+dev.off()
 #----------------------------------------------------------------
 setwd("~/Projects/BcAt_RNAGWAS")
 mydat_c9 <- mydat[mydat$chr==9,]

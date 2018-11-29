@@ -129,8 +129,8 @@ print(
 dev.off()
 
 #--------------------------------------------------------------------
-#mini manhattan: focus in on chr 1
-#plot max rand on Chr 1 only. Label Mb X axis. 
+#mini manhattan: focus in on chr 9
+#plot max rand on Chr 9 only. Label Mb X axis. 
 setwd("~/Projects/BcAt_RNAGWAS")
 mydat_c9 <- mydat_plot[mydat_plot$chr==9,]
 jpeg("plots/Manhattans/5xRand/BcCol0_chr9_top1SNP_overThr.jpg", width=8, height=5, units='in', res=600)
@@ -179,7 +179,7 @@ assign("hotspt.sig", split.hot[[2]])
 
 ## repeat this once each for .sig, .ns
 #mydat_plot <- hotspt.sig
-mydat_plot <- hotspt.ns
+mydat_plot <- hotspt.sig
 
 #summarize within each SNP - # of transcript hits
 mydat_summ <- mydat_plot[,c("chr","ps","p_score","Gene","Index.s")]
@@ -192,15 +192,15 @@ mydat_plot <- mydat_summ_ngene
 
 library(ggplot2)
 #create a custom color scale
-##myColors <- rep(c("navyblue", "royalblue1"), 9)
-myColors <- rep(c("darkred", "indianred1"), 9)
+myColors <- rep(c("navyblue", "royalblue1"), 9)
+##myColors <- rep(c("darkred", "indianred1"), 9)
 names(myColors) <- levels(mydat_plot$chr)
 colScale <- scale_colour_manual(name = "Chr",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
 ## check name depending on df
 #jpeg("plots/Manhattans/BcCol0_top1SNP_sigCounts.jpg", width=8, height=5, units='in', res=600)
-jpeg("plots/Manhattans/BcCol0_top1SNP_nonsigCounts.jpg", width=8, height=5, units='in', res=600)
+jpeg("plots/Manhattans/BcCol0_top1SNP_sigCounts_4thr.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.s, y=Gene))+
     theme_bw()+
@@ -210,7 +210,8 @@ print(
     theme(legend.position="none")+
     scale_y_continuous(name="Number of Genes")+
     scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
-    expand_limits(y=0)
+    expand_limits(y=0)+
+    geom_hline(aes(yintercept=4), linetype=2)
 )
 dev.off()
 
