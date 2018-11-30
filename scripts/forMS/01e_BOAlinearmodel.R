@@ -13,7 +13,6 @@ myclusters <- read.csv("data/BcBotGWAS/BotBoaNet5_pvclust.csv")
 names(myclusters)[1] <- "Isolate"
 #get just BOA gene regions for plot part C
 #end line 158
-rm(list=ls())
 #gtf location: 
 setwd("~/Projects/BcGenome")
 my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
@@ -54,7 +53,7 @@ mymodouts <- as.data.frame(NULL)
 #trying SNPs as fixed effects, not sure
 #16 is boa_pv_gene_indel, which accounts for the isolate groupings including the deletion.
 for (i in c(2:14)){
-mymodfactors <- mymoddat[,c(i,16:250)]
+mymodfactors <- mymoddat[,c(i,17:250)]
 names(mymodfactors)[1] <- "pheno"
 mymod <- lm(mymodfactors[,1] ~ . - pheno, data=mymodfactors)
 blah <- as.data.frame(anova(mymod))
@@ -66,3 +65,4 @@ if(i == 2) {mymodouts <- as.data.frame(blah$Cats)} else { mymodouts <- cbind(mym
 names(mymodouts)[i-1] <- names(mymoddat[i])
 }
 rownames(mymodouts) <- rownames(blah)
+write.csv(mymodouts, "02b_Haploview/BOA_deletion/BOAcluster_linearMod.csv")

@@ -175,7 +175,31 @@ print(
     scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
 )
 dev.off()
+#-------------------------------------------------------------------------------------------------------
+#draw highlighting the hotspot
+#zoom in on genes linked to BcBOA7 hotspot
+#chr.snp is 1.39263
 
+mydat_plot_boa <- mydat_plot[mydat_plot$chr.snp==1,]
+mydat_plot_boa <- mydat_plot_boa[mydat_plot_boa$ps > 30000,]
+mydat_plot_boa <- mydat_plot_boa[mydat_plot_boa$ps < 60000,]
+
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg("plots/Manhattans/BcCol0_top1SNP_bySNP_Chr1.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(mydat_plot_boa, aes(x=Index.s, y=(-log10(mydat_plot_boa$p_score))))+
+    theme_bw()+
+    colScale+
+    #used stroke = 0 for top 10, not top 1
+    #, stroke=0
+    geom_point(aes(color = factor(chr.snp),alpha=0.001), stroke=0)+
+    labs(list(title=NULL))+
+    theme(legend.position="none")+
+    #y scale for 1 SNP
+    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))#+
+  #  scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
+)
+dev.off()
 #------------------------------------------------------------------------------------------
 #manhattish plot: for each SNP location, # Bc transcripts that have that SNP as the top hit
 #new summary df: for each unique value of Index.s, add a variable counting the number of occurrences (= multiple transcripts)
@@ -208,7 +232,7 @@ print(
 )
 dev.off()
 
-
+#-------------------------------------------------------------------------------------------------------
 #redraw this, but highlight the top SNPs from Bc At hotspot overlap 
 setwd("~/Projects/BcAt_RNAGWAS/data")
 myhots <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/BcAt_topBcSNPGenes_numTranscripts_funcannot_readin.csv")

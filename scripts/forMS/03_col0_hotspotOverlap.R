@@ -204,3 +204,30 @@ funclist <- read.csv("BcAt_topBcSNPGenes_funclist.csv")
 names(funclist)[1] <- "Gene"
 full.snp.funcs <- merge(full.snp.genes, funclist, by="Gene")
 write.csv(full.snp.funcs,"BcAt_topBcSNPGenes_numTranscripts_funcannot.csv")
+
+#---------------------------------------------------------------------------------
+#zoom in on genes linked to BcBOA7 hotspot
+#chr.snp is 1.39263, which is just upstream of the gene (but this also means it's between BcBOA6 and BcBOA7)
+
+#check which genes are associated!
+rm(list=ls())
+setwd("~/Projects/BcAt_RNAGWAS/data/")
+#read in top 1 SNP lists from each
+#could also use the SNPannot?
+BcSNP  <- read.csv("GEMMA_eachAt_Bc/06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
+head(BcSNP)
+AtSNP <- read.csv("GEMMA_eachBc_At/05_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
+head(AtSNP)
+#add variable for chr.snp, then merge files on this
+AtSNP$chr.snp <- paste(AtSNP$chr, AtSNP$ps, sep=".")
+BcSNP$chr.snp <- paste(BcSNP$chr, BcSNP$ps, sep=".")
+BcSNP2 <- BcSNP[,c(3,5,16,15,17)]
+BcSNP2$log10p <- -log10(BcSNP2$p_score)
+names(BcSNP2) <- c("chr.B","ps.B","Gene.B","p.B","chr.snp","log10p.B")
+
+AtBOA <- AtSNP[AtSNP$chr.snp=="1.39263",]
+BcBOA <- BcSNP[BcSNP$chr.snp=="1.39263",]
+AtBOA <- AtBOA[,-c(3)]
+myBOA <- rbind(BcBOA,AtBOA)
+write.csv(myBOA, "GEMMA_eachAt_Bc/07_TopSNPs/BcAtgenes_BcBOA7list.csv")
+
