@@ -52,7 +52,13 @@ mymoddat <- merge(myphenos, mySNP, by="Isolate")
 mymodouts <- as.data.frame(NULL)
 #trying SNPs as fixed effects, not sure
 #16 is boa_pv_gene_indel, which accounts for the isolate groupings including the deletion.
+
+#check type for SS Anova
+library("car")
+Anova(mymod) #type II by default, not working
+
 for (i in c(2:14)){
+  i <- 2
 mymodfactors <- mymoddat[,c(i,17:250)]
 names(mymodfactors)[1] <- "pheno"
 mymod <- lm(mymodfactors[,1] ~ . - pheno, data=mymodfactors)
