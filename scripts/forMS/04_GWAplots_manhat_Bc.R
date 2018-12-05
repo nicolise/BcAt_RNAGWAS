@@ -175,7 +175,31 @@ print(
     scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
 )
 dev.off()
+#-------------------------------------------------------------------------------------------------------
+#draw highlighting the hotspot
+#zoom in on genes linked to BcBOA7 hotspot
+#chr.snp is 1.39263
 
+mydat_plot_boa <- mydat_plot[mydat_plot$chr.snp==1,]
+mydat_plot_boa <- mydat_plot_boa[mydat_plot_boa$ps > 30000,]
+mydat_plot_boa <- mydat_plot_boa[mydat_plot_boa$ps < 60000,]
+
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg("plots/Manhattans/BcCol0_top1SNP_bySNP_Chr1.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(mydat_plot_boa, aes(x=Index.s, y=(-log10(mydat_plot_boa$p_score))))+
+    theme_bw()+
+    colScale+
+    #used stroke = 0 for top 10, not top 1
+    #, stroke=0
+    geom_point(aes(color = factor(chr.snp),alpha=0.001), stroke=0)+
+    labs(list(title=NULL))+
+    theme(legend.position="none")+
+    #y scale for 1 SNP
+    scale_y_continuous(name="-log10(p)", breaks=c(0,2.5,5,7.5), labels=c("0","2.5","5.0","7.5"), limits=c(0,8.75))#+
+  #  scale_x_continuous(name="Distance (Mb)", breaks=c(0, 1e+6, 2e+6, 3e+6, 4e+6), labels=c(0,1,2,3,4))
+)
+dev.off()
 #------------------------------------------------------------------------------------------
 #manhattish plot: for each SNP location, # Bc transcripts that have that SNP as the top hit
 #new summary df: for each unique value of Index.s, add a variable counting the number of occurrences (= multiple transcripts)
@@ -205,5 +229,37 @@ print(
     theme(legend.position="none")+
     scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))+
     expand_limits(y=0)
+)
+dev.off()
+
+#-------------------------------------------------------------------------------------------------------
+#redraw this, but highlight the top SNPs from Bc At hotspot overlap 
+setwd("~/Projects/BcAt_RNAGWAS/data")
+myhots <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/BcAt_topBcSNPGenes_numTranscripts_funcannot_readin.csv")
+names(myhots)[1] <- "Gene"
+myhots <- myhots[,c(2,1,3,4,5,6,23,24)]
+names(mydat_summ_ngene)[3] <- "chr"
+mydat_summ_ngene$chr.snp <- paste(mydat_summ_ngene$chr, mydat_summ_ngene$ps, sep=".")
+myhots_plot <- merge(mydat_summ_ngene, myhots, by="chr.snp", all=TRUE)
+myhots_plot$Cat <- ifelse(myhots_plot$Gene.B != 0, (ifelse(myhots_plot$Gene.A != 0, "Both", "B")), "A")
+myhots_plot$chr <- as.factor(myhots_plot$chr.x)
+  
+#below here: works as cat plot
+triColors <- c("darkgreen", "navyblue", "purple")
+names(triColors) <- levels(as.factor(myhots_plot$Cat))
+tricolScale <- scale_color_manual(name = "Cat",values = triColors)
+
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg("plots/Manhattans/BcCol0_numgenesPsnp_Bc_tophots.jpg", width=8, height=5, units='in', res=600)
+print(
+  ggplot(myhots_plot, aes(x=Index.s, y=(GeneNoTranscript)))+
+  theme_bw()+
+  tricolScale+
+  geom_point(aes(color = factor(Cat)))+
+  #scale_fill_manual(values=colScale)+
+  #scale_colour_manual(values=c("navyblue","darkgreen","purple"))+
+  labs(list(y="Number of Genes", title=NULL))+
+  theme(legend.position="none")+
+  scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))
 )
 dev.off()

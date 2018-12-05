@@ -26,42 +26,45 @@ my.gtf.boa <- my.gtf[1:158,]
 
 #SNP range: 4029 to 108994
 
-#draw gene regions as bars -- draw exons
-library("genemodel")
-data("AT5G62640")
-genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
-mutation.plot(25150214, 25150218, text="P->S", col="black", drop=-.15, haplotypes=c("red", "blue"))
-for (i in c(25150808, 25151000, 25251400)){
-  mutation.plot(i, i, col="black", drop=-0.15, haplotypes="red")
-}
+#-------------------------------------------------------------------------------------
+# #trying to draw individual gene models
+# #draw gene regions as bars -- draw exons
+# library("genemodel")
+# data("AT5G62640")
+# genemodel.plot(model=AT5G62640, start=25149433, bpstop=25152541, orientation="reverse", xaxis=T)
+# mutation.plot(25150214, 25150218, text="P->S", col="black", drop=-.15, haplotypes=c("red", "blue"))
+# for (i in c(25150808, 25151000, 25251400)){
+#   mutation.plot(i, i, col="black", drop=-0.15, haplotypes="red")
+# }
+# 
+# #for each gene, make a 2-column dataframe with col 1 = type and col 2 = coordinates (range)
+# my.boa.mods <- my.gtf.boa[,c("V12","V3","V4","V5")]
+# my.boa.mods$coordinates <- paste(my.boa.mods$V4, my.boa.mods$V5, sep="-")
+# names(my.boa.mods)[2] <- "type"
+# my.boa.mods <- my.boa.mods[,c(1,2,5)]
+# #drop empty levels of gene before splitting df
+# my.boa.mods$V12 <- droplevels(my.boa.mods$V12)
+# #replace "CDS" with "coding_region"
+# split.df <- split(my.boa.mods, my.boa.mods$V12)
+# #make separate, labeled dfs for each gene
+# for (i in 1:length(split.df)){
+#   blah <- unique(split.df[[i]]$V12)
+#   split.df[[i]] <- split.df[[i]][,c(2:3)]
+#   assign(paste(blah), split.df[[i]])
+# }
+# 
+# #messy test version in excel
+# setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
+# #write.csv(`gene:Bcin01g00010`, "02_BOAnet/test_Bcin01g00010.csv")
+# Bcin01g00010 <- read.csv("02_BOAnet/test_Bcin01g00010.csv")
+# 
+# genemodel.plot(model=`Bcin01g00010`, start=5429, bpstop=6804, orientation="forward",xaxis=T)
+# #------------------------------------------------------------------------------------
 
-#for each gene, make a 2-column dataframe with col 1 = type and col 2 = coordinates (range)
-my.boa.mods <- my.gtf.boa[,c("V12","V3","V4","V5")]
-my.boa.mods$coordinates <- paste(my.boa.mods$V4, my.boa.mods$V5, sep="-")
-names(my.boa.mods)[2] <- "type"
-my.boa.mods <- my.boa.mods[,c(1,2,5)]
-#drop empty levels of gene before splitting df
-my.boa.mods$V12 <- droplevels(my.boa.mods$V12)
-#replace "CDS" with "coding_region"
-split.df <- split(my.boa.mods, my.boa.mods$V12)
-#make separate, labeled dfs for each gene
-for (i in 1:length(split.df)){
-  blah <- unique(split.df[[i]]$V12)
-  split.df[[i]] <- split.df[[i]][,c(2:3)]
-  assign(paste(blah), split.df[[i]])
-}
-
-#messy test version in excel
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
-#write.csv(`gene:Bcin01g00010`, "02_BOAnet/test_Bcin01g00010.csv")
-Bcin01g00010 <- read.csv("02_BOAnet/test_Bcin01g00010.csv")
-
-genemodel.plot(model=`Bcin01g00010`, start=5429, bpstop=6804, orientation="forward",xaxis=T)
-
-# myColors <- 
-# my.d.plot$t <- droplevels(my.d.plot$t)
-# names(myColors) <- levels(my.d.plot$t)
-# colScale <- scale_colour_manual(name = "gene",values = myColors)
+#color scale
+my.d.plot$t <- droplevels(my.d.plot$t)
+names(myColors) <- levels(my.d.plot$t)
+colScale <- scale_colour_manual(name = "gene",values = myColors)
 # 
 # mycol <- ifelse(col, 'white', 'gray53')
 # 
@@ -85,16 +88,35 @@ genemodel.plot(model=`Bcin01g00010`, start=5429, bpstop=6804, orientation="forwa
 
 setwd("C:/Users/nesol/Documents/Projects/BcAt_RNAGWAS/data/B05_GEMMA_Bclsm")
 mySNP_boa_named <- read.csv("02b_Haploview/BOA_deletion/binMAF20NA10_chr1_boa_rmcalls.csv", na.strings=c("","NA"))
+#try SNP list without rmcalls to see why there are gaps between genes
+mySNP_boa_b <- read.csv("02b_Haploview/BOA_deletion/binMAF20NA10_chr1_boa_wgenes.csv")
+#gaps (with no SNPs) between genes are due to lack of SNP calls, not our dropped SNPs
 
-snplist <- as.numeric(as.character(t(as.vector(mySNP_boa_named[2,2:length(mySNP_boa_named)]))))
+##check which file
+mySNP_boa <- mySNP_boa_named
+snplist <- as.numeric(as.character(t(as.vector(mySNP_boa[2,2:length(mySNP_boa)]))))
 
+#original plot with all gene models
 my.rect <- my.gtf.boa[,c(4,5,7,3,9,11)]
 y1 <- rep(1, 158)
 y2 <- rep(2, 158)
 x1 <- my.rect[,"V4"]
 x2 <- my.rect[,"V5"]
 t <- my.rect[,"V10"]
+
+#new plot, only one block per gene
+my.gtf.genes <- my.gtf.boa[,c(4,5,9)]
+my.g.min <- aggregate(V4 ~ V10, my.gtf.genes, function(x) min(x))
+my.g.max <- aggregate(V5 ~ V10, my.gtf.genes, function(x) max(x))
+my.g.rect <- merge(my.g.min, my.g.max, by="V10")
+y1 <- rep(1, 21)
+y2 <- rep(2, 21)
+x1 <- my.g.rect[,"V4"]
+x2 <- my.g.rect[,"V5"]
+t <- my.g.rect[,"V10"]
+
 my.d.plot <- data.frame(x1,x2,y1,y2,t)
+library(ggplot2)
 plot1 <- ggplot()+
   scale_y_continuous(limits=c(1,20))+
   scale_x_continuous(name="Distance (kb)", breaks=c(25000, 50000, 75000, 100000), labels=c(25, 50, 75, 100))+
@@ -110,7 +132,7 @@ plot1 <- ggplot()+
 
 #deletion from START to between 160 and 170. 170 is third from last gene
 setwd("~/Projects/BcAt_RNAGWAS/plots/paper")
-jpeg("BOAgenemodels.jpg", width=8, height=4, units='in', res=600)
+jpeg("BOAgenemodels_pergene.jpg", width=8, height=4, units='in', res=600)
 plot1
 dev.off()
 
