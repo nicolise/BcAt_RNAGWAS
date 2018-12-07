@@ -177,23 +177,25 @@ for (j in unique(mydat_plot$chr)) {
     mydat_plot[mydat_plot$chr==j, ]$Index=mydat_plot[mydat_plot$chr==j, ]$ps+lastbase
   }
 }
-#plot by SNP location!
+
+#plotting these multiple peaks per SNP threshold is nothing. Can also try plotting mean # genes per SNP in this overlap list-- takes into account how many of the permutations found it as a hotspot
+
+peaksumm_plot <- aggregate(cbind(mydat_plot$numGenes.1, mydat_plot$numGenes.10), by=list(Chr_ps=mydat_plot$chr_ps), FUN=sum)
+names(peaksumm_plot) <- c("Chr_ps","sumGene.1","sumGene.10")
+setwd("~/Projects/BcAt_RNAGWAS")
+write.csv(peaksumm_plot, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/RandHotspots_Correlation.csv")
+
 library(ggplot2)
-#create a custom color scale
-myColors <- (rep(c("darkred", "indianred1"), 9))
-names(myColors) <- levels(mydat_plot$chr)
-colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 
-ggplot(mydat_plot, aes(x=numGenes.1, y=numGenes.10))+
-      theme_bw()+
-      #colScale+
-      #used stroke = 0 for top 10, not top 1
-      #, stroke=0
-      geom_point(aes(color = factor(chr_ps),alpha=0.001))+
-      labs(list( title=NULL))+
-      theme(legend.position="none")
-+
-      scale_y_continuous(name="Number of Genes", breaks=c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15))+
-      scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))
-
-#this is nothing. Can also try plotting mean # genes per SNP in this overlap list-- takes into account how many of the permutations found it as a hotspot
+setwd("~/Projects/BcAt_RNAGWAS")
+jpeg(paste0("plots/Manhattans/5xRand/BcCol0_RandHotspots_Corr.jpg", sep=""), width=8, height=5, units='in', res=600)
+print(
+ggplot(peaksumm_plot, aes(x=sumGene.1, y=sumGene.10))+
+  theme_bw()+
+  geom_point(aes(color = factor(Chr_ps),alpha=0.001))+
+  labs(list( title=NULL))+
+  theme(legend.position="none")+
+  scale_y_continuous(name="Number of Genes Associated at Top 10 SNP Level")+
+  scale_x_continuous(name="Number of Genes Associated at Top 1 SNP Level")
+)
+dev.off()

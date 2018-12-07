@@ -2,6 +2,19 @@
 #11/05/18
 
 #-----------------------------------------------------------------------------
+rm(list=ls())
+#see which hotspots are also hotspots in the permutation analysis
+#plot/ table: How often is max real p < max permut p?
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
+TopSNPAll <- read.csv("07_TopSNPs/BcAt_allhotspots_TranscCount.csv")
+peaksumm <- read.csv("06_GEMMAsumm_RAND/RandHotspots_Correlation.csv")
+names(TopSNPAll)[2] <- "chr_ps"
+peaksumm <- peaksumm[,2:4]
+names(peaksumm)[1] <- "chr_ps"
+hotspotover <- merge(TopSNPAll, peaksumm, by="chr_ps")
+#what to do with these? remove these hotspots from our final list?
+
+#-----------------------------------------------------------------------------
 #work on thresholding -- summarize across 5 permutations
 #collect max value across 5 permuts for each SNP
 
