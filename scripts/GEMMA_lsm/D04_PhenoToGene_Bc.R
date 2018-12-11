@@ -48,7 +48,7 @@ setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc")
 myPhenos <- NULL
 nameddat <- NA
 mydat <- NA
-myPhenos <- read.table("coi1/02_GEMMA/binMAF20NA10.fam")
+myPhenos <- read.table("col0/02_GEMMA/binMAF20NA10.fam")
 nameslist <- myPhenos[1,6:length(myPhenos)]
 #check that V6 is a real phenotype
 nameslist[1,1:10] #yes

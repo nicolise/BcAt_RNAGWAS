@@ -11,7 +11,7 @@
 #script: /media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachBc_At/A04_runGEMMA_kmat_3genos.sh
 
 rm(list=ls())
-setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachBc_At")
+setwd("/media/nesoltis/")
 
 #read in individual GEMMA output files (1 per geno)
 #read in all files in folder by pattern matching
@@ -22,7 +22,7 @@ for (j in c("col0")){
  for (i in 1:23947){
     #actually: 1:23947 for At
     Sys.time()
-    my_gemma <- read.table(paste("output/",j,"_MAF20NA10_obs_",i,".assoc.txt", sep=""), header=TRUE)
+    my_gemma <- read.table(paste("Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachBc_At/output/",j,"_MAF20NA10_obs_",i,".assoc.txt", sep=""), header=TRUE)
     Sys.time()
     #takes 4 seconds to read 1 phenotype
     #times 24000 = 27 hours
@@ -40,11 +40,16 @@ for (j in c("col0")){
     my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
     mylgsnp <- my_gemma[abs(my_gemma$beta) > 0.5,]
     #this gives an error but it's fine
-    try(ifelse( i == 1, write.table(my_gemma_top100, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100SNPsample.txt", sep=""), sep = ",", col.names = TRUE), write.table(my_gemma_top100, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100SNPsample.txt", sep=""), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(my_gemma_top10, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top10SNPsample.txt", sep=""), sep = ",", col.names = TRUE), write.table(my_gemma_top10, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top10SNPsample.txt", sep=""), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(my_gemma_top1, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top1SNPsample.txt", sep=""), sep = ",", col.names = TRUE), write.table(my_gemma_top1, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top1SNPsample.txt", sep=""), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(my_gemma.z, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_topSNPsample_zscale.txt", sep=""), sep = ",", col.names = TRUE), write.table(my_gemma.z, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_topSNPsample_zscale.txt", sep=""), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(mylgsnp, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100_beta05SNP.txt", sep=""), sep = ",", col.names = TRUE), write.table(mylgsnp, paste("05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100_beta05SNP.txt", sep=""), sep = ",", col.names = FALSE, append = TRUE)))
+    file_top100 <- paste("Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachBc_At/col0/05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100SNPsample.txt", sep="")
+    file_top10 <- paste("Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachBc_At/col0/05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top10SNPsample.txt", sep="")
+    file_top1 <- paste("Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachBc_At/col0/05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top1SNPsample.txt", sep="")
+    file_z <- paste("Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachBc_At/col0/05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_topSNPsample_zscale.txt", sep="")
+    file_beta <- paste("Data/Kliebenstein/Soltis/BcAt_RNAGWAS/GEMMA_eachBc_At/col0/05_GEMMAsumm/",j,"_round2/",j,"_GEMMA_top100_beta05SNP.txt", sep="")
+    try(ifelse( i == 1, write.table(my_gemma_top100, file_top100, sep = ",", col.names = TRUE), write.table(my_gemma_top100, file_top100, sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(my_gemma_top10, file_top10, sep = ",", col.names = TRUE), write.table(my_gemma_top10, file_top10, sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(my_gemma_top1, file_top1, sep = ",", col.names = TRUE), write.table(my_gemma_top1, file_top1, sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(my_gemma.z, file_z, sep = ",", col.names = TRUE), write.table(my_gemma.z, file_z, sep = ",", col.names = FALSE, append = TRUE)))
+    try(ifelse( i == 1, write.table(mylgsnp, file_beta, sep = ",", col.names = TRUE), write.table(mylgsnp, file_beta, sep = ",", col.names = FALSE, append = TRUE)))
     Sys.time()
   }
 }
