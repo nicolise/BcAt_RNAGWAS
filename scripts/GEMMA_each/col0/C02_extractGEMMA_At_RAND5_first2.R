@@ -20,8 +20,8 @@ setwd("/media/nesoltis/Soltis_Klieb_Backup/UNIQUE_FILES/BcAt_RNAGWAS/GEMMA_eachB
 mytime <- Sys.time()
   #each phenotype
 
-for (k in 1:2){ #later, 3:5
-  for (i in 1:2){
+for (k in 1:5){ #later, 3:5
+  for (i in 1:23956){
     #actually: 1:23956 for At
     Sys.time()
     my_gemma <- read.table(paste("04_GEMMAout/col0_5Rand/Rand0",k,"/col0_MAF20NA10_RAND0",k,"_",i,".assoc.txt", sep=""), header=TRUE)
@@ -37,16 +37,16 @@ for (k in 1:2){ #later, 3:5
     my_gemma_top10 <- my_gemma_top100[1:10,]
     my_gemma_top1 <- my_gemma_top10[1,]
     #and z scaling
-    my_gemma.z <- my_gemma
-    my_gemma.z$beta_z <- scale(my_gemma.z$beta, center = TRUE, scale = TRUE)
-    my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
-    mylgsnp <- my_gemma[abs(my_gemma$beta) > 0.5,]
+    #my_gemma.z <- my_gemma
+    #my_gemma.z$beta_z <- scale(my_gemma.z$beta, center = TRUE, scale = TRUE)
+    #my_gemma.z <- my_gemma.z[abs(my_gemma.z$beta_z) > 4,]
+    #mylgsnp <- my_gemma[abs(my_gemma$beta) > 0.5,]
     #this gives an error but it's fine
-    try(ifelse( i == 1, write.table(my_gemma_top100, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100SNPsample.txt"), sep = ",", col.names = TRUE), write.table(my_gemma_top100, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100SNPsample.txt"), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(my_gemma_top10, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top10SNPsample.txt"), sep = ",", col.names = TRUE), write.table(my_gemma_top10, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top10SNPsample.txt"), sep = ",", col.names = FALSE, append = TRUE)))
+    #try(ifelse( i == 1, write.table(my_gemma_top100, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100SNPsample.txt"), sep = ",", col.names = TRUE), write.table(my_gemma_top100, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100SNPsample.txt"), sep = ",", col.names = FALSE, append = TRUE)))
+    #try(ifelse( i == 1, write.table(my_gemma_top10, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top10SNPsample.txt"), sep = ",", col.names = TRUE), write.table(my_gemma_top10, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top10SNPsample.txt"), sep = ",", col.names = FALSE, append = TRUE)))
     try(ifelse( i == 1, write.table(my_gemma_top1, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top1SNPsample.txt"), sep = ",", col.names = TRUE), write.table(my_gemma_top1, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top1SNPsample.txt"), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(my_gemma.z, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNPsample_zscale.txt"), sep = ",", col.names = TRUE), write.table(my_gemma.z, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNPsample_zscale.txt"), sep = ",", col.names = FALSE, append = TRUE)))
-    try(ifelse( i == 1, write.table(mylgsnp, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100_beta05SNP.txt"), sep = ",", col.names = TRUE), write.table(mylgsnp, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNP_beta05.txt"), sep = ",", col.names = FALSE, append = TRUE)))
+    #try(ifelse( i == 1, write.table(my_gemma.z, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNPsample_zscale.txt"), sep = ",", col.names = TRUE), write.table(my_gemma.z, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNPsample_zscale.txt"), sep = ",", col.names = FALSE, append = TRUE)))
+    #try(ifelse( i == 1, write.table(mylgsnp, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_top100_beta05SNP.txt"), sep = ",", col.names = TRUE), write.table(mylgsnp, paste0("06_GEMMAsumm_RAND/col0_GEMMA_RAND",k,"_topSNP_beta05.txt"), sep = ",", col.names = FALSE, append = TRUE)))
     Sys.time()
   }
 }
