@@ -75,6 +75,11 @@ names(full100peaks)[2] <- "numGenes"
 write.csv(fullsumm, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/HotspotSumm_5xRand.csv")
 write.csv(fullpeaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/TopHotspots_3genepeaks.csv")
 write.csv(full100peaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/TopHotspots_100top.csv")
+
+fullpeaks <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/TopHotspots_3genepeaks.csv")
+hipeaks <- fullpeaks[fullpeaks$numGenes > 5,]
+write.csv(hipeaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/PeaksOver5.csv")
+
 #---------------------------------------------------------------------------
 #next, look at deeper hotspots: plot top 10 SNPs per gene per permuation
 #summarize across 5 permutations, without thresholding
@@ -146,9 +151,11 @@ for(i in c(1:5)){
 }
 names(fullpeaks)[2] <- "numGenes"
 names(full100peaks)[2] <- "numGenes"
+setwd("~/Projects/BcAt_RNAGWAS")
 write.csv(fullsumm, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/SNP10_HotspotSumm_5xRand.csv")
 write.csv(fullpeaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/SNP10_TopHotspots_3genepeaks.csv")
 write.csv(full100peaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/SNP10_TopHotspots_100top.csv")
+
 #-------------------------------------------------------------------------------
 #for each permutation hotspot, plot # genes at 1-SNP level vs. # genes at 10-SNP level
 #try for fullpeaks first

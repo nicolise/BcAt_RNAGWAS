@@ -136,7 +136,8 @@ jpeg("BOAgenemodels_pergene.jpg", width=8, height=4, units='in', res=600)
 plot1
 dev.off()
 
-#for BoA
+#------------------------------------------------------------------
+#phylogeny for BoA region
 #use pvclust for clustering with significance/ p values
 library(pvclust)
 #remove SNPs outside of genes
@@ -281,7 +282,7 @@ BoaPhenosAoV <- merge(BoaPhenos,AoVclusts, by = "Isolate")
 fit <- aov(mean.Pheno ~ boa_anova, data=BoaPhenosAoV)
 summary(fit) #N.S. p ~ 0.55
 
-#-----------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------
 #for Net5
 #use pvclust for clustering with significance/ p values
 library(pvclust)
@@ -405,3 +406,8 @@ p + geom_violin(trim=FALSE, draw_quantiles = c(0.25, 0.5, 0.75)) + geom_jitter(h
 dev.off()
 
 #---------------------------------------------------------------------------
+#exploratory analysis: is there a SNP that tags the BOA deletion?
+#try this: using SNP state for all isolates in 0 - 20000 bp (first 20kb) of Chr1
+  #include BOA deletion as a y variable: s/d (snp vs. deletion) for all isolates
+  #model BOA deletion as additive effects of all SNPs
+  #does one SNP tag it?

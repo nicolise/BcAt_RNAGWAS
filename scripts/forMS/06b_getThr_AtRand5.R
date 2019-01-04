@@ -2,7 +2,6 @@
 #11/05/18
 
 #-----------------------------------------------------------------------------
-#will later add thresholding info here. For now, just looking at gene overlap on SNPs
 
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachBc_At")

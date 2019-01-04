@@ -38,6 +38,12 @@ BcSNP4 <- aggregate(Gene.B ~ chr_snp, data = BcSNP2, FUN = function(x){NROW(x)})
 ## choose SNP3 or SNP4 for different plots
 BcSNP5 <- BcSNP4
 AtSNP5 <- AtSNP4
+#first, filter out chr_snp sites if in the hipeaks permutation list
+setwd("~/Projects/BcAt_RNAGWAS")
+hiAtpeaks<- read.csv("data/GEMMA_eachBc_At/06_GEMMAsumm_RAND/PeaksOver20.csv")
+AtSNP5 <- AtSNP5[!AtSNP5$chr_snp %in% hiAtpeaks$chr_ps,]
+hiBcpeaks <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/PeaksOver5.csv")
+BcSNP5 <- BcSNP5[!BcSNP5$chr_snp %in% hiBcpeaks$chr_ps,]
 AllSNP <- merge(BcSNP5, AtSNP5, by="chr_snp", all=TRUE)
 
 # ##method for p values plot
@@ -78,7 +84,7 @@ TopSNPAll <- AllSNP[AllSNP$Gene.A >= 1,]
 TopSNPAll <- TopSNPAll[TopSNPAll$Gene.B >= 1,]
 TopSNPAll$mean.gene <- rowMeans(TopSNPAll[,c("Gene.B", "Gene.A")])
 TopSNPAll <- TopSNPAll[order(-TopSNPAll$mean.gene),]
-TopSNPAll <- TopSNPAll[1:20,1:3]
+TopSNPAll <- TopSNPAll[1:30,1:3]
 
 #plot for both methods
 TopSNPAll <- rbind(TopSNPA, TopSNPB, TopSNPAll)
@@ -120,7 +126,7 @@ plotSNP$logGenA <- log(plotSNP$Gene.A+1)
 #plot with gene counts
 library(ggplot2)
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/paper/TopSNPs_interspecific_transCount_log.jpg", width=8, height=5, units='in', res=600)
+jpeg("plots/paper/TopSNPs_interspecific_transCount_log_rmPermutSNP_thr.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(plotSNP, aes(x=logGenB, y=logGenA))+
     theme_bw()+
@@ -129,84 +135,17 @@ print(
     geom_point(aes(color=factor(Cat), alpha=0.001), stroke=0)+
     theme(legend.position="none")+
     scale_y_continuous(name=expression(paste(italic("A. thaliana "), "log Transcript Count")))+
-    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"log Transcript Count")))
+    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"log Transcript Count")))+
+    geom_hline(yintercept=log(150), linetype=3)+
+    geom_vline(xintercept=log(20), linetype=3)
 )
 dev.off()
 
 #write out top SNPs list to annotate
 setwd("~/Projects/BcAt_RNAGWAS")
 #write.csv(TopSNPAll, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_20topSNPs_pval.csv")
-write.csv(TopSNPAll, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_20topSNPs_TranscCount.csv")
-write.csv(plotSNP, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_allhotspots_TranscCount.csv")
-#-------------------------------------------------------------------------------
-#annotate gene info to these SNPs
-#gtf location: 
-setwd("~/Projects/BcGenome")
-my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
-num.genes <- my.gtf[unique(my.gtf$V12),]
-my.gtf <- my.gtf[,1:14]
-
-my_data <- TopSNPAll
-#need to split out chromosome and snp info if gene hits dataset
-require(reshape)
-my_data = transform(my_data, a = colsplit(chr.snp, split = "\\.", names = c('chr', 'snp')))
-names(my_data)[5:6] <- c("chr","snp")
-
-
-#this is specific to top SNPs dataset
-my_data$chr.A[is.na(my_data$chr.A)] <- 0
-my_data$chr.B[is.na(my_data$chr.B)] <- 0
-my_data$chr <- ifelse(my_data$chr.B == 0, (ifelse(my_data$chr.A == 0, 0, my_data$chr.A)), my_data$chr.B)
-my_data$snp <- ifelse(is.na(my_data$ps.A), my_data$ps.B, ifelse(is.na(my_data$ps.B), my_data$ps.A, my_data$ps.B))
-
-#read in single SNP list
-my.snps <- my_data
-  #calculate gene center
-  #calculate distance gene center to SNP
-  #add gene with min distance
-  #range +-1 kb around each snp: lowrange toprange
-  #match snp chromosome.id to gene V1
-  #1:18 but have no sig SNPs on chr 17, 18 so actually 1:16
-  
-  #associate each plant SNP with nearest gene from my.gtf (this is B05.10 gene annotation)
-  for (j in 1:16){
-    gtf.sub <- my.gtf[my.gtf$V1==paste("Chromosome",j,sep=""),]
-    my.snp.sub <- my.snps[my.snps$chr==j,]
-    #this prevents erroring out if no SNPs within a certain chromosome
-    ifelse(nrow(my.snp.sub) == 0, my.snp.sub <- my.snps[1,], my.snp.sub <- my.snp.sub)
-    #within these matched sets...
-    gtf.sub$midgene <- (gtf.sub$V4 + gtf.sub$V5)/2
-    for (i in c(1:nrow(my.snp.sub))){
-      this.snp <- as.numeric(my.snp.sub[i,"snp"])
-      gtf.sub$genedist <- abs(gtf.sub$midgene - this.snp)
-      my.closest.gene <- which(gtf.sub$genedist == min(gtf.sub$genedist))
-      this.gene <- gtf.sub[my.closest.gene,]
-      #this prevents erroring out if no SNPs within a certain chromosome
-      ifelse(nrow(this.gene) == 0, this.gene <- gtf.sub[1,], this.gene <- this.gene)
-      this.line <- cbind(my.snp.sub[i,], this.gene)
-      this.line$closest.end <- NA
-      ifelse(i == 1, all.genes <- this.line, all.genes <- rbind(all.genes, this.line))
-    }
-    ifelse(j == 1, full.snp.genes <- all.genes, full.snp.genes <- rbind(full.snp.genes, all.genes))
-    #now only keep genes if nearest end is within +-1kb of SNP (2kb window)
-    full.snp.genes$closest.end <- pmin(abs(full.snp.genes$snp - full.snp.genes$V4),abs(full.snp.genes$snp - full.snp.genes$V5)) 
-    full.genes.sub <- full.snp.genes[full.snp.genes$closest.end < 1000,]
-  }
-
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/07_TopSNPs")
-write.csv(full.snp.genes, "BcAt_topBcSNPGenes_numTranscripts.csv")
-#--------------------------------------------------------------------------------
-
-#look for function annotations for these genes!
-rm(list=ls())
-
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/07_TopSNPs")
-full.snp.genes <- read.csv("BcAt_topBcSNPGenes_numTranscripts.csv")
-funclist <- read.csv("BcAt_topBcSNPGenes_funclist.csv")
-names(funclist)[1] <- "Gene"
-full.snp.funcs <- merge(full.snp.genes, funclist, by="Gene")
-write.csv(full.snp.funcs,"BcAt_topBcSNPGenes_numTranscripts_funcannot.csv")
-
+write.csv(TopSNPAll, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_20topSNPs_TranscCount_rmPermutSNP.csv")
+write.csv(plotSNP, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_allhotspots_TranscCount_rmPermutSNP.csv")
 #---------------------------------------------------------------------------------
 #zoom in on genes linked to BcBOA7 hotspot
 #chr.snp is 1.39263, which is just upstream of the gene (but this also means it's between BcBOA6 and BcBOA7)
