@@ -12,6 +12,7 @@ nameslist[1,1:10] #yes
 myGenes <- as.data.frame(t(nameslist))
 names(myGenes)[1] <- "Gene"
 myGenes$pheno <- 1:nrow(myGenes)
+write.csv(myGenes, "")
 #start with 1 file. Loop over all files in directory later
 nameddat <- NA
 mydat <- NA
@@ -55,6 +56,7 @@ nameslist[1,1:10] #yes
 myGenes <- as.data.frame(t(nameslist))
 names(myGenes)[1] <- "Gene"
 myGenes$pheno <- 1:nrow(myGenes)
+write.csv(myGenes, "col0/02_GEMMA/PhenoToGene.csv")
 #start with 1 file. Loop over all files in directory later
 ##change these out to annotate all SNP summaries per GEMMA run
 ## zscaled and beta05 was extracted without the phenotype -- need to redo
