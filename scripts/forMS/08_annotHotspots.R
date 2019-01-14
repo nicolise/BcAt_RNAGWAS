@@ -9,7 +9,6 @@ plotSNP <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_allhotspots_TranscCoun
 # make stringent TopSNP with At > 150, Bc > 20
 
 #split out chr_snp
-strsplit(TopSNPAll$chr_snp, "_")
 library(stringr)
 blah <- as.data.frame(str_split_fixed(TopSNPAll$chr_snp, "_", 2))
 TopSNPAll <- cbind(TopSNPAll, blah)
@@ -36,7 +35,6 @@ my.gtf <- my.gtf[,1:14]
 #range +-1 kb around each snp: lowrange toprange
 #match snp chromosome.id to gene V1
 
-#why is this broken rn-- not finding closest gene
 #associate each plant SNP with nearest gene from my.gtf (this is B05.10 gene annotation)
 for (j in c(1:6,8:16)){ #none on chr 7, 17, 18
   gtf.sub <- my.gtf[my.gtf$V1==paste("Chromosome",j,sep=""),]
