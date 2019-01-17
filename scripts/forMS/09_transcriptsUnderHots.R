@@ -51,12 +51,13 @@ names(funclist)[1] <- "Gene"
 Bc_fn <- merge(BcDat_summ, funclist, by="Gene", all.x=TRUE)
 write.csv(Bc_fn,"data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/Bc_Hotspot_funcannot.csv")
 
-#and try connecting this list to Vivian's lists! oooo
+#and try connecting this list to Vivian's Bc lists! oooo
 setwd("~/Projects/BcAt_RNAGWAS/data")
 HiHerit <- read.csv("Vivian_Bc/Wei2018_SDS5_TopHerit.csv")
 LesCor <- read.csv("Vivian_Bc/Wei2018_SDS6_CorLesBcTranscripts.csv")
 BcNets <- read.csv("Vivian_Bc/Wei2018_SDS7_BcNetworkGeneList.csv")
 MixNets <- read.csv("Vivian_Bc/Wei2018_SDS8_AtBcNetworkGeneList.csv")
+
 
 require(reshape)
 #HiHerit
@@ -90,6 +91,40 @@ write.csv(Bc.gene.mixnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/Bc_SDS8_HotSp
 #MixNets
 At.gene.mixnets <- merge(AtDat_summ, MixNets, by = "Gene")
 write.csv(At.gene.mixnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/At_SDS8_HotSpots.csv")
+
+#and her At genes list for networks
+setwd("~/Projects/BcAt_RNAGWAS/data")
+#figure 5: gene co-expression networks
+#supp fig 5: gene co-expression archictecture Col-0
+#table 5: hub genes and bottlenecks
+AtHub <- read.csv("Vivian_At/Table5_HubGenes.csv")
+#SDS 6: genes condensed in co-expression networks
+AtGCN <- read.csv("Vivian_At/SDS6_GCN.csv")
+#SDS 8: tables of top 5% genes from PCA
+AtPCA <- read.csv("Vivian_At/SDS8_top5pctGenes.csv")
+
+#remove empty column
+AtDat_summ <- AtDat_summ[,-c(1)]
+#AtHub
+names(AtHub)[1:2] <- c("Network","Gene")
+At.gene.hub <- merge(AtDat_summ, AtHub, by="Gene") #50 genes
+write.csv(At.gene.hub, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/At_2016_Table5_Hotspots.csv")
+#AtGCN
+names(AtGCN)[1:2] <- c("NetworkMember","Gene")
+At.gene.gcn <- merge(AtDat_summ, AtGCN, by="Gene") #529 genes
+write.csv(At.gene.gcn, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/At_2016_SDS6_Hotspots.csv")
+#just gene hits
+At.gene.gcn.sm <- At.gene.gcn[,c("Gene","HotSpotNearestGene","Gene.Name")]
+At.gene.gcn.sm <- unique(At.gene.gcn.sm)
+write.csv(At.gene.gcn.sm, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/At_2016_SDS6_Hotspots_summary.csv")
+#AtPCA
+names(AtPCA)[1] <- "Gene"
+At.gene.pca <- merge(AtDat_summ, AtPCA, by="Gene")#233 genes
+write.csv(At.gene.pca, "GEMMA_eachAt_Bc/07_TopSNPS/BcAt_permut/At_2016_SDS8_Hotspots.csv")
+#just gene hit counts
+At.gene.pca.sm <- At.gene.pca[,c("Gene","HotSpotNearestGene","Gene.Name")]
+At.gene.pca.sm <- unique(At.gene.pca.sm) #146
+write.csv(At.gene.pca.sm, "GEMMA_eachAt_Bc/07_TopSNPS/BcAt_permut/At_2016_SDS8_Hotspots_summary.csv")
 #------------------------------------------------------------------------------------------------
 #now, split out into lists according to which hotspot each transcript is linked to
 #first, remove extra levels of factor
