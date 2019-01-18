@@ -90,6 +90,8 @@ for (i in unique(mydat_plot$chr.snp)) {
     mydat_plot[mydat_plot$chr.snp==i, ]$Index.s=mydat_plot[mydat_plot$chr.snp==i, ]$ps+lastbase
   }
 }
+setwd("~/Projects/BcAt_RNAGWAS")
+write.csv(mydat_plot, "data/GEMMA_eachAt_Bc/06_GEMMAsumm/GeneNames/SNPannot/col0_GEMMA_top1SNPsample_genes_indexed.csv")
 
 #-------------------------------------------------------------------------------------
 #plot by SNP location! (disregard transcript location- just want hotspots)
