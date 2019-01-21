@@ -43,13 +43,14 @@ names(myColors) <- levels(MyHots$HotspotCategory)
 colScale <- scale_colour_manual(name = "Trait",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/paper/BcAt_HotSpots_LinearPlot.jpg", width=10, height=2, units='in', res=600)
+jpeg("plots/paper/BcAt_HotSpots_LinearPlot_b.jpg", width=10, height=3, units='in', res=600)
 print(
-  ggplot(mydat_plot, aes(x=Index, y=(0), size=NumGenes))+
+  ggplot(mydat_plot, aes(x=Index, y=(CatYAxis*0.1), size=NumGenes))+
     theme_bw()+
     colScale+
     geom_point(aes(color=factor(HotspotCategory),alpha=0.1))+
     labs(list(y=NULL, title=NULL))+
+   scale_y_continuous(limits = c(-1,1))+
     theme(legend.position="none")+
     scale_size_continuous(range = c(2, 20))+
     scale_x_continuous(name="Chromosome", breaks = c(2029725, 5715883, 9002014, 11775203, 14410595, 17176482, 19845645, 22470978, 25004941, 27457400, 29808907, 32126298, 34406278, 36587755, 38708818, 40640197, 41655662, 41838837), labels = c("1", "2", "3", "4", "5", "6", "7","8", "9", "10", "11", "12", "13", "14", "15", "16", "17","18"))
