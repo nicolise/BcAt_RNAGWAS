@@ -53,29 +53,32 @@ AllSNP$Gene.A[is.na(AllSNP$Gene.A)] <- 0
 TopSNPB <- AllSNP[AllSNP$Gene.A==0,]
 TopSNPB <- TopSNPB[order(-TopSNPB$Gene.B),]
 TopSNPB <- TopSNPB[1:20,]
+TopSNPB$Cat <- "B"
 #method for A
 TopSNPA <- AllSNP[AllSNP$Gene.B==0,]
 TopSNPA <- TopSNPA[order(-TopSNPA$Gene.A),]
 TopSNPA <- TopSNPA[1:20,]
-#overlap based on significance
-TopSNPAll <- AllSNP[AllSNP$Gene.A >= 20,]
-TopSNPAll <- TopSNPAll[TopSNPAll$Gene.B >= 150,]
+TopSNPA$Cat <- "A"
+#overlap based on significance: only 5
+TopSNPAll <- AllSNP[AllSNP$Gene.A >= 150,]
+TopSNPAll <- TopSNPAll[TopSNPAll$Gene.B >= 20,]
 TopSNPAll$mean.gene <- rowMeans(TopSNPAll[,c("Gene.B", "Gene.A")])
 TopSNPAll <- TopSNPAll[order(-TopSNPAll$mean.gene),]
-TopSNPAll <- TopSNPAll[1:30,1:3]
+TopSNPAll <- TopSNPAll[,1:3]
+TopSNPAll$Cat <- "both"
 
 #plot for both methods
 TopSNPAll <- rbind(TopSNPA, TopSNPB, TopSNPAll)
-TopSNPAll$Cat <- "A"
-TopSNPcolor <- TopSNPAll[,c("chr_snp","Cat")]
+TopSNPAll$ColCat <- "A"
+TopSNPcolor <- TopSNPAll[,c("chr_snp","ColCat")]
 plotSNP <- merge(AllSNP,TopSNPcolor,by="chr_snp", all=TRUE)
-plotSNP$Cat[is.na(plotSNP$Cat)] <- "B"
-plotSNP$Cat <- as.factor(plotSNP$Cat)
+plotSNP$ColCat[is.na(plotSNP$ColCat)] <- "B"
+plotSNP$ColCat <- as.factor(plotSNP$ColCat)
 
 library(ggplot2)
 myColors <- c("navyblue", "royalblue1")
-names(myColors) <- levels(plotSNP$Cat)
-colScale <- scale_colour_manual(name = "Cat",values = myColors)
+names(myColors) <- levels(plotSNP$ColCat)
+colScale <- scale_colour_manual(name = "ColCat",values = myColors)
 
 #plot with gene counts
 library(ggplot2)
@@ -86,10 +89,10 @@ print(
     theme_bw()+
     colScale+
     #
-    geom_point(aes(color=factor(Cat), alpha=0.001), stroke=0)+
+    geom_point(aes(color=factor(ColCat), alpha=0.001), stroke=0)+
     theme(legend.position="none")+
-    scale_y_continuous(name=expression(paste(italic("A. thaliana "), "Gene Count")))+
-    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"Gene Count")))
+    scale_y_continuous(name=expression(paste(italic("A. thaliana "), "Transcript Count")))+
+    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"Transcript Count")))
   #geom_hline(yintercept=log(150), linetype=3)+
   #geom_vline(xintercept=log(20), linetype=3)
 )
@@ -110,8 +113,8 @@ print(
     #
     geom_point(aes(color=factor(Cat), alpha=0.001), stroke=0)+
     theme(legend.position="none")+
-    scale_y_continuous(name=expression(paste(italic("A. thaliana "), "log Gene Count")))+
-    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"log Gene Count")))
+    scale_y_continuous(name=expression(paste(italic("A. thaliana "), "log Transcript Count")))+
+    scale_x_continuous(name=expression(paste(italic("B. cinerea "),"log Transcript Count")))
     #geom_hline(yintercept=log(150), linetype=3)+
     #geom_vline(xintercept=log(20), linetype=3)
 )
@@ -123,28 +126,3 @@ setwd("~/Projects/BcAt_RNAGWAS")
 write.csv(TopSNPAll, "data/GEMMA_eachAt_Bc/07_TopSNPs/Top10SNP_BcAt_20topSNPs_HotSpot_rmPermutSNP.csv")
 write.csv(plotSNP, "data/GEMMA_eachAt_Bc/07_TopSNPs/Top10SNP_BcAt_allhotspots_HotSpot_rmPermutSNP.csv")
 #---------------------------------------------------------------------------------
-#zoom in on genes linked to BcBOA7 hotspot
-#chr.snp is 1.39263, which is just upstream of the gene (but this also means it's between BcBOA6 and BcBOA7)
-
-#check which genes are associated!
-rm(list=ls())
-setwd("~/Projects/BcAt_RNAGWAS/data/")
-#read in top 1 SNP lists from each
-#could also use the SNPannot?
-BcSNP  <- read.csv("GEMMA_eachAt_Bc/06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
-head(BcSNP)
-AtSNP <- read.csv("GEMMA_eachBc_At/05_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
-head(AtSNP)
-#add variable for chr.snp, then merge files on this
-AtSNP$chr.snp <- paste(AtSNP$chr, AtSNP$ps, sep=".")
-BcSNP$chr.snp <- paste(BcSNP$chr, BcSNP$ps, sep=".")
-BcSNP2 <- BcSNP[,c(3,5,16,15,17)]
-BcSNP2$log10p <- -log10(BcSNP2$p_score)
-names(BcSNP2) <- c("chr.B","ps.B","Gene.B","p.B","chr.snp","log10p.B")
-
-AtBOA <- AtSNP[AtSNP$chr.snp=="1.39263",]
-BcBOA <- BcSNP[BcSNP$chr.snp=="1.39263",]
-AtBOA <- AtBOA[,-c(3)]
-myBOA <- rbind(BcBOA,AtBOA)
-write.csv(myBOA, "GEMMA_eachAt_Bc/07_TopSNPs/BcAtgenes_BcBOA7list.csv")
-
