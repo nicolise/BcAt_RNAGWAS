@@ -16,6 +16,8 @@ names(TopSNPAll)[7] <- "chr"
 names(TopSNPAll)[8] <- "pos"
 TopSNPAll$chr <- as.numeric(paste(TopSNPAll$chr))
 TopSNPAll$pos <- as.numeric(paste(TopSNPAll$pos))
+TopSNPAll <- TopSNPAll[order(c(TopSNPAll$chr, TopSNPAll$pos)),]
+TopSNPAll <- TopSNPAll[1:45,]
 
 #gtf location: 
 setwd("~/Projects/BcGenome")
@@ -30,14 +32,14 @@ my.gtf <- my.gtf[,1:14]
 #match snp chromosome.id to gene V1
 
 #associate each plant SNP with nearest gene from my.gtf (this is B05.10 gene annotation)
-for (j in c(1,3:6,8:14,16)){ #none on chr 2,7,15,17,18
+for (j in c(1:6,8:14,16)){ #none on chr 7,15,17,18
   gtf.sub <- my.gtf[my.gtf$V1==paste("Chromosome",j,sep=""),]
   TopSNP.sub <- TopSNPAll[TopSNPAll$chr==j,]
   #within these matched sets...
   gtf.sub$midgene <- (gtf.sub$V4 + gtf.sub$V5)/2
   
   for (i in c(1:nrow(TopSNP.sub))){
-    this.snp <- as.numeric(TopSNP.sub[i,7])
+    this.snp <- as.numeric(TopSNP.sub[i,8]) #check that this is the positional info/ SNP location
     gtf.sub$genedist <- abs(gtf.sub$midgene - this.snp)
     my.closest.gene <- which(gtf.sub$genedist == min(gtf.sub$genedist))
     this.gene <- gtf.sub[my.closest.gene,]
@@ -50,12 +52,12 @@ for (j in c(1,3:6,8:14,16)){ #none on chr 2,7,15,17,18
 TopSNP.genes$pos <- as.numeric(unlist(TopSNP.genes$pos))
 TopSNP.genes$closest.end <- pmin(abs(TopSNP.genes$pos - TopSNP.genes$V4),abs(TopSNP.genes$pos - TopSNP.genes$V5)) 
 TopSNP.genes.sub <- TopSNP.genes[TopSNP.genes$closest.end < 2000,]
+#at this point, includes multiple transcripts per gene and multiple SNPs per gene
 setwd("~/Projects/BcAt_RNAGWAS")
-write.csv(TopSNP.genes, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/BcAt_top10SNP_hotspot_Genes.csv")
+write.csv(TopSNP.genes, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/BcAt_top10SNP_hotspot_Genes.csv")
 blah <- as.data.frame(unique(TopSNP.genes$V12))
-write.csv(blah, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/BcAt_top10SNP_hotspot_geneNames.csv")
+write.csv(blah, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/BcAt_top10SNP_hotspot_geneNames.csv")
 #--------------------------------------------------------------------------------
-##start here to edit... troubleshooting where single hotspot appears separately for 2 genomes
 #look for function annotations for these genes!
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/")
@@ -65,7 +67,7 @@ funclist <- funclist[,-c(1)]
 names(funclist)[1] <- "Gene"
 #could filter out ind-SNP info at this stage and only keep one record per gene... also sum across SNPs for hotspot info
 #and take minimum of closest.end
-full.genes <- full.snp.genes[,c(2,3,4,6,8:13,18,20:25)]
+full.genes <- full.snp.genes
 full.genes <- unique(full.genes)
 names(full.genes)
 library(dplyr)
@@ -79,14 +81,15 @@ fg.sum <- full.genes %>%
             midgene = mean(midgene),
             closest.end = min(closest.end)
             )
-fg.deets <- full.genes[,c("Gene","chr","Cat","V2","V6","V14")]
+fg.deets <- full.genes[,c("Gene","chr","Cat","V14")]
 fg.deets <- unique(fg.deets)
 fg.sum <- merge(fg.sum, fg.deets, by="Gene")
 fg.sum <- unique(fg.sum)
 
 full.gene.funcs <- merge(fg.sum, funclist, by="Gene", all.x=T)
-write.csv(full.gene.funcs,"data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/BcAt_top10SNP_hotspots_funcannot.csv")
+write.csv(full.gene.funcs,"data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/BcAt_top10SNP_hotspots_funcannot.csv")
 
+##START HERE
 #and try connecting this list to Vivian's lists! oooo
 setwd("~/Projects/BcAt_RNAGWAS/data")
 HiHerit <- read.csv("Wei_Bc/Wei2018_SDS5_TopHerit.csv")
@@ -115,10 +118,10 @@ write.csv(full.gene.lescor, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/SDS
 BcNets <- transform(BcNets, a = colsplit(GeneID, split = "\\.", names = c('Gene', 'Transc')))
 names(BcNets)[13] <- "Gene"
 full.gene.bcnets <- merge(fg.sum, BcNets, by = "Gene")
-write.csv(full.gene.bcnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/SDS7_Bc_topGene.csv")
+write.csv(full.gene.bcnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/SDS7_Bc_topGene.csv")
 #MixNets
 MixNets <- transform(MixNets, a = colsplit(GeneID, split = "\\.", names = c('Gene', 'Transc')))
 names(MixNets)[10] <- "Gene"
 full.gene.mixnets <- merge(fg.sum, MixNets, by = "Gene")
-write.csv(full.gene.mixnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/SDS8_Bc_topGene.csv")
-#-----------------------------------------------------------------------
+write.csv(full.gene.mixnets, "GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/SDS8_Bc_topGene.csv")
+#------------------------------------------------------------------------------------------------

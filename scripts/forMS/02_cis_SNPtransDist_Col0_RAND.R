@@ -144,3 +144,85 @@ ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) +
                      labels = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4))+
   theme_bw()
 dev.off()
+#-----------------------------------------------------------------------------------------
+#histogram-type plot for figure SX1 from 5x permutation
+rm(list=ls())
+setwd("~/Projects/BcAt_RNAGWAS/")
+for(i in c(1:5)){
+  myranddat <- read.csv(paste0("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/col0_GEMMA_RAND",i,"_top1SNPsample.txt", sep=''))
+  myranddat$Round <- i 
+  ifelse(i == 1, fulldat <- myranddat, fulldat <- rbind(fulldat, myranddat))
+}
+#now, calculate distance from SNP to gene center for EACH phenotype
+#then, keep only MINIMUM distance for each phenotype (gene) -- this summarizes across all 5 permuts
+
+#first, annotate with gene names
+myPhenos <- read.table("data/GEMMA_eachAt_Bc/02_GEMMA/binMAF20NA10.fam")
+nameslist <- myPhenos[1,6:length(myPhenos)]
+#check that V6 is a real phenotype
+nameslist[1,1:10] #yes
+myGenes <- as.data.frame(t(nameslist))
+names(myGenes)[1] <- "Gene"
+myGenes$pheno <- 1:nrow(myGenes)
+nameddat <- merge(fulldat, myGenes, by = "pheno")
+
+#now, attach gene position info
+setwd("~/Projects/BcGenome")
+my.gtf <- read.table("data/ensembl/B05.10/extractedgff/Botrytis_cinerea.ASM83294v1.38.chrom.gtf", fill=TRUE)
+num.genes <- my.gtf[unique(my.gtf$V12),]
+my.gtf <- my.gtf[,1:14]
+#clean up variables for matching
+my.gtf$midgene <- (my.gtf$V4 + my.gtf$V5)/2
+my.gtf.genes <- my.gtf[,c("V1","V3","V4","V5","V10","V12","V14")]
+my.gtf.genes$V12 <- gsub("^gene:","", my.gtf.genes$V12)
+my.gtf.genes$V10 <- gsub("^transcript:","", my.gtf.genes$V10)
+names(my.gtf.genes) <- c("chr", "exon","start","stop","transcript","Gene","GeneName")
+my.gtf.genes$chr <- gsub("^Chromosome","", my.gtf.genes$chr)
+#rename for adding info to transcript data specifically (phenotype)
+names(my.gtf.genes)[1:7] <- c("chr.t","exon.t","start.t","stop.t","transcript.t","gene.t","genename.t")
+#oops, my.gtf.genes alone is too big to work with for merge
+library("dplyr")
+my.gtf_genesumm <- my.gtf.genes %>%
+  group_by(transcript.t, genename.t, chr.t) %>%
+  summarize(start.t = min(start.t, na.rm=TRUE),
+            stop.t = max(stop.t, na.rm=TRUE))
+
+mydat.genes <- nameddat
+names(mydat.genes)[16] <- "transcript.t"
+fulldat <- merge(mydat.genes, my.gtf_genesumm, by="transcript.t")
+
+head(fulldat)
+my.gtf_genesumm$mid.t <- (my.gtf_genesumm$stop.t + my.gtf_genesumm$start.t)/2
+
+
+fulldat$gene.t <- gsub("\\.[0-9]$", '', fulldat$transcript.t)
+fulldat$midgene.t <- (fulldat$stop.t + fulldat$start.t)/2
+
+#Make plotting variables for transcript distance histogram
+mydat_plot <- fulldat
+mydat_plot$ts_dist <- ifelse(mydat_plot$chr == mydat_plot$chr.t, abs(mydat_plot$mid.t - mydat_plot$ps), 0)
+mydat_plot_hist <- mydat_plot[mydat_plot$ts_dist > 0,]
+#now only keep minimum distance per transcript (across 5 permutations)
+mydat_plot_hist <- mydat_plot_hist %>%
+  group_by(transcript.t) %>%
+  summarize(ts_dist = min(ts_dist, na.rm=TRUE))
+
+my.gtf_genesumm <- my.gtf.genes %>%
+  group_by(transcript.t, genename.t, chr.t) %>%
+  summarize(start.t = min(start.t, na.rm=TRUE),
+            stop.t = max(stop.t, na.rm=TRUE))
+
+#for half-page: width = 6.5
+#for quarter-page: width = 3.25
+library(ggplot2)
+setwd("~/Projects/BcAt_RNAGWAS")
+##check output name
+jpeg(paste("plots/paper/5xrandsumm_tsdisthist.jpg", sep=""), width=3.25, height=4, units='in', res=600)
+ggplot(data=mydat_plot_hist, aes(mydat_plot_hist$ts_dist)) + 
+  geom_histogram(fill="slateblue1", col="black", alpha=0.4, breaks=seq(0, 4e+06, by = 100000), aes(y =..density..))+
+  labs(x="Distance (Mb)", y="Frequency")+
+  geom_density()+
+  scale_x_continuous(breaks = c(0, 5e+5, 1e+6, 1.5e+6, 2e+6, 2.5e+6, 3e+6, 3.5e+6, 4e+6),
+                     labels = c(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4))+
+  theme_bw()
+dev.off()

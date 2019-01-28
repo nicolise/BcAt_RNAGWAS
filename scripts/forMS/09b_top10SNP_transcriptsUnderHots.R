@@ -7,7 +7,7 @@ rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS")
 TopSNP.genes <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/BcAt_top10SNP_hotspot_Genes_ed.csv")
 SigHots <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/BcAt_top10SNP_sigHots.csv")
-SigHot.genes <- TopSNP.genes[TopSNP.genes$Gene %in% SigHots$Gene,]
+SigHot.genes <- TopSNP.genes[TopSNP.genes$Gene %in% SigHots$Gene,] #still need to add annots for these when botportal is back up
 
 #get Bc transcripts under sig hotspots
 BcDat <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm/GeneNames/col0_GEMMA_top10SNPsample.csv")
@@ -23,7 +23,7 @@ BcDat_sig <- BcDat[BcDat$chr_snp %in% SigHot.genes$chr_snp,]
 AtDat_sig <- AtDat[AtDat$chr_snp %in% SigHot.genes$chr_snp,]
 
 SH.genes <- SigHot.genes[,c("Gene","chr_snp")]
-SH.genes <- unique(SH.genes) #cool, 71 hotspots. manageable.
+SH.genes <- unique(SH.genes) #cool, 45 hotspots. manageable.
 names(SH.genes)[1] <- "HotSpotNearestGene"
 
 BcDat_sig <- merge(BcDat_sig, SH.genes, by="chr_snp")
@@ -41,14 +41,16 @@ write.csv(AtDat_summ, "data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/At_g
 rm(list=ls())
 setwd("~/Projects/BcAt_RNAGWAS/")
 
-BcDat_summ <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/Bc_genesUnderSigHotspots.csv")
-AtDat_summ <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/At_genesUnderSigHotspots.csv")
+BcDat_summ <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/Bc_genesUnderSigHotspots.csv")
+AtDat_summ <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/At_genesUnderSigHotspots.csv")
 BcDat_summ <- BcDat_summ[,-c(1)]
+AtDat_summ <- AtDat_summ[,-c(1)]
 
 funclist <- read.csv("data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/Bc_HotSpot_Botportal.csv")
 names(funclist)[1] <- "Gene"
 
-Bc_fn <- merge(BcDat_summ, funclist, by="Gene", all.x=TRUE)
+Bc_fn <- merge(BcDat_summ, funclist, by="Gene", all.x=TRUE) 
+#pull more annotations when botportal is back up and running
 write.csv(Bc_fn,"data/GEMMA_eachAt_Bc/07_TopSNPs/BcAt_permut/top10SNP/Bc_Hotspot_funcannot.csv")
 
 #and try connecting this list to Wei's Bc lists! oooo
