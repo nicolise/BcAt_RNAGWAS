@@ -121,7 +121,8 @@ mydat_summ_ngene <- unique(mydat_summ_ngene)
 
 library(ggplot2)
 #create a custom color scale
-myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
+cols <- c("darkgreen","palegreen3")
+myColors <- rep(cols,9)
 names(myColors) <- levels(mydat_summ_ngene$chr.snp)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 

@@ -41,17 +41,9 @@ names(myGenes)[1] <- "Gene"
 myGenes$pheno <- 1:nrow(myGenes)
 #start with 1 file. Loop over all files in directory later
 ##change these out to annotate all SNP summaries per GEMMA run
-<<<<<<< HEAD
-mydat <- read.table("06_GEMMAsumm/npr1_GEMMA_top1SNPsample.txt", sep=",", row.names=NULL)
-=======
 mydat <- read.table("05_GEMMAsumm/col0_GEMMA_top100SNPsample.txt", sep=",", row.names=NULL)
->>>>>>> 97074fb931b77f5856de8808ccfd2d3ea08f4211
 #, row.names=NULL
 names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 ##match name here
-<<<<<<< HEAD
-write.csv(nameddat, "06_GEMMAsumm/GeneNames/npr1_GEMMA_top1SNPsample.csv")
-=======
 write.csv(nameddat, "05_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
->>>>>>> 97074fb931b77f5856de8808ccfd2d3ea08f4211
