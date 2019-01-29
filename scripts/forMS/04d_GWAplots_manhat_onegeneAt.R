@@ -2,14 +2,12 @@
 #07/20/18
 
 #--------------------------------------------------------------------------------------
-#manhattany plot of SNP location for top 1 SNPs of Bc reads across ALL GENES 
-
-#from GEMMA_lsm/D_GWAplots
+#manhattan plot
 
 rm(list=ls())
 #start with a small file
-setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc/")
-mydat <- read.table("04_GEMMAout/col0/col0_MAF20NA10_5.assoc.txt", sep="\t", header=TRUE)
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachBc_At/")
+mydat <- read.table("04_GEMMAout/col0_MAF20NA10_obs_1.assoc.txt", sep="\t", header=TRUE)
 
 #Make plotting variables for snp
 mydat_plot <- mydat[order(mydat$chr, mydat$ps),]
@@ -27,22 +25,21 @@ for (i in unique(mydat_plot$chr)) {
 }
 
 #-------------------------------------------------------------------------------------
-#plot by SNP location! (disregard transcript location- just want hotspots)
+#plot by SNP location! 
 library(ggplot2)
 #create a custom color scale
-#myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
-myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
+#myColors <- c("grey20", "grey60")
+cols <- c("darkgreen","palegreen3")
+myColors <- rep(cols,9)
 names(myColors) <- levels(mydat_plot$chr)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/Manhattans/BcCol0_gene5_bySNP.jpg", width=10, height=6, units='in', res=600)
+jpeg("plots/Manhattans/AtCol0_chr1gene1_bySNP.jpg", width=10, height=6, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index, y=(-log10(mydat_plot$p_score))))+
     theme_bw()+
     colScale+
-    #used stroke = 0 for top 10, not top 1
-    #, stroke=0)+
     geom_point(aes(color = factor(chr),alpha=0.001))+
     scale_y_continuous(name="-log10(p)")+
     theme(legend.position="none")+
