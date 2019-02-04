@@ -1,0 +1,116 @@
+﻿Analysis Type:,PANTHER Overrepresentation Test (Released 20181113),,,,,
+Annotation Version and Release Date:,GO Ontology database  Released 2019-01-01,,,,,
+Analyzed List:,upload_1 (Arabidopsis thaliana),,,,,
+Reference List:,Arabidopsis thaliana (all genes in database),,,,,
+Test Type:,FISHER,,,,,
+Correction:,BONFERRONI,,,,,
+Bonferroni count:,2718,,,,,
+GO biological process complete,Arabidopsis thaliana - REFLIST (27581),upload_1 (2697),upload_1 (expected),upload_1 (over/under),upload_1 (fold Enrichment),upload_1 (P-value)
+plastid transcription (GO:0042793),10,9,0.98,+,9.2,3.82E-02
+photosynthetic electron transport chain (GO:0009767),39,20,3.81,+,5.24,2.31E-04
+chlorophyll biosynthetic process (GO:0015995),37,17,3.62,+,4.7,6.88E-03
+citrate metabolic process (GO:0006101),41,17,4.01,+,4.24,2.04E-02
+tricarboxylic acid cycle (GO:0006099),41,17,4.01,+,4.24,2.04E-02
+porphyrin-containing compound biosynthetic process (GO:0006779),46,19,4.5,+,4.22,6.31E-03
+glucose metabolic process (GO:0006006),45,18,4.4,+,4.09,1.65E-02
+"photosynthesis, light reaction (GO:0019684)",127,50,12.42,+,4.03,2.38E-10
+tricarboxylic acid metabolic process (GO:0072350),46,18,4.5,+,4,2.11E-02
+photosynthesis (GO:0015979),189,73,18.48,+,3.95,1.19E-15
+indole-containing compound biosynthetic process (GO:0042435),50,19,4.89,+,3.89,1.67E-02
+tetrapyrrole biosynthetic process (GO:0033014),50,19,4.89,+,3.89,1.67E-02
+chlorophyll metabolic process (GO:0015994),56,21,5.48,+,3.83,6.55E-03
+aromatic amino acid family biosynthetic process (GO:0009073),60,21,5.87,+,3.58,1.58E-02
+porphyrin-containing compound metabolic process (GO:0006778),69,23,6.75,+,3.41,1.13E-02
+tetrapyrrole metabolic process (GO:0033013),71,23,6.94,+,3.31,1.67E-02
+generation of precursor metabolites and energy (GO:0006091),330,104,32.27,+,3.22,1.13E-17
+indole-containing compound metabolic process (GO:0042430),91,28,8.9,+,3.15,3.99E-03
+hexose metabolic process (GO:0019318),86,26,8.41,+,3.09,1.22E-02
+protein transmembrane transport (GO:0071806),83,25,8.12,+,3.08,1.94E-02
+chloroplast organization (GO:0009658),217,65,21.22,+,3.06,1.87E-09
+plastid organization (GO:0009657),285,84,27.87,+,3.01,1.82E-12
+intracellular protein transmembrane transport (GO:0065002),82,24,8.02,+,2.99,4.37E-02
+electron transport chain (GO:0022900),101,29,9.88,+,2.94,8.28E-03
+pigment biosynthetic process (GO:0046148),107,29,10.46,+,2.77,2.94E-02
+monosaccharide metabolic process (GO:0005996),116,31,11.34,+,2.73,1.63E-02
+pigment metabolic process (GO:0042440),128,34,12.52,+,2.72,6.05E-03
+energy derivation by oxidation of organic compounds (GO:0015980),136,34,13.3,+,2.56,2.23E-02
+cellular amino acid biosynthetic process (GO:0008652),202,49,19.75,+,2.48,4.17E-04
+response to cadmium ion (GO:0046686),345,83,33.74,+,2.46,3.92E-08
+cofactor biosynthetic process (GO:0051188),252,60,24.64,+,2.43,2.97E-05
+alpha-amino acid biosynthetic process (GO:1901607),180,42,17.6,+,2.39,7.11E-03
+response to metal ion (GO:0010038),478,98,46.74,+,2.1,1.31E-06
+cofactor metabolic process (GO:0051186),499,102,48.79,+,2.09,7.25E-07
+response to water deprivation (GO:0009414),346,70,33.83,+,2.07,5.89E-04
+response to water (GO:0009415),353,71,34.52,+,2.06,7.41E-04
+alpha-amino acid metabolic process (GO:1901605),271,54,26.5,+,2.04,2.17E-02
+protein localization to organelle (GO:0033365),302,58,29.53,+,1.96,2.63E-02
+organic acid biosynthetic process (GO:0016053),521,100,50.95,+,1.96,1.55E-05
+carboxylic acid biosynthetic process (GO:0046394),521,100,50.95,+,1.96,1.55E-05
+small molecule biosynthetic process (GO:0044283),670,127,65.52,+,1.94,3.24E-07
+cellular amino acid metabolic process (GO:0006520),377,71,36.86,+,1.93,5.94E-03
+response to temperature stimulus (GO:0009266),622,117,60.82,+,1.92,2.23E-06
+response to salt stress (GO:0009651),590,110,57.69,+,1.91,1.43E-05
+response to inorganic substance (GO:0010035),945,174,92.41,+,1.88,8.08E-10
+response to osmotic stress (GO:0006970),665,122,65.03,+,1.88,4.65E-06
+drug metabolic process (GO:0017144),543,98,53.1,+,1.85,3.16E-04
+heterocycle biosynthetic process (GO:0018130),716,129,70.01,+,1.84,3.69E-06
+sulfur compound metabolic process (GO:0006790),378,68,36.96,+,1.84,3.10E-02
+carboxylic acid metabolic process (GO:0019752),882,158,86.25,+,1.83,7.68E-08
+response to cold (GO:0009409),428,76,41.85,+,1.82,1.57E-02
+response to oxidative stress (GO:0006979),424,75,41.46,+,1.81,2.06E-02
+aromatic compound biosynthetic process (GO:0019438),816,143,79.79,+,1.79,2.08E-06
+oxoacid metabolic process (GO:0043436),1030,176,100.72,+,1.75,1.54E-07
+organic acid metabolic process (GO:0006082),1032,176,100.91,+,1.74,1.61E-07
+response to abiotic stimulus (GO:0009628),2098,355,205.15,+,1.73,1.18E-17
+organic cyclic compound biosynthetic process (GO:1901362),930,157,90.94,+,1.73,3.61E-06
+oxidation-reduction process (GO:0055114),937,158,91.62,+,1.72,3.04E-06
+response to light stimulus (GO:0009416),739,124,72.26,+,1.72,2.93E-04
+small molecule metabolic process (GO:0044281),1587,266,155.18,+,1.71,6.11E-12
+response to radiation (GO:0009314),760,125,74.32,+,1.68,6.06E-04
+establishment of protein localization (GO:0045184),707,116,69.13,+,1.68,2.19E-03
+cellular nitrogen compound biosynthetic process (GO:0044271),1272,208,124.38,+,1.67,8.46E-08
+protein transport (GO:0015031),699,114,68.35,+,1.67,3.58E-03
+organonitrogen compound biosynthetic process (GO:1901566),1384,225,135.33,+,1.66,1.64E-08
+cellular protein localization (GO:0034613),646,103,63.17,+,1.63,2.47E-02
+cellular macromolecule localization (GO:0070727),678,108,66.3,+,1.63,1.61E-02
+protein localization (GO:0008104),780,124,76.27,+,1.63,3.73E-03
+amide transport (GO:0042886),785,124,76.76,+,1.62,5.35E-03
+peptide transport (GO:0015833),768,121,75.1,+,1.61,7.53E-03
+establishment of localization in cell (GO:0051649),737,115,72.07,+,1.6,2.05E-02
+response to acid chemical (GO:0001101),1178,179,115.19,+,1.55,2.53E-04
+macromolecule localization (GO:0033036),1037,157,101.4,+,1.55,2.05E-03
+response to external biotic stimulus (GO:0043207),988,149,96.61,+,1.54,4.42E-03
+response to other organism (GO:0051707),988,149,96.61,+,1.54,4.42E-03
+response to biotic stimulus (GO:0009607),989,149,96.71,+,1.54,4.50E-03
+cellular localization (GO:0051641),901,134,88.1,+,1.52,2.90E-02
+response to external stimulus (GO:0009605),1388,205,135.73,+,1.51,1.82E-04
+nitrogen compound transport (GO:0071705),970,142,94.85,+,1.5,3.51E-02
+organic substance transport (GO:0071702),1210,176,118.32,+,1.49,4.38E-03
+response to chemical (GO:0042221),2777,401,271.55,+,1.48,3.68E-10
+response to stress (GO:0006950),3158,456,308.8,+,1.48,4.47E-12
+response to oxygen-containing compound (GO:1901700),1596,227,156.06,+,1.45,4.56E-04
+organic substance biosynthetic process (GO:1901576),2706,384,264.61,+,1.45,1.21E-08
+cellular biosynthetic process (GO:0044249),2576,362,251.89,+,1.44,1.78E-07
+organelle organization (GO:0006996),1602,223,156.65,+,1.42,2.75E-03
+cellular component organization (GO:0016043),2490,346,243.48,+,1.42,1.72E-06
+biosynthetic process (GO:0009058),2823,392,276.05,+,1.42,8.89E-08
+response to stimulus (GO:0050896),5731,795,560.4,+,1.42,1.19E-20
+establishment of localization (GO:0051234),2238,308,218.84,+,1.41,4.35E-05
+cellular component organization or biogenesis (GO:0071840),2845,389,278.2,+,1.4,7.05E-07
+transport (GO:0006810),2194,299,214.54,+,1.39,1.72E-04
+localization (GO:0051179),2382,324,232.92,+,1.39,4.72E-05
+response to hormone (GO:0009725),1599,214,156.36,+,1.37,4.59E-02
+response to organic substance (GO:0010033),1916,256,187.36,+,1.37,7.02E-03
+cellular nitrogen compound metabolic process (GO:0034641),2986,392,291.99,+,1.34,4.39E-05
+organic cyclic compound metabolic process (GO:1901360),2724,352,266.37,+,1.32,1.20E-03
+cellular aromatic compound metabolic process (GO:0006725),2612,337,255.41,+,1.32,2.97E-03
+heterocycle metabolic process (GO:0046483),2465,315,241.04,+,1.31,1.46E-02
+organonitrogen compound metabolic process (GO:1901564),4315,548,421.94,+,1.3,2.29E-06
+cellular metabolic process (GO:0044237),7157,900,699.85,+,1.29,1.04E-12
+metabolic process (GO:0008152),8211,1028,802.91,+,1.28,2.96E-15
+cellular process (GO:0009987),10295,1269,1006.69,+,1.26,2.92E-19
+organic substance metabolic process (GO:0071704),7417,899,725.27,+,1.24,6.15E-09
+nitrogen compound metabolic process (GO:0006807),5875,707,574.49,+,1.23,2.04E-05
+primary metabolic process (GO:0044238),6707,788,655.84,+,1.2,9.11E-05
+biological_process (GO:0008150),21267,2215,2079.59,+,1.07,3.33E-06
+Unclassified (UNCLASSIFIED),6314,482,617.41,-,0.78,0.00E+00

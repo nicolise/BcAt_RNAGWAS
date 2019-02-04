@@ -1,0 +1,519 @@
+,Gene,HotSpotNearestGene,Name,Function1,Function2
+1,Bcin01g00330,Bcin09g06590,,,IPR011989: Armadillo-like helical
+2,Bcin01g00420,Bcin12g00330,,,IPR007632: Anoctamin
+3,Bcin01g00440,Bcin09g03390,,,IPR001227: Acyl transferase domain
+4,Bcin01g00530,Bcin09g06590,,,
+5,Bcin01g00700,Bcin09g03390,,,
+6,Bcin01g00740,Bcin02g02850,,,IPR012336: Thioredoxin-like fold
+7,Bcin01g00760,Bcin09g03390,,,IPR027417: P-loop containing nucleoside triphosphate hydrolase
+8,Bcin01g01190,Bcin06g05790,BcAP3,aspartic proteinase,IPR001461: Aspartic peptidase
+9,Bcin01g02280,Bcin16g00010,,,
+10,Bcin01g02310,Bcin16g00010,BcPMT1,"protein o-mannosyltransferase, subfamily PMT1",IPR027004: Dolichyl-phosphate-mannose-protein mannosyltransferase 1/5
+11,Bcin01g02400,Bcin05g02780,,,
+12,Bcin01g02410,Bcin09g06590,,,IPR000073: Alpha/beta hydrolase fold-1
+13,Bcin01g02610,Bcin16g00010,,,"IPR007758: Nucleoporin, NSP1-like, C-terminal"
+14,Bcin01g02840,Bcin09g06590,,,
+15,Bcin01g02870,Bcin10g00940,,,IPR000262: FMN-dependent dehydrogenase
+16,Bcin01g02880,Bcin02g02480,,,"IPR002085: Alcohol dehydrogenase superfamily, zinc-type"
+17,Bcin01g02890,Bcin09g03390,,,"IPR007527: Zinc finger, SWIM-type"
+18,Bcin01g03390,Bcin09g03390,,,"IPR000602: Glycoside hydrolase family 38, N-terminal domain"
+19,Bcin01g03770,Bcin08g05340,,,IPR000182: GNAT domain
+20,Bcin01g04280,Bcin09g06590,,,
+21,Bcin01g04390,Bcin09g06590,,,IPR016491: Septin
+22,Bcin01g04420,Bcin08g05340,,,IPR000873: AMP-dependent synthetase/ligase
+23,Bcin01g04480,Bcin02g02850,,,
+24,Bcin01g04640,Bcin09g06590,,,"IPR004367: Cyclin, C-terminal domain"
+25,Bcin01g04670,Bcin02g02850,,,
+26,Bcin01g05120,Bcin16g00010,,,"IPR005804: Fatty acid desaturase, type 1"
+27,Bcin01g05920,Bcin09g03390,,,IPR000300: Inositol polyphosphate-related phosphatase
+28,Bcin01g06210,Bcin09g06590,,,"IPR001563: Peptidase S10, serine carboxypeptidase"
+29,Bcin01g06280,Bcin09g06590,,,
+30,Bcin01g06380,Bcin09g03390,,,
+31,Bcin01g06410,Bcin09g03390,,,IPR000008: C2 domain
+32,Bcin01g07760,Bcin04g05160,,,IPR001395: Aldo/keto reductase
+33,Bcin01g07870,Bcin02g02850,,,
+34,Bcin01g07880,Bcin02g02850,,,IPR000504: RNA recognition motif domain
+35,Bcin01g07920,Bcin09g03390,,,IPR002347: Glucose/ribitol dehydrogenase
+36,Bcin01g07930,Bcin09g06590,,,
+37,Bcin01g07960,Bcin16g00010,,,IPR011333: BTB/POZ fold
+38,Bcin01g08380,Bcin12g00330,,,IPR017136: Uncharacterised conserved protein UCP037205
+39,Bcin01g08540,Bcin02g02480,,,IPR013897: Protein of unknown function DUF1769
+40,Bcin01g08640,Bcin08g05340,,,IPR001204: Phosphate transporter
+41,Bcin01g08680,Bcin12g00330,BcPIO10,"gene with a peak of expression during the Outset of colonization (Gioti et al., 2006)",IPR002140: Ribosome maturation protein SBDS
+42,Bcin01g08810,Bcin09g03390,,,IPR010730: Heterokaryon incompatibility
+43,Bcin01g09080,Bcin02g02480,,,IPR003864: Domain of unknown function DUF221
+44,Bcin01g09490,Bcin02g02480,,,IPR013216: Methyltransferase type 11
+45,Bcin01g09780,Bcin09g06590,,,IPR001849: Pleckstrin homology domain
+46,Bcin01g09860,Bcin09g06590,,,IPR001012: UBX domain
+47,Bcin01g10180,Bcin06g05790,,,
+48,Bcin01g10300,Bcin09g03390,,,IPR006838: FAR-17a/AIG1-like protein
+49,Bcin01g10390,Bcin09g06590,,,
+50,Bcin01g10720,Bcin06g06720,,,IPR004827: Basic-leucine zipper domain
+51,Bcin01g11050,Bcin02g02480,,,"IPR011042: Six-bladed beta-propeller, TolB-like"
+52,Bcin01g11360,Bcin09g03390,,,"IPR000403: Phosphatidylinositol 3-/4-kinase, catalytic domain"
+53,Bcin02g00130,Bcin09g06590,,,"IPR007087: Zinc finger, C2H2"
+54,Bcin02g00710,Bcin09g03390,,,"IPR004331: SPX, N-terminal"
+55,Bcin02g00880,Bcin09g06590,,,IPR001202: WW domain
+56,Bcin02g00910,Bcin06g05790,,,IPR000261: EPS15 homology (EH)
+57,Bcin02g01030,Bcin02g02480,,,"IPR000449: Ubiquitin-associated domain/translation elongation factor EF-Ts, N-terminal"
+58,Bcin02g01070,Bcin09g06590,,,"IPR000322: Glycoside hydrolase, family 31"
+59,Bcin02g01370,Bcin09g06590,,,"IPR000283: NADH:ubiquinone oxidoreductase, 75kDa subunit, conserved site"
+60,Bcin02g02190,Bcin10g00940,,,"IPR002168: Lipase, GDXG, active site"
+61,Bcin02g02320,Bcin02g02850,,,"IPR000683: Oxidoreductase, N-terminal"
+62,Bcin02g02570,Bcin09g06590,BcATG8,Autophagy gene,IPR004241: Autophagy protein Atg8 ubiquitin like
+63,Bcin02g02740,Bcin09g03390,,,IPR018108: Mitochondrial substrate/solute carrier
+64,Bcin02g02850,Bcin02g02850,,,IPR011009: Protein kinase-like domain
+65,Bcin02g02910,Bcin02g02850,,,"IPR006003: Carbohydrate kinase, FGGY-related"
+66,Bcin02g02930,Bcin12g00330,,,IPR004837: Sodium/calcium exchanger membrane region
+67,Bcin02g03290,Bcin09g06590,,,
+68,Bcin02g03660,Bcin12g00330,,,IPR000631: YjeF C-terminal domain
+69,Bcin02g03870,Bcin09g06590,,,IPR018535: Domain of unknown function DUF1996
+70,Bcin02g03910,Bcin09g03390,,,IPR015590: Aldehyde dehydrogenase domain
+71,Bcin02g04560,Bcin09g06590,,,"IPR002523: Mg2+ transporter protein, CorA-like/Zinc transport protein ZntB"
+72,Bcin02g05210,Bcin05g02780,,,IPR003386: Lecithin:cholesterol/phospholipid:diacylglycerol acyltransferase
+73,Bcin02g05240,Bcin02g02850,,,IPR001680: WD40 repeat
+74,Bcin02g05460,Bcin09g06590,,,"IPR000637: HMG-I/HMG-Y, DNA-binding, conserved site"
+75,Bcin02g05620,Bcin03g05020,,,IPR002293: Amino acid/polyamine transporter I
+76,Bcin02g05890,Bcin03g05020,,,IPR001251: CRAL-TRIO domain
+77,Bcin02g06130,Bcin09g06590,,,IPR000648: Oxysterol-binding protein
+78,Bcin02g06460,Bcin09g03390,,,"IPR003395: RecF/RecN/SMC, N-terminal"
+79,Bcin02g06610,Bcin16g00010,,,IPR001623: DnaJ domain
+80,Bcin02g06660,Bcin10g00940,,,IPR000462: CDP-alcohol phosphatidyltransferase
+81,Bcin02g06720,Bcin16g00010,,,
+82,Bcin02g06870,Bcin02g02850,,,
+83,Bcin02g06930,Bcin09g06590,,,"IPR003440: Glycosyl transferase, family 48"
+84,Bcin02g06940,Bcin09g06590,,,IPR004886: Glucanosyltransferase
+85,Bcin02g07290,Bcin09g06590,,,IPR000904: Sec7 domain
+86,Bcin02g07400,Bcin09g06590,"LreA,BcWCL1","transcription factor_GATA, White collar-like 1, potential blue light sensor",IPR000014: PAS domain
+87,Bcin02g07550,Bcin06g05790,,,IPR000270: Phox/Bem1p
+88,Bcin02g07660,Bcin09g03390,,,IPR024990: Anaphase-promoting complex subunit 1
+89,Bcin02g07890,Bcin02g02850,,,
+90,Bcin02g08350,Bcin09g03390,,,IPR000182: GNAT domain
+91,Bcin02g08400,Bcin03g05020,,,"IPR001841: Zinc finger, RING-type"
+92,Bcin02g08560,Bcin09g03390,,,IPR013112: FAD-binding 8
+93,Bcin02g09180,Bcin09g06590,,,IPR001313: Pumilio RNA-binding repeat
+94,Bcin03g00180,Bcin09g06590,,,IPR009011: Mannose-6-phosphate receptor binding domain
+95,Bcin03g00420,Bcin02g02480,,,IPR000182: GNAT domain
+96,Bcin03g00450,Bcin09g06590,,,IPR001138: Zn(2)-C6 fungal-type DNA-binding domain
+97,Bcin03g00530,Bcin08g05340,,,
+98,Bcin03g00760,Bcin06g05790,,,
+99,Bcin03g01040,Bcin05g02780,,,IPR002129: Pyridoxal phosphate-dependent decarboxylase
+100,Bcin03g01300,Bcin12g00330,,,
+101,Bcin03g01310,Bcin12g00330,,,
+102,Bcin03g01320,Bcin12g00330,,,
+103,Bcin03g01320,Bcin12g00330,,,
+104,Bcin03g01320,Bcin12g00330,,,
+105,Bcin03g01740,Bcin09g06590,,,IPR027091: Transmembrane GTPase Fzo/Fzo1
+106,Bcin03g01890,Bcin09g06590,,,IPR001232: SKP1 component
+107,Bcin03g02160,Bcin09g06590,,,IPR001138: Zn(2)-C6 fungal-type DNA-binding domain
+108,Bcin03g02170,Bcin09g06590,,,IPR000642: Peptidase M41
+109,Bcin03g02210,Bcin02g02480,,,IPR008322: Uncharacterised protein family UPF0261
+110,Bcin03g02220,Bcin12g00330,,,"IPR009215: TIM-barrel domain, IGPS-like"
+111,Bcin03g02370,Bcin09g06590,,,IPR004345: TB2/DP1/HVA22-related protein
+112,Bcin03g02410,Bcin12g02130,,,IPR000719: Protein kinase domain
+113,Bcin03g02440,Bcin16g00010,,,"IPR016488: NADH dehydrogenase [ubiquinone] (complex I), alpha subcomplex, subunit 6"
+114,Bcin03g02620,Bcin09g03390,,,"IPR000547: Clathrin, heavy chain/VPS, 7-fold repeat"
+115,Bcin03g02750,Bcin09g06590,,,IPR000719: Protein kinase domain
+116,Bcin03g02760,Bcin02g02850,BcAP4,aspartic proteinase,IPR001461: Aspartic peptidase
+117,Bcin03g03100,Bcin09g03390,,transcription factor_forkhead,IPR001452: SH3 domain
+118,Bcin03g03380,Bcin09g03390,,,IPR002999: Tudor domain
+119,Bcin03g03660,Bcin12g00330,,,IPR000504: RNA recognition motif domain
+120,Bcin03g04480,Bcin04g05160,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+121,Bcin03g04500,Bcin12g00330,,,
+122,Bcin03g04690,Bcin12g00330,,,
+123,Bcin03g04800,Bcin02g02480,,,"IPR000048: IQ motif, EF-hand binding site"
+124,Bcin03g05270,Bcin08g05340,,,IPR001128: Cytochrome P450
+125,Bcin03g05290,Bcin09g06590,,,IPR008979: Galactose-binding domain-like
+126,Bcin03g05480,Bcin12g00330,,,IPR027842: Protein of unknown function DUF4449
+127,Bcin03g05490,Bcin02g02480,,,IPR001279: Beta-lactamase-like
+128,Bcin03g05520,Bcin09g06590,,,
+129,Bcin03g05870,Bcin05g02780,,,IPR029058: Alpha/Beta hydrolase fold
+130,Bcin03g05990,Bcin16g00010,,,IPR002048: EF-hand domain
+131,Bcin03g06500,Bcin02g02480,,,IPR001395: Aldo/keto reductase
+132,Bcin03g06670,Bcin08g05340,,,IPR011761: ATP-grasp fold
+133,Bcin03g06820,Bcin09g03390,,,IPR011072: HR1 rho-binding repeat
+134,Bcin03g06910,Bcin06g05790,BcYAK1,Member of the dual-specificity tyrosine phosphorylation-regulated protein kinases,IPR000719: Protein kinase domain
+135,Bcin03g07380,Bcin02g02480,EBDP3-like,emopamil-binding protein-like,IPR007905: Emopamil-binding protein
+136,Bcin03g07400,Bcin02g02850,,,IPR009737: Sucraseferredoxin-like
+137,Bcin03g07980,Bcin09g06590,,,IPR001837: Adenylate cyclase-associated CAP
+138,Bcin03g08830,Bcin02g02850,,,"IPR000340: Dual specificity phosphatase, catalytic domain"
+139,Bcin03g09120,Bcin08g05340,,,
+140,Bcin03g09240,Bcin02g02850,,,"IPR000757: Glycoside hydrolase, family 16"
+141,Bcin03g09250,Bcin02g02480,,,IPR004147: UbiB domain
+142,Bcin04g00320,Bcin09g06590,,,"IPR006137: NADH:ubiquinone oxidoreductase-like, 20kDa subunit"
+143,Bcin04g00330,Bcin05g02780,,,IPR004821: Cytidyltransferase-like domain
+144,Bcin04g00340,Bcin09g06590,BcPTC3,"Type 2C Ser/Thr phosphatase (PP2C) (Yang el al., 2013)","IPR000222: Protein phosphatase 2C, manganese/magnesium aspartate binding site"
+145,Bcin04g00450,Bcin09g06590,,,IPR000008: C2 domain
+146,Bcin04g01080,Bcin04g05160,,,"IPR004299: Membrane bound O-acyl transferase, MBOAT"
+147,Bcin04g01260,Bcin02g02480,,,
+148,Bcin04g01270,Bcin03g05020,,,IPR002067: Mitochondrial carrier protein
+149,Bcin04g01640,Bcin12g00330,,,IPR014756: Immunoglobulin E-set
+150,Bcin04g01670,Bcin02g02480,,,"IPR000449: Ubiquitin-associated domain/translation elongation factor EF-Ts, N-terminal"
+151,Bcin04g02120,Bcin09g06590,,,"IPR004861: Protein-tyrosine phosphatase, SIW14-like"
+152,Bcin04g02300,Bcin08g05340,,,
+153,Bcin04g02360,Bcin12g00330,,,IPR004695: Voltage-dependent anion channel
+154,Bcin04g02410,Bcin16g00010,,,"IPR006785: Peroxisome membrane anchor protein Pex14p, N-terminal"
+155,Bcin04g02470,Bcin09g06590,,,IPR001898: Sodium/sulphate symporter
+156,Bcin04g03430,Bcin16g00010,,,IPR000719: Protein kinase domain
+157,Bcin04g03670,Bcin09g06590,,,IPR001680: WD40 repeat
+158,Bcin04g03800,Bcin08g05340,,,
+159,Bcin04g04480,Bcin09g03390,,,"IPR000608: Ubiquitin-conjugating enzyme, E2"
+160,Bcin04g05050,Bcin12g00330,,,"IPR000449: Ubiquitin-associated domain/translation elongation factor EF-Ts, N-terminal"
+161,Bcin04g05060,Bcin10g00940,,,"IPR000842: Phosphoribosyl pyrophosphate synthetase, conserved site"
+162,Bcin04g05130,Bcin09g03390,,,IPR003439: ABC transporter-like
+163,Bcin04g05410,Bcin03g05020,,,IPR021102: Peptide-N4-(N-acetyl-beta-glucosaminyl)asparagine amidase A
+164,Bcin04g05600,Bcin05g02780,,,"IPR007701: Interferon-related developmental regulator, N-terminal"
+165,Bcin04g05720,Bcin10g00940,,,
+166,Bcin04g06650,Bcin09g06590,,,
+167,Bcin04g06680,Bcin09g03390,,,IPR003378: Fringe-like
+168,Bcin04g06720,Bcin03g05020,,,IPR000719: Protein kinase domain
+169,Bcin04g06730,Bcin12g00330,,,"IPR008427: Extracellular membrane protein, CFEM domain"
+170,Bcin04g06880,Bcin09g06590,,,IPR003864: Domain of unknown function DUF221
+171,Bcin05g00140,Bcin03g05020,,,"IPR001382: Glycoside hydrolase, family 47"
+172,Bcin05g00380,Bcin02g02850,,,
+173,Bcin05g00540,Bcin12g00330,HHK1,Histidine kinase - group X,IPR000719: Protein kinase domain
+174,Bcin05g00680,Bcin12g00330,HHK2,Histidine kinase - group V,IPR000014: PAS domain
+175,Bcin05g00830,Bcin12g00330,BcMIMP1,mitochondrial protein transiently expressed in planta,IPR021836: Protein of unknown function DUF3429
+176,Bcin05g00840,Bcin12g00330,,,IPR009543: Vacuolar protein sorting-associated protein 13 domain
+177,Bcin05g01240,Bcin02g02850,,,IPR001107: Band 7 protein
+178,Bcin05g01380,Bcin12g00330,,,IPR001433: Oxidoreductase FAD/NAD(P)-binding
+179,Bcin05g01420,Bcin09g06590,,,"IPR000684: RNA polymerase II, heptapeptide repeat, eukaryotic"
+180,Bcin05g02110,Bcin05g02780,,,IPR021369: Protein of unknown function DUF2985
+181,Bcin05g02240,Bcin12g00330,,,IPR008417: B-cell receptor-associated protein 29/31
+182,Bcin05g02400,Bcin12g00330,,,"IPR007667: Hypoxia induced protein, domain"
+183,Bcin05g02590,Bcin02g02480,,,IPR000286: Histone deacetylase superfamily
+184,Bcin05g02670,Bcin09g03390,,,"IPR007234: Vps53-like, N-terminal"
+185,Bcin05g03090,Bcin10g00940,,,"IPR001841: Zinc finger, RING-type"
+186,Bcin05g03100,Bcin16g00010,,,IPR001440: Tetratricopeptide TPR1
+187,Bcin05g03290,Bcin09g03390,,,IPR000209: Peptidase S8/S53 domain
+188,Bcin05g03500,Bcin09g03390,,,IPR001810: F-box domain
+189,Bcin05g03560,Bcin09g06590,,,IPR024527: Eisosome protein 1
+190,Bcin05g03570,Bcin06g05790,,,"IPR025163: Tyrosine-protein phosphatase family, C-terminal domain"
+191,Bcin05g03710,Bcin09g03390,,,
+192,Bcin05g03960,Bcin09g03390,,,"IPR013057: Amino acid transporter, transmembrane"
+193,Bcin05g04090,Bcin08g05340,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+194,Bcin05g04240,Bcin09g06590,,,IPR007587: SIT4 phosphatase-associated protein family
+195,Bcin05g04540,Bcin09g06590,,,IPR005065: Platelet-activating factor acetylhydrolase
+196,Bcin05g04740,Bcin09g06590,,,"IPR018814: Maintenance of telomere capping protein 1, Mtc1"
+197,Bcin05g04790,Bcin09g03390,,,"IPR001248: Permease, cytosine/purines, uracil, thiamine, allantoin"
+198,Bcin05g04850,Bcin09g06590,,,IPR003822: Paired amphipathic helix
+199,Bcin05g04940,Bcin12g00330,,,
+200,Bcin05g05070,Bcin12g00330,,,IPR004274: NLI interacting factor
+201,Bcin05g05230,Bcin09g06590,,,
+202,Bcin05g05240,Bcin12g00330,,,"IPR006769: Coiled-coil domain containing protein 109, C-terminal"
+203,Bcin05g05370,Bcin12g00330,,,IPR006876: LMBR1-like membrane protein
+204,Bcin05g05500,Bcin16g00010,,,IPR007243: Atg6/Beclin
+205,Bcin05g06690,Bcin10g00940,,,
+206,Bcin05g06730,Bcin09g06590,,,IPR001240: N-(5'phosphoribosyl) anthranilate isomerase (PRAI) like domain
+207,Bcin05g07040,Bcin12g00330,,,
+208,Bcin05g07340,Bcin09g03390,,,IPR000462: CDP-alcohol phosphatidyltransferase
+209,Bcin05g07360,Bcin09g06590,,,IPR024382: Domain of unknown function DUF3844
+210,Bcin05g07370,Bcin09g03390,,,
+211,Bcin05g07680,Bcin10g00940,,,
+212,Bcin05g07690,Bcin09g03390,,,"IPR005198: Glycoside hydrolase, family 76"
+213,Bcin05g08120,Bcin09g03390,,,"IPR003656: Zinc finger, BED-type"
+214,Bcin06g01360,Bcin02g02480,,,IPR000719: Protein kinase domain
+215,Bcin06g01490,Bcin12g00330,,,IPR011701: Major facilitator superfamily
+216,Bcin06g01630,Bcin12g02130,,,"IPR017853: Glycoside hydrolase, superfamily"
+217,Bcin06g01640,Bcin03g05020,,,IPR010102: Succinate semialdehyde dehydrogenase
+218,Bcin06g02220,Bcin06g05790,,,"IPR004843: Calcineurin-like phosphoesterase domain, apaH type"
+219,Bcin06g02420,Bcin05g02780,,,IPR000742: Epidermal growth factor-like domain
+220,Bcin06g02490,Bcin12g00330,,,IPR000612: Proteolipid membrane potential modulator
+221,Bcin06g02540,Bcin12g00330,,,IPR004018: RPEL repeat
+222,Bcin06g02760,Bcin09g06590,,,IPR011008: Dimeric alpha-beta barrel
+223,Bcin06g02930,Bcin09g06590,,,
+224,Bcin06g02950,Bcin06g05790,,,IPR000504: RNA recognition motif domain
+225,Bcin06g03900,Bcin12g00330,,,
+226,Bcin06g03910,Bcin05g02780,,,IPR007461: Ysc84 actin-binding domain
+227,Bcin06g04010,Bcin12g00330,,,IPR000073: Alpha/beta hydrolase fold-1
+228,Bcin06g04320,Bcin12g00330,,,IPR009571: Actin cortical patch SUR7/pH-response regulator PalI
+229,Bcin06g04320,Bcin12g00330,,,IPR009571: Actin cortical patch SUR7/pH-response regulator PalI
+230,Bcin06g04320,Bcin12g00330,,,IPR009571: Actin cortical patch SUR7/pH-response regulator PalI
+231,Bcin06g04540,Bcin08g05340,,,"IPR001077: O-methyltransferase, family 2"
+232,Bcin06g04640,Bcin09g06590,,,
+233,Bcin06g04930,Bcin10g00940,,,
+234,Bcin06g04980,Bcin12g02340,,,"IPR007085: DNA/pantothenate metabolism flavoprotein, C-terminal"
+235,Bcin06g04990,Bcin09g06590,,,IPR020846: Major facilitator superfamily domain
+236,Bcin06g05180,Bcin09g06590,,,IPR016024: Armadillo-type fold
+237,Bcin06g05380,Bcin09g06590,,,"IPR001752: Kinesin, motor domain"
+238,Bcin06g05520,Bcin09g03390,,,IPR000719: Protein kinase domain
+239,Bcin06g05580,Bcin12g00330,,,
+240,Bcin06g05670,Bcin12g00330,,,"IPR002938: Monooxygenase, FAD-binding"
+241,Bcin06g05960,Bcin05g02780,,,IPR001611: Leucine-rich repeat
+242,Bcin06g06640,Bcin09g06590,,,IPR000198: Rho GTPase-activating protein domain
+243,Bcin07g00840,Bcin16g00010,,,IPR002130: Cyclophilin-type peptidyl-prolyl cis-trans isomerase domain
+244,Bcin07g01480,Bcin09g03390,,,IPR000330: SNF2-related
+245,Bcin07g01610,Bcin02g02480,,,"IPR000449: Ubiquitin-associated domain/translation elongation factor EF-Ts, N-terminal"
+246,Bcin07g02070,Bcin09g06590,,,IPR001005: SANT/Myb domain
+247,Bcin07g02300,Bcin09g06590,,,IPR001680: WD40 repeat
+248,Bcin07g02420,Bcin08g05340,,,"IPR005829: Sugar transporter, conserved site"
+249,Bcin07g02850,Bcin12g00330,,,IPR017926: Glutamine amidotransferase
+250,Bcin07g03170,Bcin05g02780,,,IPR003388: Reticulon
+251,Bcin07g04200,Bcin09g06590,creA,"carbon catabolite repression regulator,transcription factor_C2H2","IPR007087: Zinc finger, C2H2"
+252,Bcin07g04230,Bcin12g00330,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+253,Bcin07g04730,Bcin06g05790,BcCMK1,Ca2+/CaM-dependent kinase,IPR000719: Protein kinase domain
+254,Bcin07g05090,Bcin16g00010,,,IPR001806: Small GTPase superfamily
+255,Bcin07g05250,Bcin09g06590,,,IPR027536: Mitochondrial distribution and morphology protein 34
+256,Bcin07g05510,Bcin10g00940,,,IPR000727: Target SNARE coiled-coil domain
+257,Bcin07g05720,Bcin09g06590,,,"IPR001394: Peptidase C19, ubiquitin carboxyl-terminal hydrolase"
+258,Bcin07g05720,Bcin06g05790,,,"IPR001394: Peptidase C19, ubiquitin carboxyl-terminal hydrolase"
+259,Bcin07g05800,Bcin09g03390,,,IPR000719: Protein kinase domain
+260,Bcin07g06050,Bcin08g05340,,,"IPR007087: Zinc finger, C2H2"
+261,Bcin07g06310,Bcin09g06590,,,IPR001199: Cytochrome b5-like heme/steroid binding domain
+262,Bcin07g06380,Bcin09g06590,,,
+263,Bcin07g06580,Bcin10g00940,,,IPR004087: K Homology domain
+264,Bcin07g06960,Bcin06g05790,,,IPR000022: Carboxyl transferase
+265,Bcin07g06970,Bcin09g06590,,,"IPR006964: NUDE protein, C-terminal"
+266,Bcin07g07000,Bcin02g02850,,,IPR015915: Kelch-type beta propeller
+267,Bcin07g07060,Bcin03g05020,,,
+268,Bcin07g07070,Bcin03g05020,,,"IPR011016: Zinc finger, RING-CH-type"
+269,Bcin08g00270,Bcin12g00330,,,IPR003663: Sugar/inositol transporter
+270,Bcin08g00680,Bcin09g03390,,,"IPR007087: Zinc finger, C2H2"
+271,Bcin08g01020,Bcin02g02480,,,IPR000209: Peptidase S8/S53 domain
+272,Bcin08g01030,Bcin12g00330,,,IPR008532: Domain of unknown function DUF814
+273,Bcin08g01040,Bcin03g05020,,,
+274,Bcin08g01350,Bcin12g00330,,,IPR025187: Protein of unknown function DUF4112
+275,Bcin08g01420,Bcin16g00010,BcGB1,Heterotrimeric G beta subunit,"IPR001632: G-protein, beta subunit"
+276,Bcin08g01650,Bcin12g00330,,,"IPR007087: Zinc finger, C2H2"
+277,Bcin08g01660,Bcin12g00330,,,"IPR017943: Bactericidal permeability-increasing protein, alpha/beta domain"
+278,Bcin08g01720,Bcin03g05020,,,
+279,Bcin08g01870,Bcin05g02780,BcAQP4,Aquaporin,IPR000425: Major intrinsic protein
+280,Bcin08g02140,Bcin09g06590,,,"IPR001296: Glycosyl transferase, family 1"
+281,Bcin08g02850,Bcin12g00330,,,
+282,Bcin08g03250,Bcin08g05340,,,IPR000198: Rho GTPase-activating protein domain
+283,Bcin08g03300,Bcin02g02850,,,
+284,Bcin08g03320,Bcin09g06590,,,IPR018466: Ser-Thr-rich glycosyl-phosphatidyl-inositol-anchored membrane family
+285,Bcin08g03470,Bcin09g06590,,,IPR011047: Quinonprotein alcohol dehydrogenase-like superfamily
+286,Bcin08g03500,Bcin09g06590,,,IPR000330: SNF2-related
+287,Bcin08g03790,Bcin05g02780,,,"IPR007482: Protein-tyrosine phosphatase-like, PTPLA"
+288,Bcin08g04130,Bcin03g05020,,,"IPR018820: Brefeldin A sensitivity protein-related, domain of unknown function DUF2421"
+289,Bcin08g04480,Bcin03g05020,,,"IPR002085: Alcohol dehydrogenase superfamily, zinc-type"
+290,Bcin08g04830,Bcin05g02780,,,
+291,Bcin08g04890,Bcin02g02480,,,IPR011022: Arrestin C-terminal-like domain
+292,Bcin08g04990,Bcin05g02780,,,IPR001680: WD40 repeat
+293,Bcin08g05010,Bcin12g00330,,,
+294,Bcin08g05110,Bcin02g02850,,,IPR004443: YjeF N-terminal domain
+295,Bcin08g05190,Bcin09g06590,,,IPR001849: Pleckstrin homology domain
+296,Bcin08g05460,Bcin08g05340,,,
+297,Bcin08g05780,Bcin10g00940,,,IPR013094: Alpha/beta hydrolase fold-3
+298,Bcin08g05890,Bcin10g00940,,,IPR008610: Eukaryotic rRNA processing
+299,Bcin08g06300,Bcin12g00330,,,IPR000023: Phosphofructokinase domain
+300,Bcin08g06460,Bcin10g00940,,,
+301,Bcin08g06570,Bcin06g05790,,,IPR013744: Protein of unknown function DUF1749
+302,Bcin08g06620,Bcin09g03390,"BcHOX8,BcPIE1","homeobox transcription factor,gene induced in Early infection stage",IPR001356: Homeobox domain
+303,Bcin08g06690,Bcin12g00330,,,
+304,Bcin08g06700,Bcin16g00010,,,IPR013538: Activator of Hsp90 ATPase homologue 1-like
+305,Bcin08g06840,Bcin05g02780,,,"IPR017946: PLC-like phosphodiesterase, TIM beta/alpha-barrel domain"
+306,Bcin08g07080,Bcin12g00330,,,
+307,Bcin09g00110,Bcin06g05790,,,
+308,Bcin09g00270,Bcin09g06590,,transcription factor_forkhead,IPR000253: Forkhead-associated (FHA) domain
+309,Bcin09g00350,Bcin09g06590,,,IPR005045: CDC50/LEM3 family
+310,Bcin09g01240,Bcin09g03390,,,IPR001683: Phox homologous domain
+311,Bcin09g01270,Bcin03g05020,,,IPR000182: GNAT domain
+312,Bcin09g01650,Bcin09g06590,,,IPR000210: BTB/POZ-like
+313,Bcin09g01760,Bcin09g03390,,,IPR012475: Fucose-specific lectin
+314,Bcin09g01790,Bcin02g02480,,,
+315,Bcin09g02090,Bcin09g06590,,,IPR001388: Synaptobrevin
+316,Bcin09g02130,Bcin02g02850,,,
+317,Bcin09g02420,Bcin12g00330,,,IPR001440: Tetratricopeptide TPR1
+318,Bcin09g02780,Bcin12g00330,,,
+319,Bcin09g02930,Bcin02g02850,BcAP1,aspartic proteinase,IPR001461: Aspartic peptidase
+320,Bcin09g03010,Bcin09g03390,,,
+321,Bcin09g03140,Bcin03g05020,,,
+322,Bcin09g03220,Bcin12g00330,,,IPR000362: Fumarate lyase family
+323,Bcin09g03650,Bcin08g05340,,,IPR000182: GNAT domain
+324,Bcin09g03810,Bcin02g02480,,,IPR002925: Dienelactone hydrolase
+325,Bcin09g04150,Bcin05g02780,,,IPR001938: Thaumatin
+326,Bcin09g04170,Bcin12g00330,glk,"glucokinase (Rui et Hahn, 2007)",IPR001312: Hexokinase
+327,Bcin09g05010,Bcin10g00940,Bcflp2,Fasciclin-like protein,IPR000782: FAS1 domain
+328,Bcin09g05020,Bcin12g00330,,,IPR002129: Pyridoxal phosphate-dependent decarboxylase
+329,Bcin09g05130,Bcin02g02850,,,
+330,Bcin09g05290,Bcin09g03390,,,IPR004910: Yippee/Mis18
+331,Bcin09g05310,Bcin09g06590,,,"IPR000433: Zinc finger, ZZ-type"
+332,Bcin09g06030,Bcin09g06590,,,"IPR001958: Tetracycline resistance protein, TetA/multidrug resistance protein MdtG"
+333,Bcin09g06220,Bcin03g05020,,,IPR006166: ERCC4 domain
+334,Bcin09g06230,Bcin12g00330,,,
+335,Bcin09g06300,Bcin09g06590,,,IPR010308: TRP-like family
+336,Bcin10g00410,Bcin09g03390,,,IPR001849: Pleckstrin homology domain
+337,Bcin10g00490,Bcin02g02850,,,IPR029058: Alpha/Beta hydrolase fold
+338,Bcin10g00650,Bcin09g06590,,,IPR003439: ABC transporter-like
+339,Bcin10g00680,Bcin09g03390,,,
+340,Bcin10g00830,Bcin08g05340,,,IPR001128: Cytochrome P450
+341,Bcin10g01060,Bcin09g06590,,,IPR014870: Domain of unknown function DUF1793
+342,Bcin10g01160,Bcin02g02480,,,
+343,Bcin10g01330,Bcin09g03390,,,IPR016491: Septin
+344,Bcin10g01980,Bcin12g00330,,,"IPR000560: Histidine phosphatase superfamily, clade-2"
+345,Bcin10g02130,Bcin09g03390,,,IPR004000: Actin-related protein
+346,Bcin10g02140,Bcin09g06590,,,IPR003439: ABC transporter-like
+347,Bcin10g02280,Bcin09g06590,,,"IPR002495: Glycosyl transferase, family 8"
+348,Bcin10g02630,Bcin09g06590,,,"IPR001841: Zinc finger, RING-type"
+349,Bcin10g03020,Bcin09g03390,,,
+350,Bcin10g03180,Bcin09g06590,,,
+351,Bcin10g03210,Bcin09g03390,,,"IPR000994: Peptidase M24, structural domain"
+352,Bcin10g03290,Bcin09g03390,,,IPR001810: F-box domain
+353,Bcin10g03310,Bcin03g05020,,,"IPR000560: Histidine phosphatase superfamily, clade-2"
+354,Bcin10g03320,Bcin12g00330,,,"IPR013078: Histidine phosphatase superfamily, clade-1"
+355,Bcin10g03370,Bcin09g06590,,,IPR002110: Ankyrin repeat
+356,Bcin10g03460,Bcin16g00010,,transcription factor_CAAT,"IPR012955: CASP, C-terminal"
+357,Bcin10g03480,Bcin09g06590,,,IPR019413: Domain of unknown function DUF2407 N-terminal
+358,Bcin10g03500,Bcin12g00330,,,IPR003817: Phosphatidylserine decarboxylase-related
+359,Bcin10g03620,Bcin09g03390,,,IPR007271: Nucleotide-sugar transporter
+360,Bcin10g03640,Bcin09g03390,,,
+361,Bcin10g03760,Bcin03g05020,,,IPR000300: Inositol polyphosphate-related phosphatase
+362,Bcin10g03910,Bcin12g00330,,,IPR001270: ClpA/B family
+363,Bcin10g04020,Bcin09g06590,,,IPR007122: Villin/Gelsolin
+364,Bcin10g04320,Bcin09g06590,Bccp4,serine carboxypeptidase,"IPR001563: Peptidase S10, serine carboxypeptidase"
+365,Bcin10g04620,Bcin09g06590,,,IPR001680: WD40 repeat
+366,Bcin10g05040,Bcin09g03390,,,"IPR000608: Ubiquitin-conjugating enzyme, E2"
+367,Bcin10g05130,Bcin02g02850,,,IPR016040: NAD(P)-binding domain
+368,Bcin10g05630,Bcin03g00960,,,"IPR001764: Glycoside hydrolase, family 3, N-terminal"
+369,Bcin10g05690,Bcin09g06590,,,
+370,Bcin10g05800,Bcin06g05790,,,IPR001623: DnaJ domain
+371,Bcin11g00140,Bcin09g06590,,,
+372,Bcin11g00280,Bcin09g03390,,,
+373,Bcin11g01030,Bcin09g06590,,,"IPR000704: Casein kinase II, regulatory subunit"
+374,Bcin11g01340,Bcin12g00330,,,
+375,Bcin11g01560,Bcin12g00330,,,IPR004776: Auxin efflux carrier
+376,Bcin11g01880,Bcin09g06590,,,IPR001199: Cytochrome b5-like heme/steroid binding domain
+377,Bcin11g01930,Bcin09g03390,,,"IPR007365: Transferrin receptor-like, dimerisation domain"
+378,Bcin11g02040,Bcin09g03390,,,IPR015590: Aldehyde dehydrogenase domain
+379,Bcin11g02070,Bcin12g00330,,,
+380,Bcin11g02430,Bcin05g02780,,,
+381,Bcin11g02600,Bcin06g05790,,,IPR008580: PPPDE putative peptidase domain
+382,Bcin11g02730,Bcin12g00330,BcPIO5,"gene with a peak of expression during the Outset of colonization (Gioti et al., 2006)","IPR006353: HAD-superfamily hydrolase, subfamily IIA, CECR5"
+383,Bcin11g02820,Bcin09g06590,,,IPR013887: Uncharacterised protein family UPF0592
+384,Bcin11g02910,Bcin09g03390,,,
+385,Bcin11g03310,Bcin09g06590,,,"IPR000629: RNA helicase, ATP-dependent, DEAD-box, conserved site"
+386,Bcin11g03940,Bcin09g06590,,,"IPR007196: CCR4-Not complex component, Not1, C-terminal"
+387,Bcin11g04790,Bcin02g02850,,,IPR001395: Aldo/keto reductase
+388,Bcin11g04810,Bcin09g03390,,,"IPR000704: Casein kinase II, regulatory subunit"
+389,Bcin11g04930,Bcin12g00330,,,IPR018803: Putative stress-responsive protein
+390,Bcin11g05240,Bcin06g05790,,,IPR009071: High mobility group box domain
+391,Bcin11g05440,Bcin09g06590,,,
+392,Bcin11g05770,Bcin09g03390,,,IPR000595: Cyclic nucleotide-binding domain
+393,Bcin11g05930,Bcin09g03390,,,
+394,Bcin11g06000,Bcin09g03390,,,IPR002539: MaoC-like domain
+395,Bcin11g06110,Bcin02g02480,"BcSCH9, BPK2",Sch9-like cAMP-dependent protein kinase catalytic subunit,IPR000008: C2 domain
+396,Bcin11g06230,Bcin12g00330,,,IPR007248: Mpv17/PMP22
+397,Bcin11g06250,Bcin09g06590,,,IPR007834: DSS1/SEM1
+398,Bcin11g06330,Bcin09g03390,,,IPR000195: Rab-GTPase-TBC domain
+399,Bcin12g00720,Bcin12g00330,,,
+400,Bcin12g00770,Bcin12g00330,,,IPR001736: Phospholipase D/Transphosphatidylase
+401,Bcin12g01050,Bcin09g03390,,,"IPR002085: Alcohol dehydrogenase superfamily, zinc-type"
+402,Bcin12g01230,Bcin02g02480,,,IPR001138: Zn(2)-C6 fungal-type DNA-binding domain
+403,Bcin12g01280,Bcin12g00330,,,IPR001452: SH3 domain
+404,Bcin12g01350,Bcin03g05020,,,IPR000011: Ubiquitin/SUMO-activating enzyme E1
+405,Bcin12g01440,Bcin12g00330,,,IPR003663: Sugar/inositol transporter
+406,Bcin12g01560,Bcin12g00330,,,IPR001388: Synaptobrevin
+407,Bcin12g01690,Bcin09g03390,,,IPR008313: Uncharacterised conserved protein UCP028846
+408,Bcin12g02070,Bcin09g03390,,,IPR001902: Sulphate anion transporter
+409,Bcin12g02090,Bcin08g05340,,,"IPR004648: Tetrapeptide transporter, OPT1/isp4"
+410,Bcin12g02110,Bcin09g06590,,,"IPR028084: Folliculin-interacting protein, N-terminal domain"
+411,Bcin12g02160,Bcin02g02480,,,IPR000594: UBA/THIF-type NAD/FAD binding fold
+412,Bcin12g02820,Bcin09g06590,,,IPR000904: Sec7 domain
+413,Bcin12g03000,Bcin12g00330,,,IPR001736: Phospholipase D/Transphosphatidylase
+414,Bcin12g03150,Bcin09g06590,,,IPR002015: Proteasome/cyclosome repeat
+415,Bcin12g03250,Bcin10g00940,,,"IPR001876: Zinc finger, RanBP2-type"
+416,Bcin12g03260,Bcin10g00940,,,"IPR013920: Protein of unknown function DUF1774, fungi"
+417,Bcin12g03330,Bcin12g00330,,,"IPR007087: Zinc finger, C2H2"
+418,Bcin12g03420,Bcin08g05340,,,IPR009311: Interferon alpha-inducible protein 6/27
+419,Bcin12g03670,Bcin12g00330,,,
+420,Bcin12g03700,Bcin12g00330,BcNDE1,external NADH dehydrogenase 1,"IPR001327: Pyridine nucleotide-disulphide oxidoreductase, NAD-binding domain"
+421,Bcin12g03770,Bcin10g00940,,,IPR011211: Tumour suppressor protein Gltscr2
+422,Bcin12g03910,Bcin09g06590,,,IPR003593: AAA+ ATPase domain
+423,Bcin12g03940,Bcin03g05020,,,IPR000719: Protein kinase domain
+424,Bcin12g03990,Bcin09g03390,,,IPR000330: SNF2-related
+425,Bcin12g04110,Bcin09g03390,,,"IPR003163: Transcription regulator HTH, APSES-type DNA-binding domain"
+426,Bcin12g04280,Bcin09g06590,BcTRX1,Thioredoxin,IPR005746: Thioredoxin
+427,Bcin12g04690,Bcin16g00010,,,"IPR006089: Acyl-CoA dehydrogenase, conserved site"
+428,Bcin12g05030,Bcin12g00330,,,
+429,Bcin12g05040,Bcin09g06590,,,IPR000719: Protein kinase domain
+430,Bcin12g05190,Bcin06g05790,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+431,Bcin12g05360,Bcin09g06590,BcCHSVI,class Vb chitin synthase - Goncalves et al. BMC Evolutionary Biology (2016) 16:252,IPR001199: Cytochrome b5-like heme/steroid binding domain
+432,Bcin12g05740,Bcin03g05020,,,IPR000904: Sec7 domain
+433,Bcin12g05780,Bcin03g05020,,,IPR001251: CRAL-TRIO domain
+434,Bcin12g06470,Bcin09g06590,,,IPR007483: Hamartin
+435,Bcin13g00280,Bcin16g00010,,,"IPR005804: Fatty acid desaturase, type 1"
+436,Bcin13g00380,Bcin12g00330,,,
+437,Bcin13g00620,Bcin09g06590,,,IPR000504: RNA recognition motif domain
+438,Bcin13g00980,Bcin12g00330,,,"IPR000795: Elongation factor, GTP-binding domain"
+439,Bcin13g01020,Bcin12g00330,,,
+440,Bcin13g01390,Bcin09g06590,,,IPR000569: HECT
+441,Bcin13g01600,Bcin09g06590,,,IPR002110: Ankyrin repeat
+442,Bcin13g02130,Bcin09g06590,BcCHS1,chalconesynthase,"IPR001099: Chalcone/stilbene synthase, N-terminal"
+443,Bcin13g02450,Bcin09g06590,,,"IPR007218: DNA polymerase delta, subunit 4"
+444,Bcin13g02520,Bcin09g06590,,,IPR000326: Phosphatidic acid phosphatase type 2/haloperoxidase
+445,Bcin13g02880,Bcin09g06590,,,IPR000719: Protein kinase domain
+446,Bcin13g03260,Bcin06g05790,,,IPR000719: Protein kinase domain
+447,Bcin13g03330,Bcin02g02850,,,
+448,Bcin13g03470,Bcin02g02850,,,
+449,Bcin13g03560,Bcin06g05790,,,
+450,Bcin13g03750,Bcin10g00940,,,IPR002048: EF-hand domain
+451,Bcin13g04640,Bcin02g02850,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+452,Bcin13g04840,Bcin09g06590,,,IPR013941: Activator of mitotic machinery Cdc14 phosphatase activation C-terminal
+453,Bcin13g04860,Bcin05g02780,,,IPR001849: Pleckstrin homology domain
+454,Bcin13g05260,Bcin02g02480,,,IPR001138: Zn(2)-C6 fungal-type DNA-binding domain
+455,Bcin13g05620,Bcin09g06590,,,IPR001199: Cytochrome b5-like heme/steroid binding domain
+456,Bcin13g05780,Bcin12g00330,,,IPR019236: Domain of unknown function DUF2183
+457,Bcin14g00460,Bcin10g00940,,,"IPR003126: Zinc finger, N-recognin"
+458,Bcin14g01380,Bcin12g00330,BcAIF1,AIF-like oxidoreductase 1,"IPR001327: Pyridine nucleotide-disulphide oxidoreductase, NAD-binding domain"
+459,Bcin14g02240,Bcin06g05790,,,IPR018108: Mitochondrial substrate/solute carrier
+460,Bcin14g02490,Bcin02g02480,,,IPR000727: Target SNARE coiled-coil domain
+461,Bcin14g02820,Bcin09g06590,,,"IPR005629: Beta-glucan synthesis-associated, SKN1"
+462,Bcin14g02840,Bcin06g05790,,,
+463,Bcin14g02850,Bcin06g05790,,,
+464,Bcin14g03030,Bcin12g00330,,,
+465,Bcin14g03180,Bcin12g00330,,,IPR009571: Actin cortical patch SUR7/pH-response regulator PalI
+466,Bcin14g03230,Bcin09g06590,,,IPR006175: YjgF/Yer057p/UK114 family
+467,Bcin14g03290,Bcin08g05340,,,
+468,Bcin14g03520,Bcin10g00940,,,IPR008253: Marvel domain
+469,Bcin14g03610,Bcin02g02850,,,IPR008462: CsbD-like
+470,Bcin14g04530,Bcin12g00330,,,"IPR006383: HAD-superfamily hydrolase, subfamily IB, PSPase-like"
+471,Bcin14g05350,Bcin12g00330,,,IPR000008: C2 domain
+472,Bcin15g00030,Bcin08g05340,,,"IPR011250: Outer membrane protein/outer membrane enzyme PagP , beta-barrel"
+473,Bcin15g00610,Bcin12g00330,,,IPR003593: AAA+ ATPase domain
+474,Bcin15g00730,Bcin08g05340,,,IPR001128: Cytochrome P450
+475,Bcin15g00890,Bcin08g05340,,,IPR001128: Cytochrome P450
+476,Bcin15g00990,Bcin09g06590,,,"IPR000571: Zinc finger, CCCH-type"
+477,Bcin15g01450,Bcin09g03390,,,
+478,Bcin15g01500,Bcin09g06590,,,IPR000198: Rho GTPase-activating protein domain
+479,Bcin15g02270,Bcin02g02480,,,IPR008631: Glycogen synthase
+480,Bcin15g02980,Bcin16g00010,,,IPR012501: Vps54-like
+481,Bcin15g03340,Bcin03g05020,,,"IPR003094: Fructose-2,6-bisphosphatase"
+482,Bcin15g03350,Bcin12g00330,,,IPR002156: Ribonuclease H domain
+483,Bcin15g03430,Bcin05g02780,,,IPR003663: Sugar/inositol transporter
+484,Bcin15g03470,Bcin06g05790,,,IPR003172: MD-2-related lipid-recognition domain
+485,Bcin15g03580,Bcin12g00330,BcSAK1,mitogen-activated protein kinase,IPR000719: Protein kinase domain
+486,Bcin15g03580,Bcin05g02780,BcSAK1,mitogen-activated protein kinase,IPR000719: Protein kinase domain
+487,Bcin15g03630,Bcin09g03390,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+488,Bcin15g03860,Bcin10g00940,,,"IPR000103: Pyridine nucleotide-disulphide oxidoreductase, class-II"
+489,Bcin15g04030,Bcin02g02850,,,"IPR011576: Pyridoxamine 5'-phosphate oxidase-like, FMN-binding domain"
+490,Bcin15g04360,Bcin06g05790,,,
+491,Bcin15g04580,Bcin12g00330,,,
+492,Bcin15g04680,Bcin02g02850,,,
+493,Bcin15g04970,Bcin12g00330,,,IPR001672: Phosphoglucose isomerase (PGI)
+494,Bcin15g05110,Bcin09g06590,,,"IPR004136: 2-nitropropane dioxygenase, NPD"
+495,Bcin15g05120,Bcin12g00330,,,IPR019402: Frag1/DRAM/Sfk1
+496,Bcin15g05190,Bcin09g06590,,,IPR009571: Actin cortical patch SUR7/pH-response regulator PalI
+497,Bcin16g00060,Bcin12g00330,,,
+498,Bcin16g00430,Bcin16g00010,,,"IPR002313: Lysine-tRNA ligase, class II"
+499,Bcin16g00840,Bcin16g00010,,,IPR000996: Clathrin light chain
+500,Bcin16g01030,Bcin12g00330,,,
+501,Bcin16g01090,Bcin12g00330,,,
+502,Bcin16g01270,Bcin12g00330,,,
+503,Bcin16g01660,Bcin09g06590,,,IPR003734: Protein of unknown function DUF155
+504,Bcin16g02120,Bcin02g02480,,,IPR003439: ABC transporter-like
+505,Bcin16g02240,Bcin10g00940,,,
+506,Bcin16g02390,Bcin09g06590,,,IPR016024: Armadillo-type fold
+507,Bcin16g02460,Bcin08g05340,,,IPR001461: Aspartic peptidase
+508,Bcin16g03360,Bcin12g00330,,,IPR010721: Protein of unknown function DUF1295
+509,Bcin16g03380,Bcin12g00330,,,IPR002198: Short-chain dehydrogenase/reductase SDR
+510,Bcin16g03520,Bcin09g03390,,,IPR013922: Cyclin PHO80-like
+511,Bcin16g03540,Bcin09g03390,,,"IPR011766: Thiamine pyrophosphate enzyme, C-terminal TPP-binding"
+512,Bcin16g03550,Bcin09g06590,,,
+513,Bcin16g04000,Bcin05g02780,,,"IPR012340: Nucleic acid-binding, OB-fold"
+514,Bcin16g04040,Bcin12g00330,,,IPR001395: Aldo/keto reductase
+515,Bcin16g05140,Bcin02g02480,,,IPR000195: Rab-GTPase-TBC domain
+516,Bcin18g00060,Bcin08g05340,,,"IPR003653: Peptidase C48, SUMO/Sentrin/Ubl1"
+517,Bcin18g00110,Bcin08g05340,,,
+518,Bcin18g00190,Bcin08g05340,,,

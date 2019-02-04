@@ -1,0 +1,108 @@
+term_ID,description,frequency,plot_X,plot_Y,plot_size,log10 p-value,uniqueness,dispensability,representative,eliminated
+GO:0006091,generation of precursor metabolites and energy,1.46%,-0.655,3.495,2.53,-16.9469,0.884,0,6091,0
+GO:0008150,biological_process,100.00%,3.862,-2.981,4.365,-5.4776,1,0,8150,0
+GO:0008152,metabolic process,56.09%,4.54,-2.042,4.114,-14.5287,0.992,0,8152,0
+GO:0009987,cellular process,58.83%,0.636,-2.217,4.135,-18.5346,0.992,0,9987,0
+GO:0010035,response to inorganic substance,3.70%,5.723,2.265,2.933,-9.0926,0.825,0,10035,0
+GO:0033036,macromolecule localization,4.52%,2.599,-6.286,3.02,-2.6882,0.83,0,33036,0
+GO:0051234,establishment of localization,11.82%,null,null,3.438,-4.3615,0.81,0.701,33036,1
+GO:0006810,transport,11.65%,null,null,3.431,-3.7645,0.808,0.855,33036,1
+GO:0071702,organic substance transport,5.59%,null,null,3.112,-2.3585,0.823,0.73,33036,1
+GO:0050896,response to stimulus,25.94%,3.116,-3.796,3.779,-19.9245,0.986,0,50896,0
+GO:0051179,localization,12.35%,0.837,-0.749,3.457,-4.3261,0.984,0,51179,0
+GO:0071840,cellular component organization or biogenesis,14.45%,6.204,-3.535,3.525,-6.1518,0.984,0,71840,0
+GO:0009657,plastid organization,1.03%,-0.862,-4.494,2.38,-11.7399,0.916,0.05,9657,0
+GO:0017144,drug metabolic process,0.00%,2.822,-1.501,0.301,-3.5003,0.925,0.057,17144,0
+GO:0042430,indole-containing compound metabolic process,0.38%,-1.507,7.771,1.954,-2.399,0.797,0.084,42430,0
+GO:0019684,"photosynthesis, light reaction",0.51%,0.382,1.735,2.072,-9.6234,0.846,0.086,19684,0
+GO:0009767,photosynthetic electron transport chain,0.22%,null,null,1.724,-3.6364,0.785,0.791,19684,1
+GO:0006101,citrate metabolic process,0.23%,null,null,1.74,-1.6904,0.74,0.98,19684,1
+GO:0006099,tricarboxylic acid cycle,0.23%,null,null,1.74,-1.6904,0.706,0.734,19684,1
+GO:0022900,electron transport chain,0.48%,null,null,2.049,-2.082,0.772,0.784,19684,1
+GO:0015980,energy derivation by oxidation of organic compounds,0.60%,null,null,2.149,-1.6517,0.767,0.801,19684,1
+GO:0051188,cofactor biosynthetic process,1.03%,-1.952,6.206,2.378,-4.5272,0.789,0.093,51188,0
+GO:0015994,chlorophyll metabolic process,0.35%,null,null,1.908,-2.1838,0.75,0.778,51188,1
+GO:0015995,chlorophyll biosynthetic process,0.24%,null,null,1.756,-2.1624,0.665,0.942,51188,1
+GO:0006779,porphyrin-containing compound biosynthetic process,0.27%,null,null,1.806,-2.2,0.733,0.982,51188,1
+GO:0006778,porphyrin-containing compound metabolic process,0.40%,null,null,1.968,-1.9469,0.747,0.982,51188,1
+GO:0033014,tetrapyrrole biosynthetic process,0.28%,null,null,1.82,-1.7773,0.742,0.952,51188,1
+GO:0015979,photosynthesis,1.06%,-1.587,0.414,2.391,-14.9245,0.888,0.094,15979,0
+GO:0006790,sulfur compound metabolic process,1.42%,0.608,5.31,2.519,-1.5086,0.885,0.097,6790,0
+GO:0019752,carboxylic acid metabolic process,4.44%,-5.483,-1.963,3.012,-7.1146,0.668,0.112,19752,0
+GO:0006520,cellular amino acid metabolic process,1.87%,null,null,2.637,-2.2262,0.632,0.802,19752,1
+GO:0016053,organic acid biosynthetic process,2.30%,null,null,2.727,-4.8097,0.64,0.918,19752,1
+GO:0043436,oxoacid metabolic process,5.00%,null,null,3.064,-6.8125,0.663,0.93,19752,1
+GO:0046394,carboxylic acid biosynthetic process,2.30%,null,null,2.727,-4.8097,0.635,0.826,19752,1
+GO:0006082,organic acid metabolic process,5.02%,null,null,3.066,-6.7932,0.682,0.794,19752,1
+GO:1901607,alpha-amino acid biosynthetic process,0.83%,null,null,2.288,-2.1481,0.62,0.861,19752,1
+GO:1901605,alpha-amino acid metabolic process,1.33%,null,null,2.49,-1.6635,0.635,0.765,19752,1
+GO:0044283,small molecule biosynthetic process,2.83%,null,null,2.817,-6.4895,0.674,0.726,19752,1
+GO:0008652,cellular amino acid biosynthetic process,0.92%,null,null,2.328,-3.3799,0.619,0.871,19752,1
+GO:0051186,cofactor metabolic process,1.74%,-2.884,0.964,2.605,-6.1397,0.882,0.114,51186,0
+GO:0044237,cellular metabolic process,46.46%,-6.578,1.954,4.032,-11.983,0.85,0.131,44237,0
+GO:0042793,transcription from plastid promoter,0.04%,-0.842,7.427,1,-1.4179,0.849,0.183,42793,0
+GO:0006725,cellular aromatic compound metabolic process,23.48%,-4.952,2.068,3.736,-2.5272,0.831,0.229,6725,0
+GO:1901360,organic cyclic compound metabolic process,23.93%,-6.058,2.93,3.744,-2.9208,0.856,0.231,1901360,0
+GO:0009058,biosynthetic process,24.43%,-5.502,2.681,3.753,-7.0511,0.874,0.233,9058,0
+GO:1901564,organonitrogen compound metabolic process,8.54%,-3.139,6.988,3.297,-5.6402,0.826,0.235,1901564,0
+GO:0006807,nitrogen compound metabolic process,27.30%,-6.408,3.307,3.801,-4.6904,0.872,0.246,6807,0
+GO:0006979,response to oxidative stress,1.91%,4.86,3.774,2.646,-1.6861,0.858,0.275,6979,0
+GO:0046483,heterocycle metabolic process,22.97%,-5.627,1.811,3.726,-1.8356,0.832,0.281,46483,0
+GO:0009266,response to temperature stimulus,2.29%,5.978,4.063,2.725,-5.6517,0.825,0.282,9266,0
+GO:0051707,response to other organism,4.97%,6.501,2.253,3.061,-2.3546,0.844,0.317,51707,0
+GO:0043207,response to external biotic stimulus,4.98%,null,null,3.063,-2.3546,0.844,0.937,51707,1
+GO:0046148,pigment biosynthetic process,0.64%,-3.778,-5.331,2.173,-1.5317,0.81,0.338,46148,0
+GO:0071704,organic substance metabolic process,49.27%,-6.498,2.8,4.058,-8.2111,0.856,0.344,71704,0
+GO:0044238,primary metabolic process,46.77%,-6.661,3.004,4.035,-4.0405,0.857,0.346,44238,0
+GO:0042440,pigment metabolic process,0.79%,-4.205,-4.814,2.262,-2.2182,0.817,0.347,42440,0
+GO:1901576,organic substance biosynthetic process,22.97%,-4.787,4.98,3.726,-7.9172,0.765,0.352,1901576,0
+GO:0044249,cellular biosynthetic process,22.84%,null,null,3.724,-6.7496,0.747,0.723,1901576,1
+GO:0009628,response to abiotic stimulus,7.95%,6.216,2.743,3.265,-16.9281,0.845,0.361,9628,0
+GO:0009607,response to biotic stimulus,5.16%,5.16,3.256,3.078,-2.3468,0.854,0.364,9607,0
+GO:0009605,response to external stimulus,6.37%,5.718,2.576,3.169,-3.7399,0.85,0.378,9605,0
+GO:0042435,indole-containing compound biosynthetic process,0.24%,-1.954,7.345,1.748,-1.7773,0.78,0.388,42435,0
+GO:0015833,peptide transport,0.18%,2.667,-6.1,1.623,-2.1232,0.859,0.389,15833,0
+GO:0033013,tetrapyrrole metabolic process,0.40%,-1.875,7.808,1.973,-1.7773,0.796,0.406,33013,0
+GO:0006950,response to stress,14.16%,5.898,3.128,3.516,-11.3497,0.833,0.445,6950,0
+GO:0046686,response to cadmium ion,1.37%,6.164,1.677,2.502,-7.4067,0.827,0.481,46686,0
+GO:0010038,response to metal ion,1.94%,null,null,2.653,-5.8827,0.821,0.771,46686,1
+GO:0009414,response to water deprivation,1.39%,null,null,2.509,-3.2299,0.791,0.773,46686,1
+GO:0009415,response to water,1.42%,null,null,2.517,-3.1302,0.793,0.774,46686,1
+GO:0044281,small molecule metabolic process,7.30%,-5.425,-2.995,3.229,-11.214,0.767,0.482,44281,0
+GO:0034641,cellular nitrogen compound metabolic process,25.40%,-4.056,4.091,3.77,-4.3575,0.774,0.493,34641,0
+GO:0042221,response to chemical,12.43%,5.656,3.022,3.46,-9.4342,0.836,0.495,42221,0
+GO:0016043,cellular component organization,13.26%,-2.324,-2.947,3.488,-5.7645,0.898,0.502,16043,0
+GO:0071705,nitrogen compound transport,1.52%,2.248,-6.253,2.547,-1.4547,0.847,0.503,71705,0
+GO:0055114,oxidation-reduction process,7.46%,-5.505,-2.99,3.238,-5.5171,0.766,0.53,55114,0
+GO:1901566,organonitrogen compound biosynthetic process,6.07%,-3.209,6.443,3.149,-7.7852,0.719,0.541,1901566,0
+GO:0009658,chloroplast organization,0.80%,-0.993,-4.53,2.272,-8.7282,0.918,0.546,9658,0
+GO:0051641,cellular localization,3.01%,2.314,-6.046,2.844,-1.5376,0.838,0.555,51641,0
+GO:0015031,protein transport,3.12%,3.054,-6.073,2.859,-2.4461,0.791,0.558,15031,0
+GO:0071806,protein transmembrane transport,0.42%,null,null,1.996,-1.7122,0.827,0.748,15031,1
+GO:0070727,cellular macromolecule localization,2.17%,null,null,2.702,-1.7932,0.797,0.81,15031,1
+GO:0033365,protein localization to organelle,1.15%,null,null,2.427,-1.58,0.803,0.896,15031,1
+GO:0034613,cellular protein localization,2.02%,null,null,2.67,-1.6073,0.792,0.882,15031,1
+GO:0065002,intracellular protein transmembrane transport,0.33%,null,null,1.892,-1.3595,0.82,0.728,15031,1
+GO:0051649,establishment of localization in cell,2.41%,null,null,2.747,-1.6882,0.813,0.899,15031,1
+GO:0045184,establishment of protein localization,3.17%,null,null,2.867,-2.6596,0.794,0.94,15031,1
+GO:0008104,protein localization,3.45%,null,null,2.903,-2.4283,0.8,0.865,15031,1
+GO:0001101,response to acid chemical,5.01%,6.428,2.758,3.065,-3.5969,0.819,0.58,1101,0
+GO:0005996,monosaccharide metabolic process,0.55%,-4.712,-4.453,2.111,-1.7878,0.753,0.584,5996,0
+GO:0009409,response to cold,1.58%,5.474,4.001,2.565,-1.8041,0.829,0.588,9409,0
+GO:0009073,aromatic amino acid family biosynthetic process,0.21%,-5.024,-0.543,1.69,-1.8013,0.662,0.612,9073,0
+GO:0009651,response to salt stress,2.27%,5.51,4.38,2.722,-4.8447,0.822,0.617,9651,0
+GO:0018130,heterocycle biosynthetic process,14.01%,-3.934,5.24,3.512,-5.433,0.75,0.62,18130,0
+GO:0019438,aromatic compound biosynthetic process,14.25%,-3.787,5.143,3.519,-5.6819,0.749,0.623,19438,0
+GO:0006970,response to osmotic stress,2.51%,5.562,4.203,2.766,-5.3325,0.82,0.625,6970,0
+GO:0072350,tricarboxylic acid metabolic process,0.26%,-4.72,-4.562,1.785,-1.6757,0.746,0.627,72350,0
+GO:1901362,organic cyclic compound biosynthetic process,14.77%,-3.927,5.833,3.534,-5.4425,0.765,0.629,1901362,0
+GO:1901700,response to oxygen-containing compound,6.50%,6.296,3.174,3.178,-3.341,0.813,0.638,1901700,0
+GO:0009725,response to hormone,6.87%,null,null,3.202,-1.3382,0.811,0.711,1901700,1
+GO:0010033,response to organic substance,8.58%,null,null,3.299,-2.1537,0.806,0.704,1901700,1
+GO:0009416,response to light stimulus,2.77%,5.694,4.025,2.808,-3.5331,0.821,0.641,9416,0
+GO:0009314,response to radiation,2.89%,5.613,4.436,2.827,-3.2175,0.82,0.654,9314,0
+GO:0044271,cellular nitrogen compound biosynthetic process,17.02%,-3.745,5.019,3.596,-7.0726,0.728,0.657,44271,0
+GO:0042886,amide transport,0.22%,2.904,-5.961,1.716,-2.2716,0.865,0.663,42886,0
+GO:0019318,hexose metabolic process,0.33%,-4.552,-4.751,1.886,-1.9136,0.76,0.677,19318,0
+GO:0006006,glucose metabolic process,0.20%,null,null,1.672,-1.7825,0.769,0.866,19318,1
+GO:0006996,organelle organization,6.44%,-0.989,-4.761,3.174,-2.5607,0.904,0.695,6996,0

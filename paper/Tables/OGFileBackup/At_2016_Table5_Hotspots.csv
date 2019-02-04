@@ -1,0 +1,51 @@
+Sort,Gene,HotSpotNearestGene,Network,GeneName,Function,Col.0,coi1.1,npr1.1
+3,AT1G06680,Bcin01g01610,IV,PSBP1,Oxygen-evolving enhancer protein 2-1,,Hub_2,Hub_10
+7,AT1G54780,Bcin01g01610,IV,At1g54780,UPF0603 protein,,,Hub_7/BN_3
+29,AT3G56940,Bcin01g01610,IV,CRD1,Copper response defect 1 protein,,,Hub_9/BN_2
+30,AT4G01050,Bcin01g01610,IV,STR4,Sulfurtransferase 4,BN_5,,Hub_2/BN_1
+32,AT4G05180,Bcin01g01610,IV,PSBQ2,Oxygen-evolving enhancer protein 3-2,,Hub_6,Hub_11
+4,AT1G08380,Bcin04g04700,IV,PSAO,Photosystem I subunit O (PSI-O),Hub_3,,
+27,AT3G54050,Bcin04g04700,IV,FBP,"Fructose-1,6-bisphosphatase",BN_2,,Hub_4/BN_12
+45,AT5G19940,Bcin04g04700,IV,PAP8,Probable plastid-lipid-associated protein 8,,,Hub_5/BN_5
+5,AT1G10700,Bcin04g05160,I,PRS3,Phosphoribosyl pyrophosphate synthase 3,Hub_13,,BN_39
+1,AT1G02920,Bcin12g02130,I,GSTF7,Glutathione S-transferase F7,,Hub_4,Hub_27/BN_31
+6,AT1G15520,Bcin12g02130,I,ABCG40,ABC transporter G family member 40,Hub_1/BN_1,,Hub_16/BN_28
+14,AT2G16900,Bcin12g02130,I,At2g16900,Phospholipase-like protein (PEARLI 4) family,Hub_7/BN_8,,Hub_10/BN_6
+15,AT2G17720,Bcin12g02130,I,P4H5,Prolyl 4-hydroxylase 5,,,Hub_22/BN_20
+17,AT2G30770,Bcin12g02130,I,CYP71A13,Indoleacetaldoxime dehydratase,,,Hub_32/BN_38
+18,AT2G34500,Bcin12g02130,I,CYP710A1,Cytochrome P450 710A1 ,,,Hub_25/BN_26
+23,AT3G26830,Bcin12g02130,I,CYP71B15,Protein PHYTOALEXIN DEFICIENT 3,Hub_9,,Hub_37
+26,AT3G48890,Bcin12g02130,I,MSBP2,Membrane steroid-binding protein 2,Hub_8/BN_3,,Hub_7/BN_17
+34,AT4G25030,Bcin12g02130,I,F13M23.170,AT4G25030 protein,Hub_11/BN_7,,
+40,AT5G05730,Bcin12g02130,I,ASA1,Anthranilate synthase alpha subunit 1,Hub_2/BN_6,,Hub_6/BN_16
+42,AT5G12930,Bcin12g02130,I,T24H18_90,Uncharacterized protein,,,BN_30
+2,AT1G02930,Bcin12g02340,I,GSTF6,Glutathione S-transferase F6,,,Hub_34/BN_31
+9,AT1G60730,Bcin12g02340,I,At1g60730,Probable aldo-keto reductase 5 ,,,Hub_33/BN_21
+10,AT1G66580,Bcin12g02340,I,RPL10C,60S ribosomal protein L10-3,,Hub_2/BN_2,Hub_20/BN_19
+13,AT2G04400,Bcin12g02340,I,IGPS,Indole-3-glycerol phosphate synthase,Hub_4/BN_12,,Hub_1/BN_3
+20,AT3G12740,Bcin12g02340,I,ALIS1,ALA-interacting subunit 1,BN_5,,Hub_2/BN_1
+21,AT3G17240,Bcin12g02340,I,LPD2,Dihydrolipoyl dehydrogenase 2,BN_4,,Hub_13/BN_2
+25,AT3G48850,Bcin12g02340,I,MPT2,Mitochondrial phosphate carrier protein 2,,,Hub_26/BN_27
+28,AT3G54640,Bcin12g02340,I,TSA1,Tryptophan synthase alpha chain,Hub_6,BN_1,Hub_18/BN_29
+31,AT4G05020,Bcin12g02340,I,NDB2,External alternative NAD(P)H-ubiquinone oxidoreductase B2,,,Hub_38/BN_23
+33,AT4G20830,Bcin12g02340,I,At4g20830,Reticuline oxidase-like protein,,Hub_1/BN_4,Hub_8/BN_11
+36,AT4G36988,Bcin12g02340,I,CPuORF49,Uncharacerized protein,BN_11,,Hub_24/BN_25
+37,AT4G36990,Bcin12g02340,I,HSFB1,Heat stress transcription factor B-1,,,Hub_9/BN_12
+38,AT4G37370,Bcin12g02340,I,F6G17.20,"Cytochrome P450, family 81, subfamily D, polypeptide 8 ",,,Hub_35/BN_35
+39,AT5G04930,Bcin12g02340,I,ALA1,Aminophospholipid flippase 1,,,BN_32
+41,AT5G08300,Bcin12g02340,I,At5g08300,Succinyl-CoA ligase,BN_13,,Hub_29/BN_13
+43,AT5G13490,Bcin12g02340,I,AAC2,Adenine nucleotide translocator 2,,,Hub_14/BN_8
+44,AT5G17990,Bcin12g02340,I,TRP1/PAT1,Anthranilate phosphoribosyltransferase,,,Hub_21/BN_22
+47,AT5G38900,Bcin12g02340,I,At5g38900,FrnE protein-like,,,Hub_30/BN_34
+48,AT5G54500,Bcin12g02340,I,FQR1,Flavodoxin-like quinone reductase 1,BN_2,,Hub_15/BN_14
+22,AT3G26670,Bcin13g02930,I,NIPA8,Probable magnesium transporter NIPA8,,,Hub_19/BN_15
+46,AT5G25930,Bcin13g02930,I,T1N24.22,Leucine-rich repeat receptor-like protein kinase,,,Hub_17/BN_24
+49,AT5G54810,Bcin13g02930,I,TSB1,Tryptophan synthase beta chain 1,Hub_5/BN_10,,Hub_5/BN_9
+8,AT1G55670,Bcin16g01950,IV,PSAG,Photosystem I reaction center subunit V,Hub_2,BN_7,Hub_8
+11,AT1G68010,Bcin16g01950,IV,HPR,NADH-dependent hydroxypyruvate reductase 1,BN_3,,BN_8
+12,AT1G74470,Bcin16g01950,IV,CHLP,Geranylgeranyl diphosphate reductase,,Hub_5/BN_1,BN_15
+16,AT2G30570,Bcin16g01950,IV,PSBW,Photosystem II reaction center W protein,,BN_8,
+19,AT2G46820,Bcin16g01950,IV,CURT1B,Protein CURVATURE THYLAKOID 1B,,Hub_8/BN_5,Hub_15/BN_7
+24,AT3G47470,Bcin16g01950,IV,LHCA4,Chlorophyll a-b binding protein 4,,Hub_1/BN_3,Hub_14
+35,AT4G32260,Bcin16g01950,IV,atpG,ATP synthase beta chain (Subunit II),,,Hub_13/BN_4
+50,AT5G66570,Bcin16g01950,IV,PSBO1,Oxygen-evolving enhancer protein 1-1,Hub_1/BN_1,Hub_7/BN_6,Hub_6/BN_11

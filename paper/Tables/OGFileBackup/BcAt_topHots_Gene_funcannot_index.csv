@@ -1,0 +1,41 @@
+﻿Sorting,Gene,HotspotCategory,CatYAxis,Gene.B,Gene.A,GeneStart,GeneEnd,midgene,closest.end,chr,V2,V6,V7,V14,Name,Function,VivianLists
+20,Bcin04g05160,At,-1,3,114,1792824,1794041,1793432.5,1263,4,ensembl,.,-,,,,NA
+42,Bcin10g05900,At,-1,0,117,2267537,2267719,2267628,803,10,ensembl,.,-,,,"SMAD/FHA domain; Winged helix-turn-helix DNA-binding domain; Transcription factor, fork head, conserved site",Lesion size correlation (coi1) (SDS 6)
+11,Bcin03g00960,At,-1,1,122,336513,336963,336738,46,3,ensembl,.,-,,,GTP cyclohydrolase I,NA
+52,Bcin13g02930,At,-1,0,123,1025730,1026434,1026082,318,13,ensembl,.,+,,,SET domain,NA
+17,Bcin04g00830,At,-1,0,144,310912,313053,311982.5,403,4,ensembl,.,-,,,NACHT nucleoside triphosphatase; G-protein beta WD-40 repeat; P-loop containing nucleoside triphosphate hydrolase,Lesion size correlation (Col0) (SDS 6)
+27,Bcin06g05680,At,-1,0,157,1951821,1953040,1952430.5,496,6,ensembl,.,+,,,WLM,Lesion size correlation (all genos) (SDS 6)
+2,Bcin01g01610,At,-1,0,219,628943,629317,629130,160,1,ensembl,.,+,,,Short-chain dehydrogenase/reductase SDR; Glucose/ribitol dehydrogenase; NAD(P)-binding domain,NA
+62,Bcin16g01950,At,-1,0,240,788329,788808,788568.5,817,16,ensembl,.,-,Bccwh41,,"Glycoside hydrolase, family 63",NA
+47,Bcin12g02130,At,-1,2,275,759092,759871,759457.25,628,12,ensembl,.,+,,,,NA
+48,Bcin12g02340,At,-1,1,449,842439,842597,842518,70,12,ensembl,.,-,Bccds1,,"Phosphatidate cytidylyltransferase, eukaryota",Lesion size correlation (all genos) (SDS 6)
+19,Bcin04g04700,At,-1,0,634,1632900,1633510,1633205,172,4,ensembl,.,-,,,Heterokaryon incompatibility,NA
+8,Bcin02g02850,Bc,1,32,0,1032308,1032410,1032359,66,2,ensembl,.,+,,,Protein kinase-like domain; Fructosamine/Ketosamine-3-kinase,High heritability of expression (SDS 5) // Lesion size correlation (Col0) (SDS 6) // Bc Col0 Vesicle/virulence net (SDS 7)
+28,Bcin06g05790,Bc,1,25,0,1985742,1986223,1985982.5,1956,6,ensembl,.,+,,,,NA
+32,Bcin08g05340,Bc,1,27,0,2016606,2018033,2017319.5,2378,8,ensembl,.,-,,,F-box domain,NA
+41,Bcin10g00940,Bc,1,23,1,382891,383451,383171,116,10,ensembl,.,+,,NA,NA,Lesion size correlation (all genos) (SDS 6)
+23,Bcin05g02780,Bc,1,22,2,1016682,1018017,1017349.5,1498,5,ensembl,.,-,,NA,NA,NA
+61,Bcin16g00010,Bc,1,23,2,83836,84545,84190.5,7240,16,ensembl,.,+,,,SsuA/THI5-like,NA
+46,Bcin12g00330,Bc,1,101,4,115736,116258,115997,225,12,ensembl,.,+,Bcpat1,,Topoisomerase II-associated protein PAT1,Lesion size correlation (all genos) (SDS 6)
+7,Bcin02g02480,Bc,1,31,6,910200,910854,910527,4,2,ensembl,.,+,,NA,NA,Lesion size correlation (all genos) (SDS 6)
+36,Bcin09g03390,Bc,1,73,6,1228208,1228881,1228544.5,6960,9,ensembl,.,-,,,"6-phosphogluconate dehydrogenase, C-terminal-like; Ketopantoate reductase; NAD(P)-binding domain",NA
+13,Bcin03g05020,Bc,1,24,15,1695008,1695047,1695027.5,56,3,ensembl,.,+,,NA,NA,NA
+40,Bcin09g06590,Bc,1,129,56,2330327,2332534,2331354,15,9,ensembl,.,+,,,"SNF2-related; Helicase, superfamily 1/2, ATP-binding domain; P-loop containing nucleoside triphosphate hydrolase",NA
+,NA,NA,,NA,NA,,,4035870,,1,,,,,,,
+,NA,NA,,NA,NA,,,3341140,,2,,,,,,,
+,NA,NA,,NA,NA,,,3225709,,3,,,,,,,
+,NA,NA,,NA,NA,,,2344728,,4,,,,,,,
+,NA,NA,,NA,NA,,,2860719,,5,,,,,,,
+,NA,NA,,NA,NA,,,2710005,,6,,,,,,,
+,NA,NA,,NA,NA,,,2645020,,7,,,,,,,
+,NA,NA,,NA,NA,,,2582461,,8,,,,,,,
+,NA,NA,,NA,NA,,,2510470,,9,,,,,,,
+,NA,NA,,NA,NA,,,2393681,,10,,,,,,,
+,NA,NA,,NA,NA,,,2300275,,11,,,,,,,
+,NA,NA,,NA,NA,,,2347289,,12,,,,,,,
+,NA,NA,,NA,NA,,,2208574,,13,,,,,,,
+,NA,NA,,NA,NA,,,2121956,,14,,,,,,,
+,NA,NA,,NA,NA,,,2025910,,15,,,,,,,
+,NA,NA,,NA,NA,,,1958973,,16,,,,,,,
+,NA,NA,,NA,NA,,,42903,,17,,,,,,,
+,NA,NA,,NA,NA,,,183158,,18,,,,,,,

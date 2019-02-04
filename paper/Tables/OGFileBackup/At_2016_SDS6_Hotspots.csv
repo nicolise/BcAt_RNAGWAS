@@ -1,0 +1,530 @@
+Sort,Gene,HotSpotNearestGene,NetworkMember,Gene.Name,Function,Network
+3,AT1G02920,Bcin12g02130,1,GSTF7,Glutathione S-transferase F7,coi1-1.Net1
+35,AT1G15520,Bcin12g02130,3,ABCG40,ABC transporter G family member 40 (Pleiotropic drug resistance protein 12),coi1-1.Net1
+141,AT2G16900,Bcin12g02130,11,At2g16900,Phospholipase-like protein ,coi1-1.Net1
+147,AT2G17720,Bcin12g02130,12,P4H5,Prolyl 4-hydroxylase 5,coi1-1.Net1
+149,AT2G18690,Bcin12g02130,13,At2g18690,Uncharacterized protein,coi1-1.Net1
+174,AT2G30770,Bcin12g02130,14,CYP71A13,Indoleacetaldoxime dehydratase ,coi1-1.Net1
+180,AT2G34500,Bcin12g02130,15,CYP710A1,Cytochrome P450 710A1,coi1-1.Net1
+245,AT3G23530,Bcin12g02130,18,AT3g23510,Cyclopropane-fatty-acyl-phospholipid synthase,coi1-1.Net1
+257,AT3G26830,Bcin12g02130,19,CYP71B15,Protein PHYTOALEXIN DEFICIENT 3,coi1-1.Net1
+274,AT3G48890,Bcin12g02130,21,MSBP2,Membrane steroid-binding protein 2,coi1-1.Net1
+414,AT5G05730,Bcin12g02130,28,ASA1,Anthranilate synthase alpha subunit 1,coi1-1.Net1
+5,AT1G02930,Bcin12g02340,2,GSTF6,Glutathione S-transferase F6(Protein EARLY RESPONSE TO DEHYDRATION 11),coi1-1.Net1
+96,AT1G60730,Bcin12g02340,7,At1g60730,Probable aldo-keto reductase 5,coi1-1.Net1
+108,AT1G66580,Bcin12g02340,8,RPL10C,60S ribosomal protein L10-3,coi1-1.Net1
+135,AT2G04400,Bcin12g02340,10,IGPS,Indole-3-glycerol phosphate synthase,coi1-1.Net1
+223,AT3G12740,Bcin12g02340,17,ALIS1,ALA-interacting subunit 1,coi1-1.Net1
+272,AT3G48850,Bcin12g02340,20,MPT2,Mitochondrial phosphate carrier protein 2,coi1-1.Net1
+290,AT3G54640,Bcin12g02340,23,TSA1,Tryptophan synthase alpha chain,coi1-1.Net1
+347,AT4G20830,Bcin12g02340,24,At4g20830,Reticuline oxidase-like protein,coi1-1.Net1
+390,AT4G36988,Bcin12g02340,25,CPuORF49,Uncharacerized protein,coi1-1.Net1
+394,AT4G36990,Bcin12g02340,26,HSFB1,Heat stress transcription factor B-1,coi1-1.Net1
+395,AT4G37370,Bcin12g02340,27,F6G17.20,"Cytochrome P450,",coi1-1.Net1
+429,AT5G13490,Bcin12g02340,29,AAC2,"ADP,ATP carrier protein 2",coi1-1.Net1
+444,AT5G17990,Bcin12g02340,30,PAT1,Anthranilate phosphoribosyltransferase,coi1-1.Net1
+476,AT5G38900,Bcin12g02340,32,At5g38900,FrnE protein-like,coi1-1.Net1
+494,AT5G54500,Bcin12g02340,33,FQR1,Flavodoxin-like quinone reductase 1,coi1-1.Net1
+460,AT5G25930,Bcin13g02930,31,T1N24.22,Leucine-rich repeat receptor-like protein kinase,coi1-1.Net1
+497,AT5G54810,Bcin13g02930,34,TSB1,Tryptophan synthase beta chain 1,coi1-1.Net1
+17,AT1G06680,Bcin01g01610,1,PSBP1,Oxygen-evolving enhancer protein 2-1,coi1-1.Net4
+29,AT1G11860,Bcin01g01610,3,GDCST,Glycine cleavage system T protein,coi1-1.Net4
+38,AT1G15820,Bcin01g01610,5,F7H2.16,Chlorophyll a-b binding protein,coi1-1.Net4
+67,AT1G30380,Bcin01g01610,10,PSAK,Photosystem I reaction center subunit psaK,coi1-1.Net4
+75,AT1G42970,Bcin01g01610,13,GAPB,Glyceraldehyde-3-phosphate dehydrogenase,coi1-1.Net4
+88,AT1G54780,Bcin01g01610,17,At1g54780,UPF0603 protein,coi1-1.Net4
+160,AT2G24270,Bcin01g01610,30,ALDH11A3,NADP-dependent glyceraldehyde-3-phosphate dehydrogenase,coi1-1.Net4
+265,AT3G46780,Bcin01g01610,43,PTAC16,Protein plastid transcriptionally active 16,coi1-1.Net4
+296,AT3G55800,Bcin01g01610,48,At3g55800,"Sedoheptulose-1,7-bisphosphatase",coi1-1.Net4
+297,AT3G56940,Bcin01g01610,49,CRD1,Copper response defect 1 protein,coi1-1.Net4
+309,AT4G01050,Bcin01g01610,51,STR4,Sulfurtransferase 4,coi1-1.Net4
+322,AT4G04640,Bcin01g01610,53,ATPC1,ATP synthase gamma chain 1,coi1-1.Net4
+326,AT4G05180,Bcin01g01610,54,PSBQ2,Oxygen-evolving enhancer protein 3-2,coi1-1.Net4
+433,AT5G13630,Bcin01g01610,64,GUN5,Protein GENOMES UNCOUPLED 5,coi1-1.Net4
+520,AT5G66190,Bcin01g01610,72,LFNR1,leaf isozyme 1,coi1-1.Net4
+365,AT4G28080,Bcin03g00960,58,TSS,TPR-domain suppressor of STIMPY,coi1-1.Net4
+23,AT1G08380,Bcin04g04700,2,PSAO,Photosystem I subunit O,coi1-1.Net4
+76,AT1G44446,Bcin04g04700,14,CAO,Chlorophyllide a oxygenase,coi1-1.Net4
+105,AT1G64860,Bcin04g04700,20,SIGA,RNA polymerase sigma factor sigA (Sigma factor A),coi1-1.Net4
+183,AT2G35260,Bcin04g04700,34,At2g35260,T4C15.7 ,coi1-1.Net4
+278,AT3G50820,Bcin04g04700,45,PSBO2,Oxygen-evolving enhancer protein 1-2,coi1-1.Net4
+283,AT3G54050,Bcin04g04700,46,FBP,"Fructose-1,6-bisphosphatase",coi1-1.Net4
+317,AT4G02770,Bcin04g04700,52,psaD1,Photosystem I reaction center subunit II-1,coi1-1.Net4
+349,AT4G21280,Bcin04g04700,57,PSBQ1,Oxygen-evolving enhancer protein 3-1,coi1-1.Net4
+436,AT5G16030,Bcin04g04700,65,F1N13_170,Putative uncharacterized protein F1N13_170 ,coi1-1.Net4
+448,AT5G19940,Bcin04g04700,66,PAP8,Probable plastid-lipid-associated protein 8,coi1-1.Net4
+399,AT4G38970,Bcin06g05680,61,FBA2,Probable fructose-bisphosphate aldolase 2,coi1-1.Net4
+30,AT1G12900,Bcin16g01950,4,GAPA2,Glyceraldehyde-3-phosphate dehydrogenase ,coi1-1.Net4
+83,AT1G52220,Bcin16g01950,16,CURT1C,Protein CURVATURE THYLAKOID 1C,coi1-1.Net4
+91,AT1G55670,Bcin16g01950,18,PSAG,Photosystem I reaction center subunit V,coi1-1.Net4
+117,AT1G68010,Bcin16g01950,22,HPR,Glycerate dehydrogenase HPR,coi1-1.Net4
+122,AT1G74470,Bcin16g01950,23,CHLP,Geranylgeranyl diphosphate reductase,coi1-1.Net4
+154,AT2G21330,Bcin16g01950,29,FBA1,Fructose-bisphosphate aldolase,coi1-1.Net4
+170,AT2G30570,Bcin16g01950,31,PSBW,Photosystem II reaction center W protein,coi1-1.Net4
+192,AT2G39730,Bcin16g01950,35,RCA,Ribulose bisphosphate carboxylase/oxygenase activase,coi1-1.Net4
+202,AT2G46820,Bcin16g01950,36,CURT1B,Protein CURVATURE THYLAKOID 1B,coi1-1.Net4
+253,AT3G26650,Bcin16g01950,42,GAPA1,Glyceraldehyde-3-phosphate dehydrogenase,coi1-1.Net4
+267,AT3G47470,Bcin16g01950,44,LHCA4,Chlorophyll a-b binding protein 4,coi1-1.Net4
+334,AT4G12800,Bcin16g01950,56,PSAL,Photosystem I reaction center subunit XI,coi1-1.Net4
+374,AT4G32260,Bcin16g01950,60,F10M6.100,ATP synthase beta chain (Subunit II),coi1-1.Net4
+419,AT5G09660,Bcin16g01950,63,PMDH2,Malate dehydrogenase,coi1-1.Net4
+482,AT5G46110,Bcin16g01950,68,TPT,Triose phosphate/phosphate translocator TPT,coi1-1.Net4
+486,AT5G47110,Bcin16g01950,69,At5g47110,Chlorophyll A-B binding family protein,coi1-1.Net4
+514,AT5G64040,Bcin16g01950,71,PSAN,Photosystem I reaction center subunit N,coi1-1.Net4
+524,AT5G66570,Bcin16g01950,73,PSBO1,Oxygen-evolving enhancer protein 1-1,coi1-1.Net4
+28,AT1G10700,Bcin04g05160,5,PRS3,Phosphoribosyl pyrophosphate synthase 3,Col0.Net1
+45,AT1G19020,Bcin04g05160,9,At1g19020,At1g19020,Col0.Net1
+56,AT1G24909,Bcin04g05160,13,F4F7.41,Anthranilate synthase beta subunit ,Col0.Net1
+60,AT1G25155,Bcin04g05160,15,,,Col0.Net1
+132,AT2G03505,Bcin04g05160,34,At2g03505,Carbohydrate-binding X8 domain-containing protein,Col0.Net1
+260,AT3G28930,Bcin04g05160,64,AIG2,Avirulence-induced gene 2 protein,Col0.Net1
+371,AT4G30530,Bcin04g05160,84,GGP1,Gamma-glutamyl peptidase 1,Col0.Net1
+517,AT5G64300,Bcin04g05160,121,RIBA1,Bifunctional riboflavin biosynthesis protein RIBA 1,Col0.Net1
+4,AT1G02920,Bcin12g02130,1,GSTF7,Glutathione S-transferase F7 ,Col0.Net1
+12,AT1G05010,Bcin12g02130,3,ACO4,1-aminocyclopropane-1-carboxylate oxidase 4 ,Col0.Net1
+37,AT1G15520,Bcin12g02130,7,ABCG40,ABC transporter G family member 40,Col0.Net1
+48,AT1G19180,Bcin12g02130,10,JAZ1,Jasmonate ZIM domain-containing protein 1,Col0.Net1
+58,AT1G25083,Bcin12g02130,14,,,Col0.Net1
+64,AT1G29290,Bcin12g02130,21,At1g29290,At1g29290,Col0.Net1
+68,AT1G30620,Bcin12g02130,22,MUR4,UDP-arabinose 4-epimerase 1,Col0.Net1
+80,AT1G51760,Bcin12g02130,26,ILL4,IAA-amino acid hydrolase ILR1-like 4,Col0.Net1
+112,AT1G66700,Bcin12g02130,30,PXMT1,SABATH family methyltransferase PXMT1,Col0.Net1
+126,AT1G76600,Bcin12g02130,33,F14G6.20,Putative uncharacterized protein,Col0.Net1
+142,AT2G16900,Bcin12g02130,36,PEARLI 4,Phospholipase-like protein (PEARLI 4) family,Col0.Net1
+148,AT2G17720,Bcin12g02130,37,P4H5,Prolyl 4-hydroxylase 5 (AtP4H5),Col0.Net1
+164,AT2G27500,Bcin12g02130,40,At2g27500,"Glucan endo-1,3-beta-glucosidase 14",Col0.Net1
+173,AT2G30770,Bcin12g02130,43,CYP71A13,Indoleacetaldoxime dehydratase,Col0.Net1
+176,AT2G30870,Bcin12g02130,44,GSTF10,Glutathione S-transferase F10,Col0.Net1
+181,AT2G34500,Bcin12g02130,45,CYP710A1,Cytochrome P450 710A1,Col0.Net1
+205,AT2G47650,Bcin12g02130,48,UXS4,UDP-glucuronic acid decarboxylase 4,Col0.Net1
+213,AT3G06300,Bcin12g02130,51,P4H2,Prolyl 4-hydroxylase 2,Col0.Net1
+230,AT3G16530,Bcin12g02130,56,At3g16530,Lectin-like protein,Col0.Net1
+241,AT3G22890,Bcin12g02130,58,APS1,ATP sulfurylase 1,Col0.Net1
+243,AT3G23530,Bcin12g02130,59,AT3g23510,Cyclopropane-fatty-acyl-phospholipid synthase,Col0.Net1
+256,AT3G26830,Bcin12g02130,62,CYP71B15,Protein PHYTOALEXIN DEFICIENT 3,Col0.Net1
+273,AT3G48890,Bcin12g02130,67,MSBP2,Membrane steroid-binding protein 2,Col0.Net1
+342,AT4G17720,Bcin12g02130,79,At4g17720,Putative splicing regulatory protein,Col0.Net1
+356,AT4G25030,Bcin12g02130,81,F13M23.170,AT4G25030 protein,Col0.Net1
+361,AT4G27070,Bcin12g02130,82,TSB2,Tryptophan synthase beta chain 2,Col0.Net1
+379,AT4G34200,Bcin12g02130,85,PGDH1,D-3-phosphoglycerate dehydrogenase 1,Col0.Net1
+385,AT4G35630,Bcin12g02130,86,PSAT1,Phosphoserine aminotransferase 1,Col0.Net1
+403,AT5G01210,Bcin12g02130,93,F7J8_190,Anthranilate N-benzoyltransferase-like protein,Col0.Net1
+405,AT5G01215,Bcin12g02130,94,,,Col0.Net1
+415,AT5G05730,Bcin12g02130,96,ASA1,Anthranilate synthase alpha subunit 1,Col0.Net1
+424,AT5G12930,Bcin12g02130,99,T24H18_90,Putative uncharacterized protein T24H18_90,Col0.Net1
+469,AT5G27760,Bcin12g02130,113,At5g27760,Hypoxia-responsive family protein,Col0.Net1
+7,AT1G02930,Bcin12g02340,2,GSTF6,Glutathione S-transferase F6 ,Col0.Net1
+25,AT1G09970,Bcin12g02340,4,LRR XI-23,Leucine-rich receptor-like protein kinase,Col0.Net1
+43,AT1G18210,Bcin12g02340,8,CML27,Calmodulin-like protein 27,Col0.Net1
+51,AT1G22400,Bcin12g02340,11,UGT85A1,UDP-glycosyltransferase 85A1,Col0.Net1
+94,AT1G57630,Bcin12g02340,27,T8L23.10,"Disease resistance protein RPP1-WsB, (Toll-Interleukin-Resistance domain-containing protein)",Col0.Net1
+98,AT1G60730,Bcin12g02340,28,At1g60730,Probable aldo-keto reductase 5,Col0.Net1
+107,AT1G66580,Bcin12g02340,29,RPL10C,60S ribosomal protein L10-3,Col0.Net1
+134,AT2G04400,Bcin12g02340,35,IGPS,Indole-3-glycerol phosphate synthase,Col0.Net1
+151,AT2G20420,Bcin12g02340,38,At2g20420,Succinyl-CoA ligase subunit beta,Col0.Net1
+167,AT2G29460,Bcin12g02340,41,GSTU4,Glutathione S-transferase U4,Col0.Net1
+207,AT2G47800,Bcin12g02340,49,ABCC4,ABC transporter C family member 4,Col0.Net1
+209,AT3G02360,Bcin12g02340,50,At3g02360,"6-phosphogluconate dehydrogenase, decarboxylating 3",Col0.Net1
+217,AT3G08580,Bcin12g02340,52,AAC1,ADP/ATP translocase 1,Col0.Net1
+220,AT3G08760,Bcin12g02340,53,F17O14.23,Osmotic stress-inducible kinase,Col0.Net1
+225,AT3G12740,Bcin12g02340,55,ALIS1,ALA-interacting subunit 1 ,Col0.Net1
+231,AT3G17240,Bcin12g02340,57,LPD2,Dihydrolipoyl dehydrogenase 2,Col0.Net1
+246,AT3G23570,Bcin12g02340,60,MDB19.5,Dienelactone hydrolase-like protein,Col0.Net1
+261,AT3G44720,Bcin12g02340,65,ADT4,Arogenate dehydratase 4,Col0.Net1
+270,AT3G48850,Bcin12g02340,66,MPT2,Mitochondrial phosphate carrier protein 2,Col0.Net1
+280,AT3G50910,Bcin12g02340,68,AT3g50910,AT3g50910/F18B3_190 ,Col0.Net1
+288,AT3G54640,Bcin12g02340,70,TSA1,Tryptophan synthase alpha chain(Protein TRYPTOPHAN-REQUIRING 3),Col0.Net1
+292,AT3G55410,Bcin12g02340,71,At3g55410,2-oxoglutarate dehydrogenase,Col0.Net1
+314,AT4G02520,Bcin12g02340,74,GSTF2,Glutathione S-transferase F2,Col0.Net1
+325,AT4G05020,Bcin12g02340,75,NDB2,External alternative NAD(P)H-ubiquinone oxidoreductase B2,Col0.Net1
+330,AT4G11370,Bcin12g02340,77,RHA1A,Probable E3 ubiquitin-protein ligase(RING-H2 zinc finger protein RHA1a),Col0.Net1
+345,AT4G20830,Bcin12g02340,80,At4g20830,Reticuline oxidase-like protein,Col0.Net1
+391,AT4G36988,Bcin12g02340,87,CPuORF49,Uncharacerized protein,Col0.Net1
+393,AT4G36990,Bcin12g02340,88,HSFB1,Heat stress transcription factor B-1,Col0.Net1
+397,AT4G37370,Bcin12g02340,89,F6G17.20,"Cytochrome P450, family 81, subfamily D, polypeptide 8",Col0.Net1
+401,AT4G39670,Bcin12g02340,90,At4g39670,ACD11 homolog protein,Col0.Net1
+418,AT5G08300,Bcin12g02340,97,AT5G08300,Succinyl-CoA ligase [ADP-forming] subunit alpha-1,Col0.Net1
+426,AT5G13190,Bcin12g02340,101,At5g13190,GSH-induced LITAF domain protein ,Col0.Net1
+430,AT5G13490,Bcin12g02340,102,AAC2,"ADP,ATP carrier protein 2",Col0.Net1
+437,AT5G17380,Bcin12g02340,103,HACL,2-hydroxyacyl-CoA lyase,Col0.Net1
+439,AT5G17770,Bcin12g02340,104,CBR1,NADH--cytochrome b5 reductase 1 ,Col0.Net1
+442,AT5G17990,Bcin12g02340,105,PAT1,Anthranilate phosphoribosyltransferase,Col0.Net1
+453,AT5G22300,Bcin12g02340,108,NIT4,Bifunctional nitrilase/nitrile hydratase NIT4,Col0.Net1
+475,AT5G38900,Bcin12g02340,115,At5g38900,FrnE protein-like,Col0.Net1
+495,AT5G54500,Bcin12g02340,116,FQR1,Flavodoxin-like quinone reductase 1,Col0.Net1
+501,AT5G55070,Bcin12g02340,118,At5g55070,Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex 1,Col0.Net1
+507,AT5G59820,Bcin12g02340,119,ZAT12,Protein RESPONSIVE TO HIGH LIGHT 41,Col0.Net1
+510,AT5G63680,Bcin12g02340,120,At5g63680,Pyruvate kinase,Col0.Net1
+528,AT5G67500,Bcin12g02340,123,VDAC2,Voltage-dependent anion-selective channel protein 2,Col0.Net1
+157,AT2G24180,Bcin13g02930,39,CYP71B6,Cytochrome P450 71B6,Col0.Net1
+305,AT3G63380,Bcin13g02930,73,ACA12,Calcium-transporting ATPase 12,Col0.Net1
+366,AT4G28550,Bcin13g02930,83,At4g28550,RabGAP/TBC domain-containing protein,Col0.Net1
+459,AT5G25930,Bcin13g02930,110,T1N24.22,Leucine-rich repeat receptor-like protein kinase,Col0.Net1
+465,AT5G27380,Bcin13g02930,111,GSH2,Glutathione synthetase,Col0.Net1
+496,AT5G54810,Bcin13g02930,117,TSB1,Tryptophan synthase beta chain 1,Col0.Net1
+15,AT1G06680,Bcin01g01610,1,PSBP1,Oxygen-evolving enhancer protein 2-1,Col-0.Net4
+39,AT1G15820,Bcin01g01610,3,F7H2.16,Chlorophyll a-b binding protein,Col-0.Net4
+66,AT1G30380,Bcin01g01610,8,PSAK,Photosystem I reaction center subunit psaK,Col-0.Net4
+87,AT1G54780,Bcin01g01610,12,At1g54780,UPF0603 protein,Col-0.Net4
+298,AT3G56940,Bcin01g01610,33,CRD1,Copper response defect 1 protein,Col-0.Net4
+307,AT4G01050,Bcin01g01610,35,STR4,Sulfurtransferase 4,Col-0.Net4
+327,AT4G05180,Bcin01g01610,37,PSBQ2,Oxygen-evolving enhancer protein 3-2,Col-0.Net4
+434,AT5G13630,Bcin01g01610,44,GUN5,Protein GENOMES UNCOUPLED 5,Col-0.Net4
+522,AT5G66190,Bcin01g01610,51,LFNR1,leaf isozyme 1,Col-0.Net4
+24,AT1G08380,Bcin04g04700,2,PSAO,Photosystem I subunit O (PSI-O),Col-0.Net4
+77,AT1G44446,Bcin04g04700,11,CAO,Chlorophyllide a oxygenase,Col-0.Net4
+285,AT3G54050,Bcin04g04700,31,FBP,"Fructose-1,6-bisphosphatase",Col-0.Net4
+348,AT4G21280,Bcin04g04700,40,PSBQ1,Oxygen-evolving enhancer protein 3-1,Col-0.Net4
+449,AT5G19940,Bcin04g04700,45,PAP8,Probable plastid-lipid-associated protein 8,Col-0.Net4
+89,AT1G55670,Bcin16g01950,13,PSAG,Photosystem I reaction center subunit V,Col-0.Net4
+116,AT1G68010,Bcin16g01950,15,HPR,NADH-dependent hydroxypyruvate reductase 1,Col-0.Net4
+123,AT1G74470,Bcin16g01950,16,CHLP,Geranylgeranyl diphosphate reductase,Col-0.Net4
+171,AT2G30570,Bcin16g01950,22,PSBW,Photosystem II reaction center W protein,Col-0.Net4
+200,AT2G46820,Bcin16g01950,25,CURT1B,Protein CURVATURE THYLAKOID 1B,Col-0.Net4
+211,AT3G02730,Bcin16g01950,26,At3g02730,Thioredoxin F1,Col-0.Net4
+266,AT3G47470,Bcin16g01950,30,LHCA4,Chlorophyll a-b binding protein 4,Col-0.Net4
+311,AT4G01150,Bcin16g01950,36,CURT1A,Protein CURVATURE THYLAKOID 1A,Col-0.Net4
+335,AT4G12800,Bcin16g01950,39,PSAL,"Photosystem I reaction center subunit XI,",Col-0.Net4
+372,AT4G32260,Bcin16g01950,42,F10M6.100,H+-transporting ATP synthase chain9 - like protein,Col-0.Net4
+483,AT5G46110,Bcin16g01950,47,TPT,Protein ACCLIMATION OF PHOTOSYNTHESIS TO ENVIRONMENT 2,Col-0.Net4
+503,AT5G58140,Bcin16g01950,49,PHOT2,Defective in chloroplast avoidance protein 1,Col-0.Net4
+516,AT5G64040,Bcin16g01950,50,PSAN,Photosystem I reaction center subunit N,Col-0.Net4
+523,AT5G66570,Bcin16g01950,52,PSBO1,Oxygen-evolving enhancer protein 1-1,Col-0.Net4
+20,AT1G07620,Bcin04g05160,10,TRM32,TON1-RECRUITING MOTIF protein 32,npr1-1.Net1
+27,AT1G10700,Bcin04g05160,16,PRS3,Ribose-phosphate pyrophosphokinase 3,npr1-1.Net1
+41,AT1G17170,Bcin04g05160,25,GSTU24,Glutathione S-transferase U24,npr1-1.Net1
+46,AT1G19020,Bcin04g05160,29,At1g19020,Uncharacterized protein,npr1-1.Net1
+57,AT1G24909,Bcin04g05160,37,F4F7.41,Anthranilate synthase beta subunit,npr1-1.Net1
+61,AT1G25155,Bcin04g05160,39,,,npr1-1.Net1
+131,AT2G03505,Bcin04g05160,107,At2g03505,Carbohydrate-binding X8 domain-containing protein,npr1-1.Net1
+179,AT2G33120,Bcin04g05160,144,VAMP722,Vesicle-associated membrane protein 722 ,npr1-1.Net1
+190,AT2G37940,Bcin04g05160,153,IPCS2,Protein ENHANCING RPW8-MEDIATED HR-LIKE CELL DEATH 1,npr1-1.Net1
+193,AT2G40095,Bcin04g05160,156,At2g40095,Alpha/beta hydrolase related protein,npr1-1.Net1
+236,AT3G20510,Bcin04g05160,193,FAX6,Protein FATTY ACID EXPORT 6 ,npr1-1.Net1
+249,AT3G24503,Bcin04g05160,205,ALDH2C4,Protein REDUCED EPIDERMAL FLUORESCENCE 1,npr1-1.Net1
+258,AT3G28210,Bcin04g05160,212,SAP12,Zinc finger AN1 domain-containing stress-associated protein 12,npr1-1.Net1
+259,AT3G28930,Bcin04g05160,214,AIG2,Avirulence-induced gene 2 protein,npr1-1.Net1
+294,AT3G55470,Bcin04g05160,233,T22E16.130,Elicitor responsive/phloem-like protein,npr1-1.Net1
+303,AT3G59660,Bcin04g05160,239,BAGP1,BAG-associated GRAM protein 1,npr1-1.Net1
+313,AT4G01895,Bcin04g05160,247,nimin-1b,NIMIN-1b protein (Systemic acquired resistance (SAR) regulator protein NIMIN-1-like protein),npr1-1.Net1
+329,AT4G10040,Bcin04g05160,256,CYTC-2,Cytochrome c-2,npr1-1.Net1
+341,AT4G17615,Bcin04g05160,267,CBL1,Calcineurin B-like protein 1,npr1-1.Net1
+370,AT4G30530,Bcin04g05160,293,GGP1,Gamma-glutamyl peptidase 1,npr1-1.Net1
+407,AT5G02780,Bcin04g05160,320,GSTL1,Glutathione S-transferase L1,npr1-1.Net1
+518,AT5G64300,Bcin04g05160,398,RIBA1,Bifunctional riboflavin biosynthesis protein RIBA 1,npr1-1.Net1
+353,AT4G24110,Bcin09g03390,279,T19F6.9,Putative uncharacterized protein,npr1-1.Net1
+354,AT4G24110,Bcin09g03390,279,T19F6.9,Putative uncharacterized protein,npr1-1.Net1
+2,AT1G02920,Bcin12g02130,2,GSTF7,Glutathione S-transferase F7,npr1-1.Net1
+13,AT1G05010,Bcin12g02130,7,ACO4,1-aminocyclopropane-1-carboxylate oxidase 4,npr1-1.Net1
+32,AT1G13340,Bcin12g02130,17,At1g13340,Unknown protein,npr1-1.Net1
+36,AT1G15520,Bcin12g02130,23,ABCG40,ABC transporter G family member 40,npr1-1.Net1
+44,AT1G18480,Bcin12g02130,28,SLP2,Shewanella-like protein phosphatase 2,npr1-1.Net1
+47,AT1G19180,Bcin12g02130,30,JAZ1,Jasmonate ZIM domain-containing protein 1,npr1-1.Net1
+55,AT1G24180,Bcin12g02130,35,IAR4,Protein IAA-CONJUGATE-RESISTANT 4,npr1-1.Net1
+59,AT1G25083,Bcin12g02130,38,,,npr1-1.Net1
+69,AT1G30620,Bcin12g02130,50,MUR4,UDP-arabinose 4-epimerase 1,npr1-1.Net1
+81,AT1G51760,Bcin12g02130,61,ILL4,IAA-amino acid hydrolase ILR1-like 4,npr1-1.Net1
+93,AT1G56140,Bcin12g02130,68,At1g56140,Probable LRR receptor-like serine,npr1-1.Net1
+111,AT1G66700,Bcin12g02130,84,F4N21_16,SABATH family methyltransferase PXMT1,npr1-1.Net1
+114,AT1G67810,Bcin12g02130,85,SUFE2,Protein SULFUR E 2,npr1-1.Net1
+118,AT1G68620,Bcin12g02130,88,CXE6,Probable carboxylesterase 6,npr1-1.Net1
+119,AT1G71100,Bcin12g02130,91,RPI1,Protein RADIAL SWELLING 10,npr1-1.Net1
+127,AT1G76600,Bcin12g02130,100,F14G6.20,Uncharacterized protein,npr1-1.Net1
+129,AT1G77840,Bcin12g02130,102,At1g77840,Probable eukaryotic translation initiation factor 5-2 ,npr1-1.Net1
+139,AT2G15490,Bcin12g02130,112,UGT73B4,Flavonol 3-O-glucosyltransferase UGT73B4,npr1-1.Net1
+143,AT2G16900,Bcin12g02130,114,At2g16900,Phospholipase-like protein (PEARLI 4) family,npr1-1.Net1
+146,AT2G17720,Bcin12g02130,117,P4H5,Prolyl 4-hydroxylase 5,npr1-1.Net1
+150,AT2G18690,Bcin12g02130,118,At2g18690,Uncharacterized protein,npr1-1.Net1
+163,AT2G27500,Bcin12g02130,129,At2g27500,"Glucan endo-1,3-beta-glucosidase 14",npr1-1.Net1
+168,AT2G29470,Bcin12g02130,134,GSTU3,Glutathione S-transferase U3,npr1-1.Net1
+169,AT2G30140,Bcin12g02130,137,UGT87A2,UDP-glycosyltransferase 87A2,npr1-1.Net1
+175,AT2G30770,Bcin12g02130,140,CYP71A13,Indoleacetaldoxime dehydratase,npr1-1.Net1
+177,AT2G30870,Bcin12g02130,141,GSTF10,Glutathione S-transferase F10 (Protein EARLY RESPONSE TO DEHYDRATION 13),npr1-1.Net1
+182,AT2G34500,Bcin12g02130,146,CYP710A1,Cytochrome P450 710A1 ,npr1-1.Net1
+188,AT2G36950,Bcin12g02130,152,At2g36950,Heavy-metal-associated domain-containing protein,npr1-1.Net1
+194,AT2G41110,Bcin12g02130,157,CAM2,Calmodulin-2,npr1-1.Net1
+196,AT2G43000,Bcin12g02130,159,JUB1,Transcription factor JUNGBRUNNEN 1 (ANAC042),npr1-1.Net1
+199,AT2G45570,Bcin12g02130,164,CYP76C2,Protein YELLOW-LEAF-SPECIFIC GENE 6,npr1-1.Net1
+204,AT2G47650,Bcin12g02130,169,UXS4,UDP-glucuronic acid decarboxylase 4,npr1-1.Net1
+214,AT3G06300,Bcin12g02130,176,P4H2,Prolyl 4-hydroxylase 2,npr1-1.Net1
+226,AT3G15356,Bcin12g02130,186,LEC,Lectin-like protein LEC,npr1-1.Net1
+227,AT3G15500,Bcin12g02130,187,NAC055,NAC domain-containing protein 55,npr1-1.Net1
+229,AT3G16530,Bcin12g02130,188,At3g16530,Lectin-like protein,npr1-1.Net1
+237,AT3G20860,Bcin12g02130,194,NEK6,NimA-related protein kinase 6,npr1-1.Net1
+242,AT3G22890,Bcin12g02130,200,APS1,ATP sulfurylase 1,npr1-1.Net1
+244,AT3G23530,Bcin12g02130,201,At3g23530,Cyclopropane-fatty-acyl-phospholipid synthase,npr1-1.Net1
+255,AT3G26830,Bcin12g02130,210,CYP71B15/PAD3,Protein PHYTOALEXIN DEFICIENT 3,npr1-1.Net1
+275,AT3G48890,Bcin12g02130,222,MSBP2,Membrane steroid-binding protein 2,npr1-1.Net1
+293,AT3G55430,Bcin12g02130,232,T22E16.90,"Beta-1, 3-glucanase-like protein",npr1-1.Net1
+304,AT3G60130,Bcin12g02130,243,BGLU16,Protein YELLOW-LEAF-SPECIFIC GENE 1,npr1-1.Net1
+312,AT4G01870,Bcin12g02130,246,T7B11.13,Putative uncharacterized protein,npr1-1.Net1
+319,AT4G02940,Bcin12g02130,249,T4I9.18,"Oxidoreductase, 2OG-Fe(II) oxygenase family protein",npr1-1.Net1
+321,AT4G04610,Bcin12g02130,250,1-Apr,5'-adenylylsulfate reductase 1,npr1-1.Net1
+336,AT4G13395,Bcin12g02130,261,DVL10,Protein rotundifolia like 12,npr1-1.Net1
+338,AT4G15610,Bcin12g02130,263,At3g55410,CASP-like protein 1D1,npr1-1.Net1
+340,AT4G17070,Bcin12g02130,265,At4t17070,Peptidyl-prolyl cis-trans isomerase,npr1-1.Net1
+343,AT4G17720,Bcin12g02130,268,At4g17070,Putative splicing regulatory protein,npr1-1.Net1
+344,AT4G18360,Bcin12g02130,269,GLO5,Peroxisomal (S)-2-hydroxy-acid oxidase GLO5,npr1-1.Net1
+355,AT4G25030,Bcin12g02130,281,F13M23.170,Uncharacterized protein,npr1-1.Net1
+362,AT4G27070,Bcin12g02130,288,TSB2,Tryptophan synthase beta chain 2,npr1-1.Net1
+369,AT4G29670,Bcin12g02130,291,AtACHT2,Thioredoxin-like 2-2,npr1-1.Net1
+380,AT4G34200,Bcin12g02130,299,PGDH1,Protein EMBRYO SAC DEVELOPMENT ARREST 9,npr1-1.Net1
+382,AT4G34590,Bcin12g02130,301,BZIP11,bZIP transcription factor 11,npr1-1.Net1
+383,AT4G35080,Bcin12g02130,302,At4g35080,High-affinity nickel-transport family protein,npr1-1.Net1
+386,AT4G35630,Bcin12g02130,303,PSAT1,Phosphoserine aminotransferase 1,npr1-1.Net1
+388,AT4G36480,Bcin12g02130,305,LCB1,Long chain base biosynthesis protein 1 (Protein EMBRYO DEFECTIVE 2779),npr1-1.Net1
+404,AT5G01210,Bcin12g02130,318,F7J8_190,HXXXD-type acyl-transferase-like protein,npr1-1.Net1
+413,AT5G05600,Bcin12g02130,328,At5g05600,"Oxidoreductase, 2OG-Fe(II) oxygenase family protein",npr1-1.Net1
+416,AT5G05730,Bcin12g02130,329,ASA1,Anthranilate synthase alpha subunit 1,npr1-1.Net1
+421,AT5G10520,Bcin12g02130,333,RBK1,Receptor-like cytosolic serine/threonine-protein kinase1,npr1-1.Net1
+423,AT5G12930,Bcin12g02130,334,T24H18_90,Uncharacterized protein,npr1-1.Net1
+427,AT5G13280,Bcin12g02130,337,AK1,Aspartate kinase 1,npr1-1.Net1
+428,AT5G13420,Bcin12g02130,338,T22N19_70,Transaldolase-like protein,npr1-1.Net1
+435,AT5G15640,Bcin12g02130,340,F14F8_20,Mitochondrial substrate carrier family protein,npr1-1.Net1
+445,AT5G18400,Bcin12g02130,345,At5g18400,Anamorsin homolog,npr1-1.Net1
+451,AT5G20230,Bcin12g02130,349,BCB,Blue copper protein,npr1-1.Net1
+455,AT5G22350,Bcin12g02130,353,ELM1,Protein ELONGATED MITOCHONDRIA 1,npr1-1.Net1
+468,AT5G27760,Bcin12g02130,362,At5g27760,Hypoxia-responsive family protein,npr1-1.Net1
+479,AT5G41990,Bcin12g02130,370,WNK8,Serine/threonine-protein kinase WNK8,npr1-1.Net1
+481,AT5G44480,Bcin12g02130,374,At5g44480,UDP-D-xylose 4-epimerase 4,npr1-1.Net1
+488,AT5G49480,Bcin12g02130,379,CP1,Ca2+-binding protein 1,npr1-1.Net1
+499,AT5G54860,Bcin12g02130,388,At5g54860,Probable folate-biopterin transporter 4,npr1-1.Net1
+506,AT5G59550,Bcin12g02130,392,DURF2,E3 ubiquitin-protein ligase RDUF2,npr1-1.Net1
+526,AT5G67310,Bcin12g02130,401,CYP81G1,"Cytochrome P450, family 81, subfamily G, polypeptide 1",npr1-1.Net1
+1,AT1G02170,Bcin12g02340,1,AMC1,Metacaspase-1,npr1-1.Net1
+6,AT1G02930,Bcin12g02340,3,GSTF6,Glutathione S-transferase F6,npr1-1.Net1
+18,AT1G07140,Bcin12g02340,9,RANBP1A,Ran-binding protein 1 homolog a,npr1-1.Net1
+21,AT1G07890,Bcin12g02340,11,APX1,L-ascorbate peroxidase 1,npr1-1.Net1
+26,AT1G10040,Bcin12g02340,14,At1g10040,Alpha/beta-hydrolases superfamily protein,npr1-1.Net1
+42,AT1G18210,Bcin12g02340,27,CML27,Calmodulin-like protein 27,npr1-1.Net1
+52,AT1G22400,Bcin12g02340,32,UGT85A1,Cytokinin-O-glucosyltransferase 2,npr1-1.Net1
+53,AT1G23490,Bcin12g02340,34,ARF2-A,ADP-ribosylation factor 2-A ,npr1-1.Net1
+63,AT1G27130,Bcin12g02340,44,GSTU13,Glutathione S-transferase U13,npr1-1.Net1
+70,AT1G32940,Bcin12g02340,53,SBT3.5,Subtilisin-like protease SBT3.5,npr1-1.Net1
+72,AT1G37130,Bcin12g02340,58,NIA2,Nitrate reductase [NADH] 2,npr1-1.Net1
+79,AT1G48850,Bcin12g02340,60,EMB1144,Chorismate synthase (Protein EMBRYO DEFECTIVE 1144),npr1-1.Net1
+85,AT1G53760,Bcin12g02340,64,F22G10.1,Uncharacterized protein,npr1-1.Net1
+92,AT1G55920,Bcin12g02340,66,SAT1,Serine acetyltransferase 1,npr1-1.Net1
+95,AT1G57630,Bcin12g02340,70,T8L23.10,Disease resistance protein RPP1-WsB,npr1-1.Net1
+97,AT1G60730,Bcin12g02340,71,At1g60730,Probable aldo-keto reductase 5 ,npr1-1.Net1
+101,AT1G62790,Bcin12g02340,75,At1g62790,seed storage 2S albumin superfamily protein,npr1-1.Net1
+106,AT1G65690,Bcin12g02340,79,At1g65690,hydroxyproline-rich glycoprotein,npr1-1.Net1
+109,AT1G66580,Bcin12g02340,82,RPL10C,60S ribosomal protein L10-3,npr1-1.Net1
+128,AT1G76970,Bcin12g02340,101,At1g76970 ,Target of Myb protein 1,npr1-1.Net1
+130,AT1G80300,Bcin12g02340,104,AATP1,"ADP,ATP carrier protein 1",npr1-1.Net1
+133,AT2G04400,Bcin12g02340,108,IGPS,Indole-3-glycerol phosphate synthase,npr1-1.Net1
+138,AT2G05940,Bcin12g02340,109,At2g05940,RPM1-induced protein kinase,npr1-1.Net1
+144,AT2G17420,Bcin12g02340,115,NTR2,NADPH-dependent thioredoxin reductase 2,npr1-1.Net1
+145,AT2G17500,Bcin12g02340,116,PILS5,Auxin efflux carrier-like protein 5,npr1-1.Net1
+152,AT2G20420,Bcin12g02340,119,At2g20420,Succinyl-CoA ligase,npr1-1.Net1
+156,AT2G23810,Bcin12g02340,123,TET8,Tetraspanin-8,npr1-1.Net1
+159,AT2G24200,Bcin12g02340,125,LAP1,Leucine aminopeptidase 1,npr1-1.Net1
+165,AT2G27510,Bcin12g02340,130,FD3,Ferredoxin-3,npr1-1.Net1
+166,AT2G29460,Bcin12g02340,133,GSTU4,Glutathione S-transferase U4,npr1-1.Net1
+178,AT2G32140,Bcin12g02340,143,At2g32140,Transmembrane receptor protein,npr1-1.Net1
+187,AT2G36580,Bcin12g02340,151,At2g36580,Pyruvate kinase,npr1-1.Net1
+197,AT2G43320,Bcin12g02340,160,At2g43320,S-adenosyl-L-methionine-dependent methyltransferase-like protein,npr1-1.Net1
+198,AT2G45300,Bcin12g02340,163,AT2G45300,3-phosphoshikimate 1-carboxyvinyltransferase,npr1-1.Net1
+203,AT2G47510,Bcin12g02340,168,FUM1,Fumarate hydratase 1,npr1-1.Net1
+206,AT2G47800,Bcin12g02340,170,ABCC4,ABC transporter C family member 4,npr1-1.Net1
+208,AT3G02230,Bcin12g02340,173,RGP1,Reversibly glycosylated polypeptide 1,npr1-1.Net1
+210,AT3G02360,Bcin12g02340,174,At3g02360,6-phosphogluconate dehydrogenase,npr1-1.Net1
+215,AT3G06350,Bcin12g02340,177,EMB3004,Protein EMBRYO DEFECTIVE 3004,npr1-1.Net1
+218,AT3G08580,Bcin12g02340,179,At3g08580,Adenylate translocator,npr1-1.Net1
+219,AT3G08640,Bcin12g02340,180,RER3,Protein RETICULATA-RELATED 3,npr1-1.Net1
+221,AT3G08760,Bcin12g02340,181,F17O14.23,Osmotic stress-inducible kinase,npr1-1.Net1
+222,AT3G10500,Bcin12g02340,184,NAC053,NAC domain-containing protein 53(Protein NTM1-like 4),npr1-1.Net1
+224,AT3G12740,Bcin12g02340,185,ALIS1,ALA-interacting subunit 1,npr1-1.Net1
+232,AT3G17240,Bcin12g02340,189,LPD2,Dihydrolipoyl dehydrogenase 2,npr1-1.Net1
+233,AT3G18830,Bcin12g02340,190,PLT5,Polyol transporter 5 (Protein POLYOL TRANSPORTER 5) ,npr1-1.Net1
+238,AT3G21690,Bcin12g02340,195,DTX40,Protein DETOXIFICATION 40,npr1-1.Net1
+239,AT3G22370,Bcin12g02340,198,AOX1A,Ubiquinol oxidase 1a,npr1-1.Net1
+240,AT3G22600,Bcin12g02340,199,AtXYP8,Protease inhibitor/seed storage/lipid transfer protein (LTP) family protein,npr1-1.Net1
+247,AT3G23570,Bcin12g02340,203,MDB19.5,Dienelactone hydrolase-like protein,npr1-1.Net1
+248,AT3G24170,Bcin12g02340,204,GR,Glutathione reductase,npr1-1.Net1
+250,AT3G24550,Bcin12g02340,206,PERK1,Proline-rich receptor-like protein kinase 1,npr1-1.Net1
+262,AT3G44720,Bcin12g02340,217,ADT4,Arogenate dehydratase 4,npr1-1.Net1
+263,AT3G46670,Bcin12g02340,219,UGT76E11,UDP-glycosyltransferase 76E11,npr1-1.Net1
+271,AT3G48850,Bcin12g02340,221,MPT2,Mitochondrial phosphate carrier protein 2,npr1-1.Net1
+276,AT3G48990,Bcin12g02340,223,AAE3,Oxalyl-CoA synthetase,npr1-1.Net1
+279,AT3G50910,Bcin12g02340,224,AT3g50910,Uncharacterized protein,npr1-1.Net1
+286,AT3G54110,Bcin12g02340,227,PUMP1,Mitochondrial uncoupling protein 1,npr1-1.Net1
+289,AT3G54640,Bcin12g02340,230,TSA1,Tryptophan synthase alpha chain,npr1-1.Net1
+291,AT3G55410,Bcin12g02340,231,At3g55410,2-oxoglutarate dehydrogenase,npr1-1.Net1
+300,AT3G57280,Bcin12g02340,236,FAX1,Protein FATTY ACID EXPORT 1,npr1-1.Net1
+315,AT4G02520,Bcin12g02340,248,GSTF2,Glutathione S-transferase F2,npr1-1.Net1
+324,AT4G05020,Bcin12g02340,251,NDB2,External alternative NAD(P)H-ubiquinone oxidoreductase B2,npr1-1.Net1
+331,AT4G11370,Bcin12g02340,258,RHA1A,Probable E3 ubiquitin-protein ligase RHA1A (RING-H2 zinc finger protein RHA1a),npr1-1.Net1
+337,AT4G15120,Bcin12g02340,262,dl3605w,Putative uncharacterized protein,npr1-1.Net1
+339,AT4G16760,Bcin12g02340,264,ACX1,Peroxisomal acyl-coenzyme A oxidase 1 ,npr1-1.Net1
+346,AT4G20830,Bcin12g02340,275,AT4G20830,Reticuline oxidase-like protein,npr1-1.Net1
+357,AT4G25230,Bcin12g02340,282,RIN2,E3 ubiquitin protein ligase RIN2 (RPM1-interacting protein 2),npr1-1.Net1
+360,AT4G26970,Bcin12g02340,287,ACO3,Aconitate hydratase 3,npr1-1.Net1
+368,AT4G29210,Bcin12g02340,290,GGT3,Gamma-glutamyltranspeptidase 3,npr1-1.Net1
+375,AT4G33540,Bcin12g02340,294,At4g33540,Metallo-beta-lactamase family protein,npr1-1.Net1
+376,AT4G33920,Bcin12g02340,295,At4g33920,Probable protein phosphatase 2C 63,npr1-1.Net1
+377,AT4G34120,Bcin12g02340,296,CBSX2,Protein LOSS OF THE TIMING OF ET AND JA BIOSYNTHESIS 1,npr1-1.Net1
+378,AT4G34131,Bcin12g02340,297,UGT73B3,Flavonol 3-O-glucosyltransferase,npr1-1.Net1
+381,AT4G34230,Bcin12g02340,300,CAD5,Cinnamyl alcohol dehydrogenase 5,npr1-1.Net1
+389,AT4G36988,Bcin12g02340,307,CPuORF49,Uncharacerized protein,npr1-1.Net1
+392,AT4G36990,Bcin12g02340,308,HSFB1,Heat stress transcription factor B-1,npr1-1.Net1
+396,AT4G37370,Bcin12g02340,310,F6G17.20,"Cytochrome P450, family 81, subfamily D, polypeptide 8 ",npr1-1.Net1
+402,AT4G39670,Bcin12g02340,315,At4g39670,ACD11 homolog protein,npr1-1.Net1
+408,AT5G03290,Bcin12g02340,321,IDH5,Isocitrate dehydrogenase [NAD] catalytic subunit 5,npr1-1.Net1
+409,AT5G03630,Bcin12g02340,325,MDAR2,Monodehydroascorbate reductase 2,npr1-1.Net1
+411,AT5G04590,Bcin12g02340,326,SIR,Assimilatory sulfite reductase (ferredoxin),npr1-1.Net1
+412,AT5G04930,Bcin12g02340,327,ALA1,Aminophospholipid flippase 1,npr1-1.Net1
+417,AT5G08300,Bcin12g02340,331,At5g08300,Succinyl-CoA ligase,npr1-1.Net1
+425,AT5G13190,Bcin12g02340,336,At5g13190,GSH-induced LITAF domain protein,npr1-1.Net1
+431,AT5G13490,Bcin12g02340,339,AAC2,Adenine nucleotide translocator 2,npr1-1.Net1
+438,AT5G17380,Bcin12g02340,341,HACL,2-hydroxyacyl-CoA lyase,npr1-1.Net1
+440,AT5G17770,Bcin12g02340,342,CBR1,NADH--cytochrome b5 reductase 1,npr1-1.Net1
+441,AT5G17860,Bcin12g02340,343,CCX1,Cation/calcium exchanger 1 (Protein CATION EXCHANGER 7),npr1-1.Net1
+443,AT5G17990,Bcin12g02340,344,TRP1/PAT1,Anthranilate phosphoribosyltransferase,npr1-1.Net1
+446,AT5G18480,Bcin12g02340,346,IPUT1,Inositol phosphorylceramide glucuronosyltransferase 1(Plant glycogenin-like starch initiation protein 6),npr1-1.Net1
+447,AT5G19440,Bcin12g02340,348,At5g19440,Alcohol dehydrogenase-like protein,npr1-1.Net1
+452,AT5G22060,Bcin12g02340,351,ATJ2,Chaperone protein dnaJ 2 (AtDjA2),npr1-1.Net1
+454,AT5G22300,Bcin12g02340,352,NIT4,Bifunctional nitrilase/nitrile hydratase NIT4,npr1-1.Net1
+462,AT5G26340,Bcin12g02340,357,STP13,Sugar transport protein 13,npr1-1.Net1
+466,AT5G27520,Bcin12g02340,360,PNC2,Peroxisomal adenine nucleotide carrier 2,npr1-1.Net1
+467,AT5G27600,Bcin12g02340,361,LACS7,Long chain acyl-CoA synthetase 7,npr1-1.Net1
+471,AT5G35735,Bcin12g02340,363,At5g35735,Cytochrome b561 and DOMON domain-containing protein,npr1-1.Net1
+472,AT5G38530,Bcin12g02340,366,TSBtype2,Tryptophan synthase beta chain,npr1-1.Net1
+474,AT5G38900,Bcin12g02340,368,At5g38900,FrnE protein-like,npr1-1.Net1
+477,AT5G39050,Bcin12g02340,369,PMAT1,Phenolic glucoside malonyltransferase 1,npr1-1.Net1
+480,AT5G41992,Bcin12g02340,371,CPuORF58,Conserved peptide upstream open reading frame 58,npr1-1.Net1
+487,AT5G47730,Bcin12g02340,377,At5g47730,Sec14p-like phosphatidylinositol transfer family protein,npr1-1.Net1
+489,AT5G50960,Bcin12g02340,382,NBP35,CNucleotide binding protein 35,npr1-1.Net1
+490,AT5G51070,Bcin12g02340,383,CLPD,Protein SENESCENCE ASSOCIATED GENE 15,npr1-1.Net1
+492,AT5G51830,Bcin12g02340,384,At5g51830,Probable fructokinase-7,npr1-1.Net1
+493,AT5G54500,Bcin12g02340,386,FQR1,Flavodoxin-like quinone reductase 1,npr1-1.Net1
+500,AT5G55070,Bcin12g02340,389,At5g55070,Dihydrolipoyllysine-residue succinyltransferase component of 2-oxoglutarate dehydrogenase complex 1,npr1-1.Net1
+505,AT5G58290,Bcin12g02340,391,RPT3,26S protease regulatory subunit 6B homolog ,npr1-1.Net1
+508,AT5G59820,Bcin12g02340,393,ZAT12,Zinc finger protein ZAT12 (Protein RESPONSIVE TO HIGH LIGHT 41),npr1-1.Net1
+509,AT5G61010,Bcin12g02340,394,EXO70E2,Leucine zipper protein-like,npr1-1.Net1
+511,AT5G63680,Bcin12g02340,395,At5g63680,Pyruvate kinase,npr1-1.Net1
+512,AT5G63790,Bcin12g02340,396,NAC102,NAC domain-containing protein 102,npr1-1.Net1
+529,AT5G67500,Bcin12g02340,403,VDAC2,Voltage-dependent anion-selective channel protein 2,npr1-1.Net1
+9,AT1G03220,Bcin13g02930,4,F15K9.17,Aspartyl protease-like protein,npr1-1.Net1
+10,AT1G03230,Bcin13g02930,5,F15K9.16,Aspartyl protease-like protein,npr1-1.Net1
+33,AT1G14170,Bcin13g02930,19,F7A19.25,RNA-binding KH domain-containing protein,npr1-1.Net1
+34,AT1G14330,Bcin13g02930,20,F14L17.10,F-box/kelch-repeat protein SKIP11,npr1-1.Net1
+71,AT1G33030,Bcin13g02930,55,F9L11.18,O-methyltransferase-like protein,npr1-1.Net1
+100,AT1G62200,Bcin13g02930,73,NPF8.5,Peptide transporter PTR6,npr1-1.Net1
+102,AT1G64610,Bcin13g02930,78,At1g64610,uncharacterized protein,npr1-1.Net1
+110,AT1G66690,Bcin13g02930,83,F4N21_17,S-adenosyl-L-methionine-dependent methyltransferases superfamily protein,npr1-1.Net1
+120,AT1G71140,Bcin13g02930,92,DTX14,Protein DETOXIFICATION 14,npr1-1.Net1
+140,AT2G16500,Bcin13g02930,113,SPE1,Arginine decarboxylase 1,npr1-1.Net1
+153,AT2G20900,Bcin13g02930,122,DGK5,Diacylglycerol kinase 5,npr1-1.Net1
+158,AT2G24180,Bcin13g02930,124,CYP71B6,Cytochrome P450 71B6 ,npr1-1.Net1
+186,AT2G35390,Bcin13g02930,147,PRS1,Ribose-phosphate pyrophosphokinase 1,npr1-1.Net1
+234,AT3G19260,Bcin13g02930,191,LAG2,LAG1 longevity assurance homolog 2,npr1-1.Net1
+254,AT3G26670,Bcin13g02930,209,NIPA8,Probable magnesium transporter NIPA8,npr1-1.Net1
+287,AT3G54620,Bcin13g02930,229,BZIP25,Basic leucine zipper 25,npr1-1.Net1
+306,AT3G63380,Bcin13g02930,245,ACA12,Calcium-transporting ATPase 12,npr1-1.Net1
+332,AT4G12120,Bcin13g02930,259,SEC1B,Protein transport Sec1b,npr1-1.Net1
+358,AT4G25390,Bcin13g02930,283,At4g25390,Receptor-like serine/threonine-protein kinase,npr1-1.Net1
+359,AT4G26270,Bcin13g02930,285,PFK3,ATP-dependent 6-phosphofructokinase 3,npr1-1.Net1
+367,AT4G28550,Bcin13g02930,289,At4g28550 ,RabGAP/TBC domain-containing protein,npr1-1.Net1
+387,AT4G35830,Bcin13g02930,304,ACO1,Aconitate hydratase 1,npr1-1.Net1
+398,AT4G37530,Bcin13g02930,311,PER51,Peroxidase 51,npr1-1.Net1
+406,AT5G01500,Bcin13g02930,319,TAAC,"Thylakoid ADP,ATP carrier protein",npr1-1.Net1
+461,AT5G25930,Bcin13g02930,356,T1N24.22,Leucine-rich repeat receptor-like protein kinase,npr1-1.Net1
+464,AT5G27380,Bcin13g02930,358,GSH2,Glutathione synthetase,npr1-1.Net1
+473,AT5G38710,Bcin13g02930,367,POX2,"Proline dehydrogenase 2, mitochondrial",npr1-1.Net1
+498,AT5G54810,Bcin13g02930,387,TSB1,Tryptophan synthase beta chain 1,npr1-1.Net1
+513,AT5G63970,Bcin13g02930,397,At5g63970,Ring domain ligase 3,npr1-1.Net1
+527,AT5G67340,Bcin13g02930,402,PUB2,Plant U-box protein 2,npr1-1.Net1
+16,AT1G06680,Bcin01g01610,5,PSBP1,Oxygen-evolving enhancer protein 2-1,npr1-1.Net4
+40,AT1G15820,Bcin01g01610,10,LHCB6,"Chlorophyll a-b binding protein, chloroplastic",npr1-1.Net4
+54,AT1G23740,Bcin01g01610,15,At1g23740,Quinone oxidoreductase-like protein,npr1-1.Net4
+65,AT1G30380,Bcin01g01610,20,PSAK,Photosystem I reaction center subunit,npr1-1.Net4
+74,AT1G42970,Bcin01g01610,24,GAPB,Glyceraldehyde-3-phosphate dehydrogenase GAPB,npr1-1.Net4
+86,AT1G54780,Bcin01g01610,31,At1g54780,UPF0603 protein,npr1-1.Net4
+161,AT2G24270,Bcin01g01610,54,ALDH11A3,NADP-dependent glyceraldehyde-3-phosphate dehydrogenase,npr1-1.Net4
+189,AT2G36990,Bcin01g01610,61,SIGF,Sigma factor 6,npr1-1.Net4
+216,AT3G06430,Bcin01g01610,69,EMB2750,Protein EMBRYO DEFECTIVE 2750,npr1-1.Net4
+235,AT3G19720,Bcin01g01610,77,ARC5,Protein ACCUMULATION AND REPLICATION OF CHLOROPLASTS 5,npr1-1.Net4
+264,AT3G46780,Bcin01g01610,81,PTAC16,Protein plastid transcriptionally active 16,npr1-1.Net4
+295,AT3G55800,Bcin01g01610,89,At3g55800,"Sedoheptulose-1,7-bisphosphatase",npr1-1.Net4
+299,AT3G56940,Bcin01g01610,90,CRD1,Copper response defect 1 protein,npr1-1.Net4
+302,AT3G59400,Bcin01g01610,92,GUN4,Genomes uncoupled 4,npr1-1.Net4
+308,AT4G01050,Bcin01g01610,96,STR4,Sulfurtransferase 4,npr1-1.Net4
+323,AT4G04640,Bcin01g01610,102,ATPC1,ATP synthase gamma chain 1,npr1-1.Net4
+328,AT4G05180,Bcin01g01610,104,PSBQ2,Oxygen-evolving enhancer protein 3-2,npr1-1.Net4
+422,AT5G12150,Bcin01g01610,120,ROPGAP6,Rho GTPase-activating protein 6,npr1-1.Net4
+432,AT5G13630,Bcin01g01610,121,GUN5,Protein GENOMES UNCOUPLED 5,npr1-1.Net4
+456,AT5G23060,Bcin01g01610,124,CAS,Calcium sensing receptor,npr1-1.Net4
+458,AT5G24300,Bcin01g01610,126,SS1,Starch synthase 1,npr1-1.Net4
+521,AT5G66190,Bcin01g01610,143,LFNR1 ,Ferredoxin--NADP ,npr1-1.Net4
+49,AT1G19715,Bcin03g00960,11,JAL3,Jacalin-related lectin 3,npr1-1.Net4
+73,AT1G42550,Bcin03g00960,23,PMI1,Protein PLASTID MOVEMENT IMPAIRED 1,npr1-1.Net4
+103,AT1G64680,Bcin03g00960,35,At1g64680,Uncharacterized protein,npr1-1.Net4
+195,AT2G41560,Bcin03g00960,64,ACA4,Calcium-transporting ATPase 4,npr1-1.Net4
+364,AT4G28080,Bcin03g00960,111,TSS,TPR-domain suppressor of STIMPY,npr1-1.Net4
+8,AT1G03130,Bcin04g04700,1,PSAD2 ,Photosystem I reaction center subunit II-2,npr1-1.Net4
+11,AT1G03630,Bcin04g04700,3,PORC,Protochlorophyllide reductase C,npr1-1.Net4
+22,AT1G08380,Bcin04g04700,7,PSAO,Photosystem I subunit O (PSI-O),npr1-1.Net4
+50,AT1G20020,Bcin04g04700,12,LFNR2,Ferredoxin--NADP reductase,npr1-1.Net4
+78,AT1G44446,Bcin04g04700,25,CAO,Chlorophyllide a oxygenase,npr1-1.Net4
+99,AT1G60950,Bcin04g04700,33,FD2,Ferredoxin-2,npr1-1.Net4
+104,AT1G64860,Bcin04g04700,37,SIGA,RNA polymerase sigma factor sigA,npr1-1.Net4
+113,AT1G67700,Bcin04g04700,39,HHL1,Hypersensitive to high light 1,npr1-1.Net4
+136,AT2G05310,Bcin04g04700,48,At2g05310,Uncharacterized protein,npr1-1.Net4
+184,AT2G35260,Bcin04g04700,59,At2g35260,Uncharacterized protein,npr1-1.Net4
+228,AT3G16000,Bcin04g04700,74,MFP1,MAR-binding filament-like protein 1,npr1-1.Net4
+251,AT3G26070,Bcin04g04700,79,PAP4,Probable plastid-lipid-associated protein 4,npr1-1.Net4
+277,AT3G50820,Bcin04g04700,84,PSBO2,Oxygen-evolving enhancer protein 1-2,npr1-1.Net4
+281,AT3G51510,Bcin04g04700,85,At3g51510,Uncharacterized protein,npr1-1.Net4
+284,AT3G54050,Bcin04g04700,87,FBP,"Fructose-1,6-bisphosphatase",npr1-1.Net4
+301,AT3G59060,Bcin04g04700,91,BHLH65,Transcription factor PIF5 (Basic helix-loop-helix protein 65) ,npr1-1.Net4
+316,AT4G02770,Bcin04g04700,99,psaD1,Photosystem I reaction center subunit II-1,npr1-1.Net4
+318,AT4G02920,Bcin04g04700,100,At4g02920,Uncharacterized protein,npr1-1.Net4
+350,AT4G21280,Bcin04g04700,107,PSBQ1,Oxygen-evolving enhancer protein 3-1,npr1-1.Net4
+363,AT4G27700,Bcin04g04700,110,At4g27700,Rhodanese-like domain-containing protein 14,npr1-1.Net4
+450,AT5G19940,Bcin04g04700,123,PAP8,Probable plastid-lipid-associated protein 8,npr1-1.Net4
+457,AT5G23120,Bcin04g04700,125,HCF136,Photosystem II stability/assembly factor HCF136,npr1-1.Net4
+463,AT5G26742,Bcin04g04700,127,RH3,DEAD-box ATP-dependent RNA helicase 3,npr1-1.Net4
+470,AT5G35170,Bcin04g04700,129,AMK5,AMK5,npr1-1.Net4
+478,AT5G39530,Bcin04g04700,131,At5g39530,Uncharacterized protein,npr1-1.Net4
+519,AT5G64940,Bcin04g04700,142,ATH13,ABC transporter-like,npr1-1.Net4
+269,AT3G47500,Bcin06g05680,83,CDF3,Cyclic dof factor 3,npr1-1.Net4
+352,AT4G23890,Bcin06g05680,109,CRR31,Protein CHLORORESPIRATORY REDUCTION 31,npr1-1.Net4
+400,AT4G38970,Bcin06g05680,116,FBA2,Probable fructose-bisphosphate aldolase 2,npr1-1.Net4
+410,AT5G03940,Bcin06g05680,118,CPSRP54,Signal recognition particle 54 kDa protein,npr1-1.Net4
+491,AT5G51110,Bcin06g05680,135,pdl1,Transcriptional coactivator/pterin dehydratase,npr1-1.Net4
+502,AT5G57930,Bcin06g05680,138,APO2,Accumulation of photosystem I protein 2,npr1-1.Net4
+14,AT1G06040,Bcin16g01950,4,BBX24,B-box zinc finger protein 24 (Salt tolerance protein),npr1-1.Net4
+19,AT1G07320,Bcin16g01950,6,RPL4,50S ribosomal protein L4,npr1-1.Net4
+31,AT1G12900,Bcin16g01950,9,GAPA2,Glyceraldehyde-3-phosphate dehydrogenase,npr1-1.Net4
+62,AT1G26150,Bcin16g01950,16,PERK10,Proline-rich receptor-like protein kinase PERK10,npr1-1.Net4
+82,AT1G52220,Bcin16g01950,29,CURT1C,Protein CURVATURE THYLAKOID 1C,npr1-1.Net4
+84,AT1G52870,Bcin16g01950,30,At1g52870,Putative uncharacterized protein,npr1-1.Net4
+90,AT1G55670,Bcin16g01950,32,PSAG,Photosystem I reaction center subunit V,npr1-1.Net4
+115,AT1G68010,Bcin16g01950,40,HPR,NADH-dependent hydroxypyruvate reductase 1,npr1-1.Net4
+121,AT1G71480,Bcin16g01950,41,At1g71480,Nuclear transport factor 2 (NTF2) family protein,npr1-1.Net4
+124,AT1G74470,Bcin16g01950,42,CHLP,Geranylgeranyl diphosphate reductase,npr1-1.Net4
+125,AT1G74970,Bcin16g01950,44,RPS9,30S ribosomal protein S9,npr1-1.Net4
+137,AT2G05620,Bcin16g01950,49,,,npr1-1.Net4
+155,AT2G21330,Bcin16g01950,53,FBA1,Fructose-bisphosphate aldolase,npr1-1.Net4
+162,AT2G24280,Bcin16g01950,55,At2g24280,Alpha/beta-Hydrolases superfamily protein,npr1-1.Net4
+172,AT2G30570,Bcin16g01950,56,PSBW,Photosystem II reaction center W protein,npr1-1.Net4
+185,AT2G35370,Bcin16g01950,60,GDH1,Glycine cleavage system H protein 1,npr1-1.Net4
+191,AT2G39730,Bcin16g01950,63,RCA,Ribulose bisphosphate carboxylase/oxygenase activase,npr1-1.Net4
+201,AT2G46820,Bcin16g01950,66,CURT1B,Protein CURVATURE THYLAKOID 1B,npr1-1.Net4
+212,AT3G02730,Bcin16g01950,68,At3g02730,Thioredoxin F1,npr1-1.Net4
+252,AT3G26650,Bcin16g01950,80,GAPA1,Glyceraldehyde-3-phosphate dehydrogenase ,npr1-1.Net4
+268,AT3G47470,Bcin16g01950,82,LHCA4,Chlorophyll a-b binding protein 4,npr1-1.Net4
+282,AT3G51950,Bcin16g01950,86,At3g51950,Zinc finger CCCH domain-containing protein 46,npr1-1.Net4
+310,AT4G01150,Bcin16g01950,97,CURT1A,Protein CURVATURE THYLAKOID 1A,npr1-1.Net4
+320,AT4G03280,Bcin16g01950,101,PGR1,Proton gradient regulation protein 1,npr1-1.Net4
+333,AT4G12800,Bcin16g01950,106,PSAL,Photosystem I reaction center subunit XI,npr1-1.Net4
+351,AT4G21960,Bcin16g01950,108,PER42,Peroxidase 42,npr1-1.Net4
+373,AT4G32260,Bcin16g01950,113,atpG,ATP synthase beta chain (Subunit II),npr1-1.Net4
+384,AT4G35250,Bcin16g01950,114,At4g35250,Putative uncharacterized protein ,npr1-1.Net4
+420,AT5G09660,Bcin16g01950,119,At5g09660,Malate dehydrogenase,npr1-1.Net4
+484,AT5G46110,Bcin16g01950,132,APE2,Protein ACCLIMATION OF PHOTOSYNTHESIS TO ENVIRONMENT 2,npr1-1.Net4
+485,AT5G47110,Bcin16g01950,133,At5g47110,Chlorophyll A-B binding family protein,npr1-1.Net4
+504,AT5G58140,Bcin16g01950,139,PHOT2,Phototropin-2,npr1-1.Net4
+515,AT5G64040,Bcin16g01950,141,PSAN ,Photosystem I reaction center subunit N,npr1-1.Net4
+525,AT5G66570,Bcin16g01950,144,PSBO1,Oxygen-evolving enhancer protein 1-1,npr1-1.Net4
