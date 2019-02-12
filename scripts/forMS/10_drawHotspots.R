@@ -43,12 +43,13 @@ names(myColors) <- levels(MyHots$HotspotCategory)
 colScale <- scale_colour_manual(name = "Trait",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/paper/BcAt_HotSpots_LinearPlot_b.jpg", width=10, height=3, units='in', res=600)
+jpeg("plots/paper/BcAt_HotSpots_LinearPlot_c.jpg", width=10, height=3, units='in', res=600)
 print(
-  ggplot(mydat_plot, aes(x=Index, y=(CatYAxis*0.1), size=NumGenes))+
+  ggplot(mydat_plot, aes(x=Index, y=(CatYAxis*0.1)))+
     theme_bw()+
     colScale+
-    geom_point(aes(color=factor(HotspotCategory),alpha=0.1))+
+    geom_point(aes(color=factor(HotspotCategory), size=NumGenes,alpha=0.1))+
+    geom_point(color="white",size=0.25)+
     labs(list(y=NULL, title=NULL))+
    scale_y_continuous(limits = c(-1,1))+
     theme(legend.position="none")+
