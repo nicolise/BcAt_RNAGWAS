@@ -64,7 +64,7 @@ for (i in unique(mydat_plot$chr)) {
 #plot by SNP location! (disregard transcript location- just want hotspots)
 library(ggplot2)
 #create a custom color scale
-myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
+#myColors <- c("grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60", "grey20", "grey60")
 myColors <- c("navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1","navyblue", "royalblue1")
 names(myColors) <- levels(mydat_plot$chr)
 colScale <- scale_colour_manual(name = "Chrom",values = myColors)
@@ -140,6 +140,10 @@ print(
     expand_limits(y=0)
 )
 dev.off()
+
+#summarize real SNP vs. permuted SNP: what % of the time is real data more sig?
+table(mydat_plot$mygroup)
+6405/(2862+6405) #69%
 
 #--------------------------------------------------------------------
 #mini manhattan: focus in on chr 9

@@ -43,7 +43,7 @@ names(myColors) <- levels(MyHots$HotspotCategory)
 colScale <- scale_colour_manual(name = "Trait",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/paper/BcAt_HotSpots_LinearPlot_c.jpg", width=10, height=3, units='in', res=600)
+jpeg("plots/paper/BcAt_HotSpots_LinearPlot_d.jpg", width=8, height=3, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index, y=(CatYAxis*0.1)))+
     theme_bw()+

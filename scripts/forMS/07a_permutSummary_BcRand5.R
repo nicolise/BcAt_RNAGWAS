@@ -80,6 +80,41 @@ fullpeaks <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/TopHotspots_3genep
 hipeaks <- fullpeaks[fullpeaks$numGenes > 5,]
 write.csv(hipeaks, "data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/PeaksOver5.csv")
 
+#---------------------------------------------------------------------------------------------
+#look at permut summary data
+rm(list=ls())
+setwd("~/Projects/BcAt_RNAGWAS/")
+hipeaks <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/PeaksOver5.csv")
+fullpeaks <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/TopHotspots_3genepeaks.csv")
+fullsumm <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/HotspotSumm_5xRand.csv")
+
+i  <- 5
+myranddat <- read.csv(paste0("data/GEMMA_eachAt_Bc/06_GEMMAsumm_RAND/col0_GEMMA_RAND",i,"_top1SNPsample.txt", sep=''))
+#summary info of p-values
+quantile(myranddat$p_score, c(0.00, 0.01, 0.05))
+
+#          0%           1%           5% 
+#1.530313e-07 5.425669e-06 2.172780e-05 
+#2.092033e-07 4.801529e-06 1.864122e-05 
+#1.835376e-07 5.526258e-06 1.950385e-05 
+#2.949698e-08 4.325383e-06 2.021054e-05 
+#1.034973e-07 5.034284e-06 1.795980e-05
+#1%
+mean(c( 5.425669e-06,4.801529e-06,5.526258e-06,4.325383e-06,5.034284e-06))
+#5%
+mean(c(2.172780e-05, 1.864122e-05, 1.950385e-05, 2.021054e-05, 1.795980e-05))
+
+mydat100 <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm/col0_GEMMA_top100SNPsample.txt")
+hi100 <- mydat100[mydat100$p_score < 1.960864e-05,]
+hisumm <- as.data.frame(table(hi100$pheno))
+sigsmm <- hisumm[hisumm$Freq > 0,]
+#397 transcripts with > 100 loci over threshold at 5%
+#221 transcripts with > 100 loci over threshold at 1%
+1616/9267
+
+topsumm <- hisumm[hisumm$Freq > 99,]
+names(topsumm)[1] <- "pheno"
+write.csv(topsumm, "data/GEMMA_eachAt_Bc/07_TopSNPs/Bc_phenos_manySNPovrThr.csv")
 #---------------------------------------------------------------------------
 #next, look at deeper hotspots: plot top 10 SNPs per gene per permuation
 #summarize across 5 permutations, without thresholding
