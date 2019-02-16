@@ -109,17 +109,22 @@ quantile(myranddat$p_score, c(0.00, 0.01, 0.05, 0.6))
 #2.926053e-08 6.571152e-06 3.071604e-05
 #5% level
 mean(c(3.014453e-05, 2.742912e-05, 2.886701e-05, 2.790771e-05, 3.071604e-05))
-
+#1% level
+mean(c(6.564719e-06,5.760712e-06,6.002506e-06,5.530269e-06,6.571152e-06))
 #real data
 mydat <- read.csv("data/GEMMA_eachBc_At/05_GEMMAsumm/GeneNames/SNPannot/col0_GEMMA_top1SNPsample_genes.csv")
 quantile(mydat$p_score, c(0.00, 0.01, 0.05, 0.6))
 
+#on linux
+setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/")
+mydat100 <- read.csv("GEMMA_eachBc_At/05_GEMMAsumm/col0_round1/col0_GEMMA_top100SNPsample.txt")
+
 mydat100 <- read.csv("data/GEMMA_eachBc_At/05_GEMMAsumm/GeneNames/SNPannot/col0_GEMMA_top100SNPsample_genes.csv")
 hi100 <- mydat100[mydat100$p_score < 2.901288e-05,]
-hisumm <- as.data.frame(table(hi100$Gene))
+hisumm <- as.data.frame(table(hi100$pheno))
 sigsumm <- hisumm[hisumm$Freq > 0,]
 5213/28373
 
 topsumm <- hisumm[hisumm$Freq > 99,]
 names(topsumm)[1] <- "pheno"
-write.csv(topsumm, "data/GEMMA_eachAt_Bc/07_TopSNPs/At_phenos_manySNPovrThr.csv")
+write.csv(topsumm, "GEMMA_eachAt_Bc/07_TopSNPs/At_phenos_manySNPovrThr.csv")
