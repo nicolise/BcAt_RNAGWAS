@@ -82,7 +82,7 @@ myPhenos <- NULL
 nameddat <- NA
 mydat <- NA
 ##check correct phenotype
-myPhenos <- read.table("col0/02_GEMMA/binMAF20NA10.fam")
+myPhenos <- read.table("col0/02_GEMMA_RAND01/binMAF20NA10.fam")
 nameslist <- myPhenos[1,6:length(myPhenos)]
 #check that V6 is a real phenotype
 nameslist[1,1:10] #yes
@@ -96,7 +96,7 @@ mydat <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_maxRAND_1SNP.csv")
 names(mydat)
 nameddat <- merge(mydat, myGenes, by = "pheno")
 ##match name here
-write.csv(nameddat, "05_GEMMAsumm/GeneNames/col0_GEMMA_top100SNPsample.csv")
+write.csv(nameddat, "06_GEMMAsumm_RAND/col0_GEMMA_maxRAND_top1SNPsample_named.csv")
 
 #--------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachBc_At/")
 randdat <- read.csv("06_GEMMAsumm_RAND/col0_GEMMA_maxRAND_top1SNPsample_named.csv")
 #need annotated gene names ("phenotype") to match random to real data
 
-mydat01 <- read.csv("06_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
+mydat01 <- read.csv("05_GEMMAsumm/GeneNames/col0_GEMMA_top1SNPsample.csv")
 
 randmerge <- randdat[,c("Gene","chr","ps", "p_score","randrun")]
 names(randmerge) <- c("Gene","rand_chr","rand_pos", "rand_p","rand_run")
@@ -134,12 +134,12 @@ library(ggplot2)
 #create a custom color scale
 mydat_plot$chr.sig <- as.factor(paste(mydat_plot$chr, mydat_plot$mygroup, sep="."))
 levels(mydat_plot$chr.sig)
-myColors <- c("navyblue","darkred", "royalblue1","indianred1",  "navyblue","darkred",  "royalblue1","indianred1", "navyblue","darkred", "royalblue1", "indianred1", "navyblue","darkred", "royalblue1","indianred1",  "navyblue","darkred",  "royalblue1","indianred1",  "royalblue1","indianred1", "navyblue","darkred",  "royalblue1","indianred1", "navyblue","darkred", "royalblue1","indianred1","navyblue", "darkred",  "royalblue1","indianred1", "navyblue","darkred",  "royalblue1", "indianred1")
+myColors <- rep(c("darkgreen","darkred", "palegreen3","indianred1"),9)
 names(myColors) <- levels(mydat_plot$chr.sig)
 colScale <- scale_colour_manual(name = "Sig",values = myColors)
 
 setwd("~/Projects/BcAt_RNAGWAS")
-jpeg("plots/Manhattans/BcCol0_top1SNP_realOverRand.jpg", width=8, height=5, units='in', res=600)
+jpeg("plots/Manhattans/AtCol0_top1SNP_realOverRand.jpg", width=8, height=5, units='in', res=600)
 print(
   ggplot(mydat_plot, aes(x=Index.s, y=(-log10(mydat_plot$p_score))))+
     theme_bw()+
@@ -155,7 +155,7 @@ dev.off()
 
 #summarize real SNP vs. permuted SNP: what % of the time is real data more sig?
 table(mydat_plot$mygroup)
-6405/(2862+6405) #69%
+5422/(3845+5422) #58%
 #------------------------------------------------------------------------------------
 #additional bits using simulation threshold
 rm(list=ls())
