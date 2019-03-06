@@ -100,10 +100,11 @@ quantile(myranddat$p_score, c(0.00, 0.01, 0.05))
 #2.949698e-08 4.325383e-06 2.021054e-05 
 #1.034973e-07 5.034284e-06 1.795980e-05
 #1%
-mean(c( 5.425669e-06,4.801529e-06,5.526258e-06,4.325383e-06,5.034284e-06))
+mean(c(5.425669e-06,4.801529e-06,5.526258e-06,4.325383e-06,5.034284e-06))
 #5%
 mean(c(2.172780e-05, 1.864122e-05, 1.950385e-05, 2.021054e-05, 1.795980e-05))
-
+#setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS")
+#mydat100 <- read.csv("GEMMA_eachAt_Bc/06_GEMMAsumm/col0_GEMMA_top100SNPsample.txt")
 mydat100 <- read.csv("data/GEMMA_eachAt_Bc/06_GEMMAsumm/col0_GEMMA_top100SNPsample.txt")
 hi100 <- mydat100[mydat100$p_score < 1.960864e-05,]
 hisumm <- as.data.frame(table(hi100$pheno))
@@ -114,7 +115,9 @@ sigsmm <- hisumm[hisumm$Freq > 0,]
 
 topsumm <- hisumm[hisumm$Freq > 99,]
 names(topsumm)[1] <- "pheno"
+names(sigsmm)[1] <- "pheno"
 write.csv(topsumm, "data/GEMMA_eachAt_Bc/07_TopSNPs/Bc_phenos_manySNPovrThr.csv")
+write.csv(sigsmm, "GEMMA_eachAt_Bc/07_TopSNPs/Bc_phenos_sigSNPovrThr.csv")
 #---------------------------------------------------------------------------
 #next, look at deeper hotspots: plot top 10 SNPs per gene per permuation
 #summarize across 5 permutations, without thresholding

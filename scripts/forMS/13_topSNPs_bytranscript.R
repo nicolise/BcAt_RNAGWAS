@@ -15,57 +15,29 @@
 #look for extremely low p values = evidence for cis effects
 
 rm(list=ls())
-setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/GEMMA_eachAt_Bc/")
-
-#get list of phenos with SNP > Thr
-mysnplist <- read.csv("07_TopSNPs/Bc_phenos_manySNPovrThr.csv")
-
-#read in individual GEMMA output files (1 per geno)
-#read in all files in folder by pattern matching
-#my.files <- list.files(pattern = ".assoc.txt")
-mytime <- Sys.time()
-  #each phenotype
-j <- "col0"
-for (i in mysnplist$pheno){
-    #Sys.time()
-    my_gemma <- read.table(paste("04_GEMMAout/",j,"/",j,"_MAF20NA10_",i,".assoc.txt", sep=""), header=TRUE)
-    #Sys.time()
-    my_gemma$pheno <- i
-    snpnum5pct <- nrow(my_gemma[my_gemma$p_score < 1.960864e-05,])
-    snpnum1pct <- nrow(my_gemma[my_gemma$p_score < 5.022625e-06,])
-    pheno <- i
-    my_gemma.t <- as.data.frame(cbind(snpnum5pct, snpnum1pct, pheno))
-    try(ifelse(i == 9, totnumsnp <- my_gemma.t, totnumsnp <- rbind(totnumsnp, my_gemma.t)))
-    }
-mytime
-Sys.time()
-
-write.csv(totnumsnp, "07_TopSNPs/Bc_numphenosoverThr.csv")
-
-
-#-------------------------------------------------------------------------------
-#for At
-rm(list=ls())
 setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/")
 
-#get list of phenos with SNP > Thr
+#get list of phenos with many SNP > Thr
+mysnplistB <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/Bc_phenos_manySNPovrThr.csv")
 mysnplistA <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/At_phenos_manySNPovrThr.csv")
+totnumsnpB <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/Bc_numphenosoverThr.csv")
+#-----------------------------------------------------------------------------------
+#calculate median SNP > thr 
 
-mytime <- Sys.time()
-#each phenotype
-j <- "col0"
-for (i in mysnplistA$pheno){
-  #Sys.time()
-  my_gemma <- read.table(paste("GEMMA_eachBc_At/04_GEMMAout/col0_round2/",j,"_MAF20NA10_obs_",i,".assoc.txt", sep=""), header=TRUE)
-  #Sys.time()
-  my_gemma$pheno <- i
-  snpnum5pct <- nrow(my_gemma[my_gemma$p_score < 2.901288e-05,])
-  snpnum1pct <- nrow(my_gemma[my_gemma$p_score < 6.085872e-06,])
-  pheno <- i
-  my_gemma.t <- as.data.frame(cbind(snpnum5pct, snpnum1pct, pheno))
-  try(ifelse(i == 12, totnumsnp <- my_gemma.t, totnumsnp <- rbind(totnumsnp, my_gemma.t)))
-}
-mytime
-Sys.time()
+#------------------------------------------------------------------------
+#look for extreme p-values as evidence for cis
+rm(list=ls())
+setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/")
+top100B <- read.csv("GEMMA_eachAt_Bc/06_GEMMAsumm/col0_GEMMA_top100SNPsample.txt")
+hist(-log10(top100B$p_score))
+min(top100B$p_score)
+hi100B <- top100B[top100B$p_score < 1e-6,]
+hist(hi100B$p_score)
+hist(-log10(hi100B$p_score))
 
-write.csv(totnumsnp, "GEMMA_eachAt_Bc/07_TopSNPs/At_numphenosoverThr.csv")
+top1B <- read.csv("GEMMA_eachAt_Bc/06_GEMMAsumm/col0_GEMMA_top1SNPsample.txt")
+hist(-log10(top1B$p_score))
+min(top1B$p_score)
+hi1B <- top1B[top1B$p_score < 1e-6,]
+hist(hi1B$p_score)
+hist(-log10(hi1B$p_score))
