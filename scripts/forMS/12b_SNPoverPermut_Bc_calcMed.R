@@ -37,10 +37,19 @@ mytime
 Sys.time()
 
 write.csv(totnumsnp, "07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
+totnumsnp <- read.csv("07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 
-median(totnumsnp$snpnum5pct)
+median(totnumsnp$snpnum5pct) #10
 median(totnumsnp$snpnum1pct)
 
+#save as .jpg, 300 wide by 400 tall
+hist(log10(totnumsnp$snpnum5pct))
+library(ggplot2)
+ggplot(totnumsnp, aes(x=log10(snpnum5pct))) + geom_histogram(color="navyblue", fill="royalblue1") + 
+  geom_vline(aes(xintercept=median(log10(totnumsnp$snpnum5pct))), color="navyblue", linetype="dashed") + 
+  theme_bw()
+
+#for at use darkgreen with palegreen3
 #------------------------------------------------------------------------
 #for At
 rm(list=ls())

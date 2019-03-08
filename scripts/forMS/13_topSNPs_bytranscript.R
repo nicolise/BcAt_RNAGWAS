@@ -82,3 +82,13 @@ boxplot(-log10(hi100B$p_score), ylim=c(0, 9))
 #use the Tukey’s method to identify the outliers ranged above and below the 1.5*IQR
 boxplot.stats(-log10(hi1B$p_score))$out
 boxplot.stats(-log10(hi1A$p_score))$out
+
+#better plots - histograms
+library(ggplot2)
+ggplot(hi1B, aes(x=-log10(p_score))) + geom_histogram(color="navyblue", fill="royalblue1") + 
+  geom_vline(aes(xintercept=median(-log10(hi1B$p_score))), color="navyblue", linetype="dashed") + 
+  theme_bw()
+
+ggplot(hi1A, aes(x=-log10(p_score))) + geom_histogram(color="darkgreen", fill="palegreen3") + 
+  geom_vline(aes(xintercept=median(-log10(hi1A$p_score))), color="darkgreen", linetype="dashed") + 
+  theme_bw()
