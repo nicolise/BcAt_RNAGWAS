@@ -36,6 +36,14 @@ for (i in mysnplist$pheno){
 mytime
 Sys.time()
 
+
+write.csv(totnumsnp, "GEMMA_eachAt_Bc/07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
+
+median(totnumsnp$snpnum5pct) #10
+median(totnumsnp$snpnum1pct)
+blah <- totnumsnp[totnumsnp$snpnum1pct > 0,]
+median(blah$snpnum1pct) #13
+
 write.csv(totnumsnp, "07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 totnumsnp <- read.csv("07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 
@@ -56,7 +64,7 @@ rm(list=ls())
 setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/")
 
 #get list of phenos with SNP > Thr
-mysnplist <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/At_phenos_sigSNPovrThr.csv")
+mysnplistA <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/At_phenos_sigSNPovrThr.csv")
 
 mytime <- Sys.time()
 #each phenotype
@@ -75,7 +83,7 @@ for (i in mysnplistA$pheno){
 mytime
 Sys.time()
 
-write.csv(totnumsnp, "07_TopSNPs/At_TOTAL_numphenosoverThr.csv")
+write.csv(totnumsnp, "GEMMA_eachAt_Bc/07_TopSNPs/At_TOTAL_numphenosoverThr.csv")
 
 median(totnumsnp$snpnum5pct)
 median(totnumsnp$snpnum1pct)
