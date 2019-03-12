@@ -36,14 +36,14 @@ for (i in mysnplist$pheno){
 mytime
 Sys.time()
 
-<<<<<<< HEAD
+
 write.csv(totnumsnp, "GEMMA_eachAt_Bc/07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 
 median(totnumsnp$snpnum5pct) #10
 median(totnumsnp$snpnum1pct)
 blah <- totnumsnp[totnumsnp$snpnum1pct > 0,]
 median(blah$snpnum1pct) #13
-=======
+
 write.csv(totnumsnp, "07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 totnumsnp <- read.csv("07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 
@@ -58,7 +58,6 @@ ggplot(totnumsnp, aes(x=log10(snpnum5pct))) + geom_histogram(color="navyblue", f
   theme_bw()
 
 #for at use darkgreen with palegreen3
->>>>>>> 05c171072309cfdef4f0eafdbdb9d5725dff0ea6
 #------------------------------------------------------------------------
 #for At
 rm(list=ls())
