@@ -12,6 +12,7 @@
 
 rm(list=ls())
 setwd("/media/nesoltis/Soltis_AtBc_eQTL/BcAt_RNAGWAS/")
+setwd("~/Projects/BcAt_RNAGWAS/data/")
 
 #get list of phenos with SNP > Thr
 mysnplist <- read.csv("GEMMA_eachAt_Bc/07_TopSNPs/Bc_phenos_sigSNPovrThr.csv")
@@ -45,6 +46,7 @@ blah <- totnumsnp[totnumsnp$snpnum1pct > 0,]
 median(blah$snpnum1pct) #13
 
 write.csv(totnumsnp, "07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
+setwd("~/Projects/BcAt_RNAGWAS/data/GEMMA_eachAt_Bc")
 totnumsnp <- read.csv("07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 
 median(totnumsnp$snpnum5pct) #10
