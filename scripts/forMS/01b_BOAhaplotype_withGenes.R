@@ -282,7 +282,9 @@ BoaPhenosAoV <- merge(BoaPhenos,AoVclusts, by = "Isolate")
 fit <- aov(mean.Pheno ~ boa_anova, data=BoaPhenosAoV)
 summary(fit) #N.S. p ~ 0.55
 
-#-------------------------------------------------------------------------------------------------
+#try Kruskal-Wallis for nonparametric ANOVA
+kruskal.test(mean.Pheno ~ boa_anova, data=BoaPhenosAoV)
+#--------------------------------------------------------------------------------------------
 #for Net5
 #use pvclust for clustering with significance/ p values
 library(pvclust)
