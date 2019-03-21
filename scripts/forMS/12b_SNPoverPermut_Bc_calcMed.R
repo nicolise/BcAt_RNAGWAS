@@ -52,6 +52,11 @@ totnumsnp <- read.csv("07_TopSNPs/Bc_TOTAL_numphenosoverThr.csv")
 median(totnumsnp$snpnum5pct) #10
 median(totnumsnp$snpnum1pct)
 
+#SE = sd / (n^0.5)
+mysd <- sd(totnumsnp$snpnum5pct)
+myrtn <- nrow(totnumsnp)^0.5
+mysd/myrtn
+
 #save as .jpg, 300 wide by 400 tall
 hist(log10(totnumsnp$snpnum5pct))
 library(ggplot2)
@@ -92,6 +97,11 @@ totnumsnp <- read.csv("07_TopSNPs/At_TOTAL_numphenosoverThr.csv")
 
 median(totnumsnp$snpnum5pct) #10
 median(totnumsnp$snpnum1pct)
+
+#SE = sd / (n^0.5)
+mysd <- sd(totnumsnp$snpnum5pct)
+myrtn <- nrow(totnumsnp)^0.5
+mysd/myrtn
 
 #save as .jpg, 300 wide by 400 tall
 hist(log10(totnumsnp$snpnum5pct))
